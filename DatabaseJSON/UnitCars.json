@@ -75650,7 +75650,7 @@
         "type": "Trolley bus",
         "category": "Unarmed",
         "paintSchemes": {},
-        "displayName": "Bus ZIU-9 Trolley",
+        "displayName": "ZIU-9 Trolley",
         "shape": "trolebus",
         "detectionRange": 0,
         "threatRange": 0,
@@ -85203,7 +85203,7 @@
         "type": "tacr2a",
         "category": "Unarmed",
         "paintSchemes": {},
-        "displayName": "RAF Rescue",
+        "displayName": "Firefighter RAF Rescue",
         "module": "South_Atlantic_Assets",
         "shape": "tacr2a",
         "detectionRange": 0,
@@ -85220,7 +85220,7 @@
         "type": "LARC-V",
         "category": "Unarmed",
         "paintSchemes": {},
-        "displayName": "LARC-V",
+        "displayName": "Truck LARC-V",
         "module": "South_Atlantic_Assets",
         "shape": "LARC-V",
         "detectionRange": 500,
@@ -136111,8 +136111,8 @@
         "displayName": "HQ-7 Self-Propelled LN",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "hq7_ln",
-        "detectionRange": 15000,
-        "threatRange": 15000,
+        "detectionRange": 8000,
+        "threatRange": 12000,
         "operators": {
             "China": [
                 1980,
@@ -161455,5 +161455,1893 @@
                 1940
             ]
         }
+    },
+    {
+        "_id": "66508fa8eaf4d629400ed4a2",
+        "type": "TugHarlan_drivable",
+        "category": "Unarmed",
+        "paintSchemes": {
+            "0": [
+                "green",
+                "white"
+            ],
+            "1": [
+                "green",
+                "white"
+            ],
+            "2": [
+                "green",
+                "white"
+            ],
+            "3": [
+                "green",
+                "white"
+            ],
+            "4": [
+                "green",
+                "white"
+            ],
+            "5": [
+                "green",
+                "white"
+            ],
+            "6": [
+                "green",
+                "white"
+            ],
+            "7": [
+                "green",
+                "white"
+            ],
+            "8": [
+                "green",
+                "white"
+            ],
+            "9": [
+                "green",
+                "white"
+            ],
+            "10": [
+                "green",
+                "white"
+            ],
+            "11": [
+                "green",
+                "white"
+            ],
+            "12": [
+                "green",
+                "white"
+            ],
+            "13": [
+                "green",
+                "white"
+            ],
+            "15": [
+                "green",
+                "white"
+            ],
+            "16": [
+                "green",
+                "white"
+            ],
+            "17": [
+                "green",
+                "white"
+            ],
+            "18": [
+                "green",
+                "white"
+            ],
+            "19": [
+                "green",
+                "white"
+            ],
+            "20": [
+                "green",
+                "white"
+            ],
+            "21": [
+                "green",
+                "white"
+            ],
+            "22": [
+                "green",
+                "white"
+            ],
+            "23": [
+                "green",
+                "white"
+            ],
+            "24": [
+                "green",
+                "white"
+            ],
+            "25": [
+                "green",
+                "white"
+            ],
+            "26": [
+                "green",
+                "white"
+            ],
+            "27": [
+                "green",
+                "white"
+            ],
+            "28": [
+                "green",
+                "white"
+            ],
+            "29": [
+                "green",
+                "white"
+            ],
+            "30": [
+                "green",
+                "white"
+            ],
+            "31": [
+                "green",
+                "white"
+            ],
+            "32": [
+                "green",
+                "white"
+            ],
+            "33": [
+                "green",
+                "white"
+            ],
+            "34": [
+                "green",
+                "white"
+            ],
+            "35": [
+                "green",
+                "white"
+            ],
+            "36": [
+                "green",
+                "white"
+            ],
+            "37": [
+                "green",
+                "white"
+            ],
+            "38": [
+                "green",
+                "white"
+            ],
+            "39": [
+                "green",
+                "white"
+            ],
+            "40": [
+                "green",
+                "white"
+            ],
+            "41": [
+                "green",
+                "white"
+            ],
+            "42": [
+                "green",
+                "white"
+            ],
+            "43": [
+                "green",
+                "white"
+            ],
+            "44": [
+                "green",
+                "white"
+            ],
+            "45": [
+                "green",
+                "white"
+            ],
+            "46": [
+                "green",
+                "white"
+            ],
+            "47": [
+                "green",
+                "white"
+            ],
+            "48": [
+                "green",
+                "white"
+            ],
+            "49": [
+                "green",
+                "white"
+            ],
+            "50": [
+                "green",
+                "white"
+            ],
+            "51": [
+                "green",
+                "white"
+            ],
+            "52": [
+                "green",
+                "white"
+            ],
+            "53": [
+                "green",
+                "white"
+            ],
+            "54": [
+                "green",
+                "white"
+            ],
+            "55": [
+                "green",
+                "white"
+            ],
+            "56": [
+                "green",
+                "white"
+            ],
+            "57": [
+                "green",
+                "white"
+            ],
+            "58": [
+                "green",
+                "white"
+            ],
+            "59": [
+                "green",
+                "white"
+            ],
+            "60": [
+                "green",
+                "white"
+            ],
+            "61": [
+                "green",
+                "white"
+            ],
+            "62": [
+                "green",
+                "white"
+            ],
+            "63": [
+                "green",
+                "white"
+            ],
+            "64": [
+                "green",
+                "white"
+            ],
+            "65": [
+                "green",
+                "white"
+            ],
+            "66": [
+                "green",
+                "white"
+            ],
+            "67": [
+                "green",
+                "white"
+            ],
+            "68": [
+                "green",
+                "white"
+            ],
+            "69": [
+                "green",
+                "white"
+            ],
+            "70": [
+                "green",
+                "white"
+            ],
+            "71": [
+                "green",
+                "white"
+            ],
+            "72": [
+                "green",
+                "white"
+            ],
+            "73": [
+                "green",
+                "white"
+            ],
+            "74": [
+                "green",
+                "white"
+            ],
+            "75": [
+                "green",
+                "white"
+            ],
+            "76": [
+                "green",
+                "white"
+            ],
+            "77": [
+                "green",
+                "white"
+            ],
+            "78": [
+                "green",
+                "white"
+            ],
+            "79": [
+                "green",
+                "white"
+            ],
+            "80": [
+                "green",
+                "white"
+            ],
+            "81": [
+                "green",
+                "white"
+            ],
+            "82": [
+                "green",
+                "white"
+            ],
+            "83": [
+                "green",
+                "white"
+            ],
+            "84": [
+                "green",
+                "white"
+            ],
+            "85": [
+                "green",
+                "white"
+            ],
+            "86": [
+                "green",
+                "white"
+            ],
+            "87": [
+                "green",
+                "white"
+            ],
+            "88": [
+                "green",
+                "white"
+            ],
+            "89": [
+                "green",
+                "white"
+            ],
+            "90": [
+                "green",
+                "white"
+            ]
+        },
+        "displayName": "M92 Tug Harlan drivable",
+        "module": "Massun92-Assetpack",
+        "shape": "M92_TugHarlan_drivable",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {}
+    },
+    {
+        "_id": "66508fa8eaf4d629400ed4a4",
+        "type": "B600_drivable",
+        "category": "Unarmed",
+        "paintSchemes": {
+            "0": [
+                "civil version"
+            ],
+            "1": [
+                "civil version"
+            ],
+            "2": [
+                "civil version"
+            ],
+            "3": [
+                "civil version"
+            ],
+            "4": [
+                "civil version"
+            ],
+            "5": [
+                "civil version"
+            ],
+            "6": [
+                "civil version"
+            ],
+            "7": [
+                "civil version"
+            ],
+            "8": [
+                "civil version"
+            ],
+            "9": [
+                "civil version"
+            ],
+            "10": [
+                "civil version"
+            ],
+            "11": [
+                "civil version"
+            ],
+            "12": [
+                "civil version"
+            ],
+            "13": [
+                "civil version"
+            ],
+            "15": [
+                "civil version"
+            ],
+            "16": [
+                "civil version"
+            ],
+            "17": [
+                "civil version"
+            ],
+            "18": [
+                "civil version"
+            ],
+            "19": [
+                "civil version"
+            ],
+            "20": [
+                "civil version"
+            ],
+            "21": [
+                "civil version"
+            ],
+            "22": [
+                "civil version"
+            ],
+            "23": [
+                "civil version"
+            ],
+            "24": [
+                "civil version"
+            ],
+            "25": [
+                "civil version"
+            ],
+            "26": [
+                "civil version"
+            ],
+            "27": [
+                "civil version"
+            ],
+            "28": [
+                "civil version"
+            ],
+            "29": [
+                "civil version"
+            ],
+            "30": [
+                "civil version"
+            ],
+            "31": [
+                "civil version"
+            ],
+            "32": [
+                "civil version"
+            ],
+            "33": [
+                "civil version"
+            ],
+            "34": [
+                "civil version"
+            ],
+            "35": [
+                "civil version"
+            ],
+            "36": [
+                "civil version"
+            ],
+            "37": [
+                "civil version"
+            ],
+            "38": [
+                "civil version"
+            ],
+            "39": [
+                "civil version"
+            ],
+            "40": [
+                "civil version"
+            ],
+            "41": [
+                "civil version"
+            ],
+            "42": [
+                "civil version"
+            ],
+            "43": [
+                "civil version"
+            ],
+            "44": [
+                "civil version"
+            ],
+            "45": [
+                "civil version"
+            ],
+            "46": [
+                "civil version"
+            ],
+            "47": [
+                "civil version"
+            ],
+            "48": [
+                "civil version"
+            ],
+            "49": [
+                "civil version"
+            ],
+            "50": [
+                "civil version"
+            ],
+            "51": [
+                "civil version"
+            ],
+            "52": [
+                "civil version"
+            ],
+            "53": [
+                "civil version"
+            ],
+            "54": [
+                "civil version"
+            ],
+            "55": [
+                "civil version"
+            ],
+            "56": [
+                "civil version"
+            ],
+            "57": [
+                "civil version"
+            ],
+            "58": [
+                "civil version"
+            ],
+            "59": [
+                "civil version"
+            ],
+            "60": [
+                "civil version"
+            ],
+            "61": [
+                "civil version"
+            ],
+            "62": [
+                "civil version"
+            ],
+            "63": [
+                "civil version"
+            ],
+            "64": [
+                "civil version"
+            ],
+            "65": [
+                "civil version"
+            ],
+            "66": [
+                "civil version"
+            ],
+            "67": [
+                "civil version"
+            ],
+            "68": [
+                "civil version"
+            ],
+            "69": [
+                "civil version"
+            ],
+            "70": [
+                "civil version"
+            ],
+            "71": [
+                "civil version"
+            ],
+            "72": [
+                "civil version"
+            ],
+            "73": [
+                "civil version"
+            ],
+            "74": [
+                "civil version"
+            ],
+            "75": [
+                "civil version"
+            ],
+            "76": [
+                "civil version"
+            ],
+            "77": [
+                "civil version"
+            ],
+            "78": [
+                "civil version"
+            ],
+            "79": [
+                "civil version"
+            ],
+            "80": [
+                "civil version"
+            ],
+            "81": [
+                "civil version"
+            ],
+            "82": [
+                "civil version"
+            ],
+            "83": [
+                "civil version"
+            ],
+            "84": [
+                "civil version"
+            ],
+            "85": [
+                "civil version"
+            ],
+            "86": [
+                "civil version"
+            ],
+            "87": [
+                "civil version"
+            ],
+            "88": [
+                "civil version"
+            ],
+            "89": [
+                "civil version"
+            ],
+            "90": [
+                "civil version"
+            ]
+        },
+        "displayName": "M92 B600 drivable",
+        "module": "Massun92-Assetpack",
+        "shape": "M92_B600_drivable",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {}
+    },
+    {
+        "_id": "66508fa8eaf4d629400ed4a6",
+        "type": "MJ-1_drivable",
+        "category": "Unarmed",
+        "paintSchemes": {
+            "0": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "1": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "2": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "3": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "4": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "5": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "6": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "7": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "8": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "9": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "10": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "11": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "12": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "13": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "15": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "16": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "17": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "18": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "19": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "20": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "21": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "22": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "23": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "24": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "25": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "26": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "27": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "28": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "29": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "30": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "31": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "32": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "33": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "34": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "35": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "36": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "37": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "38": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "39": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "40": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "41": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "42": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "43": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "44": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "45": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "46": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "47": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "48": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "49": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "50": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "51": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "52": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "53": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "54": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "55": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "56": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "57": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "58": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "59": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "60": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "61": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "62": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "63": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "64": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "65": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "66": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "67": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "68": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "69": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "70": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "71": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "72": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "73": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "74": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "75": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "76": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "77": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "78": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "79": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "80": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "81": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "82": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "83": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "84": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "85": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "86": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "87": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "88": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "89": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "90": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ]
+        },
+        "displayName": "M92 MJ-1 drivable",
+        "module": "Massun92-Assetpack",
+        "shape": "M92_MJ-1_drivable",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {}
+    },
+    {
+        "_id": "66508fa8eaf4d629400ed4a8",
+        "type": "P20_drivable",
+        "category": "Unarmed",
+        "paintSchemes": {
+            "0": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "1": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "2": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "3": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "4": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "5": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "6": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "7": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "8": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "9": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "10": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "11": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "12": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "13": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "15": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "16": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "17": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "18": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "19": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "20": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "21": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "22": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "23": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "24": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "25": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "26": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "27": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "28": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "29": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "30": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "31": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "32": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "33": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "34": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "35": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "36": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "37": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "38": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "39": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "40": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "41": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "42": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "43": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "44": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "45": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "46": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "47": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "48": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "49": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "50": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "51": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "52": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "53": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "54": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "55": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "56": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "57": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "58": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "59": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "60": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "61": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "62": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "63": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "64": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "65": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "66": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "67": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "68": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "69": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "70": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "71": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "72": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "73": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "74": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "75": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "76": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "77": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "78": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "79": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "80": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "81": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "82": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "83": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "84": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "85": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "86": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "87": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "88": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "89": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ],
+            "90": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
+            ]
+        },
+        "displayName": "M92 P20 drivable",
+        "module": "Massun92-Assetpack",
+        "shape": "M92_P20_drivable",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {}
+    },
+    {
+        "_id": "66508fa8eaf4d629400ed4aa",
+        "type": "r11_volvo_drivable",
+        "category": "Unarmed",
+        "paintSchemes": {},
+        "displayName": "M92 R11 Volvo drivable",
+        "module": "Massun92-Assetpack",
+        "shape": "M92_r11_volvo_drivable",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {}
+    },
+    {
+        "_id": "66508fa8eaf4d629400ed4b4",
+        "type": "L118_Unit",
+        "category": "Artillery",
+        "paintSchemes": {},
+        "displayName": "L118 Light Artillery Gun",
+        "module": "South_Atlantic_Assets",
+        "shape": "L118_Unit",
+        "detectionRange": 500,
+        "threatRange": 17200,
+        "operators": {}
+    },
+    {
+        "_id": "66508fa9eaf4d629400ed4fa",
+        "type": "HQ-7_LN_P",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "HQ-7 LN (Player)",
+        "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "hq7_ln",
+        "detectionRange": 8000,
+        "threatRange": 12000,
+        "operators": {}
     }
 ]
