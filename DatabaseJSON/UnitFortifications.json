@@ -1463,5 +1463,12 @@
         "displayName": "FARP Hide Double Med",
         "module": "South_Atlantic_Assets",
         "shapeName": "FarpHide_Dmed"
+    },
+    {
+        "_id": "65328a714319326630cdf39b",
+        "type": "FlagPole",
+        "displayName": "Flag Pole",
+        "module": "TechWeaponPack",
+        "shapeName": "FlagPoleStatic"
     }
 ]
