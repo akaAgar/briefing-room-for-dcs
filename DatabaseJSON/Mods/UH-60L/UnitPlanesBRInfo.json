@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "type": "KC130J",
+        "families": [
+            "PlaneTankerBasket"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    }
+]
