@@ -534,27 +534,6 @@
         "shapeName": "offshore_windturbine2"
     },
     {
-        "_id": "65328a714319326630cdf397",
-        "type": "container_40ft",
-        "displayName": "Container 40ft",
-        "module": "TechWeaponPack",
-        "shapeName": "container_40ft"
-    },
-    {
-        "_id": "65328a714319326630cdf399",
-        "type": "container_20ft",
-        "displayName": "Container 20ft",
-        "module": "TechWeaponPack",
-        "shapeName": "container_20ft"
-    },
-    {
-        "_id": "65328a714319326630cdf39b",
-        "type": "FlagPole",
-        "displayName": "Flag Pole",
-        "module": "TechWeaponPack",
-        "shapeName": "FlagPoleStatic"
-    },
-    {
         "_id": "65328a714319326630cdf39d",
         "type": "warning_board_a",
         "displayName": "Warning Board: Spy Cannot Escape!",

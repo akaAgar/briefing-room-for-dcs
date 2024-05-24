@@ -69,6 +69,16 @@
         "playerControllable": false
     },
     {
+        "type": "F-4E-45MC",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
         "type": "B-52H",
         "families": [
             "PlaneBomber"

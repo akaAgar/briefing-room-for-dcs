@@ -1854,6 +1854,14 @@
         "immovable": false
     },
     {
+        "type": "HQ-7_LN_P",
+        "families": [
+            "VehicleSAMShort"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
         "type": "HQ-7_LN_EO",
         "families": [
             "VehicleSAMShortIR"
@@ -2345,6 +2353,54 @@
         "type": "S-300PS 5H63C 30H6_tr",
         "families": [
             "VehicleSAMLong"
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "TugHarlan_drivable",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "B600_drivable",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "MJ-1_drivable",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "P20_drivable",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "r11_volvo_drivable",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "L118_Unit",
+        "families": [
+            "VehicleArtillery"
         ],
         "lowPolly": false,
         "immovable": true
