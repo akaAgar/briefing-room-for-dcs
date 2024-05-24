@@ -1,1 +1,15 @@
-[]
+[
+    
+    {
+        "type": "vap_oh6_cargo",
+        "families": [
+            "Cargo"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

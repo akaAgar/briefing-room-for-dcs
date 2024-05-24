@@ -1,1 +1,283 @@
-[]
+[
+    {
+        "type": "vap_mule",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_mutt",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_mutt_gun",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_m35_truck",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_type63_mlrs",
+        "families": [
+            "VehicleMissile",
+            "VehicleArtillery"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_vc_zil",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_vc_zis",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_zis_150_aa",
+        "families": [
+            "VehicleAAA"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_vc_bicycle",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_vc_bicycle_mortar",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_vc_bicycle_ak",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_us_hooch_LP",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_ammo_50cal_line",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_ammo_50cal_pack",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_barrels_line",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_barrels",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_ammo_box_pile",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_ammo_box_wood_long",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_ammo_box_wood_small",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_barrel_red",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_barrel_green",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_mre_boxes",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_mixed_cargo_1",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_mixed_cargo_2",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_watchtower",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_house_high",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_house_long",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_house_small",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_house_T",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_house_tiny",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_house1",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_us_hooch_radio",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_us_hooch_closed",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_vc_bunker_single",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "vap_vc_mg_nest",
+        "families": [
+            "VehicleStatic"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

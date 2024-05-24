@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "type": "vap_us_seafloat",
+        "families": ["ShipTransport"],
+        "lowPolly": false,
+        "immovable": true
+    },
+]
