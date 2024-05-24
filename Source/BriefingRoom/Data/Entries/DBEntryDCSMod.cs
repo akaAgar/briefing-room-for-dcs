@@ -67,7 +67,9 @@ namespace BriefingRoom4DCS.Data
             "VoiceChat",
             "jsAvionics",
             "F-15E AI by RAZBAM",
-            "HeavyMetalCore"
+            "HeavyMetalCore",
+            "Massun92-Assetpack",
+            "F-4E AI by Heatblur Simulations"
         };
 
         internal string Module { get; private set; }
