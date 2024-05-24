@@ -5640,6 +5640,23 @@
         "maxAlt": 3040,
         "cruiseSpeed": 210,
         "width": 8.33,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1960,
+                2020
+            ],
+            "Japan": [
+                1960,
+                2020
+            ],
+            "Spain": [
+                1960,
+                2020
+            ],
+            "Denmark": [
+                1960,
+                2020
+            ]
+        }
     }
 ]

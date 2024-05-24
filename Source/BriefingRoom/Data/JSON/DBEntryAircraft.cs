@@ -186,7 +186,7 @@ namespace BriefingRoom4DCS.Data
                 {
                     var itemEntry = (IDictionary)((DictionaryEntry)item).Value;
 
-                    var tasks = new List<int>();
+                    var tasks = new List<int?>();
                     foreach (var taskItem in ((IDictionary)itemEntry["tasks"]).Values)
                         tasks.Add((int)(long)taskItem);
 

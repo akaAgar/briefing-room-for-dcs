@@ -16,6 +16,11 @@
         "helicopterStorage": 4,
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1950,
+                1970
+            ]
+        }
     }
 ]
