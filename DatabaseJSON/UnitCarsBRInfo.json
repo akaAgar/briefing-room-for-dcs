@@ -1035,7 +1035,7 @@
     {
         "type": "IKARUS Bus",
         "families": [
-            "VehicleTransport"
+            "VehicleCivilian"
         ],
         "lowPolly": true,
         "immovable": false
@@ -1051,7 +1051,7 @@
     {
         "type": "LAZ Bus",
         "families": [
-            "VehicleTransport"
+            "VehicleCivilian"
         ],
         "lowPolly": false,
         "immovable": false
@@ -1059,7 +1059,7 @@
     {
         "type": "LiAZ Bus",
         "families": [
-            "VehicleTransport"
+            "VehicleCivilian"
         ],
         "lowPolly": false,
         "immovable": false
@@ -1123,7 +1123,7 @@
     {
         "type": "Trolley bus",
         "families": [
-            "VehicleTransport"
+            "VehicleCivilian"
         ],
         "lowPolly": true,
         "immovable": false
@@ -1179,7 +1179,7 @@
     {
         "type": "VAZ Car",
         "families": [
-            "VehicleTransport"
+            "VehicleCivilian"
         ],
         "lowPolly": true,
         "immovable": false
@@ -2360,7 +2360,7 @@
     {
         "type": "TugHarlan_drivable",
         "families": [
-            "VehicleTransport"
+            "VehicleAirfield"
         ],
         "lowPolly": false,
         "immovable": false
@@ -2368,7 +2368,7 @@
     {
         "type": "B600_drivable",
         "families": [
-            "VehicleTransport"
+            "VehicleAirfield"
         ],
         "lowPolly": false,
         "immovable": false
@@ -2376,7 +2376,7 @@
     {
         "type": "MJ-1_drivable",
         "families": [
-            "VehicleTransport"
+            "VehicleAirfield"
         ],
         "lowPolly": false,
         "immovable": false
@@ -2384,7 +2384,7 @@
     {
         "type": "P20_drivable",
         "families": [
-            "VehicleTransport"
+            "VehicleAirfield"
         ],
         "lowPolly": false,
         "immovable": false
