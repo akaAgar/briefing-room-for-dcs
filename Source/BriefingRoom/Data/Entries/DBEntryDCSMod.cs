@@ -69,7 +69,8 @@ namespace BriefingRoom4DCS.Data
             "F-15E AI by RAZBAM",
             "HeavyMetalCore",
             "Massun92-Assetpack",
-            "F-4E AI by Heatblur Simulations"
+            "F-4E AI by Heatblur Simulations",
+            "OH58D AI by Polychop-Simulations"
         };
 
         internal string Module { get; private set; }

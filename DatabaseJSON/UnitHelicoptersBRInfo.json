@@ -124,6 +124,14 @@
         "playerControllable": false
     },
     {
+        "type": "OH58D",
+        "families": [
+            "HelicopterAttack"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
         "type": "AH-64D_BLK_II",
         "families": [
             "HelicopterAttack"
