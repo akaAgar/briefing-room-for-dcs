@@ -218,7 +218,7 @@
     {
         "type": "Railway crossing A",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -230,7 +230,7 @@
     {
         "type": "Railway crossing B",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -242,7 +242,7 @@
     {
         "type": "WC",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -722,7 +722,7 @@
     {
         "type": "Landmine",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -794,7 +794,7 @@
     {
         "type": "Airshow_Cone",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -818,7 +818,7 @@
     {
         "type": "Red_Flag",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -830,7 +830,7 @@
     {
         "type": "White_Flag",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -842,7 +842,7 @@
     {
         "type": "Black_Tyre",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -854,7 +854,7 @@
     {
         "type": "White_Tyre",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -866,7 +866,7 @@
     {
         "type": "Black_Tyre_RF",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -878,7 +878,7 @@
     {
         "type": "Black_Tyre_WF",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -890,7 +890,7 @@
     {
         "type": "Windsock",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -902,7 +902,7 @@
     {
         "type": "Beer Bomb",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1058,7 +1058,7 @@
     {
         "type": "warning_board_a",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1070,7 +1070,7 @@
     {
         "type": "warning_board_b",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1082,7 +1082,7 @@
     {
         "type": "FlagPole",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1094,7 +1094,7 @@
     {
         "type": "Belgian gate",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1106,7 +1106,7 @@
     {
         "type": "Concertina wire",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1142,7 +1142,7 @@
     {
         "type": "Czech hedgehogs 1",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1154,7 +1154,7 @@
     {
         "type": "Czech hedgehogs 2",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1166,7 +1166,7 @@
     {
         "type": "Dragonteeth 1",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1178,7 +1178,7 @@
     {
         "type": "Dragonteeth 2",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1190,7 +1190,7 @@
     {
         "type": "Dragonteeth 3",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1202,7 +1202,7 @@
     {
         "type": "Dragonteeth 4",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1214,7 +1214,7 @@
     {
         "type": "Dragonteeth 5",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1238,7 +1238,7 @@
     {
         "type": "Haystack 1",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1250,7 +1250,7 @@
     {
         "type": "Haystack 2",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1262,7 +1262,7 @@
     {
         "type": "Haystack 3",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1274,7 +1274,7 @@
     {
         "type": "Haystack 4",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1286,7 +1286,7 @@
     {
         "type": "Log posts 1",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1298,7 +1298,7 @@
     {
         "type": "Log posts 2",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1310,7 +1310,7 @@
     {
         "type": "Log posts 3",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1322,7 +1322,7 @@
     {
         "type": "Log ramps 1",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1334,7 +1334,7 @@
     {
         "type": "Log ramps 2",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1346,7 +1346,7 @@
     {
         "type": "Log ramps 3",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1442,7 +1442,7 @@
     {
         "type": "Barrier A",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1454,7 +1454,7 @@
     {
         "type": "Barrier B",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1466,7 +1466,7 @@
     {
         "type": "Barrier C",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1478,7 +1478,7 @@
     {
         "type": "Barrier D",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1490,7 +1490,7 @@
     {
         "type": "BoomBarrier_open",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1502,7 +1502,7 @@
     {
         "type": "BoomBarrier_closed",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1682,7 +1682,7 @@
     {
         "type": "Camouflage01",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1694,7 +1694,7 @@
     {
         "type": "Camouflage02",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1706,7 +1706,7 @@
     {
         "type": "Camouflage03",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1718,7 +1718,7 @@
     {
         "type": "Camouflage04",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1730,7 +1730,7 @@
     {
         "type": "Camouflage05",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1742,7 +1742,7 @@
     {
         "type": "Camouflage06",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1754,7 +1754,7 @@
     {
         "type": "Camouflage07",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1766,7 +1766,7 @@
     {
         "type": "Cone01",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1778,7 +1778,7 @@
     {
         "type": "Cone02",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1898,7 +1898,7 @@
     {
         "type": "FireExtinguisher01",
         "families": [
-            "StaticStructureProduction"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1910,7 +1910,7 @@
     {
         "type": "FireExtinguisher02",
         "families": [
-            "StaticStructureProduction"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1922,7 +1922,7 @@
     {
         "type": "FireExtinguisher03",
         "families": [
-            "StaticStructureProduction"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1946,7 +1946,7 @@
     {
         "type": "HESCO_post_1",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1958,7 +1958,7 @@
     {
         "type": "HESCO_wallperimeter_1",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1970,7 +1970,7 @@
     {
         "type": "HESCO_wallperimeter_2",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1982,7 +1982,7 @@
     {
         "type": "HESCO_wallperimeter_3",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -1994,7 +1994,7 @@
     {
         "type": "HESCO_wallperimeter_4",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2006,7 +2006,7 @@
     {
         "type": "HESCO_wallperimeter_5",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2054,7 +2054,7 @@
     {
         "type": "Jerrycan",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2066,7 +2066,7 @@
     {
         "type": "Ladder",
         "families": [
-            "StaticStructureCivilian"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2162,7 +2162,7 @@
     {
         "type": "NF-2_LightOn",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2174,7 +2174,7 @@
     {
         "type": "NF-2_LightOff01",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2186,7 +2186,7 @@
     {
         "type": "NF-2_LightOff02",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2198,7 +2198,7 @@
     {
         "type": "Oil Barrel",
         "families": [
-            "StaticStructureProduction"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2210,7 +2210,7 @@
     {
         "type": "Pile of Woods",
         "families": [
-            "StaticStructureProduction"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2234,7 +2234,7 @@
     {
         "type": "Revetment_x4",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2246,7 +2246,7 @@
     {
         "type": "Revetment_x8",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2270,7 +2270,7 @@
     {
         "type": "Sandbag_01",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2282,7 +2282,7 @@
     {
         "type": "Sandbag_02",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2294,7 +2294,7 @@
     {
         "type": "Sandbag_03",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2306,7 +2306,7 @@
     {
         "type": "Sandbag_04",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2318,7 +2318,7 @@
     {
         "type": "Sandbag_05",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2330,7 +2330,7 @@
     {
         "type": "Sandbag_06",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2342,7 +2342,7 @@
     {
         "type": "Sandbag_07",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2354,7 +2354,7 @@
     {
         "type": "Sandbag_08",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2366,7 +2366,7 @@
     {
         "type": "Sandbag_09",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2378,7 +2378,7 @@
     {
         "type": "Sandbag_10",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2390,7 +2390,7 @@
     {
         "type": "Sandbag_11",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2402,7 +2402,7 @@
     {
         "type": "Sandbag_12",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2414,7 +2414,7 @@
     {
         "type": "Sandbag_13",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2426,7 +2426,7 @@
     {
         "type": "Sandbag_15",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2438,7 +2438,7 @@
     {
         "type": "Sandbag_16",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2450,7 +2450,7 @@
     {
         "type": "Sandbag_17",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2558,7 +2558,7 @@
     {
         "type": "Toolbox01",
         "families": [
-            "StaticStructureProduction"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2570,7 +2570,7 @@
     {
         "type": "Toolbox02",
         "families": [
-            "StaticStructureProduction"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2582,7 +2582,7 @@
     {
         "type": "Twall_x1",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2594,7 +2594,7 @@
     {
         "type": "Twall_x6",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
@@ -2606,7 +2606,7 @@
     {
         "type": "Twall_x6_3mts",
         "families": [
-            "StaticStructureMilitary"
+            "StaticDecorative"
         ],
         "operational": [
             1940,
