@@ -55,11 +55,15 @@ namespace BriefingRoom4DCS
 
         StaticStructureOffshore,
         StaticStructureCivilian,
+        StaticDecorative,
 
         VehicleAAA,
         VehicleAAAStatic,
         VehicleAPC,
         VehicleArtillery,
+        VehicleAirfield,
+        VehicleCivilian,
+
         Infantry,
         InfantryMANPADS,
         VehicleMBT,
