@@ -43,6 +43,14 @@ waypoints:
     speedLocked: true
     y: $GROUPY$
     x: $GROUPX$
+  - alt: $ALTITUDE$
+    action: Turning Point
+    speed: $SPEED$
+    type: Turning Point
+    etaLocked: false
+    speedLocked: true
+    y: $GROUPY$
+    x: $GROUPX$
 groupId: $GROUPID$
 hidden: $HIDDEN$
 y: $GROUPY$
