@@ -57,7 +57,7 @@ namespace BriefingRoom4DCS.Data
                 {"flare", Flares},
                 {"chaff", Chaff},
                 {"gun", 100},
-                {"fuel", Fuel}
+                {"fuel", this.Category == UnitCategory.Helicopter ?  Fuel * 0.6 : Fuel}
                 };
                 if (AmmoType.HasValue)
                     dict.Add("ammo_type", AmmoType.Value);
