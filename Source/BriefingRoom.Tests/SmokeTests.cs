@@ -8,8 +8,8 @@ public class SmokeTests
     [Fact]
     public void SingleMission()
     {
-        new BriefingRoom(nukeDB: true);
-        DCSMission mission = BriefingRoom.GenerateMission($"{BriefingRoom.GetBriefingRoomRootPath()}\\Default.brt");
+        var briefingRoom = new BriefingRoom(nukeDB: true);
+        DCSMission mission = briefingRoom.GenerateMission($"{BriefingRoom.GetBriefingRoomRootPath()}\\Default.brt");
 
         Assert.NotNull(mission);
         Assert.Equal("Caucasus", mission.TheaterID);
@@ -20,8 +20,8 @@ public class SmokeTests
     [Fact]
     public void Campaign()
     {
-        new BriefingRoom(nukeDB: true);
-        DCSCampaign campaign = BriefingRoom.GenerateCampaign($"{BriefingRoom.GetBriefingRoomRootPath()}\\Default.cbrt");
+        var briefingRoom = new BriefingRoom(nukeDB: true);
+        DCSCampaign campaign = briefingRoom.GenerateCampaign($"{BriefingRoom.GetBriefingRoomRootPath()}\\Default.cbrt");
 
         Assert.NotNull(campaign);
         Assert.Equal(5, campaign.MissionCount);

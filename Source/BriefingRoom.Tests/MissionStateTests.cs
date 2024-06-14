@@ -12,7 +12,7 @@ public class DCSMissionStateTests
         new BriefingRoom(nukeDB: true);
         var template = new MissionTemplate($"{BriefingRoom.GetBriefingRoomRootPath()}\\Default.brt");
         var templateRecord = new MissionTemplateRecord(template);
-        var mission = new DCSMission(templateRecord);
+        var mission = new DCSMission("en",templateRecord);
         mission.SaveStage(MissionStageName.Initialization);
 
         mission.GroupID++;
@@ -38,7 +38,7 @@ public class DCSMissionStateTests
         new BriefingRoom(nukeDB: true);
         var template = new MissionTemplate($"{BriefingRoom.GetBriefingRoomRootPath()}\\Default.brt");
         var templateRecord = new MissionTemplateRecord(template);
-        var mission = new DCSMission(templateRecord);
+        var mission = new DCSMission("en", templateRecord);
         mission.SaveStage(MissionStageName.Initialization);
 
         mission.GroupID++;
