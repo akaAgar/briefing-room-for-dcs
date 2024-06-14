@@ -38,10 +38,9 @@ namespace BriefingRoom4DCS
         {
             this.Add("en", value);
         }
-        public string Get()
+        public string Get(string langKey)
         {
-            var key = BriefingRoom.LanguageDB.Language;
-            if (this.ContainsKey(key)) return this[key];
+            if (this.ContainsKey(langKey)) return this[langKey];
             if (this.ContainsKey("en")) return this["en"];
             return $"";
         }

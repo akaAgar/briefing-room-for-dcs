@@ -47,15 +47,15 @@ namespace BriefingRoom4DCS.Generator
         {
 
             if (!mission.AirbaseParkingSpots.ContainsKey(airbaseID))
-                throw new BriefingRoomException("AirbaseNotFound", airbaseID);
+                throw new BriefingRoomException(mission.LangKey, "AirbaseNotFound", airbaseID);
 
             var airbaseDB = mission.AirbaseDB.First(x => x.DCSID == airbaseID);
             var parkingSpots = new List<DBEntryAirbaseParkingSpot>();
             DBEntryAirbaseParkingSpot? lastSpot = null;
             for (int i = 0; i < unitCount; i++)
             {
-                var viableSpots = FilterAndSortSuitableSpots(mission.AirbaseParkingSpots[airbaseID].ToArray(), aircraftDB, requiresOpenAirParking);
-                if (viableSpots.Count == 0) throw new BriefingRoomException("AirbaseNotEnoughParkingSpots", airbaseDB.UIDisplayName.Get());
+                var viableSpots = FilterAndSortSuitableSpots(mission.LangKey, mission.AirbaseParkingSpots[airbaseID].ToArray(), aircraftDB, requiresOpenAirParking);
+                if (viableSpots.Count == 0) throw new BriefingRoomException(mission.LangKey, "AirbaseNotEnoughParkingSpots", airbaseDB.UIDisplayName.Get(mission.LangKey));
                 var parkingSpot = viableSpots.First();
                 if (lastSpot.HasValue) //find nearest spot distance wise in attempt to cluster
                     parkingSpot = viableSpots
@@ -207,7 +207,7 @@ namespace BriefingRoom4DCS.Generator
                          where (coalition == Coalition.Neutral || airbaseDB.Coalition == coalition) && mission.AirbaseParkingSpots.ContainsKey(airbaseDB.DCSID) && ValidateAirfieldParking(mission.AirbaseParkingSpots[airbaseDB.DCSID], aircraftDB.Families.First(), unitCount) && ValidateAirfieldRunway(airbaseDB, aircraftDB.Families.First())
                          select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(coordinates));
 
-            if (!targetAirbaseOptions.Any()) throw new BriefingRoomException("No airbase found for aircraft.");
+            if (!targetAirbaseOptions.Any()) throw new BriefingRoomException(mission.LangKey, "No airbase found for aircraft.");
 
             List<DBEntryAirbaseParkingSpot> parkingSpots;
             foreach (var airbase in targetAirbaseOptions)
@@ -223,7 +223,7 @@ namespace BriefingRoom4DCS.Generator
 
                 return Tuple.Create(airbase, parkingSpots.Select(x => x.DCSID).ToList(), parkingSpots.Select(x => x.Coordinates).ToList());
             }
-            throw new BriefingRoomException("No airbase found with sufficient parking spots.");
+            throw new BriefingRoomException(mission.LangKey, "No airbase found with sufficient parking spots.");
         }
 
         internal static void RecoverSpawnPoint(ref DCSMission mission, Coordinates coords)
@@ -242,11 +242,11 @@ namespace BriefingRoom4DCS.Generator
             return nearestFrontLinePoint.Item2.GetHeadingFrom(coords);
         }
 
-        private static List<DBEntryAirbaseParkingSpot> FilterAndSortSuitableSpots(DBEntryAirbaseParkingSpot[] parkingspots, DBEntryAircraft aircraftDB, bool requiresOpenAirParking)
+        private static List<DBEntryAirbaseParkingSpot> FilterAndSortSuitableSpots(string langKey, DBEntryAirbaseParkingSpot[] parkingspots, DBEntryAircraft aircraftDB, bool requiresOpenAirParking)
         {
             if (parkingspots.Any(x => x.Height == 0))
             {
-                BriefingRoom.PrintTranslatableWarning("UsingSimplifedParking");
+                BriefingRoom.PrintTranslatableWarning(langKey, "UsingSimplifedParking");
                 return FilterAndSortSuitableSpotsSimple(parkingspots, aircraftDB.Families.First(), requiresOpenAirParking);
             }
             var category = aircraftDB.Families.First().GetUnitCategory();

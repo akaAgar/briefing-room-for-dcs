@@ -123,7 +123,7 @@ namespace BriefingRoom4DCS
             }
             catch (Exception e)
             {
-                throw new BriefingRoomException($"Failed to parse value {FilePath}: {typeof(T).FullName} => {string.Join(",", val)}", e);
+                throw new BriefingRoomException("en", $"Failed to parse value {FilePath}: {typeof(T).FullName} => {string.Join(",", val)}", e);
             }
         }
 
@@ -175,7 +175,7 @@ namespace BriefingRoom4DCS
             }
             catch (Exception)
             {
-                throw new BriefingRoomException($"Failed to parse value {FilePath}: {typeof(T).FullName} => {string.Join(",", val)}");
+                throw new BriefingRoomException("en", $"Failed to parse value {FilePath}: {typeof(T).FullName} => {string.Join(",", val)}");
             }
         }
 
@@ -495,7 +495,7 @@ namespace BriefingRoom4DCS
             }
             catch (Exception e)
             {
-                throw new BriefingRoomException($"Failed to parse value {FilePath}: {typeof(T).FullName} => {string.Join(",", sourceArray)}",e);
+                throw new BriefingRoomException("en",  $"Failed to parse value {FilePath}: {typeof(T).FullName} => {string.Join(",", sourceArray)}",e);
             }
         }
     }

@@ -53,7 +53,7 @@ namespace BriefingRoom4DCS.Mission
         {
             // Try to create the directory if it doesn't exist.
             if (!Toolbox.CreateMissingDirectory(exportPath))
-                throw new BriefingRoomException("FailedToCreateCampaignFolder");
+                throw new BriefingRoomException(Missions[0].LangKey, "FailedToCreateCampaignFolder");
 
 
 
@@ -91,7 +91,7 @@ namespace BriefingRoom4DCS.Mission
             for (int i = 0; i < Missions.Count; i++)
                 FileEntries.Add($"{Missions[i].Briefing.Name}.miz", await Missions[i].SaveToMizBytes());
 
-            return Toolbox.ZipData(FileEntries);
+            return Toolbox.ZipData(Missions[0].LangKey, FileEntries);
         }
 
         public byte[] ExportBriefingsToCompressedByteArray()
@@ -102,7 +102,7 @@ namespace BriefingRoom4DCS.Mission
                 FileEntries.Add($"{mission.Briefing.Name}.html", Encoding.UTF8.GetBytes(mission.Briefing.GetBriefingAsHTML(mission)));
                 
 
-            return Toolbox.ZipData(FileEntries);
+            return Toolbox.ZipData(Missions[0].LangKey, FileEntries);
         }
 
         internal void AddMission(DCSMission mission)

@@ -33,7 +33,7 @@ namespace BriefingRoom4DCS.Generator
             if (mission.TemplateRecord.OptionsMission.Contains("SpawnAnywhere") || mission.TemplateRecord.ContextSituation == "None" || mission.TemplateRecord.OptionsMission.Contains("NoFrontLine"))
                 return;
             var frontLineDB = Database.Instance.Common.FrontLine;
-            var frontLineCenter = Coordinates.Lerp(mission.PlayerAirbase.Coordinates, mission.ObjectivesCenter, GetObjectiveLerpBias(mission.TemplateRecord, frontLineDB));
+            var frontLineCenter = Coordinates.Lerp(mission.PlayerAirbase.Coordinates, mission.ObjectivesCenter, GetObjectiveLerpBias(mission.LangKey, mission.TemplateRecord, frontLineDB));
 
             var objectiveHeading = mission.PlayerAirbase.Coordinates.GetHeadingFrom(mission.ObjectivesCenter);
             var angleVariance = frontLineDB.AngleVarianceRange + objectiveHeading;
@@ -68,12 +68,12 @@ namespace BriefingRoom4DCS.Generator
             return point;
         }
 
-        private static double GetObjectiveLerpBias(MissionTemplateRecord template, DBCommonFrontLine frontLineDB) {
+        private static double GetObjectiveLerpBias(string langKey, MissionTemplateRecord template, DBCommonFrontLine frontLineDB) {
             var friendlySideObjectivesCount = 0;
             var enemySideObjectivesCount = 0;
 
             template.Objectives.ForEach(x => {
-                if(MissionGeneratorObjectives.GetObjectiveData(x).taskDB.TargetSide == Side.Ally)
+                if(MissionGeneratorObjectives.GetObjectiveData(langKey, x).taskDB.TargetSide == Side.Ally)
                     friendlySideObjectivesCount++;
                 else
                     enemySideObjectivesCount++;

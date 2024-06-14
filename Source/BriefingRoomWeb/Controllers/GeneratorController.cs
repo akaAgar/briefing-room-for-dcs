@@ -22,7 +22,7 @@ namespace BriefingRoom4DCS.GUI.Web.API.Controllers
         public async Task<FileContentResult> Post(MissionTemplate template)
         {
             var briefingRoom = new BriefingRoom();
-            var mission =  BriefingRoom.GenerateMission(template);
+            var mission =  briefingRoom.GenerateMission(template);
             var mizBytes = await mission.SaveToMizBytes();
 
             if (mizBytes == null) return null; // Something went wrong during the .miz export

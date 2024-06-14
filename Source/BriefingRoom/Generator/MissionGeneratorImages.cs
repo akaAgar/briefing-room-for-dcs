@@ -72,10 +72,10 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.ReplaceKey(ref winHTML, "Watermark", GetInternalImageHTMLBase64(Path.Combine(BRPaths.INCLUDE_JPG, "IconSlim.png")));
             GeneratorTools.ReplaceKey(ref lossHTML, "Watermark", GetInternalImageHTMLBase64(Path.Combine(BRPaths.INCLUDE_JPG, "IconSlim.png")));
 
-
-            await GenerateCampaignImageAsync(titleHTML, campaign, $"{baseFileName}_Title");
-            await GenerateCampaignImageAsync(winHTML, campaign, $"{baseFileName}_Success");  
-            await GenerateCampaignImageAsync(lossHTML, campaign, $"{baseFileName}_Failure");
+            var langKey = campaign.Missions[0].LangKey;
+            await GenerateCampaignImageAsync(langKey, titleHTML, campaign, $"{baseFileName}_Title");
+            await GenerateCampaignImageAsync(langKey, winHTML, campaign, $"{baseFileName}_Success");  
+            await GenerateCampaignImageAsync(langKey, lossHTML, campaign, $"{baseFileName}_Failure");
 
         }
 
@@ -114,14 +114,14 @@ namespace BriefingRoom4DCS.Generator
 
             foreach (var flight in mission.Briefing.FlightBriefings)
             {
-                html = flight.GetFlightBriefingKneeBoardHTML();
+                html = flight.GetFlightBriefingKneeBoardHTML(mission.LangKey);
                 await GenerateKneeboardImageAsync(html, flight.Name, mission, flight.Type);
             }
         }
 
 
 
-        public static async Task<List<byte[]>> GenerateKneeboardImageAsync(string html)
+        public static async Task<List<byte[]>> GenerateKneeboardImageAsync(string langKey, string html)
         {
             List<byte[]> output = new();
             try
@@ -139,7 +139,7 @@ namespace BriefingRoom4DCS.Generator
             }
             catch (Exception e)
             {
-                throw new BriefingRoomException("FailedToCreateKneeboard", e);
+                throw new BriefingRoomException(langKey, "FailedToCreateKneeboard", e);
             }
 
         }
@@ -166,7 +166,7 @@ namespace BriefingRoom4DCS.Generator
             }
             catch (Exception e)
             {
-                throw new BriefingRoomException("FailedToCreateKneeboard", e);
+                throw new BriefingRoomException(mission.LangKey, "FailedToCreateKneeboard", e);
             }
 
         }
@@ -183,12 +183,12 @@ namespace BriefingRoom4DCS.Generator
             }
             catch (Exception e)
             {
-                throw new BriefingRoomException("FailedToCreateTitleImage", e);
+                throw new BriefingRoomException(mission.LangKey, "FailedToCreateTitleImage", e);
             }
 
         }
 
-        private static async Task GenerateCampaignImageAsync(string html, DCSCampaign campaign, string fileName)
+        private static async Task GenerateCampaignImageAsync(string langKey, string html, DCSCampaign campaign, string fileName)
         {
             try
             {
@@ -200,7 +200,7 @@ namespace BriefingRoom4DCS.Generator
             }
             catch (Exception e)
             {
-                throw new BriefingRoomException("FailedToCreateTitleImage", e);
+                throw new BriefingRoomException(langKey, "FailedToCreateTitleImage", e);
             }
 
         }

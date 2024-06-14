@@ -25,16 +25,16 @@ namespace BriefingRoom4DCS.GUI
 {
     public static class BriefingRoomGUITools
     {
-        public static string GetEnumName(object enumValue)
+        public static string GetEnumName(string langKey, object enumValue)
         {
             if (enumValue == null) return "";
-            return BriefingRoom.Translate(enumValue.ToString());
+            return BriefingRoom.Translate(langKey, enumValue.ToString());
         }
 
-        public static string GetEnumDescription(object enumValue)
+        public static string GetEnumDescription(string langKey, object enumValue)
         {
             if (enumValue == null) return "";
-            return BriefingRoom.Translate($"{enumValue}Description");
+            return BriefingRoom.Translate(langKey, $"{enumValue}Description");
         }
     }
 }

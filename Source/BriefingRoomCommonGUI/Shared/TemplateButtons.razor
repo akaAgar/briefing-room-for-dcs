@@ -1,18 +1,19 @@
+@inject BriefingRoom4DCS.BriefingRoom briefingRoom
 <div class="template-box">
     <p>@(string.IsNullOrEmpty(Title) ? "Template" : @Title)</p>
     <div class="btn-group" role="group">
         <label class="btn btn-primary hidden-input-file">
             <InputFile OnChange="@LoadTemplate" accept="@AcceptString" />
             <span class="oi oi-data-transfer-upload"></span>
-            <span class="template-box-button-text">@BriefingRoom.Translate("Load")</span>
+            <span class="template-box-button-text">@briefingRoom.Translate("Load")</span>
         </label>
         <button class="btn btn-secondary" aria-hidden="true" @onclick="() => SaveTemplate()">
             <span class="oi oi-data-transfer-download"></span>
-            <span class="template-box-button-text">@BriefingRoom.Translate("Save")</span>
+            <span class="template-box-button-text">@briefingRoom.Translate("Save")</span>
         </button>
         <button class="btn btn-warning" aria-hidden="true" @onclick="() => ClearTemplate()">
             <span class="oi oi-reload"></span>
-            <span class="template-box-button-text">@BriefingRoom.Translate("Reset")</span>
+            <span class="template-box-button-text">@briefingRoom.Translate("Reset")</span>
         </button>
     </div>
 </div>

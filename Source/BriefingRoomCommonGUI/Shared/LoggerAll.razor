@@ -1,4 +1,5 @@
 @inject IJSRuntime JSRuntime
+@inject BriefingRoom4DCS.BriefingRoom briefingRoom
 @if (showLogs)
 {
     <div class="alert alert-secondary" role="info">
@@ -7,11 +8,11 @@
                 <button class="btn btn-secondary" @onclick="() => ToggleShowLogs()"><span
                         class="oi oi-bug"></span>@logs.Count()</button>
                 <button class="btn btn-secondary" @onclick="() => ClearLogs()"><span
-                        class="oi oi-reload"></span>@BriefingRoom.Translate("Clear")</button>
+                        class="oi oi-reload"></span>@briefingRoom.Translate("Clear")</button>
                 <button class="btn btn-secondary" @onclick="() => CopyLogs()">
-                    <span class="oi oi-clipboard"></span>@BriefingRoom.Translate("Copy")</button>
+                    <span class="oi oi-clipboard"></span>@briefingRoom.Translate("Copy")</button>
                 <button class="btn btn-secondary" @onclick="() => ReloadDatabase()">
-                    <span class="oi oi-reload"></span>@BriefingRoom.Translate("ReloadDatabase")</button>
+                    <span class="oi oi-reload"></span>@briefingRoom.Translate("ReloadDatabase")</button>
             </div>
             <p class="logs-list">
                 @foreach (var log in ReverseLogs())

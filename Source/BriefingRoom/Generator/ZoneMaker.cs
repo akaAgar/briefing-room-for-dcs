@@ -24,7 +24,7 @@ namespace BriefingRoom4DCS.Generator
                 var spawnPoints = new List<SpawnPointType> { SpawnPointType.LandLarge }.ToArray();
                 Coordinates? newCoords = UnitMakerSpawnPointSelector.GetNearestSpawnPoint(ref mission, spawnPoints, coordinates);
                 if (!newCoords.HasValue)
-                    throw new BriefingRoomException("Can't find suitable zone Coordinates!");
+                    throw new BriefingRoomException(mission.LangKey, "Can't find suitable zone Coordinates!");
                 coords = newCoords.Value;
                 DrawingMaker.AddDrawing(ref mission, $"Supply_{mission.CTLDZoneCount}", DrawingType.TextBox, coords, "Text".ToKeyValuePair($"Supply Base"));
                 DrawingMaker.AddDrawing(ref mission, $"Supply_zone_{mission.CTLDZoneCount}", DrawingType.Circle, coords, "Radius".ToKeyValuePair(500), "Colour".ToKeyValuePair(DrawingColour.White));

@@ -43,7 +43,7 @@ namespace BriefingRoom4DCS.Mission
         internal MissionTemplateRecord TemplateRecord { get; init; }
 
         //Generation Variables
-        internal WaypointNameGenerator WaypointNameGenerator = new WaypointNameGenerator();
+        internal WaypointNameGenerator WaypointNameGenerator { get; private set; }
         internal List<Coordinates> ObjectiveCoordinates = [];
         internal List<UnitFamily> ObjectiveTargetUnitFamilies = [];
         internal Coordinates ObjectivesCenter { get; set; }
@@ -58,12 +58,14 @@ namespace BriefingRoom4DCS.Mission
         internal Country[][] CoalitionsCountries { get; set; }
         internal bool InvertedCoalition { get { return TemplateRecord.OptionsMission.Contains("InvertCountriesCoalitions"); } }
         internal bool SinglePlayerMission { get { return TemplateRecord.GetPlayerSlotsCount() == 1; } }
+        internal string LangKey { get; private set;}
 
-
-        internal DCSMission(MissionTemplateRecord template)
+        internal DCSMission(string langKey, MissionTemplateRecord template)
         {
+            LangKey = langKey;
             Airbases = [];
-            Briefing = new();
+            Briefing = new(langKey);
+            WaypointNameGenerator = new(langKey);
             ResetStrikePackages();
             MediaFiles = new(StringComparer.InvariantCultureIgnoreCase);
             Values = new(StringComparer.InvariantCultureIgnoreCase);
@@ -330,7 +332,7 @@ namespace BriefingRoom4DCS.Mission
             var extremeLimit = template.FlightPlanObjectiveDistanceMax * 1.7;
             var isTooFar = distance > extremeLimit;
             if (isTooFar)
-                BriefingRoom.PrintTranslatableWarning("DistanceTooFar", distance, extremeLimit);
+                BriefingRoom.PrintTranslatableWarning(LangKey, "DistanceTooFar", distance, extremeLimit);
             return isTooFar;
         }
 

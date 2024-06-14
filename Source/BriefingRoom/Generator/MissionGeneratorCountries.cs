@@ -66,7 +66,7 @@ namespace BriefingRoom4DCS.Generator
 
             var intersect = countries[(int)Coalition.Blue].Intersect(countries[(int)Coalition.Red]).ToList();
             if (intersect.Count > 0)
-                throw new BriefingRoomException("DuelSideCountry", string.Join(",", intersect));
+                throw new BriefingRoomException(mission.LangKey, "DuelSideCountry", string.Join(",", intersect));
 
 
             mission.SetValue("CoalitionNeutral", GetCountriesLuaTable(neutralCountries));

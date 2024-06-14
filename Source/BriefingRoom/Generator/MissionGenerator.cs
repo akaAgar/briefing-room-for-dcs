@@ -43,7 +43,7 @@ namespace BriefingRoom4DCS.Generator
             MissionStageName.MissionFeatures
         };
 
-        internal static DCSMission Generate(MissionTemplateRecord template)
+        internal static DCSMission Generate(string langKey, MissionTemplateRecord template)
         {
             // -- START INITIALIZATION
             // Check for missing entries in the database
@@ -52,18 +52,18 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.CheckDBForMissingEntry<DBEntryWeatherPreset>(template.EnvironmentWeatherPreset, true);
             GeneratorTools.CheckDBForMissingEntry<DBEntryTheater>(template.ContextTheater);
             if (!template.PlayerFlightGroups.Any(x => !x.Hostile))
-                throw new BriefingRoomException("NoFullyHostilePlayers");
+                throw new BriefingRoomException(langKey, "NoFullyHostilePlayers");
 
-            var mission = new DCSMission(template);
+            var mission = new DCSMission(langKey, template);
 
 
             Toolbox.SetMinMaxTheaterCoords(ref mission);
 
 
             // Copy values from the template
-            mission.SetValue("BriefingTheater", mission.TheaterDB.UIDisplayName.Get());
-            mission.SetValue("BriefingAllyCoalition", mission.CoalitionsDB[(int)template.ContextPlayerCoalition].UIDisplayName.Get());
-            mission.SetValue("BriefingEnemyCoalition", mission.CoalitionsDB[(int)template.ContextPlayerCoalition.GetEnemy()].UIDisplayName.Get());
+            mission.SetValue("BriefingTheater", mission.TheaterDB.UIDisplayName.Get(langKey));
+            mission.SetValue("BriefingAllyCoalition", mission.CoalitionsDB[(int)template.ContextPlayerCoalition].UIDisplayName.Get(langKey));
+            mission.SetValue("BriefingEnemyCoalition", mission.CoalitionsDB[(int)template.ContextPlayerCoalition.GetEnemy()].UIDisplayName.Get(langKey));
             mission.SetValue("EnableAudioRadioMessages", !template.OptionsMission.Contains("RadioMessagesTextOnly"));
             mission.SetValue("BDASetting", template.OptionsMission.Contains("NoBDA") ? "NONE" : (template.OptionsMission.Contains("TargetOnlyBDA") ? "TARGETONLY" : "ALL"));
             mission.SetValue("LuaPlayerCoalition", $"coalition.side.{template.ContextPlayerCoalition.ToString().ToUpper()}");
@@ -72,7 +72,7 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("AircraftActivatorCurrentQueue", ""); // Just to make sure aircraft groups spawning queues are empty
             mission.SetValue("AircraftActivatorReserveQueue", "");
             mission.SetValue("AircraftActivatorIsResponsive", template.MissionFeatures.Contains("ImprovementsResponsiveAircraftActivator"));
-            mission.SetValue("MissionPlayerSlots", template.GetPlayerSlotsCount() == 1 ? BriefingRoom.Translate("SinglePlayerMission") : $"{template.GetPlayerSlotsCount()}{BriefingRoom.Translate("XPlayerMission")}");
+            mission.SetValue("MissionPlayerSlots", template.GetPlayerSlotsCount() == 1 ? BriefingRoom.Translate(langKey, "SinglePlayerMission") : $"{template.GetPlayerSlotsCount()}{BriefingRoom.Translate(langKey, "XPlayerMission")}");
             mission.SetValue("CaCmdBlu", template.CombinedArmsCommanderBlue);
             mission.SetValue("CaCmdRed", template.CombinedArmsCommanderRed);
             mission.SetValue("CaJTACBlu", template.CombinedArmsJTACBlue);
@@ -157,7 +157,7 @@ namespace BriefingRoom4DCS.Generator
                         revertStageCount += fallbackSteps;
                         var fallbackStageIndex = currentStageIndex - fallbackSteps;
                         if (fallbackStageIndex <= 0)
-                            throw new BriefingRoomException("FailGeneration", err, err.Message);
+                            throw new BriefingRoomException(langKey, "FailGeneration", err, err.Message);
                         lastErrorStage = nextStage;
                         nextStage = STAGE_ORDER[fallbackStageIndex];
                         BriefingRoom.PrintToLog($"Falling Back to Stage: {nextStage}");
@@ -187,13 +187,13 @@ namespace BriefingRoom4DCS.Generator
 
 
             BriefingRoom.PrintToLog("Generating briefing...");
-            var missionName = GeneratorTools.GenerateMissionName(template.BriefingMissionName);
+            var missionName = GeneratorTools.GenerateMissionName(mission.LangKey, template.BriefingMissionName);
             mission.Briefing.Name = missionName;
             mission.SetValue("MISSIONNAME", missionName);
 
             MissionGeneratorBriefing.GenerateMissionBriefingDescription(ref mission, template, mission.ObjectiveTargetUnitFamilies, mission.SituationDB);
             mission.SetValue("DescriptionText", mission.Briefing.GetBriefingAsRawText(ref mission, "\\\n"));
-            mission.SetValue("EditorNotes", mission.Briefing.GetEditorNotes("\\\n"));
+            mission.SetValue("EditorNotes", mission.Briefing.GetEditorNotes(mission.LangKey, "\\\n"));
 
 
             BriefingRoom.PrintToLog("Generating options...");
@@ -215,7 +215,7 @@ namespace BriefingRoom4DCS.Generator
                 );
             if (mission.TemplateRecord.ContextSituation.StartsWith(mission.TemplateRecord.ContextTheater))
                 mission.SituationDB = Database.Instance.GetEntry<DBEntrySituation>(mission.TemplateRecord.ContextSituation);
-            mission.SetValue("BriefingSituation", mission.TemplateRecord.SpawnAnywhere ? "None" : mission.SituationDB.UIDisplayName.Get());
+            mission.SetValue("BriefingSituation", mission.TemplateRecord.SpawnAnywhere ? "None" : mission.SituationDB.UIDisplayName.Get(mission.LangKey));
             mission.SetValue("BriefingSituationId", mission.TemplateRecord.SpawnAnywhere ? "None" : mission.SituationDB.ID);
             mission.AirbaseDB = mission.SituationDB.GetAirbases(mission.TemplateRecord.OptionsMission.Contains("InvertCountriesCoalitions"));
 
@@ -231,7 +231,7 @@ namespace BriefingRoom4DCS.Generator
             var theaterDB = mission.TheaterDB;
             var brokenSP = mission.SpawnPoints.Where(x => UnitMakerSpawnPointSelector.CheckInSea(theaterDB, x.Coordinates)).ToList();
             if (brokenSP.Count > 0)
-                throw new BriefingRoomException("SpawnPointsInSea", string.Join("\n", brokenSP.Select(x => $"[{x.Coordinates.X},{x.Coordinates.Y}],{x.PointType}").ToList()));
+                throw new BriefingRoomException(mission.LangKey, "SpawnPointsInSea", string.Join("\n", brokenSP.Select(x => $"[{x.Coordinates.X},{x.Coordinates.Y}],{x.PointType}").ToList()));
 
             foreach (DBEntryAirbase airbase in mission.AirbaseDB)
             {
@@ -341,21 +341,21 @@ namespace BriefingRoom4DCS.Generator
         }
 
 
-        internal static DCSMission GenerateRetryable(MissionTemplate template)
+        internal static DCSMission GenerateRetryable(string langKey, MissionTemplate template)
         {
             var templateRecord = new MissionTemplateRecord(template);
             var mission = Policy
                 .HandleResult<DCSMission>(x => x.IsExtremeDistance(template, out double distance))
                 .Or<BriefingRoomException>(x =>
                 {
-                    BriefingRoom.PrintTranslatableWarning("RecoverableError", x.Message);
+                    BriefingRoom.PrintTranslatableWarning(langKey, "RecoverableError", x.Message);
                     return true;
                 })
                 .Retry(3)
-                .Execute(() => Generate(templateRecord));
+                .Execute(() => Generate(langKey, templateRecord));
 
             if (mission.IsExtremeDistance(template, out double distance))
-                BriefingRoom.PrintTranslatableWarning("ExcessDistance", Math.Round(distance, 2));
+                BriefingRoom.PrintTranslatableWarning(langKey, "ExcessDistance", Math.Round(distance, 2));
 
             return mission;
         }

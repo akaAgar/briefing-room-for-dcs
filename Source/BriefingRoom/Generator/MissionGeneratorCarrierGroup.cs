@@ -90,7 +90,7 @@ namespace BriefingRoom4DCS.Generator
 
                 mission.Briefing.AddItem(
                     DCSMissionBriefingItemType.Airbase,
-                    $"{unitDB.UIDisplayName.Get()}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t{ilsChannel}\t{tacanCallsign}, {tacanChannel}X\t{link4Frequency}");
+                    $"{unitDB.UIDisplayName.Get(mission.LangKey)}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t{ilsChannel}\t{tacanCallsign}, {tacanChannel}X\t{link4Frequency}");
 
                 mission.CarrierDictionary.Add(flightGroup.Carrier, new CarrierUnitMakerGroupInfo(groupInfo.Value, unitDB.PlaneStorage, unitDB.HelicopterStorage, mission.TemplateRecord.ContextPlayerCoalition));
                 mission.MapData.Add($"CARRIER_{flightGroup.Carrier}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
@@ -113,7 +113,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 location = new Coordinates(mission.TemplateRecord.CarrierHints[flightGroup.Carrier]);
                 if (!UnitMakerSpawnPointSelector.CheckInSea(mission.TheaterDB, location))
-                    throw new BriefingRoomException("CarrierHintonShore");
+                    throw new BriefingRoomException(mission.LangKey, "CarrierHintonShore");
             }
             while (iteration < 5)
             {
@@ -146,13 +146,13 @@ namespace BriefingRoom4DCS.Generator
             }
 
             if (!carrierGroupCoordinates.HasValue)
-                throw new BriefingRoomException("CarrierSpawnPointNotFound");
+                throw new BriefingRoomException(mission.LangKey, "CarrierSpawnPointNotFound");
             if (!destinationPoint.HasValue)
-                throw new BriefingRoomException("CarrierDestinationNotFound");
+                throw new BriefingRoomException(mission.LangKey, "CarrierDestinationNotFound");
             if (!UnitMakerSpawnPointSelector.CheckInSea(mission.TheaterDB ,destinationPoint.Value))
-                throw new BriefingRoomException("CarrierWaypointOnShore");
+                throw new BriefingRoomException(mission.LangKey, "CarrierWaypointOnShore");
             if (!ShapeManager.IsLineClear(carrierGroupCoordinates.Value, destinationPoint.Value, mission.TheaterDB.WaterExclusionCoordinates))
-                throw new BriefingRoomException("CarrierPassesThrougLand");
+                throw new BriefingRoomException(mission.LangKey, "CarrierPassesThrougLand");
 
             return new(carrierGroupCoordinates.Value, destinationPoint.Value);
         }
@@ -174,7 +174,7 @@ namespace BriefingRoom4DCS.Generator
 
             if (!spawnPoint.HasValue)
             {
-                throw new BriefingRoomException("NoFOBAirDefenseSpawnPoint");
+                throw new BriefingRoomException(mission.LangKey, "NoFOBAirDefenseSpawnPoint");
             }
 
             var fobTemplate = Database.Instance.GetEntry<DBEntryTemplate>(flightGroup.Carrier);
@@ -209,8 +209,8 @@ namespace BriefingRoom4DCS.Generator
                 return;
             }
             var unitDB = (DBEntryStatic)Database.Instance.GetEntry<DBEntryJSONUnit>(fobTemplate.Units.First().DCSID);
-            groupInfo.Value.DCSGroup.Name = unitDB.UIDisplayName.Get();
-            groupInfo.Value.DCSGroup.Units.First().Name = unitDB.UIDisplayName.Get();
+            groupInfo.Value.DCSGroup.Name = unitDB.UIDisplayName.Get(mission.LangKey);
+            groupInfo.Value.DCSGroup.Units.First().Name = unitDB.UIDisplayName.Get(mission.LangKey);
             ZoneMaker.AddCTLDPickupZone(ref mission,spawnPoint.Value, true);
             mission.Briefing.AddItem(
                      DCSMissionBriefingItemType.Airbase,

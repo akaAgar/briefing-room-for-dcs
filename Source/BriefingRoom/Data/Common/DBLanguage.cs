@@ -29,8 +29,6 @@ namespace BriefingRoom4DCS.Data
     {
         public Dictionary<string, LanguageString> LangMap { get; private set; }
 
-        public string Language { get; set; } = "en";
-
         public DatabaseLanguage() { }
 
         public void Load()
@@ -71,25 +69,25 @@ namespace BriefingRoom4DCS.Data
             }
         }
 
-        public string ReplaceValues(string rawText)
+        public string ReplaceValues(string langKey, string rawText)
         {
             if (rawText == null) return null;
 
             foreach (KeyValuePair<string, LanguageString> keyPair in LangMap)
-                rawText = rawText.Replace($"$LANG_{keyPair.Key.ToUpper()}$", keyPair.Value.Get());
+                rawText = rawText.Replace($"$LANG_{keyPair.Key.ToUpper()}$", keyPair.Value.Get(langKey));
 
             return rawText;
         }
 
-        public string Translate(string key)
+        public string Translate(string langKey, string key)
         {
             var searchKey = key.ToUpper();
             if (!LangMap.ContainsKey(searchKey))
             {
-                Console.WriteLine($"ERR_Missing_Translation_key:{key} (map size: {LangMap.Keys.Count})");
-                return $"ERR_Missing_Translation_key:{key}";
+                Console.WriteLine($"ERR_Missing_Translation_key:{langKey}:{key} (map size: {LangMap.Keys.Count})");
+                return $"ERR_Missing_Translation_key:{langKey}:{key}";
             }
-            return LangMap[searchKey].Get();
+            return LangMap[searchKey].Get(langKey);
         }
 
     }

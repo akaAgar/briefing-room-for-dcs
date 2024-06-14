@@ -84,13 +84,13 @@ namespace BriefingRoom4DCS.CommandLineTool
                 return false;
             }
 
-            new BriefingRoom();
+            var briefingRoom = new BriefingRoom();
 
             foreach (string t in templateFiles)
             {
                 if (Path.GetExtension(t).ToLower() == ".cbrt") // Template file is a campaign template
                 {
-                    DCSCampaign campaign = BriefingRoom.GenerateCampaign(t);
+                    DCSCampaign campaign = briefingRoom.GenerateCampaign(t);
                     if (campaign == null)
                     {
                         Console.WriteLine($"Failed to generate a campaign from template {Path.GetFileName(t)}");
@@ -109,7 +109,7 @@ namespace BriefingRoom4DCS.CommandLineTool
                 }
                 else // Template file is a mission template
                 {
-                    DCSMission mission = BriefingRoom.GenerateMission(t);
+                    DCSMission mission = briefingRoom.GenerateMission(t);
                     if (mission == null)
                     {
                         Console.WriteLine($"Failed to generate a mission from template {Path.GetFileName(t)}");

@@ -75,12 +75,12 @@ namespace BriefingRoom4DCS.Generator
 
             mission.Waypoints.Insert(0,
                 new Waypoint(
-                    $"{Database.Instance.Common.Names.WPIngressName.Get().ToUpper()}_{mission.WaypointNameGenerator.GetWaypointName()}",
+                    $"{Database.Instance.Common.Names.WPIngressName.Get(mission.LangKey).ToUpper()}_{mission.WaypointNameGenerator.GetWaypointName()}",
                     baseIngressPosition + Coordinates.CreateRandom(ingressDeviation * 0.9, ingressDeviation * 1.1)));
 
             mission.Waypoints.Add(
                 new Waypoint(
-                    $"{Database.Instance.Common.Names.WPEgressName.Get().ToUpper()}_{mission.WaypointNameGenerator.GetWaypointName()}",
+                    $"{Database.Instance.Common.Names.WPEgressName.Get(mission.LangKey).ToUpper()}_{mission.WaypointNameGenerator.GetWaypointName()}",
                     baseIngressPosition + Coordinates.CreateRandom(ingressDeviation * 0.9, ingressDeviation * 1.1)));
         }
 

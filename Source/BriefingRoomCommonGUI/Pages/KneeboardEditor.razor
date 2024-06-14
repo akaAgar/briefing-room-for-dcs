@@ -1,5 +1,6 @@
 @page "/KneeboardEditor"
 @inject IJSRuntime JSRuntime
+@inject BriefingRoom4DCS.BriefingRoom briefingRoom
 @using System.Reflection
 @using BriefingRoom4DCS
 @using System.IO.Compression
@@ -13,7 +14,7 @@
 
 
 <div class="title-bar">
-  <h1>@BriefingRoom.Translate("KneeboardEditor")</h1>
+  <h1>@briefingRoom.Translate("KneeboardEditor")</h1>
   <TemplateButtons Title="Mission" LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate"
     AcceptString=".miz" />
 </div>
@@ -42,6 +43,8 @@
   </div>
 </div>
 @code {
+  [CascadingParameter]
+    public MainLayout Layout { get; set; }
   private string editorContent = "";
   private StandaloneCodeEditor _editor = null!;
   private string errorMessage = "";
@@ -128,7 +131,7 @@
               foundF.Delete();
             }
 
-            var imagesData = await MissionGeneratorImages.GenerateKneeboardImageAsync(htmlStore[key]);
+            var imagesData = await MissionGeneratorImages.GenerateKneeboardImageAsync(briefingRoom.LanguageKey ,htmlStore[key]);
             var i = 0;
             var multiImage = imagesData.Count > 1;
             foreach (var imageData in imagesData)

@@ -1,6 +1,7 @@
 @inherits LayoutComponentBase
 @using BriefingRoom4DCS
 @inject Blazored.LocalStorage.ILocalStorageService localStorage
+@inject BriefingRoom4DCS.BriefingRoom briefingRoom
 <CascadingValue Value="this">
     <div class="page @((darkmode? "darkMode" : ""))">
         <div class="sidebar">
@@ -10,10 +11,10 @@
         <div class="main">
             <div class="top-row px-4">
                 <div class="form-group language-selector">
-                    <label>@BriefingRoom.Translate("Language") <a href="https://poeditor.com/join/project/MJES2FW5lh"
+                    <label>@briefingRoom.Translate("Language") <a href="https://poeditor.com/join/project/MJES2FW5lh"
                             class="img-link-tiny" target="_blank"><img
                                 src="_content/BriefingRoomCommonGUI/img/poeditor.svg" alt="poeditor.com" /></a></label>
-                    <select class="form-control" value=@BriefingRoom.LanguageDB.Language
+                    <select class="form-control" value=@briefingRoom.LanguageKey
                         @onchange="eventArgs => SetLanguage((string)eventArgs.Value)">
                         @foreach (var key in BriefingRoom.AvailableLanguagesMap.Keys)
                         {
@@ -24,9 +25,9 @@
                 </div>
                 @if (BriefingRoom.RUNNING_IN_DOCKER)
                 {
-                    <div>&nbsp;<span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("DockerWarn")&nbsp;</div>
+                    <div>&nbsp;<span class="oi oi-info"></span>&nbsp;@briefingRoom.Translate("DockerWarn")&nbsp;</div>
                 }
-                <a href="@BriefingRoom.WEBSITE_URL" target="_blank">@BriefingRoom.Translate("About")</a>
+                <a href="@BriefingRoom.WEBSITE_URL" target="_blank">@briefingRoom.Translate("About")</a>
                 <a href="@BriefingRoom.DISCORD_URL" target="_blank" class="img-link"><img alt="Discord"
                         src="_content/BriefingRoomCommonGUI/img/discord-icon-svgrepo-com.svg"></a>
                 <a href="@BriefingRoom.REPO_URL" target="_blank" class="img-link"><img alt="Github"
@@ -39,7 +40,7 @@
                             style="background-color:#29abe0;" href="https://ko-fi.com/V7V0IZI9N" target="_blank"> <span
                                 class="kofitext"><img src="https://storage.ko-fi.com/cdn/cup-border.png"
                                     alt="Ko-fi donations"
-                                    class="kofiimg">@BriefingRoom.Translate("KoFiContributeBeg")</span></a></div>
+                                    class="kofiimg">@briefingRoom.Translate("KoFiContributeBeg")</span></a></div>
                 }
                 else
                 {
@@ -62,7 +63,6 @@
 
 
 @code {
-    public BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom(WriteToDebugLog);
     public bool darkmode = false;
 
     public static List<Tuple<DateTime, LogMessageErrorLevel, string>> logs = new List<Tuple<DateTime, LogMessageErrorLevel,
@@ -78,17 +78,18 @@
         if (firstRender)
         {
             darkmode = true;
-            BriefingRoom.LanguageDB.Language = "en";
+            briefingRoom.LanguageKey = "en";
             try
             {
                 darkmode = await localStorage.GetItemAsync<bool>("DCSUseDarkMode");
-                BriefingRoom.LanguageDB.Language = await localStorage.GetItemAsync<string>("DCSLanguage");
-                if (string.IsNullOrEmpty(BriefingRoom.LanguageDB.Language))
-                    BriefingRoom.LanguageDB.Language = "en";
+                briefingRoom.LanguageKey = await localStorage.GetItemAsync<string>("DCSLanguage");
+                if (string.IsNullOrEmpty(briefingRoom.LanguageKey))
+                    briefingRoom.LanguageKey = "en";
             }
             catch (System.Exception)
             {
             }
+            briefingRoom.SetLogHandler(WriteToDebugLog);
             StateHasChanged();
         }
     }
@@ -109,8 +110,7 @@
 
     private async Task SetLanguage(string langKey)
     {
-        BriefingRoom.LanguageDB.Language = langKey;
-        StateHasChanged();
+        briefingRoom.LanguageKey = langKey;
         try
         {
             await localStorage.SetItemAsync("DCSLanguage", langKey);
@@ -118,5 +118,6 @@
         catch (System.Exception)
         {
         }
+        StateHasChanged();
     }
 }

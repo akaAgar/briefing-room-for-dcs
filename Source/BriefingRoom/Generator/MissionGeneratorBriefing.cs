@@ -53,15 +53,15 @@ namespace BriefingRoom4DCS.Generator
                         DBEntryBriefingDescription descriptionDB =
                             Database.Instance.GetEntry<DBEntryBriefingDescription>(
                                 Database.Instance.GetEntry<DBEntryObjectiveTask>(task).BriefingDescription);
-                        AppendDescription(task, descriptionDB.DescriptionText[(int)objectiveTargetUnitFamilies[familyCount]].Get(), ref descriptionsMap);
+                        AppendDescription(task, descriptionDB.DescriptionText[(int)objectiveTargetUnitFamilies[familyCount]].Get(mission.LangKey), ref descriptionsMap);
                         familyCount++;
-                        AddSubTasks(obj, objectiveTargetUnitFamilies, ref descriptionsMap, ref familyCount);
+                        AddSubTasks(mission.LangKey, obj, objectiveTargetUnitFamilies, ref descriptionsMap, ref familyCount);
                     }
 
                     briefingDescription = ConstructTaskDescriptions(descriptionsMap, ref mission);
                 }
                 if (situationDB.BriefingDescriptions != null && situationDB.BriefingDescriptions.Count > 0)
-                    briefingDescription = GeneratorTools.ParseRandomString(string.Join(" ", Toolbox.RandomFrom(situationDB.BriefingDescriptions).Get(), briefingDescription), mission);
+                    briefingDescription = GeneratorTools.ParseRandomString(string.Join(" ", Toolbox.RandomFrom(situationDB.BriefingDescriptions).Get(mission.LangKey), briefingDescription), mission);
             }
 
 
@@ -89,27 +89,27 @@ namespace BriefingRoom4DCS.Generator
                 briefingDescriptionList.Add(item);
             }
 
-            var description = GeneratorTools.ParseRandomString(JoinObjectiveDescriptions(briefingDescriptionList), mission);
+            var description = GeneratorTools.ParseRandomString(JoinObjectiveDescriptions(mission.LangKey, briefingDescriptionList), mission);
             if (descriptionsMap.Keys.Count > 0 && briefingDescriptionList.Count == maxDescriptionCount)
-                description = $"{description} {Database.Instance.Common.Briefing.OverflowObjectiveDescriptionText.Get()}";
+                description = $"{description} {Database.Instance.Common.Briefing.OverflowObjectiveDescriptionText.Get(mission.LangKey)}";
             return description;
         }
 
-        private static string JoinObjectiveDescriptions(IEnumerable<string> descriptions) => descriptions.Aggregate((acc, x) =>
+        private static string JoinObjectiveDescriptions(string langKey,  IEnumerable<string> descriptions) => descriptions.Aggregate((acc, x) =>
                 {
                     if (string.IsNullOrEmpty(acc))
                         return x;
-                    return $"{acc} {Toolbox.RandomFrom(Database.Instance.Common.Briefing.ObjectiveDescriptionConnectors.Get().Split(","))} {LowerFirstChar(GeneratorTools.ParseRandomString(x))}";
+                    return $"{acc} {Toolbox.RandomFrom(Database.Instance.Common.Briefing.ObjectiveDescriptionConnectors.Get(langKey).Split(","))} {LowerFirstChar(GeneratorTools.ParseRandomString(x))}";
                 });
 
-        private static void AddSubTasks(MissionTemplateObjectiveRecord obj, List<UnitFamily> objectiveTargetUnitFamilies, ref Dictionary<string, List<string>> descriptionsMap, ref int familyCount)
+        private static void AddSubTasks(string langKey, MissionTemplateObjectiveRecord obj, List<UnitFamily> objectiveTargetUnitFamilies, ref Dictionary<string, List<string>> descriptionsMap, ref int familyCount)
         {
             foreach (var subTask in obj.SubTasks)
             {
                 var descriptionDB =
                     Database.Instance.GetEntry<DBEntryBriefingDescription>(
                         Database.Instance.GetEntry<DBEntryObjectiveTask>(subTask.Task).BriefingDescription);
-                AppendDescription(obj.Task, descriptionDB.DescriptionText[(int)objectiveTargetUnitFamilies[familyCount]].Get(), ref descriptionsMap);
+                AppendDescription(obj.Task, descriptionDB.DescriptionText[(int)objectiveTargetUnitFamilies[familyCount]].Get(langKey), ref descriptionsMap);
                 familyCount++;
             }
         }

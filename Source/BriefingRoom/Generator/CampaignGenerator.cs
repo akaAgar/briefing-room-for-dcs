@@ -34,11 +34,11 @@ namespace BriefingRoom4DCS.Generator
         private static readonly string CAMPAIGN_LUA_TEMPLATE = Path.Combine(BRPaths.INCLUDE_LUA, "Campaign", "Campaign.lua");
         private static readonly string CAMPAIGN_STAGE_LUA_TEMPLATE = Path.Combine(BRPaths.INCLUDE_LUA, "Campaign", "CampaignStage.lua");
 
-        internal static DCSCampaign Generate(CampaignTemplate campaignTemplate)
+        internal static DCSCampaign Generate(string langKey, CampaignTemplate campaignTemplate)
         {
             DCSCampaign campaign = new()
             {
-                Name = GeneratorTools.GenerateCampaignName(campaignTemplate.BriefingCampaignName)
+                Name = GeneratorTools.GenerateCampaignName(langKey, campaignTemplate.BriefingCampaignName)
             };
 
             DateTime date = GenerateCampaignDate(campaignTemplate);
@@ -63,7 +63,7 @@ namespace BriefingRoom4DCS.Generator
 
                 try
                 {
-                    var mission = MissionGenerator.GenerateRetryable(template);
+                    var mission = MissionGenerator.GenerateRetryable(langKey, template);
                     mission.SetValue("DateDay", date.Day);
                     mission.SetValue("DateMonth", date.Month);
                     mission.SetValue("DateYear", date.Year);
@@ -80,14 +80,14 @@ namespace BriefingRoom4DCS.Generator
                 catch (BriefingRoomException err)
                 {
                     if (failedTries >= 3)
-                        throw new BriefingRoomException("FailedToGenerateCampaignMission", err, i + 1);
+                        throw new BriefingRoomException(langKey, "FailedToGenerateCampaignMission", err, i + 1);
                     failedTries++;
                     continue;
                 }
             } while (campaign.Missions.Count < campaignTemplate.MissionsCount);
 
             if (campaign.MissionCount < 1) // No missions generated, something went very wrong.
-                throw new BriefingRoomException("CampaignNoValidMissions");
+                throw new BriefingRoomException(langKey, "CampaignNoValidMissions");
 
             campaign.CMPFile = GetCMPFile(campaignTemplate, campaign);
 

@@ -90,7 +90,7 @@ namespace BriefingRoom4DCS.Generator
                 if (units.Count == 0)
                 {
                     UnitMakerSpawnPointSelector.RecoverSpawnPoint(ref mission,coordinatesValue);
-                     throw new BriefingRoomException("NoUnitsFoundForMissionFeature",featureDB.ID);
+                     throw new BriefingRoomException(mission.LangKey, "NoUnitsFoundForMissionFeature",featureDB.ID);
                 }
                 var unitDB = unitDBs.First();
                 var unitFamily = unitDB.Families.First();
@@ -129,7 +129,7 @@ namespace BriefingRoom4DCS.Generator
                     !flags.HasFlag(FeatureUnitGroupFlags.StaticAircraft))
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                             $"{groupInfo.Value.Name.Split("-")[0]}\t" +
-                            $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get()}\t" +
+                            $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get(mission.LangKey)}\t" +
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}{TACANStr}\t" +
                             $"{featureDB.UnitGroupTask}"); // TODO: human-readable payload name
 
@@ -182,10 +182,10 @@ namespace BriefingRoom4DCS.Generator
         protected static void AddBriefingRemarkFromFeature(T featureDB, ref DCSMission mission, bool useEnemyRemarkIfAvailable, UnitMakerGroupInfo? groupInfo, Dictionary<string, object> stringReplacements)
         {
             string remarkString;
-            if (useEnemyRemarkIfAvailable && !string.IsNullOrEmpty(featureDB.BriefingRemarks[(int)Side.Enemy].Get()))
-                remarkString = featureDB.BriefingRemarks[(int)Side.Enemy].Get();
+            if (useEnemyRemarkIfAvailable && !string.IsNullOrEmpty(featureDB.BriefingRemarks[(int)Side.Enemy].Get(mission.LangKey)))
+                remarkString = featureDB.BriefingRemarks[(int)Side.Enemy].Get(mission.LangKey);
             else
-                remarkString = featureDB.BriefingRemarks[(int)Side.Ally].Get();
+                remarkString = featureDB.BriefingRemarks[(int)Side.Ally].Get(mission.LangKey);
             if (string.IsNullOrEmpty(remarkString)) return; // No briefing remarks for this feature
 
             string remark = Toolbox.RandomFrom(remarkString.Split(";"));
@@ -241,13 +241,13 @@ namespace BriefingRoom4DCS.Generator
                         );
 
                 if (!spawnCoords.HasValue)
-                    throw new BriefingRoomException("NoExtraGroupSpawnPoint", featureDB.ID);
+                    throw new BriefingRoomException(mission.LangKey, "NoExtraGroupSpawnPoint", featureDB.ID);
 
                 extraSettings.Remove("TemplatePositionMap");
                 if (units.Count == 0)
                 {
                     UnitMakerSpawnPointSelector.RecoverSpawnPoint(ref mission,spawnCoords.Value);
-                    throw new BriefingRoomException("NoUnitsFoundForMissionFeature", featureDB.ID);
+                    throw new BriefingRoomException(mission.LangKey, "NoUnitsFoundForMissionFeature", featureDB.ID);
                 }
                 var unitDB = unitDBs.First();
 
@@ -285,7 +285,7 @@ namespace BriefingRoom4DCS.Generator
                    !flags.HasFlag(FeatureUnitGroupFlags.StaticAircraft))
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                             $"{groupInfo.Value.Name.Split("-")[0]}\t" +
-                            $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get()}\t" +
+                            $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get(mission.LangKey)}\t" +
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
                             $"{featureDB.UnitGroupTask}");
                 if (!groupInfo.Value.UnitDB.IsAircraft)

@@ -102,10 +102,10 @@ namespace BriefingRoom4DCS.Data
 
 
 
-        internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, List<string> unitMods, List<string> unitBanList, bool allowLowPolly, bool blockSuppliers, bool allowStatic, Country? requiredCountry = null, bool lowUnitVariation = false, bool allowDefaults = true)
+        internal Tuple<Country, List<string>> GetRandomUnits(string langKey, List<UnitFamily> families, Decade decade, int count, List<string> unitMods, List<string> unitBanList, bool allowLowPolly, bool blockSuppliers, bool allowStatic, Country? requiredCountry = null, bool lowUnitVariation = false, bool allowDefaults = true)
         {
             // Count is zero, return an empty array.
-            if (count < 1) throw new BriefingRoomException("AskingForNoUnits");
+            if (count < 1) throw new BriefingRoomException(langKey, "AskingForNoUnits");
             if (families.Select(x => x.GetDCSUnitCategory()).Any(x => x != families.First().GetDCSUnitCategory()))
             {
                 families = Toolbox.RandomFrom(families.GroupBy(x => x.GetDCSUnitCategory()).ToList()).ToList();
@@ -114,7 +114,7 @@ namespace BriefingRoom4DCS.Data
             var category = families.First().GetDCSUnitCategory();
             bool allowDifferentUnitTypes = false;
 
-            var validUnits = SelectValidUnits(families, decade, unitMods, unitBanList, allowLowPolly, blockSuppliers, allowStatic, allowDefaults: allowDefaults);
+            var validUnits = SelectValidUnits(langKey, families, decade, unitMods, unitBanList, allowLowPolly, blockSuppliers, allowStatic, allowDefaults: allowDefaults);
 
             if (validUnits is null)
                 return new(Country.ALL, new List<string>());
@@ -168,7 +168,7 @@ namespace BriefingRoom4DCS.Data
             return new(country, Enumerable.Repeat(unit, count).ToList());
         }
 
-        private Dictionary<Country, List<string>> SelectValidUnits(List<UnitFamily> families, Decade decade, List<string> unitMods, List<string> unitBanList, bool allowLowPolly, bool blockSuppliers, bool allowStatic, Country[] allyCountries = null, bool allowDefaults = true)
+        private Dictionary<Country, List<string>> SelectValidUnits(string langKey, List<UnitFamily> families, Decade decade, List<string> unitMods, List<string> unitBanList, bool allowLowPolly, bool blockSuppliers, bool allowStatic, Country[] allyCountries = null, bool allowDefaults = true)
         {
             var validUnits = new Dictionary<Country, List<string>>();
             var countryList = allyCountries is null ? Countries : allyCountries;
@@ -189,12 +189,12 @@ namespace BriefingRoom4DCS.Data
             if (validUnits.Count == 0)
             {
                 if (allyCountries is null && !blockSuppliers)
-                    return SelectValidUnits(families, decade, unitMods, unitBanList, allowLowPolly, false, allowStatic, GetAllyCountries(decade), allowDefaults);
+                    return SelectValidUnits(langKey, families, decade, unitMods, unitBanList, allowLowPolly, false, allowStatic, GetAllyCountries(decade), allowDefaults);
 
-                var blockSupplierString = !blockSuppliers ? BriefingRoom.Translate("IncludeSupplierAllies", countryList.Where(x => x != Country.ALL).Count()) : BriefingRoom.Translate("NoBlockSuppliers");
-                BriefingRoom.PrintTranslatableWarning("NoUnitsOrSuppliersFound", UIDisplayName.Get(), string.Join(", ", families), decade, string.Join(", ", Countries.Where(x => x != Country.ALL)), blockSupplierString);
+                var blockSupplierString = !blockSuppliers ? BriefingRoom.Translate(langKey, "IncludeSupplierAllies", countryList.Where(x => x != Country.ALL).Count()) : BriefingRoom.Translate(langKey, "NoBlockSuppliers");
+                BriefingRoom.PrintTranslatableWarning(langKey, "NoUnitsOrSuppliersFound", UIDisplayName.Get(langKey), string.Join(", ", families), decade, string.Join(", ", Countries.Where(x => x != Country.ALL)), blockSupplierString);
                 if (allowDefaults)
-                    return GetDefaultUnits(families, decade, unitMods);
+                    return GetDefaultUnits(langKey, families, decade, unitMods);
                 return null;
             }
             if (allyCountries != null)
@@ -213,7 +213,7 @@ namespace BriefingRoom4DCS.Data
                 .ToArray();
         }
 
-        private Dictionary<Country, List<string>> GetDefaultUnits(List<UnitFamily> families, Decade decade, List<string> unitMods)
+        private Dictionary<Country, List<string>> GetDefaultUnits(string langKey, List<UnitFamily> families, Decade decade, List<string> unitMods)
         {
             var defaultDict = Database.GetEntry<DBEntryDefaultUnitList>(DefaultUnitList).DefaultUnits;
             var validUnits = new List<string>();
@@ -229,9 +229,9 @@ namespace BriefingRoom4DCS.Data
                 validUnits.AddRange(options);
             }
             if (validUnits.Count == 0)
-                BriefingRoom.PrintTranslatableWarning("NoDefautUnitsFound",UIDisplayName.Get(), decade, string.Join(", ", families));
+                BriefingRoom.PrintTranslatableWarning(langKey, "NoDefautUnitsFound",UIDisplayName.Get(langKey), decade, string.Join(", ", families));
             else
-                BriefingRoom.PrintTranslatableWarning("DefaultUnitNeeded", UIDisplayName.Get(), string.Join(", ", validUnits), decade, string.Join(", ", families));
+                BriefingRoom.PrintTranslatableWarning(langKey, "DefaultUnitNeeded", UIDisplayName.Get(langKey), string.Join(", ", validUnits), decade, string.Join(", ", families));
             return new Dictionary<Country, List<string>> { { Country.ALL, validUnits } };
         }
     }

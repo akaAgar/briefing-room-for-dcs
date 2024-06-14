@@ -419,7 +419,7 @@ namespace BriefingRoom4DCS
             };
         }
 
-        internal static string ValToString(object value, string stringFormat = "")
+        internal static string ValToString(object value, string stringFormat = "", string langKey = "em")
         {
             if (value == null) return "";
             if (value is string v) return v;
@@ -427,7 +427,7 @@ namespace BriefingRoom4DCS
             if (value is int v2) return v2.ToString(stringFormat, NumberFormatInfo.InvariantInfo);
             if (value is float v3) return v3.ToString(stringFormat, NumberFormatInfo.InvariantInfo);
             if (value is double v4) return v4.ToString(stringFormat, NumberFormatInfo.InvariantInfo);
-            if (value is LanguageString @string) return @string.Get();
+            if (value is LanguageString @string) return @string.Get(langKey);
             return value.ToString();
         }
 
@@ -507,7 +507,7 @@ namespace BriefingRoom4DCS
             return $"{number}th";
         }
 
-        internal static byte[] ZipData(Dictionary<string, byte[]> FileEntries)
+        internal static byte[] ZipData(string langKey, Dictionary<string, byte[]> FileEntries)
         {
             byte[] mizBytes;
 
@@ -528,7 +528,7 @@ namespace BriefingRoom4DCS
             }
             catch (Exception ex)
             {
-                throw new BriefingRoomException("FailedToZip", ex);
+                throw new BriefingRoomException(langKey, "FailedToZip", ex);
             }
 
             return mizBytes;

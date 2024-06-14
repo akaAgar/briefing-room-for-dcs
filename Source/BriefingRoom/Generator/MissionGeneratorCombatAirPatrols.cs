@@ -90,7 +90,7 @@ namespace BriefingRoom4DCS.Generator
                 // No spawn point found, stop here.
                 if (!spawnPoint.HasValue)
                 {
-                    throw new BriefingRoomException("NoCAPSpawnPoint", coalition);
+                    throw new BriefingRoomException(mission.LangKey,"NoCAPSpawnPoint", coalition);
                 }
 
                 Coordinates groupDestination = destination + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
@@ -127,7 +127,7 @@ namespace BriefingRoom4DCS.Generator
                         mission.MapData.AddIfKeyUnused($"AIRBASE_AI_{side}_${airbase.Name}", new List<double[]> { airbase.Coordinates.ToArray() });
                     } catch (BriefingRoomException e)
                     {
-                        BriefingRoom.PrintTranslatableWarning("CAPCannotBeSpawnedAirport", e.Message);
+                        BriefingRoom.PrintTranslatableWarning(mission.LangKey, "CAPCannotBeSpawnedAirport", e.Message);
                     }
 
                 }
@@ -136,7 +136,7 @@ namespace BriefingRoom4DCS.Generator
                 UnitMakerGroupInfo? groupInfo = UnitMaker.AddUnitGroup(ref mission,units, side, unitDB.Families.First(), commonCAPDB.LuaGroup, commonCAPDB.LuaUnit, spawnpointCoordinates, groupFlags, extraSettings);
 
                 if (!groupInfo.HasValue) // Failed to generate a group
-                    BriefingRoom.PrintTranslatableWarning("FailedToFindCAPUnits", coalition);
+                    BriefingRoom.PrintTranslatableWarning(mission.LangKey, "FailedToFindCAPUnits", mission.LangKey, coalition);
 
                 SetCarrier(ref mission, side, ref groupInfo);
 

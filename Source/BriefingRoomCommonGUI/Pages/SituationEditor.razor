@@ -1,5 +1,6 @@
 @page "/SituationEditor"
 @inject IJSRuntime JSRuntime
+@inject BriefingRoom4DCS.BriefingRoom briefingRoom
 @using BriefingRoom4DCS
 @using BriefingRoom4DCS.Data.JSON
 @using Newtonsoft.Json
@@ -8,7 +9,7 @@
 
 
 <div class="title-bar">
-  <h1>@BriefingRoom.Translate("SituationEditor")</h1>
+  <h1>@briefingRoom.Translate("SituationEditor")</h1>
   <TemplateButtons Title="Situation" LoadTemplate="LoadSituationFile" SaveTemplate="SaveSituation"
     ClearTemplate="ClearSituation" AcceptString=".json" />
 </div>
@@ -24,28 +25,28 @@
     </div>
     <div class="full-width">
       <EditForm Model="ContextTheater">
-        <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Theater") @bind-Value="ContextTheater"
+        <InputDataBase ClassString="flex-block" Label=@briefingRoom.Translate("Theater") @bind-Value="ContextTheater"
           DataBaseType="DatabaseEntryType.Theater" />
         <button class="btn btn-primary form-control"
-        @onclick="() => GetMapAsync()">@BriefingRoom.Translate("SetMap")</button>
+          @onclick="() => GetMapAsync()">@briefingRoom.Translate("SetMap")</button>
         @if (MapLoaded)
         {
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="sideRadio" value="BLUE" id="RadioBLUFOR" checked>
             <label class="form-check-label" for="RadioBLUFOR">
-              @BriefingRoom.Translate("Blue")
+              @briefingRoom.Translate("Blue")
             </label>
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="sideRadio" value="RED" id="RadioREDFOR">
             <label class="form-check-label" for="RadioREDFOR">
-              @BriefingRoom.Translate("Red")
+              @briefingRoom.Translate("Red")
             </label>
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="sideRadio" value="NEUTRAL" id="RadioNEUTRAL">
             <label class="form-check-label" for="RadioNEUTRAL">
-              @BriefingRoom.Translate("Neutral")
+              @briefingRoom.Translate("Neutral")
             </label>
           </div>
         }
@@ -56,12 +57,12 @@
       @if (MapLoaded)
       {
         <button class="btn btn-primary form-control"
-        @onclick="() => GenerateSituation()">@BriefingRoom.Translate("GenerateSituation")</button>
+          @onclick="() => GenerateSituation()">@briefingRoom.Translate("GenerateSituation")</button>
         @if (!String.IsNullOrEmpty(GeneratedSituationJSON))
         {
           <div>
-            <h3>@BriefingRoom.Translate("GeneratedSituation")</h3>
-            <p>@BriefingRoom.Translate("GeneratedSituationInstructions")</p>
+            <h3>@briefingRoom.Translate("GeneratedSituation")</h3>
+            <p>@briefingRoom.Translate("GeneratedSituationInstructions")</p>
             <textarea @bind="GeneratedSituationJSON" class="form-control long" spellcheck="true"></textarea>
           </div>
         }
@@ -71,6 +72,8 @@
 </div>
 
 @code {
+  [CascadingParameter]
+  public MainLayout Layout { get; set; }
   private string errorMessage;
   private string ContextTheater = "Caucasus";
   private string GeneratedSituationJSON = "";

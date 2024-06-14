@@ -36,7 +36,7 @@ namespace BriefingRoom4DCS.Mission
 
         public List<DCSMissionFlightBriefing> FlightBriefings { get; set; } = new List<DCSMissionFlightBriefing>();
 
-        internal DCSMissionBriefing()
+        internal DCSMissionBriefing(string langKey)
         {
             Items = new Dictionary<DCSMissionBriefingItemType, List<string>> { };
             var enumList = Enum.GetValues(typeof(DCSMissionBriefingItemType));
@@ -77,7 +77,7 @@ namespace BriefingRoom4DCS.Mission
             string html = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "Briefing.html"));
             if (htmlHeaderAndFooter)
                 html = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "BriefingHeader.html")) + html + Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "BriefingFooter.html"));
-            html = BriefingRoom.LanguageDB.ReplaceValues(html);
+            html = BriefingRoom.LanguageDB.ReplaceValues(mission.LangKey, html);
             html = mission.ReplaceValues(html, true);
 
             GeneratorTools.ReplaceKey(ref html, "BriefingAirbases", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.Airbase)));
@@ -93,7 +93,7 @@ namespace BriefingRoom4DCS.Mission
         public string GetShortBriefingAsHTML(DCSMission mission)
         {
             string html = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "BriefingShort.html"));
-            html = BriefingRoom.LanguageDB.ReplaceValues(html);
+            html = BriefingRoom.LanguageDB.ReplaceValues(mission.LangKey, html);
             html = mission.ReplaceValues(html, true);
 
             return html;
@@ -105,7 +105,7 @@ namespace BriefingRoom4DCS.Mission
                 Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "KneeboardTasksRemarks.html")) +
                 Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "BriefingFooter.html"));
 
-            html = BriefingRoom.LanguageDB.ReplaceValues(html);
+            html = BriefingRoom.LanguageDB.ReplaceValues(mission.LangKey, html);
             html = mission.ReplaceValues(html, true);
 
             GeneratorTools.ReplaceKey(ref html, "BriefingRemarks", GeneratorTools.MakeHTMLList(GetItems(DCSMissionBriefingItemType.Remark)));
@@ -120,7 +120,7 @@ namespace BriefingRoom4DCS.Mission
                 Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "KneeboardFlights.html")) +
                 Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "BriefingFooter.html"));
 
-            html = BriefingRoom.LanguageDB.ReplaceValues(html);
+            html = BriefingRoom.LanguageDB.ReplaceValues(mission.LangKey, html);
             html = mission.ReplaceValues(html, true);
             GeneratorTools.ReplaceKey(ref html, "BriefingFlightGroups", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.FlightGroup)));
 
@@ -133,7 +133,7 @@ namespace BriefingRoom4DCS.Mission
                 Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "KneeboardGround.html")) +
                 Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "BriefingFooter.html"));
 
-            html = BriefingRoom.LanguageDB.ReplaceValues(html);
+            html = BriefingRoom.LanguageDB.ReplaceValues(mission.LangKey, html);
             html = mission.ReplaceValues(html, true);
             GeneratorTools.ReplaceKey(ref html, "BriefingAirbases", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.Airbase)));
             GeneratorTools.ReplaceKey(ref html, "BriefingJTAC", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.JTAC)));
@@ -144,7 +144,7 @@ namespace BriefingRoom4DCS.Mission
         public string GetBriefingAsRawText(ref DCSMission mission, string newLine = "\n")
         {
             string text = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "Briefing.txt"));
-            text = BriefingRoom.LanguageDB.ReplaceValues(text);
+            text = BriefingRoom.LanguageDB.ReplaceValues(mission.LangKey, text);
             text = mission.ReplaceValues(text);
 
             GeneratorTools.ReplaceKey(ref text, "BriefingAirbases", GeneratorTools.MakeRawTextList(GetItems(DCSMissionBriefingItemType.Airbase)).Replace("\t", "    "));
@@ -157,10 +157,10 @@ namespace BriefingRoom4DCS.Mission
             return text.Replace("\r\n", "\n").Replace("\n", newLine).Replace("\"", "''");
         }
 
-        public string GetEditorNotes(string newLine = "\n")
+        public string GetEditorNotes(string langKey, string newLine = "\n")
         {
             string text = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "EditorNotes.txt"));
-            text = BriefingRoom.LanguageDB.ReplaceValues(text);
+            text = BriefingRoom.LanguageDB.ReplaceValues(langKey, text);
             GeneratorTools.ReplaceKey(ref text, "TARGETGROUPNAMES", GeneratorTools.MakeRawTextList(GetItems(DCSMissionBriefingItemType.TargetGroupName)).Replace("\t", "    "));
             return text.Replace("\r\n", "\n").Replace("\n", newLine).Replace("\"", "''");
         }

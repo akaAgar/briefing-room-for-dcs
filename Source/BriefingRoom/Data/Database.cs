@@ -104,7 +104,7 @@ namespace BriefingRoom4DCS.Data
 
             // Can't start without at least one player-controllable aircraft
             if (!GetAllEntries<DBEntryJSONUnit>().Any(x => typeof(DBEntryAircraft).Equals(x.GetType()) && ((DBEntryAircraft)x).PlayerControllable))
-                throw new BriefingRoomException("No player-controllable aircraft found.");
+                throw new BriefingRoomException("en", "No player-controllable aircraft found.");
 
             Initialized = true;
         }
@@ -144,7 +144,7 @@ namespace BriefingRoom4DCS.Data
 
             // If a required database type has no entries, raise an error.
             if ((DBEntries[dbType].Count == 0) && mustHaveAtLeastOneEntry)
-                throw new BriefingRoomException($"No valid database entries found in the \"{subDirectory}\" directory");
+                throw new BriefingRoomException("en", $"No valid database entries found in the \"{subDirectory}\" directory");
         }
 
         private void LoadJSONEntries<T>(string subDirectory, bool unitType = false) where T : DBEntry, new()
@@ -173,7 +173,7 @@ namespace BriefingRoom4DCS.Data
                 DBEntryTemplate a => DBEntries[dbType].Concat(DBEntryTemplate.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
                 DBEntryLayout a => DBEntries[dbType].Concat(DBEntryLayout.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
                 DBEntrySituation a => DBEntries[dbType].Concat(DBEntrySituation.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
-                _ => throw new BriefingRoomException($"JSON type {dbType} not implemented."),
+                _ => throw new BriefingRoomException("en", $"JSON type {dbType} not implemented."),
             };
             DBEntries[dbType] = entries;
             BriefingRoom.PrintToLog($"Found {DBEntries[dbType].Count} database entries of type \"{typeof(T).Name}\"");
@@ -186,7 +186,7 @@ namespace BriefingRoom4DCS.Data
 
             // If a required database type has no entries, raise an error.
             if ((DBEntries[dbType].Count == 0) && mustHaveAtLeastOneEntry)
-                throw new BriefingRoomException($"No valid database entries found in the \"{subDirectory}\" directory");
+                throw new BriefingRoomException("en", $"No valid database entries found in the \"{subDirectory}\" directory");
         }
 
         private void LoadJSONFolderEntries<T>(string subDirectory) where T : DBEntry, new()
@@ -260,7 +260,7 @@ namespace BriefingRoom4DCS.Data
 
             // If a required database type has no entries, raise an error.
             if ((DBEntries[dbType].Count == 0) && mustHaveAtLeastOneEntry)
-                throw new BriefingRoomException($"No valid database entries found in the \"{subDirectory}\" directory");
+                throw new BriefingRoomException("en", $"No valid database entries found in the \"{subDirectory}\" directory");
         }
 
 

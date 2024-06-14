@@ -40,10 +40,10 @@ namespace BriefingRoom4DCS
             Description = description;
         }
 
-        public string GetNameAndDescription(string separator = " - ", bool upperCaseName = false)
+        public string GetNameAndDescription(string langKey, string separator = " - ", bool upperCaseName = false)
         {
-            string casedName = upperCaseName ? Name.Get().ToUpper() : Name.Get();
-            var description = Description.Get();
+            string casedName = upperCaseName ? Name.Get(langKey).ToUpper() : Name.Get(langKey);
+            var description = Description.Get(langKey);
             if (string.IsNullOrEmpty(description)) return casedName;
             return $"{casedName}{separator}{description}";
         }

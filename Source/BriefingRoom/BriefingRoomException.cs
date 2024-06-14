@@ -25,9 +25,9 @@ namespace BriefingRoom4DCS
 {
     public class BriefingRoomException : Exception
     {
-        public BriefingRoomException(string message) : base(BriefingRoom.Translate(message)) { }
-        public BriefingRoomException([StringSyntax("CompositeFormat")] String message, params object[] args) : base(BriefingRoom.Translate(message, args)) { }
-        public BriefingRoomException(string message, Exception innerException) : base(BriefingRoom.Translate(message), innerException: innerException) { }
-        public BriefingRoomException([StringSyntax("CompositeFormat")] String message, Exception innerException, params object[] args) : base(BriefingRoom.Translate(message, args),  innerException: innerException) { }
+        public BriefingRoomException(string langKey, string message) : base(BriefingRoom.Translate(langKey, message)) { }
+        public BriefingRoomException(string langKey, [StringSyntax("CompositeFormat")] String message, params object[] args) : base(BriefingRoom.Translate(langKey, message, args)) { }
+        public BriefingRoomException(string langKey, string message, Exception innerException) : base(BriefingRoom.Translate(langKey, message), innerException: innerException) { }
+        public BriefingRoomException(string langKey, [StringSyntax("CompositeFormat")] String message, Exception innerException, params object[] args) : base(BriefingRoom.Translate(langKey, message, args),  innerException: innerException) { }
     }
 }

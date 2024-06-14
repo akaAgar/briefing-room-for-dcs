@@ -65,7 +65,7 @@ namespace BriefingRoom4DCS
                 MizFileEntries.Add(mediaFile, fileBytes);
             }
 
-            return Toolbox.ZipData(MizFileEntries);
+            return Toolbox.ZipData(mission.LangKey, MizFileEntries);
         }
 
         private static bool AddLuaFileToEntries(Dictionary<string, byte[]> mizFileEntries, string mizEntryKey, string sourceFile, DCSMission mission = null)
@@ -77,7 +77,7 @@ namespace BriefingRoom4DCS
             string luaContent = File.ReadAllText(sourceFile);
             if (mission != null) // A mission was provided, do the required replacements in the file.
                 luaContent = mission.ReplaceValues(luaContent);
-            luaContent = BriefingRoom.LanguageDB.ReplaceValues(luaContent);
+            luaContent = BriefingRoom.LanguageDB.ReplaceValues(mission != null ? mission.LangKey : "en", luaContent);
             luaContent = UnassignedRegex().Replace(luaContent, "0");
             mizFileEntries.Add(mizEntryKey, Encoding.UTF8.GetBytes(luaContent));
             return true;

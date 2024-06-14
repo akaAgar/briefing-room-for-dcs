@@ -53,9 +53,9 @@ namespace BriefingRoom4DCS.Generator
 
             // Not an unit, or not a player-controllable unit, abort.
             if ((unitDB == null) || !unitDB.PlayerControllable)
-                throw new BriefingRoomException("PlayerFlightNotFound", flightGroup.Aircraft);
+                throw new BriefingRoomException(mission.LangKey, "PlayerFlightNotFound", flightGroup.Aircraft);
             if (unitDB.MinimumRunwayLengthFt > 0 && airbase.RunwayLengthFt < unitDB.MinimumRunwayLengthFt)
-                BriefingRoom.PrintTranslatableWarning("RunwayTooShort", airbase.Name, airbase.RunwayLengthFt, unitDB.UIDisplayName, unitDB.MinimumRunwayLengthFt);
+                BriefingRoom.PrintTranslatableWarning(mission.LangKey, "RunwayTooShort", airbase.Name, airbase.RunwayLengthFt, unitDB.UIDisplayName, unitDB.MinimumRunwayLengthFt);
 
             List<int> parkingSpotIDsList = new();
             List<Coordinates> parkingSpotCoordinatesList = new();
@@ -88,7 +88,7 @@ namespace BriefingRoom4DCS.Generator
                 }
                 groupLuaFile = "AircraftPlayerCarrier";
                 carrierUnitID = carrier.UnitMakerGroupInfo.DCSGroup.Units[0].UnitId;
-                carrierName = carrier.UnitMakerGroupInfo.UnitDB.UIDisplayName.Get();
+                carrierName = carrier.UnitMakerGroupInfo.UnitDB.UIDisplayName.Get(mission.LangKey);
                 if (flightGroup.StartLocation != PlayerStartLocation.Air)
                 {
                     bool isPlane = unitDB.Category == UnitCategory.Plane;
@@ -149,8 +149,8 @@ namespace BriefingRoom4DCS.Generator
             extraSettings.AddIfKeyUnused("PlayerStartingAction", GeneratorTools.GetPlayerStartingAction(flightGroup.StartLocation));
             extraSettings.AddIfKeyUnused("PlayerStartingType", GeneratorTools.GetPlayerStartingType(flightGroup.StartLocation));
             extraSettings.AddIfKeyUnused("Country", country);
-            extraSettings.AddIfKeyUnused("InitialWPName", Database.Instance.Common.Names.WPInitialName.Get());
-            extraSettings.AddIfKeyUnused("FinalWPName", Database.Instance.Common.Names.WPFinalName.Get());
+            extraSettings.AddIfKeyUnused("InitialWPName", Database.Instance.Common.Names.WPInitialName.Get(mission.LangKey));
+            extraSettings.AddIfKeyUnused("FinalWPName", Database.Instance.Common.Names.WPFinalName.Get(mission.LangKey));
             extraSettings.AddIfKeyUnused("LinkUnit", carrierUnitID);
             extraSettings.AddIfKeyUnused("MissionAirbaseX", groupStartingCoords.X);
             extraSettings.AddIfKeyUnused("MissionAirbaseY", groupStartingCoords.Y);
@@ -183,7 +183,7 @@ namespace BriefingRoom4DCS.Generator
 
             if (!groupInfo.HasValue)
             {
-                BriefingRoom.PrintTranslatableWarning("FailedToSpawnPlayerFlightGroup");
+                BriefingRoom.PrintTranslatableWarning(mission.LangKey, "FailedToSpawnPlayerFlightGroup");
                 return;
             }
 
@@ -210,7 +210,7 @@ namespace BriefingRoom4DCS.Generator
         {
             mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                 $"{groupInfo.Value.Name}(P)\t" +
-                $"{flightGroup.Count}× {unitDB.UIDisplayName.Get()}\t" +
+                $"{flightGroup.Count}× {unitDB.UIDisplayName.Get(mission.LangKey)}\t" +
                 $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
                 $"{(flightGroup.Payload == "default" ? task : flightGroup.Payload)}\t" +
                 $"{homeBase}");
@@ -225,8 +225,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Add first (takeoff) and last (landing) waypoints to get a complete list of all waypoints
             List<Waypoint> allWaypoints = new(waypoints);
-            allWaypoints.Insert(0, new Waypoint(Database.Instance.Common.Names.WPInitialName.Get().ToUpper(), initialCoordinates));
-            allWaypoints.Add(new Waypoint(Database.Instance.Common.Names.WPFinalName.Get().ToUpper(), initialCoordinates));
+            allWaypoints.Add(new Waypoint(Database.Instance.Common.Names.WPFinalName.Get(mission.LangKey).ToUpper(), initialCoordinates));
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Waypoint, $"\t{groupInfo.Value.Name}\t");
 
             List<string> waypointTextRows = new();

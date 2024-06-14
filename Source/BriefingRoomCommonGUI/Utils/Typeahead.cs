@@ -3,22 +3,23 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace BriefingRoom4DCS.GUI.Utils
 {
     public class Typeahead
     {
 
-        public static Task<List<DatabaseEntryInfo>> SearchDB(DatabaseEntryType entryType, string searchText)
+        public static Task<List<DatabaseEntryInfo>> SearchDB(string langKey, DatabaseEntryType entryType, string searchText)
         {
-            var list = BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(entryType);
-            return Task.FromResult(list.Where(x => x.Name.Get().ToLower().Contains(searchText.ToLower())).ToList());
+            var list = BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(langKey, entryType);
+            return Task.FromResult(list.Where(x => x.Name.Get(langKey).ToLower().Contains(searchText.ToLower())).ToList());
         }
 
-        public static string GetDBDisplayName(DatabaseEntryType entryType, string id)
+        public static string GetDBDisplayName(string langKey, DatabaseEntryType entryType, string id)
         {
             if (String.IsNullOrEmpty(id))
-                return BriefingRoom4DCS.BriefingRoom.Translate("Random");
-            return BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(entryType).First(x => x.ID == id).Name.Get();
+                return BriefingRoom4DCS.BriefingRoom.Translate(langKey, "Random");
+            return BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(langKey, entryType).First(x => x.ID == id).Name.Get(langKey);
         }
 
         public static string ConvertDB(DatabaseEntryInfo entry) => entry.ID;

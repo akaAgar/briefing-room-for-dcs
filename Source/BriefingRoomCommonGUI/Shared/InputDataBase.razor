@@ -1,3 +1,5 @@
+@inject BriefingRoom4DCS.BriefingRoom briefingRoom
+
 <div class="form-group inputEnum @ClassString">
     <label>@Label</label>
     <InputSelect class="form-control" Value="Value" ValueExpression="@(()=>Value)"
@@ -15,11 +17,11 @@
             <option value="@value.ID">
                 @if (HasDescription)
                 {
-                    @value.GetNameAndDescription(": ", true)
+                    @value.GetNameAndDescription(briefingRoom.LanguageKey, ": ", true)
                 }
                 else
                 {
-                    @value.Name.Get()
+                    @value.Name.Get(briefingRoom.LanguageKey)
                 }
             </option>
         }
@@ -67,9 +69,9 @@
     {
         DatabaseEntryInfo[] litems;
         if (!String.IsNullOrEmpty(Grouping))
-            litems = BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DataBaseType, Grouping);
+            litems = briefingRoom.GetDatabaseEntriesInfo(DataBaseType, Grouping);
         else
-            litems = BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DataBaseType);
+            litems = briefingRoom.GetDatabaseEntriesInfo(DataBaseType);
         if(litems.Count() == 0)
             return litems;
         if (!litems.Select(x => x.ID).Contains(Value) && Value != "" && (string.IsNullOrEmpty(CustomOpt) || Value !=

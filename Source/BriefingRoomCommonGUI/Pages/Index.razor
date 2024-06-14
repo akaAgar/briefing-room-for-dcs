@@ -2,23 +2,24 @@
 
 @using System.Reflection
 @using BriefingRoom4DCS
+@inject BriefingRoom4DCS.BriefingRoom briefingRoom
 
 <div class="landing-screen">
   <img class="img" src="_content/BriefingRoomCommonGUI/img/br-logo-white.png" alt="BriefingRoom Logo" />
   <div class="landing-menu">
-    <a href="/QuickBuilder" class="btn btn-primary">@BriefingRoom.Translate("QuickGenerator")</a>
-    <a href="/FullBuilder" class="btn btn-primary">@BriefingRoom.Translate("FullGenerator")</a>
-    <a href="/CampaignBuilder" class="btn btn-primary">@BriefingRoom.Translate("CampaignGenerator")</a>
-    <a href="/BriefingEditor" class="btn btn-primary">@BriefingRoom.Translate("BriefingEditor")</a>
-    <a href="/KneeboardEditor" class="btn btn-primary">@BriefingRoom.Translate("KneeboardEditor")</a>
-    <a href="/SituationEditor" class="btn btn-primary">@BriefingRoom.Translate("SituationEditor")</a>
-    <a href="/Manual" class="btn btn-primary">@BriefingRoom.Translate("Manual")</a>
+    <a href="/QuickBuilder" class="btn btn-primary">@briefingRoom.Translate("QuickGenerator")</a>
+    <a href="/FullBuilder" class="btn btn-primary">@briefingRoom.Translate("FullGenerator")</a>
+    <a href="/CampaignBuilder" class="btn btn-primary">@briefingRoom.Translate("CampaignGenerator")</a>
+    <a href="/BriefingEditor" class="btn btn-primary">@briefingRoom.Translate("BriefingEditor")</a>
+    <a href="/KneeboardEditor" class="btn btn-primary">@briefingRoom.Translate("KneeboardEditor")</a>
+    <a href="/SituationEditor" class="btn btn-primary">@briefingRoom.Translate("SituationEditor")</a>
+    <a href="/Manual" class="btn btn-primary">@briefingRoom.Translate("Manual")</a>
     <div class="form-group language-selector index">
-      <label>@BriefingRoom.Translate("Language")
+      <label>@briefingRoom.Translate("Language")
         <a href="https://poeditor.com/join/project/MJES2FW5lh" class="img-link-tiny" target="_blank"><img
             src="_content/BriefingRoomCommonGUI/img/poeditor.svg" alt="poeditor.com" /></a>
       </label>
-      <select class="form-control" @bind=@BriefingRoom.LanguageDB.Language>
+      <select class="form-control" @bind=@briefingRoom.LanguageKey>
         @foreach (var key in BriefingRoom.AvailableLanguagesMap.Keys)
         {
           <option value="@key">@BriefingRoom.AvailableLanguagesMap[key]</option>
@@ -38,7 +39,7 @@
         <div class="col-1 btn-container"><a title="Support me on ko-fi.com" class="kofi-button"
             style="background-color:#29abe0;" href="https://ko-fi.com/V7V0IZI9N" target="_blank"> <span
               class="kofitext"><img src="https://storage.ko-fi.com/cdn/cup-border.png" alt="Ko-fi donations"
-                class="kofiimg">@BriefingRoom.Translate("KoFiContributeBeg")</span></a></div>
+                class="kofiimg">@briefingRoom.Translate("KoFiContributeBeg")</span></a></div>
       }
       else
       {

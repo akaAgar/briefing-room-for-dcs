@@ -1,5 +1,7 @@
 @page "/BriefingEditor"
 @inject IJSRuntime JSRuntime
+@inject BriefingRoom4DCS.BriefingRoom briefingRoom
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
 @using System.Reflection
 @using BriefingRoom4DCS
 @using System.IO.Compression
@@ -8,7 +10,7 @@
 @using System.Text
 
 <div class="title-bar">
-  <h1>@BriefingRoom.Translate("BriefingEditor")</h1>
+  <h1>@briefingRoom.Translate("BriefingEditor")</h1>
   <TemplateButtons Title="Mission" LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate"
     AcceptString=".miz" />
 </div>
@@ -23,29 +25,31 @@
       }
     </div>
     <div class="full-width">
-      <h2>@BriefingRoom.Translate("Situation")</h2>
+      <h2>@briefingRoom.Translate("Situation")</h2>
       <textarea @bind="situation" class="form-control long" spellcheck="true"
-        placeholder=@BriefingRoom.Translate("SituationPlaceholder")></textarea>
+        placeholder=@briefingRoom.Translate("SituationPlaceholder")></textarea>
     </div>
     <div class="full-width">
-      <h2>@BriefingRoom.Translate("BlueTask")</h2>
+      <h2>@briefingRoom.Translate("BlueTask")</h2>
       <textarea @bind="blueTask" class="form-control short" spellcheck="true"
-        placeholder=@BriefingRoom.Translate("BlueTaskPlaceholder")></textarea>
+        placeholder=@briefingRoom.Translate("BlueTaskPlaceholder")></textarea>
     </div>
     <div class="full-width">
-      <h2>@BriefingRoom.Translate("RedTask")</h2>
+      <h2>@briefingRoom.Translate("RedTask")</h2>
       <textarea @bind="redTask" class="form-control short" spellcheck="true"
-        placeholder=@BriefingRoom.Translate("RedTaskPlaceholder")></textarea>
+        placeholder=@briefingRoom.Translate("RedTaskPlaceholder")></textarea>
     </div>
     <div class="full-width">
-      <h2>@BriefingRoom.Translate("NeutralTask")</h2>
+      <h2>@briefingRoom.Translate("NeutralTask")</h2>
       <textarea @bind="neutralTask" class="form-control short" spellcheck="true"
-        placeholder=@BriefingRoom.Translate("NeutralTaskPlaceholder")></textarea>
+        placeholder=@briefingRoom.Translate("NeutralTaskPlaceholder")></textarea>
     </div>
   </div>
 </div>
 
 @code {
+  [CascadingParameter]
+  public MainLayout Layout { get; set; }
   private string errorMessage;
   private string situation;
   private string situationDictKey = "";

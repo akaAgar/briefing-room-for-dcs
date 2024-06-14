@@ -3,9 +3,10 @@
 @using System.Reflection
 @using BriefingRoom4DCS
 @using System.IO
+@inject BriefingRoom4DCS.BriefingRoom briefingRoom
 
 <div class="title-bar">
-  <h1>@BriefingRoom.Translate("Manual")</h1>
+  <h1>@briefingRoom.Translate("Manual")</h1>
 </div>
 <div>
   <ul class="nav nav-tabs">
@@ -29,7 +30,8 @@
 </div>
 
 @code {
-
+  [CascadingParameter]
+  public MainLayout Layout { get; set; }
   private string DocTab = "User Manual";
   private void SetDocTab(string var)
   {

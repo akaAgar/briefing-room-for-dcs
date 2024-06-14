@@ -34,7 +34,7 @@ namespace BriefingRoom4DCS.Generator
             DBEntryFeatureMission featureDB = Database.Instance.GetEntry<DBEntryFeatureMission>(featureID);
             if (featureDB == null) // Feature doesn't exist
             {
-                BriefingRoom.PrintTranslatableWarning("MissionFeatureNotFound", featureID);
+                BriefingRoom.PrintTranslatableWarning(mission.LangKey, "MissionFeatureNotFound", featureID);
                 return;
             }
             Coalition coalition = featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly) ? mission.TemplateRecord.ContextPlayerCoalition : mission.TemplateRecord.ContextPlayerCoalition.GetEnemy();
@@ -73,7 +73,7 @@ namespace BriefingRoom4DCS.Generator
                         );
                 if (!spawnPoint.HasValue) // No spawn point found
                 {
-                    throw new BriefingRoomException("NoSpawnPointForMissionFeature", featureID);
+                    throw new BriefingRoomException(mission.LangKey, "NoSpawnPointForMissionFeature", featureID);
                 }
 
 
@@ -105,7 +105,7 @@ namespace BriefingRoom4DCS.Generator
                 Coordinates? spawnPoint = UnitMakerSpawnPointSelector.GetNearestSpawnPoint(ref mission,featureDB.UnitGroupValidSpawnPoints, airbase.Coordinates);
                 if (!spawnPoint.HasValue) // No spawn point found
                 {
-                    throw new BriefingRoomException("NoSpawnPointForMissionFeature", featureID);
+                    throw new BriefingRoomException(mission.LangKey, "NoSpawnPointForMissionFeature", featureID);
                 }
 
                 Dictionary<string, object> extraSettings = new() { { "TACAN_NAME", airbase.Name } };

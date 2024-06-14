@@ -35,7 +35,7 @@ namespace BriefingRoom4DCS.Generator
             DBEntryFeatureObjective featureDB = Database.Instance.GetEntry<DBEntryFeatureObjective>(featureID);
             if (featureDB == null) // Feature doesn't exist
             {
-                BriefingRoom.PrintTranslatableWarning("ObjectiveFeatureNotFound", featureID);
+                BriefingRoom.PrintTranslatableWarning(mission.LangKey, "ObjectiveFeatureNotFound", featureID);
                 return;
             }
 
@@ -56,7 +56,7 @@ namespace BriefingRoom4DCS.Generator
                     !(featureDB.UnitGroupValidSpawnPoints.Contains(SpawnPointType.Sea) || featureDB.UnitGroupValidSpawnPoints.Contains(SpawnPointType.Air)) &&
                     UnitMakerSpawnPointSelector.CheckInSea(mission.TheaterDB,coordinates.Value))
                 {
-                    BriefingRoom.PrintTranslatableWarning("CannotSpawnObjectiveFeature",featureID);
+                    BriefingRoom.PrintTranslatableWarning(mission.LangKey, "CannotSpawnObjectiveFeature",featureID);
                     return;
                 }
             }
@@ -71,7 +71,7 @@ namespace BriefingRoom4DCS.Generator
 
                 if (!spawnPoint.HasValue)
                 {
-                    throw new BriefingRoomException("NoSpawnPointForObjectiveFeature",featureID);
+                    throw new BriefingRoomException(mission.LangKey, "NoSpawnPointForObjectiveFeature",featureID);
   
                 }
 
