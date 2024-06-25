@@ -376,7 +376,7 @@ namespace BriefingRoom4DCS
                 UnitFamily.HelicopterAttack or UnitFamily.HelicopterTransport or UnitFamily.HelicopterUtility => UnitCategory.Helicopter,
                 UnitFamily.PlaneAttack or UnitFamily.PlaneAWACS or UnitFamily.PlaneBomber or UnitFamily.PlaneDrone or UnitFamily.PlaneFighter or UnitFamily.PlaneInterceptor or UnitFamily.PlaneSEAD or UnitFamily.PlaneStrike or UnitFamily.PlaneTankerBasket or UnitFamily.PlaneTankerBoom or UnitFamily.PlaneTransport or UnitFamily.PlaneCATOBAR or UnitFamily.PlaneSTOBAR or UnitFamily.PlaneSTOVL => UnitCategory.Plane,
                 UnitFamily.ShipCarrierCATOBAR or UnitFamily.ShipCarrierSTOBAR or UnitFamily.ShipCarrierSTOVL or UnitFamily.ShipCruiser or UnitFamily.ShipFrigate or UnitFamily.ShipSpeedboat or UnitFamily.ShipSubmarine or UnitFamily.ShipTransport => UnitCategory.Ship,
-                UnitFamily.StaticStructureMilitary or UnitFamily.StaticStructureProduction or UnitFamily.FOB or UnitFamily.StaticStructureOffshore or UnitFamily.StaticStructureCivilian => UnitCategory.Static,
+                UnitFamily.StaticStructureMilitary or UnitFamily.StaticStructureProduction or UnitFamily.FOB or UnitFamily.StaticStructureOffshore or UnitFamily.StaticStructureCivilian or UnitFamily.StaticDecorative => UnitCategory.Static,
                 UnitFamily.Cargo => UnitCategory.Cargo,
                 UnitFamily.Infantry or UnitFamily.InfantryMANPADS => UnitCategory.Infantry,
                 _ => UnitCategory.Vehicle,
@@ -390,7 +390,7 @@ namespace BriefingRoom4DCS
                 UnitFamily.HelicopterAttack or UnitFamily.HelicopterTransport or UnitFamily.HelicopterUtility => DCSUnitCategory.Helicopter,
                 UnitFamily.PlaneAttack or UnitFamily.PlaneAWACS or UnitFamily.PlaneBomber or UnitFamily.PlaneDrone or UnitFamily.PlaneFighter or UnitFamily.PlaneInterceptor or UnitFamily.PlaneSEAD or UnitFamily.PlaneStrike or UnitFamily.PlaneTankerBasket or UnitFamily.PlaneTankerBoom or UnitFamily.PlaneTransport or UnitFamily.PlaneCATOBAR or UnitFamily.PlaneSTOBAR or UnitFamily.PlaneSTOVL => DCSUnitCategory.Plane,
                 UnitFamily.ShipCarrierCATOBAR or UnitFamily.ShipCarrierSTOBAR or UnitFamily.ShipCarrierSTOVL or UnitFamily.ShipCruiser or UnitFamily.ShipFrigate or UnitFamily.ShipSpeedboat or UnitFamily.ShipSubmarine or UnitFamily.ShipTransport => DCSUnitCategory.Ship,
-                UnitFamily.StaticStructureMilitary or UnitFamily.StaticStructureProduction or UnitFamily.FOB or UnitFamily.StaticStructureOffshore or UnitFamily.StaticStructureCivilian => DCSUnitCategory.Static,
+                UnitFamily.StaticStructureMilitary or UnitFamily.StaticStructureProduction or UnitFamily.FOB or UnitFamily.StaticStructureOffshore or UnitFamily.StaticStructureCivilian or UnitFamily.StaticDecorative => DCSUnitCategory.Static,
                 UnitFamily.Cargo => DCSUnitCategory.Cargo,
                 _ => DCSUnitCategory.Vehicle,
             };
