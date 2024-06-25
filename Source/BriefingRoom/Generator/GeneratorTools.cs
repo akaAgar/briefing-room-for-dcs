@@ -56,7 +56,7 @@ namespace BriefingRoom4DCS.Generator
                 UnitCategory.Vehicle => new List<UnitFamily> { UnitFamily.VehicleAAA, UnitFamily.VehicleAAA, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShort },
                 _ => new List<UnitFamily>()
             };
-
+            
             if (families.Count == 0)
                 return units.ToList();
 

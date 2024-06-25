@@ -111,7 +111,8 @@ namespace BriefingRoom4DCS.Generator
             if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense))
             {
                 var airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(mission.LangKey, mission.TemplateRecord, side, families.First().GetUnitCategory(), country != Country.ALL ? country : null);
-                units.AddRange(airDefenseUnits);
+                if (airDefenseUnits.Count > 0)
+                    units.AddRange(airDefenseUnits);
             }
             return new(units, Database.Instance.GetEntries<DBEntryJSONUnit>(units));
         }
@@ -470,32 +471,34 @@ namespace BriefingRoom4DCS.Generator
             if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense) && unitFamily != UnitFamily.StaticStructureOffshore)
             {
                 List<string> airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(mission.LangKey, mission.TemplateRecord, side, unitFamily.GetUnitCategory());
-                var dCSGroup = CreateGroup(
+                if (airDefenseUnits.Count > 0) {
+                    var dCSGroup = CreateGroup(
+                            ref mission,
+                            "Vehicle",
+                            coordinates,
+                            groupName,
+                            unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.AlwaysHidden),
+                            UnitFamily.VehicleAAA,
+                            null,
+                            extraSettings
+                        );
+                    var (unitsLuaTable, embeddedunitsIDList) = AddUnits(
                         ref mission,
+                        airDefenseUnits,
+                        groupName,
+                        callsign,
                         "Vehicle",
                         coordinates,
-                        groupName,
-                        unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.AlwaysHidden),
-                        UnitFamily.VehicleAAA,
-                        null,
+                        unitMakerGroupFlags,
+                        side,
                         extraSettings
                     );
-                var (unitsLuaTable, embeddedunitsIDList) = AddUnits(
-                    ref mission,
-                    airDefenseUnits,
-                    groupName,
-                    callsign,
-                    "Vehicle",
-                    coordinates,
-                    unitMakerGroupFlags,
-                    side,
-                    extraSettings
-                );
-                dCSGroup.Units = unitsLuaTable;
-                mission.GroupID++;
-                unitsIDList.AddRange(embeddedunitsIDList);
-                AddUnitGroupToTable(ref mission, country, DCSUnitCategory.Vehicle, dCSGroup);
-                BriefingRoom.PrintToLog($"Added group of Embedded Air Defense for Static {coalition} {unitFamily} at {coordinates}");
+                    dCSGroup.Units = unitsLuaTable;
+                    mission.GroupID++;
+                    unitsIDList.AddRange(embeddedunitsIDList);
+                    AddUnitGroupToTable(ref mission, country, DCSUnitCategory.Vehicle, dCSGroup);
+                    BriefingRoom.PrintToLog($"Added group of Embedded Air Defense for Static {coalition} {unitFamily} at {coordinates}");
+                }
             }
 
             var firstUnitDB = Database.Instance.GetEntry<DBEntryJSONUnit>(unitSets.First());
