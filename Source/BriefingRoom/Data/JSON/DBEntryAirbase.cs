@@ -60,7 +60,7 @@ namespace BriefingRoom4DCS.Data
         }
 
 
-        internal static Dictionary<string, DBEntry> LoadJSON(string filepath)
+        internal static Dictionary<string, DBEntry> LoadJSON(string filepath, DatabaseLanguage LangDB)
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Airbase>>(File.ReadAllText(filepath));
@@ -70,7 +70,7 @@ namespace BriefingRoom4DCS.Data
                 itemMap.Add(id, new DBEntryAirbase
                 {
                     ID = id,
-                    UIDisplayName = new LanguageString(airbase.displayName),
+                    UIDisplayName = new LanguageString(LangDB, GetLanguageClassName(typeof(DBEntryAirbase)), id, "displayName",airbase.displayName),
                     ATC = String.Join("/", airbase.airdromeData.ATC.Select(x => GeneratorTools.FormatRadioFrequency(x))),
                     Coordinates = new Coordinates(airbase.pos.DCS.x, airbase.pos.DCS.z),
                     DCSID = airbase.ID,

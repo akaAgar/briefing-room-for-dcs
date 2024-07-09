@@ -24,6 +24,7 @@ using System.IO;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using BriefingRoom4DCS.Data;
 
 namespace BriefingRoom4DCS
 {
@@ -133,10 +134,10 @@ namespace BriefingRoom4DCS
             var value = GetValue<string>(section, $"{key}", "");
             if (!string.IsNullOrEmpty(value))
                 resultMap.AddIfKeyUnused(langKey, value);
-                    return resultMap;
+            return resultMap;
         }
 
-        internal LanguageString GetLangStrings(string section, string key)
+        internal LanguageString GetLangStrings(DatabaseLanguage langDB, string classId, string id, string section, string key)
         {
             var resultMap = new LanguageString();
             foreach (var langKey in BriefingRoom.AvailableLanguagesMap.Keys)
@@ -145,15 +146,18 @@ namespace BriefingRoom4DCS
                 if (!string.IsNullOrEmpty(value))
                     resultMap.AddIfKeyUnused(langKey, value);
             }
+            resultMap.AddOverrides(langDB, classId, id, section, key);
+
             return resultMap;
         }
 
+
         internal LanguageString AddLangStrings(string section, string key, LanguageString resultMap, string langKey)
         {
-                var value = GetValue<string>(section, key, "");
-                if (!string.IsNullOrEmpty(value))
-                    resultMap.AddIfKeyUnused(langKey, value);
-                return resultMap;
+            var value = GetValue<string>(section, key, "");
+            if (!string.IsNullOrEmpty(value))
+                resultMap.AddIfKeyUnused(langKey, value);
+            return resultMap;
         }
         internal T[] GetValueArray<T>(string section, string key, char separator = ',')
         {
@@ -495,7 +499,7 @@ namespace BriefingRoom4DCS
             }
             catch (Exception e)
             {
-                throw new BriefingRoomException("en",  $"Failed to parse value {FilePath}: {typeof(T).FullName} => {string.Join(",", sourceArray)}",e);
+                throw new BriefingRoomException("en", $"Failed to parse value {FilePath}: {typeof(T).FullName} => {string.Join(",", sourceArray)}", e);
             }
         }
     }

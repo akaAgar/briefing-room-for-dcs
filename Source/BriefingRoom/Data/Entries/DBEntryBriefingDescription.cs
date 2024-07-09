@@ -30,13 +30,14 @@ namespace BriefingRoom4DCS.Data
         protected override bool OnLoad(string iniFilePath)
         {
             var ini = new INIFile(iniFilePath);
-            LanguageString defaultTexts = ini.GetLangStrings("BriefingDescription", "Description");
+            var className = this.GetLanguageClassName();
+            LanguageString defaultTexts = ini.GetLangStrings(Database.Language, className, ID, "BriefingDescription", "Description");
 
             DescriptionText = new List<LanguageString>();
             for (int i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
             {
                 DescriptionText.Add(defaultTexts);
-                var data = ini.GetLangStrings("BriefingDescription", $"Description.{(UnitFamily)i}");
+                var data = ini.GetLangStrings(Database.Language, className, ID, "BriefingDescription", $"Description.{(UnitFamily)i}");
                 if (data.Count > 0)
                     DescriptionText[i] = data;
             }

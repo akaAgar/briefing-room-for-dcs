@@ -37,7 +37,7 @@ namespace BriefingRoom4DCS.Data
             throw new NotImplementedException();
         }
 
-        internal static Dictionary<string, DBEntry> LoadJSON(string filepath)
+        internal static Dictionary<string, DBEntry> LoadJSON(string filepath, DatabaseLanguage LangDB)
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Car>>(File.ReadAllText(filepath));
@@ -55,7 +55,7 @@ namespace BriefingRoom4DCS.Data
                 itemMap.Add(id, new DBEntryCar
                 {
                     ID = id,
-                    UIDisplayName = new LanguageString(car.displayName),
+                    UIDisplayName = new LanguageString(LangDB, GetLanguageClassName(typeof(DBEntryCar)), id, "displayName",car.displayName),
                     DCSID = car.type,
                     Liveries = car.paintSchemes.ToDictionary(pair => (Country)Enum.Parse(typeof(Country), pair.Key.Replace(" ", ""), true), pair => pair.Value),
                     Operators = GetOperationalCountries(car),

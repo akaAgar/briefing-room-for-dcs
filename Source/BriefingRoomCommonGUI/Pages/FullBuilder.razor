@@ -58,10 +58,10 @@
                         <div class="generator-group flex-justify-spaced flex-margin-fix">
                             <div class="form-group flex-block">
                                 <label>@briefingRoom.Translate("BlueCoalition")</label>
-                                <BlazoredTypeahead SearchMethod="BuilderUtils.SearchCoalition" @bind-Value="Template.ContextCoalitionBlue" 
+                                <BlazoredTypeahead SearchMethod="builderUtils.SearchCoalition" @bind-Value="Template.ContextCoalitionBlue" 
                                 EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="1000">
                                     <SelectedTemplate Context="coalitionId">
-                                        @BuilderUtils.GetCoalitionDisplayName(@coalitionId)
+                                         @builderUtils.GetCoalitionDisplayName(@coalitionId)
                                     </SelectedTemplate>
                                     <ResultTemplate Context="coalition">
                                         @coalition.Name.Get(briefingRoom.LanguageKey)
@@ -70,10 +70,10 @@
                             </div>
                             <div class="form-group flex-block">
                                     <label>@briefingRoom.Translate("RedCoalition")</label>
-                                <BlazoredTypeahead SearchMethod="BuilderUtils.SearchCoalition" @bind-Value="Template.ContextCoalitionRed" 
+                                <BlazoredTypeahead SearchMethod="builderUtils.SearchCoalition" @bind-Value="Template.ContextCoalitionRed" 
                                 EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="1000">
                                     <SelectedTemplate Context="coalitionId">
-                                        @BuilderUtils.GetCoalitionDisplayName(@coalitionId)
+                                         @builderUtils.GetCoalitionDisplayName(@coalitionId)
                                     </SelectedTemplate>
                                     <ResultTemplate Context="coalition">
                                         @coalition.Name.Get(briefingRoom.LanguageKey)
@@ -358,7 +358,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link @(flightGroupUtil.Tab == value ? "active" : "") @(value.Hostile ? "hostile" : "")" aria-current="page"
                             @onclick='() => flightGroupUtil.SetFlightGroupTab(value)'>
-                                       @value.Alias: @BuilderUtils.GetAircraftDisplayName(@value.Aircraft) x @value.Count
+                                       @value.Alias:  @builderUtils.GetAircraftDisplayName(@value.Aircraft) x @value.Count
                                         @if (Template.PlayerFlightGroups.Count > 1)
                                         {
                                             <a class="delete-flight" @onclick="() =>  flightGroupUtil.RemoveFlightGroup(value, Template)">x</a>
@@ -379,11 +379,11 @@
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
                                         <div class="form-group flex-block">
                                             <label>@briefingRoom.Translate("Aircraft")</label>
-                                            <BlazoredTypeahead SearchMethod="BuilderUtils.SearchAircraft" @bind-Value="flight.Aircraft"
+                                            <BlazoredTypeahead SearchMethod="builderUtils.SearchAircraft" @bind-Value="flight.Aircraft"
                                                 EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
                                                 MaximumSuggestions="1000">
                                                 <SelectedTemplate Context="aircraftId">
-                                                    @BuilderUtils.GetAircraftDisplayName(@aircraftId)
+                                                     @builderUtils.GetAircraftDisplayName(@aircraftId)
                                                 </SelectedTemplate>
                                                 <ResultTemplate Context="aircraft">
                                                     @aircraft.Name.Get(briefingRoom.LanguageKey)
@@ -640,9 +640,11 @@
 
     private FlightGroupUtils flightGroupUtil = new FlightGroupUtils();
     private ObjectiveUtils objectiveUtil = new ObjectiveUtils(false);
+    private BuilderUtils builderUtils {get; set;}
 
     protected override void OnInitialized()
     {
+        builderUtils = new BuilderUtils(briefingRoom);
         Template = new MissionTemplate();
         Template.Objectives[0].Preset = "Custom";
         flightGroupUtil.Tab = Template.PlayerFlightGroups[0];

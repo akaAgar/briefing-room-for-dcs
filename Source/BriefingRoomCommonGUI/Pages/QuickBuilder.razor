@@ -47,11 +47,11 @@
                 <div class="generator-group flex-justify-spaced flex-margin-fix">
                     <div class="form-group flex-block">
                         <label>@briefingRoom.Translate("BlueCoalition")</label>
-                        <BlazoredTypeahead SearchMethod="BuilderUtils.SearchCoalition" @bind-Value="Template.ContextCoalitionBlue"
+                        <BlazoredTypeahead SearchMethod="builderUtils.SearchCoalition" @bind-Value="Template.ContextCoalitionBlue"
                             EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
                             MaximumSuggestions="1000">
                             <SelectedTemplate Context="coalitionId">
-                                @BuilderUtils.GetCoalitionDisplayName(@coalitionId)
+                                 @builderUtils.GetCoalitionDisplayName(@coalitionId)
                             </SelectedTemplate>
                             <ResultTemplate Context="coalition">
                                 @coalition.Name.Get(briefingRoom.LanguageKey)
@@ -60,11 +60,11 @@
                     </div>
                     <div class="form-group flex-block">
                         <label>@briefingRoom.Translate("RedCoalition")</label>
-                        <BlazoredTypeahead SearchMethod="BuilderUtils.SearchCoalition" @bind-Value="Template.ContextCoalitionRed"
+                        <BlazoredTypeahead SearchMethod="builderUtils.SearchCoalition" @bind-Value="Template.ContextCoalitionRed"
                             EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
                             MaximumSuggestions="1000">
                             <SelectedTemplate Context="coalitionId">
-                                @BuilderUtils.GetCoalitionDisplayName(@coalitionId)
+                                 @builderUtils.GetCoalitionDisplayName(@coalitionId)
                             </SelectedTemplate>
                             <ResultTemplate Context="coalition">
                                 @coalition.Name.Get(briefingRoom.LanguageKey)
@@ -91,11 +91,11 @@
                     <div class="generator-group flex-justify-spaced flex-margin-fix @(flight.Hostile ? "hostile" : "")">
                         <div class="form-group flex-block">
                             <label>@briefingRoom.Translate("Aircraft")</label>
-                            <BlazoredTypeahead SearchMethod="BuilderUtils.SearchAircraft" @bind-Value="flight.Aircraft"
+                            <BlazoredTypeahead SearchMethod="builderUtils.SearchAircraft" @bind-Value="flight.Aircraft"
                             EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
                             MaximumSuggestions="1000">
                                 <SelectedTemplate Context="aircraftId">
-                                    @BuilderUtils.GetAircraftDisplayName(@aircraftId)
+                                     @builderUtils.GetAircraftDisplayName(@aircraftId)
                                 </SelectedTemplate>
                                 <ResultTemplate Context="aircraft">
                                     @aircraft.Name.Get(briefingRoom.LanguageKey)
@@ -344,9 +344,11 @@
     private bool spinner = false;
     private FlightGroupUtils flightGroupUtil = new FlightGroupUtils();
     private ObjectiveUtils objectiveUtil = new ObjectiveUtils(true);
+    private BuilderUtils builderUtils {get; set;}
 
     protected override void OnInitialized()
     {
+        builderUtils = new BuilderUtils(briefingRoom);
         Template = new MissionTemplate();
         flightGroupUtil.Tab = Template.PlayerFlightGroups[0];
         objectiveUtil.Tab = Template.Objectives[0];

@@ -42,7 +42,7 @@ namespace BriefingRoom4DCS.Data
             throw new NotImplementedException();
         }
 
-        internal static Dictionary<string, DBEntry> LoadJSON(string filepath)
+        internal static Dictionary<string, DBEntry> LoadJSON(string filepath, DatabaseLanguage LangDB)
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<BriefingRoom4DCS.Data.JSON.Template>>(File.ReadAllText(filepath));
@@ -62,7 +62,7 @@ namespace BriefingRoom4DCS.Data
                 var entry = new DBEntryTemplate
                 {
                     ID = id,
-                    UIDisplayName = new LanguageString(template.name),
+                    UIDisplayName = new LanguageString(LangDB, GetLanguageClassName(typeof(DBEntryTemplate)), id, "name", template.name),
                     Type = template.type,
                     Countries = extraCountries,
                     Family = (UnitFamily)Enum.Parse(typeof(UnitFamily), supportInfo.family, true),
@@ -76,17 +76,17 @@ namespace BriefingRoom4DCS.Data
                 };
 
                 var units = entry.Units.Where(x => Database.Instance.GetEntry<DBEntryJSONUnit>(x.DCSID) == null).Select(x => x.DCSID).ToList();
-                if(units.Count > 0)
+                if (units.Count > 0)
                 {
                     BriefingRoom.PrintToLog($"{id} has units not in data: {string.Join(',', units)}", LogMessageErrorLevel.Warning);
                     continue;
                 }
                 var missingModuleRefs = entry.Units.Select(x => Database.Instance.GetEntry<DBEntryJSONUnit>(x.DCSID).Module).Where(x => !String.IsNullOrEmpty(x) && x != entry.Module && !DBEntryDCSMod.CORE_MODS.Contains(x)).Distinct().ToList();
-                if(missingModuleRefs.Count > 0)
+                if (missingModuleRefs.Count > 0)
                 {
                     BriefingRoom.PrintToLog($"{id} missing module refs in BRInfo data: {string.Join(',', missingModuleRefs)}", LogMessageErrorLevel.Warning);
                 }
-                
+
                 itemMap.Add(id, entry);
             }
 

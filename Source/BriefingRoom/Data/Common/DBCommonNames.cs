@@ -48,28 +48,29 @@ namespace BriefingRoom4DCS.Data
 
         internal LanguageString WPObjectivesNames { get; }
 
-        public DBCommonNames()
+        public DBCommonNames(DatabaseLanguage LangDB)
         {
             int i;
 
             BriefingRoom.PrintToLog("Loading common global settings...");
             INIFile ini = new(Path.Combine(BRPaths.DATABASE, "Names.ini"));
-            CampaignNameTemplate = ini.GetLangStrings("Campaign", "Template");
-            MissionNameTemplate = ini.GetLangStrings("Mission", "Template");
+            var className = DBEntry.GetLanguageClassName(typeof(DBCommonNames));
+            CampaignNameTemplate = ini.GetLangStrings(LangDB, className, "Name", "Campaign", "Template");
+            MissionNameTemplate = ini.GetLangStrings(LangDB, className, "Name", "Mission", "Template");
             for (i = 0; i < MISSION_NAMES_PART_COUNT; i++)
-                MissionNameParts[i] = ini.GetLangStrings("Mission", $"Part{i + 1}");
+                MissionNameParts[i] = ini.GetLangStrings(LangDB, className, "Name", "Mission", $"Part{i + 1}");
 
             for (i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
             {
-                UnitFamilies[i] = ini.GetLangStrings("UnitFamilies", ((UnitFamily)i).ToString());
-                UnitGroups[i] = ini.GetLangStrings("UnitGroups", ((UnitFamily)i).ToString());
+                UnitFamilies[i] = ini.GetLangStrings(LangDB, className, "Name", "UnitFamilies", ((UnitFamily)i).ToString());
+                UnitGroups[i] = ini.GetLangStrings(LangDB, className, "Name", "UnitGroups", ((UnitFamily)i).ToString());
             }
 
-            WPEgressName = ini.GetLangStrings("Waypoints", "Egress");
-            WPFinalName = ini.GetLangStrings("Waypoints", "Final");
-            WPIngressName = ini.GetLangStrings("Waypoints", "Ingress");
-            WPInitialName = ini.GetLangStrings("Waypoints", "Initial");
-            WPObjectivesNames = ini.GetLangStrings("Waypoints", "Objectives");
+            WPEgressName = ini.GetLangStrings(LangDB, className, "Name", "Waypoints", "Egress");
+            WPFinalName = ini.GetLangStrings(LangDB, className, "Name", "Waypoints", "Final");
+            WPIngressName = ini.GetLangStrings(LangDB, className, "Name", "Waypoints", "Ingress");
+            WPInitialName = ini.GetLangStrings(LangDB, className, "Name", "Waypoints", "Initial");
+            WPObjectivesNames = ini.GetLangStrings(LangDB, className, "Name", "Waypoints", "Objectives");
         }
     }
 }

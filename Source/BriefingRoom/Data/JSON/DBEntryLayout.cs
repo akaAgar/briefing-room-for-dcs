@@ -39,7 +39,7 @@ namespace BriefingRoom4DCS.Data
             throw new NotImplementedException();
         }
 
-        internal static Dictionary<string, DBEntry> LoadJSON(string filepath)
+        internal static Dictionary<string, DBEntry> LoadJSON(string filepath, DatabaseLanguage LangDB)
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<BriefingRoom4DCS.Data.JSON.Layout>>(File.ReadAllText(filepath));
@@ -50,7 +50,7 @@ namespace BriefingRoom4DCS.Data
                 itemMap.Add(id, new DBEntryLayout
                 {
                     ID = id,
-                    UIDisplayName = new LanguageString(layout.name),
+                    UIDisplayName = new LanguageString(LangDB, GetLanguageClassName(typeof(DBEntryLayout)), id, "name",layout.name),
                     Categories = layout.categories.Select(x => (UnitCategory)Enum.Parse(typeof(UnitCategory), x, true)).ToList(),
                     MinUnits = layout.minUnits,
                     Units = layout.units.Select(x => new DBEntryTemplateUnit

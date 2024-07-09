@@ -38,10 +38,11 @@ namespace BriefingRoom4DCS.Data
         protected override bool OnLoad(string iniFilePath)
         {
             var ini = new INIFile(iniFilePath);
+            var className = this.GetLanguageClassName();
             BriefingName = new LanguageString[2]
             {
-                        ini.GetLangStrings("ObjectiveTarget", "Briefing.UnitName.Singular"),
-                        ini.GetLangStrings("ObjectiveTarget", "Briefing.UnitName.Plural")
+                        ini.GetLangStrings(Database.Language, className, ID, "ObjectiveTarget", "Briefing.UnitName.Singular"),
+                        ini.GetLangStrings(Database.Language, className, ID, "ObjectiveTarget", "Briefing.UnitName.Plural")
             };
 
             UnitFamilies = Toolbox.SetSingleCategoryFamilies(ini.GetValueArray<UnitFamily>("ObjectiveTarget", "Units.Families"));

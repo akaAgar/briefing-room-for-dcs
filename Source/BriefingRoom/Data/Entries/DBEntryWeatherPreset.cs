@@ -52,7 +52,8 @@ namespace BriefingRoom4DCS.Data
         protected override bool OnLoad(string iniFilePath)
         {
             var ini = new INIFile(iniFilePath);
-            BriefingDescription = ini.GetLangStrings("Briefing", "Description");
+            var className = this.GetLanguageClassName();
+            BriefingDescription = ini.GetLangStrings(Database.Language, className, ID, "Briefing", "Description");
 
             CloudsBase = ini.GetValue<MinMaxI>("Weather", "Clouds.Base");
             CloudsPresets = ini.GetValueArray<string>("Weather", "Clouds.Presets");
