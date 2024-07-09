@@ -47,15 +47,16 @@ namespace BriefingRoom4DCS.Data
         {
             throw new NotImplementedException();
         }
-        internal static Dictionary<string, DBEntry> LoadJSON(string filepath)
+        internal static Dictionary<string, DBEntry> LoadJSON(string filepath, DatabaseLanguage LangDB)
         {
             var situation = JsonConvert.DeserializeObject<Situation>(File.ReadAllText(filepath));
             var id = Path.GetFileNameWithoutExtension(filepath);
+            var className = GetLanguageClassName(typeof(DBEntrySituation));
             return new Dictionary<string, DBEntry>{
                 {id, new DBEntrySituation{
                     ID = id,
-                    UIDisplayName = new LanguageString(situation.DisplayName),
-                    BriefingDescriptions = situation.BriefingDescriptions.Select(x => new LanguageString(x)).ToList(),
+                    UIDisplayName = new LanguageString(LangDB, className, id, "DisplayName",   situation.DisplayName),
+                    BriefingDescriptions = situation.BriefingDescriptions.Select(x => new LanguageString(LangDB, className, id, "BriefingDescription",x)).ToList(),
                     Theater = situation.Theater.ToLower(),
                     RelatedSituations = situation.RelatedSituations,
                     RedZones = situation.redZones.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList(),
@@ -68,7 +69,8 @@ namespace BriefingRoom4DCS.Data
         internal List<List<Coordinates>> GetRedZones(bool invertCoalition) => !invertCoalition ? RedZones : BlueZones;
         internal List<List<Coordinates>> GetBlueZones(bool invertCoalition) => !invertCoalition ? BlueZones : RedZones;
 
-        internal List<DBEntryAirbase> GetAirbases(bool invertCoalition) {
+        internal List<DBEntryAirbase> GetAirbases(bool invertCoalition)
+        {
             var airbases = (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>()
                             where Toolbox.StringICompare(airbase.Theater, Theater)
                             select airbase).ToList();

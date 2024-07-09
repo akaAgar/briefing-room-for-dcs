@@ -49,10 +49,11 @@ namespace BriefingRoom4DCS.Data
 
             ID = id;
             var ini = new INIFile(iniFilePath);
-            UIDisplayName = ini.GetLangStrings("GUI", "DisplayName");
-            if (UIDisplayName.Count == 0) UIDisplayName = new LanguageString(ID);
-            UICategory = ini.GetLangStrings("GUI", "Category");
-            UIDescription = ini.GetLangStrings("GUI", "Description");
+            var className = this.GetLanguageClassName();
+            UIDisplayName = ini.GetLangStrings(database.Language, className, ID, "GUI", "DisplayName");
+            if (UIDisplayName.Count == 0) UIDisplayName = new LanguageString(database.Language, className, ID, "DisplayName", ID);
+            UICategory = ini.GetLangStrings(database.Language, className, ID, "GUI", "Category");
+            UIDescription = ini.GetLangStrings(database.Language, className, ID, "GUI", "Description");
 
             return OnLoad(iniFilePath);
         }
@@ -95,6 +96,15 @@ namespace BriefingRoom4DCS.Data
         internal virtual void Merge(DBEntry entry)
         {
             throw new NotImplementedException();
+        }
+
+        public string GetLanguageClassName()
+        {
+            return DBEntry.GetLanguageClassName(this.GetType());
+        }
+
+        public static string GetLanguageClassName(Type type) {
+            return type.Name.Replace("DBEntry", "");
         }
     }
 }

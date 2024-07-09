@@ -21,6 +21,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BriefingRoom4DCS.Data;
 
 namespace BriefingRoom4DCS
 {
@@ -28,15 +29,37 @@ namespace BriefingRoom4DCS
     {
         public LanguageString() { }
 
-        public LanguageString(Dictionary<string, string> dict) {
+        public LanguageString(DatabaseLanguage langDB, string classId, string id, string key, Dictionary<string, string> dict)
+        {
             foreach (var item in dict)
             {
                 this.Add(item.Key, item.Value);
             }
+            this.AddOverrides(langDB, classId, id, key);
         }
         public LanguageString(string value)
         {
             this.Add("en", value);
+        }
+
+        public LanguageString(DatabaseLanguage langDB, string classId, string id, string key, string defaultValue)
+        {
+            this.Add("en", defaultValue);
+            this.AddOverrides(langDB, classId, id, key);
+        }
+
+        internal void AddOverrides(DatabaseLanguage langDB, string classId, string id, string key)
+        {
+            var searchKey = $"{classId}.{id}.{key}".ToUpper();
+            if (langDB.LangMap.ContainsKey(searchKey))
+                langDB.LangMap.GetValueOrDefault(searchKey).ToList().ForEach(x => this.AddIfKeyUnused(x.Key, x.Value));
+        }
+
+        internal void AddOverrides(DatabaseLanguage langDB, string classId, string id, string section, string key)
+        {
+            var searchKey = $"{classId}.{id}.{section}.{key}".ToUpper();
+            if (langDB.LangMap.ContainsKey(searchKey))
+                langDB.LangMap.GetValueOrDefault(searchKey).ToList().ForEach(x => this.AddIfKeyUnused(x.Key, x.Value));
         }
         public string Get(string langKey)
         {

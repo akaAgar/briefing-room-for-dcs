@@ -52,10 +52,11 @@ namespace BriefingRoom4DCS.Data
             }
 
             BriefingTask = new LanguageString[2];
-            BriefingTask[0] = ini.GetLangStrings("Briefing", "Task.Singular");
-            BriefingTask[1] = ini.GetLangStrings("Briefing", "Task.Plural");
+            var className = this.GetLanguageClassName();
+            BriefingTask[0] = ini.GetLangStrings(Database.Language, className, ID, "Briefing", "Task.Singular");
+            BriefingTask[1] = ini.GetLangStrings(Database.Language, className, ID, "Briefing", "Task.Plural");
 
-            BriefingRemarks = ini.GetLangStrings("Briefing", "Remarks");
+            BriefingRemarks = ini.GetLangStrings(Database.Language, className, ID, "Briefing", "Remarks");
 
             CompletionTriggersLua = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("ObjectiveTask", "CompletionTriggersLua"), ".lua");
             foreach (var CompletionTriggerLua in CompletionTriggersLua)

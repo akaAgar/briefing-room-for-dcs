@@ -37,7 +37,7 @@ namespace BriefingRoom4DCS.Data
             throw new NotImplementedException();
         }
 
-        internal static Dictionary<string, DBEntry> LoadJSON(string filepath)
+        internal static Dictionary<string, DBEntry> LoadJSON(string filepath, DatabaseLanguage LangDB)
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Ship>>(File.ReadAllText(filepath));
@@ -55,7 +55,7 @@ namespace BriefingRoom4DCS.Data
                 itemMap.Add(id, new DBEntryShip
                 {
                     ID = id,
-                    UIDisplayName = new LanguageString(ship.displayName),
+                    UIDisplayName = new LanguageString(LangDB, GetLanguageClassName(typeof(DBEntryShip)), id, "displayName", ship.displayName),
                     DCSID = ship.type,
                     Operators = GetOperationalCountries(ship),
                     Module = ship.module,

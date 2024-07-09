@@ -49,8 +49,8 @@ namespace BriefingRoom4DCS.Data
 
         internal Database()
         {
-            Common = new DatabaseCommon();
             Language = new DatabaseLanguage();
+            Common = new DatabaseCommon();
             DBEntries = new Dictionary<Type, Dictionary<string, DBEntry>>();
         }
 
@@ -64,8 +64,8 @@ namespace BriefingRoom4DCS.Data
         {
             if (Initialized) return;
 
-            Common.Load();
             Language.Load();
+            Common.Load(Language);
 
             // Load entries into the database
             DBEntries.Clear();
@@ -164,15 +164,15 @@ namespace BriefingRoom4DCS.Data
                 DBEntries.Add(dbType, new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase));
             Dictionary<string, DBEntry> entries = new T() switch
             {
-                DBEntryAirbase a => DBEntries[dbType].Concat(DBEntryAirbase.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
-                DBEntryCar a => DBEntries[dbType].Concat(DBEntryCar.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
-                DBEntryAircraft a => DBEntries[dbType].Concat(DBEntryAircraft.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
-                DBEntryShip a => DBEntries[dbType].Concat(DBEntryShip.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
-                DBEntryStatic a => DBEntries[dbType].Concat(DBEntryStatic.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
-                DBEntryCargo a => DBEntries[dbType].Concat(DBEntryCargo.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
-                DBEntryTemplate a => DBEntries[dbType].Concat(DBEntryTemplate.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
-                DBEntryLayout a => DBEntries[dbType].Concat(DBEntryLayout.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
-                DBEntrySituation a => DBEntries[dbType].Concat(DBEntrySituation.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                DBEntryAirbase a => DBEntries[dbType].Concat(DBEntryAirbase.LoadJSON(filePath, Language)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                DBEntryCar a => DBEntries[dbType].Concat(DBEntryCar.LoadJSON(filePath, Language)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                DBEntryAircraft a => DBEntries[dbType].Concat(DBEntryAircraft.LoadJSON(filePath, Language)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                DBEntryShip a => DBEntries[dbType].Concat(DBEntryShip.LoadJSON(filePath, Language)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                DBEntryStatic a => DBEntries[dbType].Concat(DBEntryStatic.LoadJSON(filePath, Language)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                DBEntryCargo a => DBEntries[dbType].Concat(DBEntryCargo.LoadJSON(filePath, Language)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                DBEntryTemplate a => DBEntries[dbType].Concat(DBEntryTemplate.LoadJSON(filePath, Language)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                DBEntryLayout a => DBEntries[dbType].Concat(DBEntryLayout.LoadJSON(filePath, Language)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                DBEntrySituation a => DBEntries[dbType].Concat(DBEntrySituation.LoadJSON(filePath, Language)).ToDictionary(pair => pair.Key, pair => pair.Value),
                 _ => throw new BriefingRoomException("en", $"JSON type {dbType} not implemented."),
             };
             DBEntries[dbType] = entries;

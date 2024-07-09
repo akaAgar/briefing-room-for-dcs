@@ -62,10 +62,11 @@ namespace BriefingRoom4DCS.Data
         protected override bool OnLoad(string iniFilePath)
         {
             var ini = new INIFile(iniFilePath);
+            var className = this.GetLanguageClassName();
             BriefingRemarks = new List<LanguageString>
             {
-                ini.GetLangStrings("Briefing", "Remarks"),
-                ini.GetLangStrings("Briefing", "Remarks.Enemy")
+                ini.GetLangStrings(Database.Language, className, ID,"Briefing", "Remarks"),
+                ini.GetLangStrings(Database.Language, className, ID,"Briefing", "Remarks.Enemy")
             };
 
             // Included files

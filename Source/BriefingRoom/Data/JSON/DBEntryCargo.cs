@@ -37,7 +37,7 @@ namespace BriefingRoom4DCS.Data
             throw new NotImplementedException();
         }
 
-        internal static Dictionary<string, DBEntry> LoadJSON(string filepath)
+        internal static Dictionary<string, DBEntry> LoadJSON(string filepath, DatabaseLanguage LangDB)
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Static>>(File.ReadAllText(filepath));
@@ -47,7 +47,7 @@ namespace BriefingRoom4DCS.Data
                 itemMap.Add(id, new DBEntryCargo
                 {
                     ID = id,
-                    UIDisplayName = new LanguageString(@static.displayName),
+                    UIDisplayName = new LanguageString(LangDB, GetLanguageClassName(typeof(DBEntryCargo)), id, "displayName", @static.displayName),
                     DCSID = @static.type,
                     Operators = new Dictionary<Country, (Template.Decade start, Template.Decade end)> { { Country.ALL, (Template.Decade.Decade1940, Template.Decade.Decade2020) } },
                     ShapeName = @static.shapeName,

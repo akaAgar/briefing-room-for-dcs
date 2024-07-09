@@ -74,7 +74,7 @@ namespace BriefingRoom4DCS.Data
             throw new NotImplementedException();
         }
 
-        internal static Dictionary<string, DBEntry> LoadJSON(string filepath)
+        internal static Dictionary<string, DBEntry> LoadJSON(string filepath, DatabaseLanguage LangDB)
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Aircraft>>(File.ReadAllText(filepath));
@@ -95,7 +95,7 @@ namespace BriefingRoom4DCS.Data
                 var DBaircraft = new DBEntryAircraft
                 {
                     ID = id,
-                    UIDisplayName = new LanguageString(aircraft.displayName),
+                    UIDisplayName = new LanguageString(LangDB, GetLanguageClassName(typeof(DBEntryAircraft)), id, "displayName",aircraft.displayName),
                     DCSID = aircraft.type,
                     Liveries = aircraft.paintSchemes.ToDictionary(pair => (Country)Enum.Parse(typeof(Country), pair.Key.Replace(" ", ""), true), pair => pair.Value),
                     Operators = GetOperationalCountries(aircraft),

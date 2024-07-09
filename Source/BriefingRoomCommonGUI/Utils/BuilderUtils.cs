@@ -11,19 +11,25 @@ namespace BriefingRoom4DCS.GUI.Utils
 {
     internal class BuilderUtils
     {
+        private BriefingRoom briefingRoom;
+
+        public BuilderUtils(BriefingRoom _briefingRoom)
+        {
+            briefingRoom = _briefingRoom;
+        }
         internal static async Task<IEnumerable<Country>> SearchCountry(string searchText) => await Typeahead.SearchEnum<Country>(searchText);
 
-        internal static async Task<IEnumerable<DatabaseEntryInfo>> SearchAircraft(string searchText) => await Typeahead.SearchDB("en", DatabaseEntryType.UnitFlyableAircraft, searchText);
-        internal static string GetAircraftDisplayName(string id) => Typeahead.GetDBDisplayName("en", DatabaseEntryType.UnitFlyableAircraft, id);
+        internal  async Task<IEnumerable<DatabaseEntryInfo>> SearchAircraft(string searchText) => await Typeahead.SearchDB(briefingRoom.LanguageKey, DatabaseEntryType.UnitFlyableAircraft, searchText);
+        internal string GetAircraftDisplayName(string id) => Typeahead.GetDBDisplayName(briefingRoom.LanguageKey, DatabaseEntryType.UnitFlyableAircraft, id);
 
-        internal static async Task<IEnumerable<DatabaseEntryInfo>> SearchObjectiveType(string searchText) => await Typeahead.SearchDB("en", DatabaseEntryType.ObjectiveTask, searchText);
-        internal static string GetObjectiveTypeDisplayName(string id) => Typeahead.GetDBDisplayName("en", DatabaseEntryType.ObjectiveTask, id);
+        internal  async Task<IEnumerable<DatabaseEntryInfo>> SearchObjectiveType(string searchText) => await Typeahead.SearchDB(briefingRoom.LanguageKey, DatabaseEntryType.ObjectiveTask, searchText);
+        internal string GetObjectiveTypeDisplayName(string id) => Typeahead.GetDBDisplayName(briefingRoom.LanguageKey, DatabaseEntryType.ObjectiveTask, id);
 
-        internal static string GetObjectiveTargetDisplayName(string id) => Typeahead.GetDBDisplayName("en", DatabaseEntryType.ObjectiveTarget, id);
+        internal string GetObjectiveTargetDisplayName(string id) => Typeahead.GetDBDisplayName(briefingRoom.LanguageKey, DatabaseEntryType.ObjectiveTarget, id);
 
-        internal static async Task<IEnumerable<DatabaseEntryInfo>> SearchCoalition(string searchText) => await Typeahead.SearchDB("en", DatabaseEntryType.Coalition, searchText);
+        internal  async Task<IEnumerable<DatabaseEntryInfo>> SearchCoalition(string searchText) => await Typeahead.SearchDB(briefingRoom.LanguageKey, DatabaseEntryType.Coalition, searchText);
 
-        internal static string GetCoalitionDisplayName(string id) => Typeahead.GetDBDisplayName( "en", DatabaseEntryType.Coalition, id);
+        internal string GetCoalitionDisplayName(string id) => Typeahead.GetDBDisplayName(briefingRoom.LanguageKey, DatabaseEntryType.Coalition, id);
 
         internal static async Task<MissionTemplate> LoadTemplateFile(InputFileChangeEventArgs e, MissionTemplate Template)
         {

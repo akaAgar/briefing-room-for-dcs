@@ -47,7 +47,7 @@ namespace BriefingRoom4DCS.Data
 
         internal DatabaseCommon() { }
 
-        internal void Load()
+        internal void Load(DatabaseLanguage LangDB)
         {
             int i;
 
@@ -83,10 +83,10 @@ namespace BriefingRoom4DCS.Data
             CarrierGroup = new DBCommonCarrierGroup();
 
             BriefingRoom.PrintToLog("Loading common names settings...");
-            Names = new DBCommonNames();
+            Names = new DBCommonNames(LangDB);
 
             BriefingRoom.PrintToLog("Loading common briefing settings...");
-            Briefing = new DBCommonBriefing();
+            Briefing = new DBCommonBriefing(LangDB);
 
             BriefingRoom.PrintToLog("Loading common wind settings...");
             INIFile windIni = new(Path.Combine(BRPaths.DATABASE, "Wind.ini"));

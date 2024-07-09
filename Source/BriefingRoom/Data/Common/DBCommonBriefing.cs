@@ -33,12 +33,13 @@ namespace BriefingRoom4DCS.Data
 
         internal LanguageString ObjectiveDescriptionConnectors { get; }
 
-        internal DBCommonBriefing()
+        internal DBCommonBriefing(DatabaseLanguage LangDB)
         {
             INIFile ini = new(Path.Combine(BRPaths.DATABASE, "Briefing.ini"));
             MaxObjectiveDescriptionCount = ini.GetValue<int>("Briefing", "MaxObjectiveDescriptionCount");
-            OverflowObjectiveDescriptionText = ini.GetLangStrings("Briefing", "OverflowObjectiveDescriptionText");
-            ObjectiveDescriptionConnectors = ini.GetLangStrings("Briefing", "ObjectiveDescriptionConnectors");
+            var className = DBEntry.GetLanguageClassName(typeof(DBCommonBriefing));
+            OverflowObjectiveDescriptionText = ini.GetLangStrings(LangDB, className, "Briefing", "Briefing", "OverflowObjectiveDescriptionText");
+            ObjectiveDescriptionConnectors = ini.GetLangStrings(LangDB, className, "Briefing", "Briefing", "ObjectiveDescriptionConnectors");
         }
 
 
