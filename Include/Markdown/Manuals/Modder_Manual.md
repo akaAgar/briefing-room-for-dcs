@@ -1,5 +1,5 @@
 # Modders manual
-__Last Edited: 18/01/2021__
+__Last Edited: 10/07/2024__
 
 This manual contains everything you need to know in order to modify BriefingRoom to your needs.
 If you only want to generate missions, please read the User's manual.
@@ -8,6 +8,7 @@ If you only want to generate missions, please read the User's manual.
 
 ## Table of contents
 1. [Briefing Text](#briefing-text)
+1. [Adding a translation](#Adding-a-translation)
 1. [Database directory](#database-directory)
     1. [Database/Common.ini](#databasecommonini)
     1. [Database/Briefing.ini](#databasebriefingini)
@@ -45,6 +46,19 @@ Throughout the Database you will come across parts of briefings that are used to
     1. There is a significant gathering of much force.
     1. There is a force.
 1. Values from within the generator can also be replaced in eg. `$BRIEFINGENEMYCOALITION$` will replace for the name of the enemy coalition. There are many of these values and I suggest digging around the `include/html` files to see what is possible.
+
+## Adding a translation
+
+Its worth noting translations always fallback to english if no value has been provided. Translations are located in the same file as the english versions and a translation is just another value with `.<Short Identifier>` added to the key. For example in the `Database\BriefingDescriptions\Destroy.ini` we can find a pirate translation for the default briefing and a Attack helicopter version.
+
+    [BriefingDescription]
+    Description=Recon units {have learned the location of several|report large concentrations of|have spotted many} enemy forces....
+    Description.PRT=Yarr me harties there be scoundruls over there. I wanna see them sunk!
+
+    Description.HelicopterAttack={Enemy helicopters have {caused|inflicted} {heavy|unacceptable}...
+    Description.HelicopterAttack.PRT=Jonny Law has wirlybirds turn them back into landlubbers!
+
+Note you can still use the `{one variant|another variant}` formatting.
 
 ## Database directory
 
