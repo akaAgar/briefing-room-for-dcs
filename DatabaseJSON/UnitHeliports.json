@@ -1,20 +1,11 @@
 [
     {
-        "_id": "64bfb89817951d43e5da283c",
         "type": "FARP",
         "numParking": 4,
         "displayName": "FARP",
         "shapeName": "FARPS"
     },
     {
-        "_id": "64bfb89817951d43e5da283e",
-        "type": "SINGLE_HELIPAD",
-        "numParking": 1,
-        "displayName": "Helipad Single",
-        "shapeName": "FARP"
-    },
-    {
-        "_id": "64bfb89817951d43e5da2840",
         "type": "FARP_SINGLE_01",
         "numParking": 1,
         "displayName": "PAD Single",
@@ -22,15 +13,6 @@
         "shapeName": "FARP_SINGLE_01"
     },
     {
-        "_id": "64bfb89817951d43e5da2842",
-        "type": "Oil rig",
-        "numParking": 1,
-        "displayName": "Oil rig",
-        "module": "TechWeaponPack",
-        "shapeName": "oil_platform"
-    },
-    {
-        "_id": "64bfb89817951d43e5da2844",
         "type": "Gas platform",
         "numParking": 1,
         "displayName": "Gas platform",
@@ -38,11 +20,23 @@
         "shapeName": "gas_platform"
     },
     {
-        "_id": "64bfb89817951d43e5da2846",
         "type": "Invisible FARP",
         "numParking": 1,
         "displayName": "Invisible FARP",
         "module": "AJS37 AI by Heatblur Simulations",
         "shapeName": "invisiblefarp"
+    },
+    {
+        "type": "Oil rig",
+        "numParking": 1,
+        "displayName": "Oil rig",
+        "module": "TechWeaponPack",
+        "shapeName": "oil_platform"
+    },
+    {
+        "type": "SINGLE_HELIPAD",
+        "numParking": 1,
+        "displayName": "Helipad Single",
+        "shapeName": "FARP"
     }
 ]

@@ -1,1474 +1,1265 @@
 [
     {
-        "_id": "65328a714319326630cdf2e9",
         "type": ".Command Center",
         "displayName": "Command Center",
         "shapeName": "ComCenter"
     },
     {
-        "_id": "65328a714319326630cdf2eb",
-        "type": "Hangar A",
-        "displayName": "Hangar A",
-        "shapeName": "angar_a"
-    },
-    {
-        "_id": "65328a714319326630cdf2ed",
-        "type": "Tech hangar A",
-        "displayName": "Tech hangar A",
-        "shapeName": "ceh_ang_a"
-    },
-    {
-        "_id": "65328a714319326630cdf2ef",
-        "type": "Farm A",
-        "displayName": "Farm A",
-        "shapeName": "ferma_a"
-    },
-    {
-        "_id": "65328a714319326630cdf2f1",
-        "type": "Farm B",
-        "displayName": "Farm B",
-        "shapeName": "ferma_b"
-    },
-    {
-        "_id": "65328a714319326630cdf2f3",
-        "type": "Garage A",
-        "displayName": "Garage A",
-        "shapeName": "garage_a"
-    },
-    {
-        "_id": "65328a714319326630cdf2f5",
-        "type": "Boiler-house A",
-        "displayName": "Boiler-house A",
-        "shapeName": "kotelnaya_a"
-    },
-    {
-        "_id": "65328a714319326630cdf2f7",
-        "type": "Restaurant 1",
-        "displayName": "Restaurant 1",
-        "shapeName": "restoran1"
-    },
-    {
-        "_id": "65328a714319326630cdf2f9",
-        "type": "Comms tower M",
-        "displayName": "Comms tower M",
-        "shapeName": "tele_bash_m"
-    },
-    {
-        "_id": "65328a714319326630cdf2fb",
-        "type": "Cafe",
-        "displayName": "Cafe",
-        "shapeName": "stolovaya"
-    },
-    {
-        "_id": "65328a714319326630cdf2fd",
-        "type": "Workshop A",
-        "displayName": "Workshop A",
-        "shapeName": "tec_a"
-    },
-    {
-        "_id": "65328a714319326630cdf2ff",
-        "type": "Electric power box",
-        "displayName": "Electric power box",
-        "shapeName": "tr_budka"
-    },
-    {
-        "_id": "65328a714319326630cdf301",
-        "type": "Supermarket A",
-        "displayName": "Supermarket A",
-        "shapeName": "uniwersam_a"
-    },
-    {
-        "_id": "65328a714319326630cdf303",
-        "type": "Water tower A",
-        "displayName": "Water tower A",
-        "shapeName": "wodokachka_a"
-    },
-    {
-        "_id": "65328a714319326630cdf305",
-        "type": "TV tower",
-        "displayName": "TV tower",
-        "shapeName": "tele_bash"
-    },
-    {
-        "_id": "65328a714319326630cdf307",
-        "type": "Shelter",
-        "displayName": "Shelter",
-        "shapeName": "ukrytie"
-    },
-    {
-        "_id": "65328a714319326630cdf309",
-        "type": "Repair workshop",
-        "displayName": "Repair workshop",
-        "shapeName": "tech"
-    },
-    {
-        "_id": "65328a714319326630cdf30b",
-        "type": "Railway station",
-        "displayName": "Railway station",
-        "shapeName": "r_vok_sd"
-    },
-    {
-        "_id": "65328a714319326630cdf30d",
-        "type": "Railway crossing A",
-        "displayName": "Railway crossing A",
-        "shapeName": "pereezd_big"
-    },
-    {
-        "_id": "65328a714319326630cdf30f",
-        "type": "Railway crossing B",
-        "displayName": "Railway crossing B",
-        "shapeName": "pereezd_small"
-    },
-    {
-        "_id": "65328a714319326630cdf311",
-        "type": "WC",
-        "displayName": "WC",
-        "shapeName": "WC"
-    },
-    {
-        "_id": "65328a714319326630cdf313",
-        "type": "Small house 1A area",
-        "displayName": "Small house 1A area",
-        "shapeName": "domik1a-all"
-    },
-    {
-        "_id": "65328a714319326630cdf315",
-        "type": "Small house 1A",
-        "displayName": "Small house 1A",
-        "shapeName": "domik1a"
-    },
-    {
-        "_id": "65328a714319326630cdf317",
-        "type": "Small house 1B area",
-        "displayName": "Small house 1B area",
-        "shapeName": "domik1b-all"
-    },
-    {
-        "_id": "65328a714319326630cdf319",
-        "type": "Small house 1B",
-        "displayName": "Small house 1B",
-        "shapeName": "domik1b"
-    },
-    {
-        "_id": "65328a714319326630cdf31b",
-        "type": "Small house 1C area",
-        "displayName": "Small house 1C area",
-        "shapeName": "dom2c-all"
-    },
-    {
-        "_id": "65328a714319326630cdf31d",
-        "type": "Small house 2C",
-        "displayName": "Small house 2C",
-        "shapeName": "dom2c"
-    },
-    {
-        "_id": "65328a714319326630cdf31f",
-        "type": "Shop",
-        "displayName": "Shop",
-        "shapeName": "magazin"
-    },
-    {
-        "_id": "65328a714319326630cdf321",
-        "type": "Tech combine",
-        "displayName": "Tech combine",
-        "shapeName": "kombinat"
-    },
-    {
-        "_id": "65328a714319326630cdf323",
-        "type": "Chemical tank A",
-        "displayName": "Chemical tank A",
-        "shapeName": "him_bak_a"
-    },
-    {
-        "_id": "65328a714319326630cdf325",
-        "type": "Small werehouse 1",
-        "displayName": "Small warehouse 1",
-        "shapeName": "s1"
-    },
-    {
-        "_id": "65328a714319326630cdf327",
-        "type": "Small werehouse 2",
-        "displayName": "Small warehouse 2",
-        "shapeName": "s2"
-    },
-    {
-        "_id": "65328a714319326630cdf329",
-        "type": "Small werehouse 3",
-        "displayName": "Small warehouse 3",
-        "shapeName": "s3"
-    },
-    {
-        "_id": "65328a714319326630cdf32b",
-        "type": "Small werehouse 4",
-        "displayName": "Small warehouse 4",
-        "shapeName": "s4"
-    },
-    {
-        "_id": "65328a714319326630cdf32d",
-        "type": "Garage B",
-        "displayName": "Garage B",
-        "shapeName": "garage_b"
-    },
-    {
-        "_id": "65328a714319326630cdf32f",
-        "type": "Garage small A",
-        "displayName": "Garage small A",
-        "shapeName": "garagh-small-a"
-    },
-    {
-        "_id": "65328a714319326630cdf331",
-        "type": "Garage small B",
-        "displayName": "Garage small B",
-        "shapeName": "garagh-small-b"
-    },
-    {
-        "_id": "65328a714319326630cdf333",
-        "type": "Pump station",
-        "displayName": "Pump station",
-        "shapeName": "nasos"
-    },
-    {
-        "_id": "65328a714319326630cdf335",
-        "type": "Oil derrick",
-        "displayName": "Oil derrick",
-        "shapeName": "neftevyshka"
-    },
-    {
-        "_id": "65328a714319326630cdf337",
-        "type": "Container red 1",
-        "displayName": "Container red 1",
-        "shapeName": "konteiner_red1"
-    },
-    {
-        "_id": "65328a714319326630cdf339",
-        "type": "Container red 2",
-        "displayName": "Container red 2",
-        "shapeName": "konteiner_red2"
-    },
-    {
-        "_id": "65328a714319326630cdf33b",
-        "type": "Container red 3",
-        "displayName": "Container red 3",
-        "shapeName": "konteiner_red3"
-    },
-    {
-        "_id": "65328a714319326630cdf33d",
-        "type": "Container white",
-        "displayName": "Container white",
-        "shapeName": "konteiner_white"
-    },
-    {
-        "_id": "65328a714319326630cdf33f",
-        "type": "Container brown",
-        "displayName": "Container brown",
-        "shapeName": "konteiner_brown"
-    },
-    {
-        "_id": "65328a714319326630cdf341",
-        "type": "Barracks 2",
-        "displayName": "Barracks 2",
-        "shapeName": "kazarma2"
-    },
-    {
-        "_id": "65328a714319326630cdf343",
-        "type": "Military staff",
-        "displayName": "Military staff",
-        "shapeName": "aviashtab"
-    },
-    {
-        "_id": "65328a714319326630cdf345",
-        "type": "Hangar B",
-        "displayName": "Hangar B",
-        "shapeName": "angar_b"
-    },
-    {
-        "_id": "65328a714319326630cdf347",
-        "type": "Fuel tank",
-        "displayName": "Fuel tank",
-        "shapeName": "toplivo-bak"
-    },
-    {
-        "_id": "65328a714319326630cdf349",
-        "type": "Shelter B",
-        "displayName": "Shelter B",
-        "shapeName": "ukrytie_b"
-    },
-    {
-        "_id": "65328a714319326630cdf34b",
-        "type": "Oil platform",
-        "displayName": "Oil platform",
-        "shapeName": "plavbaza"
-    },
-    {
-        "_id": "65328a714319326630cdf34d",
-        "type": "Subsidiary structure 1",
-        "displayName": "Subsidiary structure 1",
-        "shapeName": "hozdomik1"
-    },
-    {
-        "_id": "65328a714319326630cdf34f",
-        "type": "Subsidiary structure 2",
-        "displayName": "Subsidiary structure 2",
-        "shapeName": "hozdomik2"
-    },
-    {
-        "_id": "65328a714319326630cdf351",
-        "type": "Subsidiary structure 3",
-        "displayName": "Subsidiary structure 3",
-        "shapeName": "hozdomik3"
-    },
-    {
-        "_id": "65328a714319326630cdf353",
-        "type": "Subsidiary structure A",
-        "displayName": "Subsidiary structure A",
-        "shapeName": "saray-a"
-    },
-    {
-        "_id": "65328a714319326630cdf355",
-        "type": "Subsidiary structure B",
-        "displayName": "Subsidiary structure B",
-        "shapeName": "saray-b"
-    },
-    {
-        "_id": "65328a714319326630cdf357",
-        "type": "Subsidiary structure C",
-        "displayName": "Subsidiary structure C",
-        "shapeName": "saray-c"
-    },
-    {
-        "_id": "65328a714319326630cdf359",
-        "type": "Subsidiary structure D",
-        "displayName": "Subsidiary structure D",
-        "shapeName": "saray-d"
-    },
-    {
-        "_id": "65328a714319326630cdf35b",
-        "type": "Subsidiary structure E",
-        "displayName": "Subsidiary structure E",
-        "shapeName": "saray-e"
-    },
-    {
-        "_id": "65328a714319326630cdf35d",
-        "type": "Subsidiary structure F",
-        "displayName": "Subsidiary structure F",
-        "shapeName": "saray-f"
-    },
-    {
-        "_id": "65328a714319326630cdf35f",
-        "type": "Subsidiary structure G",
-        "displayName": "Subsidiary structure G",
-        "shapeName": "saray-g"
-    },
-    {
-        "_id": "65328a714319326630cdf361",
-        "type": "Landmine",
-        "displayName": "Landmine",
-        "shapeName": "landmine"
-    },
-    {
-        "_id": "65328a714319326630cdf363",
-        "type": "FARP Ammo Dump Coating",
-        "displayName": "FARP Ammo Storage",
-        "shapeName": "SetkaKP"
-    },
-    {
-        "_id": "65328a714319326630cdf365",
-        "type": "FARP Tent",
-        "displayName": "FARP Tent",
-        "shapeName": "PalatkaB"
-    },
-    {
-        "_id": "65328a714319326630cdf367",
-        "type": "FARP CP Blindage",
-        "displayName": "FARP Command Post",
-        "shapeName": "kp_ug"
-    },
-    {
-        "_id": "65328a714319326630cdf369",
-        "type": "FARP Fuel Depot",
-        "displayName": "FARP Fuel Depot",
-        "shapeName": "GSM Rus"
-    },
-    {
-        "_id": "65328a714319326630cdf36b",
-        "type": "GeneratorF",
-        "displayName": "GeneratorF",
-        "shapeName": "GeneratorF"
-    },
-    {
-        "_id": "65328a714319326630cdf36d",
-        "type": "Airshow_Cone",
-        "displayName": "Airshow cone",
-        "shapeName": "Comp_cone"
-    },
-    {
-        "_id": "65328a714319326630cdf36f",
-        "type": "Airshow_Crowd",
-        "displayName": "Airshow Crowd",
-        "shapeName": "Crowd1"
-    },
-    {
-        "_id": "65328a714319326630cdf371",
-        "type": "Red_Flag",
-        "displayName": "Mark Flag Red",
-        "shapeName": "H-flag_R"
-    },
-    {
-        "_id": "65328a714319326630cdf373",
-        "type": "White_Flag",
-        "displayName": "Mark Flag White",
-        "shapeName": "H-Flag_W"
-    },
-    {
-        "_id": "65328a714319326630cdf375",
-        "type": "Black_Tyre",
-        "displayName": "Mark Tyre Black",
-        "shapeName": "H-tyre_B"
-    },
-    {
-        "_id": "65328a714319326630cdf377",
-        "type": "White_Tyre",
-        "displayName": "Mark Tyre White",
-        "shapeName": "H-tyre_W"
-    },
-    {
-        "_id": "65328a714319326630cdf379",
-        "type": "Black_Tyre_RF",
-        "displayName": "Mark Tyre with Red Flag",
-        "shapeName": "H-tyre_B_RF"
-    },
-    {
-        "_id": "65328a714319326630cdf37b",
-        "type": "Black_Tyre_WF",
-        "displayName": "Mark Tyre with White Flag",
-        "shapeName": "H-tyre_B_WF"
-    },
-    {
-        "_id": "65328a714319326630cdf37d",
-        "type": "Windsock",
-        "displayName": "Windsock",
-        "shapeName": "H-Windsock_RW"
-    },
-    {
-        "_id": "65328a714319326630cdf37f",
-        "type": "Beer Bomb",
-        "displayName": "Barrel",
-        "module": "World War II AI Units by Eagle Dynamics",
-        "shapeName": "barrelofbeer_support"
-    },
-    {
-        "_id": "65328a714319326630cdf381",
-        "type": "Orca",
-        "displayName": "Orca Whale",
-        "module": "South_Atlantic_Assets",
-        "shapeName": "Orca"
-    },
-    {
-        "_id": "65328a714319326630cdf383",
-        "type": "WindTurbine",
-        "displayName": "Wind Turbine",
-        "module": "South_Atlantic_Assets",
-        "shapeName": "WindTurbine_10"
-    },
-    {
-        "_id": "65328a714319326630cdf385",
-        "type": "WindTurbine_11",
-        "displayName": "Wind Turbine 2",
-        "module": "South_Atlantic_Assets",
-        "shapeName": "WindTurbine_11"
-    },
-    {
-        "_id": "65328a714319326630cdf387",
-        "type": "billboard_motorized",
-        "displayName": "Billboard Motorized",
-        "module": "South_Atlantic_Assets",
-        "shapeName": "billboard_motorized"
-    },
-    {
-        "_id": "65328a714319326630cdf389",
-        "type": "Stanley_LightHouse",
-        "displayName": "Stanley LightHouse",
-        "module": "South_Atlantic_Assets",
-        "shapeName": "ST_LightHouse"
-    },
-    {
-        "_id": "65328a714319326630cdf38b",
         "type": "345 Excavator",
         "displayName": "Excavator",
         "module": "South_Atlantic_Assets",
         "shapeName": "cat_345l"
     },
     {
-        "_id": "65328a714319326630cdf38d",
-        "type": "Tower Crane",
-        "displayName": "TowerCrane",
-        "module": "South_Atlantic_Assets",
-        "shapeName": "TowerCrane_01"
-    },
-    {
-        "_id": "65328a714319326630cdf38f",
-        "type": "Small_LightHouse",
-        "displayName": "Small_LightHouse",
-        "module": "South_Atlantic_Assets",
-        "shapeName": "Small_LightHouse"
-    },
-    {
-        "_id": "65328a714319326630cdf391",
-        "type": "Nodding_Donkey_Pump",
-        "displayName": "Nodding Donkey Pump",
-        "module": "South_Atlantic_Assets",
-        "shapeName": "Nodding_Donkey"
-    },
-    {
-        "_id": "65328a714319326630cdf393",
-        "type": "offshore WindTurbine",
-        "displayName": "Offshore Wind Turbine",
-        "module": "South_Atlantic_Assets",
-        "shapeName": "offshore_windturbine"
-    },
-    {
-        "_id": "65328a714319326630cdf395",
-        "type": "offshore WindTurbine2",
-        "displayName": "Offshore Wind Turbine 2",
-        "module": "South_Atlantic_Assets",
-        "shapeName": "offshore_windturbine2"
-    },
-    {
-        "_id": "65328a714319326630cdf39d",
-        "type": "warning_board_a",
-        "displayName": "Warning Board: Spy Cannot Escape!",
-        "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
-        "shapeName": "biaoyu"
-    },
-    {
-        "_id": "65328a714319326630cdf39f",
-        "type": "warning_board_b",
-        "displayName": "Warning Board: Catch Spy!",
-        "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
-        "shapeName": "biaoyu-2"
-    },
-    {
-        "_id": "65328a714319326630cdf3a1",
-        "type": "Belgian gate",
-        "displayName": "Belgian gate",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Belgian_gate"
-    },
-    {
-        "_id": "65328a714319326630cdf3a3",
-        "type": "Concertina wire",
-        "displayName": "Concertina wire",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Concertina_wire"
-    },
-    {
-        "_id": "65328a714319326630cdf3a5",
-        "type": "Tetrahydra",
-        "displayName": "Tetrahydra",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Concrete_tetra"
-    },
-    {
-        "_id": "65328a714319326630cdf3a7",
-        "type": "Hemmkurvenhindernis",
-        "displayName": "Hemmkurvenhindernis",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Curved_rail"
-    },
-    {
-        "_id": "65328a714319326630cdf3a9",
-        "type": "Czech hedgehogs 1",
-        "displayName": "Czech hedgehogs 1",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Czech_hedgehogs_01"
-    },
-    {
-        "_id": "65328a714319326630cdf3ab",
-        "type": "Czech hedgehogs 2",
-        "displayName": "Czech hedgehogs 2",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Czech_hedgehogs_02"
-    },
-    {
-        "_id": "65328a714319326630cdf3ad",
-        "type": "Dragonteeth 1",
-        "displayName": "Dragonteeth 1",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Dragonsteeth"
-    },
-    {
-        "_id": "65328a714319326630cdf3af",
-        "type": "Dragonteeth 2",
-        "displayName": "Dragonteeth 2",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Dragonsteeth_01"
-    },
-    {
-        "_id": "65328a714319326630cdf3b1",
-        "type": "Dragonteeth 3",
-        "displayName": "Dragonteeth 3",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Dragonsteeth_02"
-    },
-    {
-        "_id": "65328a714319326630cdf3b3",
-        "type": "Dragonteeth 4",
-        "displayName": "Dragonteeth 4",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Dragonsteeth_03"
-    },
-    {
-        "_id": "65328a714319326630cdf3b5",
-        "type": "Dragonteeth 5",
-        "displayName": "Dragonteeth 5",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Dragonsteeth_04"
-    },
-    {
-        "_id": "65328a714319326630cdf3b7",
-        "type": "Fire Control Bunker",
-        "displayName": "Fire control bunker",
-        "module": "WWII Armour and Technics",
-        "shapeName": "fire_control"
-    },
-    {
-        "_id": "65328a714319326630cdf3b9",
-        "type": "Haystack 1",
-        "displayName": "Haystack 1",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Haystack_1"
-    },
-    {
-        "_id": "65328a714319326630cdf3bb",
-        "type": "Haystack 2",
-        "displayName": "Haystack 2",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Haystack_2"
-    },
-    {
-        "_id": "65328a714319326630cdf3bd",
-        "type": "Haystack 3",
-        "displayName": "Haystack 3",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Haystack_3"
-    },
-    {
-        "_id": "65328a714319326630cdf3bf",
-        "type": "Haystack 4",
-        "displayName": "Haystack 4",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Haystack_4"
-    },
-    {
-        "_id": "65328a714319326630cdf3c1",
-        "type": "Log posts 1",
-        "displayName": "Log posts 1",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Log_posts"
-    },
-    {
-        "_id": "65328a714319326630cdf3c3",
-        "type": "Log posts 2",
-        "displayName": "Log posts 2",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Log_posts_01"
-    },
-    {
-        "_id": "65328a714319326630cdf3c5",
-        "type": "Log posts 3",
-        "displayName": "Log posts 3",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Log_posts_02"
-    },
-    {
-        "_id": "65328a714319326630cdf3c7",
-        "type": "Log ramps 1",
-        "displayName": "Log ramps 1",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Log_ramps"
-    },
-    {
-        "_id": "65328a714319326630cdf3c9",
-        "type": "Log ramps 2",
-        "displayName": "Log ramps 2",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Log_ramps_01"
-    },
-    {
-        "_id": "65328a714319326630cdf3cb",
-        "type": "Log ramps 3",
-        "displayName": "Log ramps 3",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Log_ramps_02"
-    },
-    {
-        "_id": "65328a714319326630cdf3cd",
-        "type": "Siegfried Line",
-        "displayName": "Siegfried line",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Siegfried_Line"
-    },
-    {
-        "_id": "65328a714319326630cdf3cf",
-        "type": "Freya_Shelter_Brick",
-        "displayName": "Freya Shelter Brick",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Freya_Shelter_Brick"
-    },
-    {
-        "_id": "65328a714319326630cdf3d1",
-        "type": "Freya_Shelter_Concrete",
-        "displayName": "Freya Shelter Concrete",
-        "module": "WWII Armour and Technics",
-        "shapeName": "Freya_Shelter_Concrete"
-    },
-    {
-        "_id": "66508fafeaf4d629400edf4d",
         "type": "AM32a-60_01",
         "displayName": "M92 AM32a-60-01",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_AM32a-60_01"
     },
     {
-        "_id": "66508fafeaf4d629400edf4f",
         "type": "AM32a-60_02",
         "displayName": "M92 AM32a-60-02",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_AM32a-60_02"
     },
     {
-        "_id": "66508fafeaf4d629400edf51",
         "type": "APFC fuel",
         "displayName": "M92 APFC fuel",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_APFCfuel"
     },
     {
-        "_id": "66508fafeaf4d629400edf53",
+        "type": "Airshow_Cone",
+        "displayName": "Airshow cone",
+        "shapeName": "Comp_cone"
+    },
+    {
+        "type": "Airshow_Crowd",
+        "displayName": "Airshow Crowd",
+        "shapeName": "Crowd1"
+    },
+    {
         "type": "B600",
         "displayName": "M92 B600",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_B600"
     },
     {
-        "_id": "66508fafeaf4d629400edf55",
+        "type": "Barracks 2",
+        "displayName": "Barracks 2",
+        "shapeName": "kazarma2"
+    },
+    {
         "type": "Barrier A",
         "displayName": "M92 Barrier A",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_BarrierA"
     },
     {
-        "_id": "66508fafeaf4d629400edf57",
         "type": "Barrier B",
         "displayName": "M92 Barrier B",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_BarrierB"
     },
     {
-        "_id": "66508fafeaf4d629400edf59",
         "type": "Barrier C",
         "displayName": "M92 Barrier C",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_BarrierC"
     },
     {
-        "_id": "66508fafeaf4d629400edf5b",
         "type": "Barrier D",
         "displayName": "M92 Barrier D",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_BarrierD"
     },
     {
-        "_id": "66508fafeaf4d629400edf5d",
-        "type": "BoomBarrier_open",
-        "displayName": "M92 Boom Barrier open",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_BoomBarrier_open"
+        "type": "Beer Bomb",
+        "displayName": "Barrel",
+        "module": "World War II AI Units by Eagle Dynamics",
+        "shapeName": "barrelofbeer_support"
     },
     {
-        "_id": "66508fafeaf4d629400edf5f",
+        "type": "Belgian gate",
+        "displayName": "Belgian gate",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Belgian_gate"
+    },
+    {
+        "type": "Black_Tyre",
+        "displayName": "Mark Tyre Black",
+        "shapeName": "H-tyre_B"
+    },
+    {
+        "type": "Black_Tyre_RF",
+        "displayName": "Mark Tyre with Red Flag",
+        "shapeName": "H-tyre_B_RF"
+    },
+    {
+        "type": "Black_Tyre_WF",
+        "displayName": "Mark Tyre with White Flag",
+        "shapeName": "H-tyre_B_WF"
+    },
+    {
+        "type": "Boiler-house A",
+        "displayName": "Boiler-house A",
+        "shapeName": "kotelnaya_a"
+    },
+    {
         "type": "BoomBarrier_closed",
         "displayName": "M92 Boom Barrier closed",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_BoomBarrier_closed"
     },
     {
-        "_id": "66508fafeaf4d629400edf61",
+        "type": "BoomBarrier_open",
+        "displayName": "M92 Boom Barrier open",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_BoomBarrier_open"
+    },
+    {
         "type": "Building01_PBR",
         "displayName": "M92 Building01 PBR",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Building01_PBR"
     },
     {
-        "_id": "66508fafeaf4d629400edf63",
         "type": "Building02_PBR",
         "displayName": "M92 Building02 PBR",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Building02_PBR"
     },
     {
-        "_id": "66508fafeaf4d629400edf65",
         "type": "Building03_PBR",
         "displayName": "M92 Building03 PBR",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Building03_PBR"
     },
     {
-        "_id": "66508fafeaf4d629400edf67",
         "type": "Building04_PBR",
         "displayName": "M92 Building04 PBR",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Building04_PBR"
     },
     {
-        "_id": "66508fafeaf4d629400edf69",
         "type": "Building05_PBR",
         "displayName": "M92 Building05 PBR",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Building05_PBR"
     },
     {
-        "_id": "66508fafeaf4d629400edf6b",
         "type": "Building06_PBR",
         "displayName": "M92 Building06 PBR",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Building06_PBR"
     },
     {
-        "_id": "66508fafeaf4d629400edf6d",
         "type": "Building07_PBR",
         "displayName": "M92 Building07 PBR",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Building07_PBR"
     },
     {
-        "_id": "66508fafeaf4d629400edf6f",
         "type": "Building08_PBR",
         "displayName": "M92 Building08 PBR",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Building08_PBR"
     },
     {
-        "_id": "66508fafeaf4d629400edf71",
-        "type": "Cargo01",
-        "displayName": "M92 Cargo 01",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Cargo01"
+        "type": "Cafe",
+        "displayName": "Cafe",
+        "shapeName": "stolovaya"
     },
     {
-        "_id": "66508fafeaf4d629400edf73",
-        "type": "Cargo02",
-        "displayName": "M92 Cargo 02",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Cargo02"
-    },
-    {
-        "_id": "66508fafeaf4d629400edf75",
-        "type": "Cargo03",
-        "displayName": "M92 Cargo 03",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Cargo03"
-    },
-    {
-        "_id": "66508fafeaf4d629400edf77",
-        "type": "Cargo04",
-        "displayName": "M92 Cargo 04",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Cargo04"
-    },
-    {
-        "_id": "66508fafeaf4d629400edf79",
-        "type": "Cargo05",
-        "displayName": "M92 Cargo 05",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Cargo05"
-    },
-    {
-        "_id": "66508fafeaf4d629400edf7b",
-        "type": "Cargo06",
-        "displayName": "M92 Cargo 06",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Cargo06"
-    },
-    {
-        "_id": "66508fafeaf4d629400edf7d",
         "type": "Camouflage01",
         "displayName": "M92 Camouflage 01",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Camouflage01"
     },
     {
-        "_id": "66508fafeaf4d629400edf7f",
         "type": "Camouflage02",
         "displayName": "M92 Camouflage 02",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Camouflage02"
     },
     {
-        "_id": "66508fafeaf4d629400edf81",
         "type": "Camouflage03",
         "displayName": "M92 Camouflage 03",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Camouflage03"
     },
     {
-        "_id": "66508fafeaf4d629400edf83",
         "type": "Camouflage04",
         "displayName": "M92 Camouflage 04",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Camouflage04"
     },
     {
-        "_id": "66508fafeaf4d629400edf85",
         "type": "Camouflage05",
         "displayName": "M92 Camouflage 05",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Camouflage05"
     },
     {
-        "_id": "66508fafeaf4d629400edf87",
         "type": "Camouflage06",
         "displayName": "M92 Camouflage 06",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Camouflage06"
     },
     {
-        "_id": "66508fafeaf4d629400edf89",
         "type": "Camouflage07",
         "displayName": "M92 Camouflage 07",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Camouflage07"
     },
     {
-        "_id": "66508fafeaf4d629400edf8b",
+        "type": "Cargo01",
+        "displayName": "M92 Cargo 01",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Cargo01"
+    },
+    {
+        "type": "Cargo02",
+        "displayName": "M92 Cargo 02",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Cargo02"
+    },
+    {
+        "type": "Cargo03",
+        "displayName": "M92 Cargo 03",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Cargo03"
+    },
+    {
+        "type": "Cargo04",
+        "displayName": "M92 Cargo 04",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Cargo04"
+    },
+    {
+        "type": "Cargo05",
+        "displayName": "M92 Cargo 05",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Cargo05"
+    },
+    {
+        "type": "Cargo06",
+        "displayName": "M92 Cargo 06",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Cargo06"
+    },
+    {
+        "type": "Chemical tank A",
+        "displayName": "Chemical tank A",
+        "shapeName": "him_bak_a"
+    },
+    {
+        "type": "Comms tower M",
+        "displayName": "Comms tower M",
+        "shapeName": "tele_bash_m"
+    },
+    {
+        "type": "Concertina wire",
+        "displayName": "Concertina wire",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Concertina_wire"
+    },
+    {
         "type": "Cone01",
         "displayName": "M92 Cone 01",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Cone01"
     },
     {
-        "_id": "66508fafeaf4d629400edf8d",
         "type": "Cone02",
         "displayName": "M92 Cone 02",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Cone02"
     },
     {
-        "_id": "66508fafeaf4d629400edf8f",
+        "type": "Container brown",
+        "displayName": "Container brown",
+        "shapeName": "konteiner_brown"
+    },
+    {
+        "type": "Container red 1",
+        "displayName": "Container red 1",
+        "shapeName": "konteiner_red1"
+    },
+    {
+        "type": "Container red 2",
+        "displayName": "Container red 2",
+        "shapeName": "konteiner_red2"
+    },
+    {
+        "type": "Container red 3",
+        "displayName": "Container red 3",
+        "shapeName": "konteiner_red3"
+    },
+    {
+        "type": "Container white",
+        "displayName": "Container white",
+        "shapeName": "konteiner_white"
+    },
+    {
         "type": "Container_10ft",
         "displayName": "M92 Container 10ft",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Container_10ft"
     },
     {
-        "_id": "66508fafeaf4d629400edf91",
         "type": "Container_20ft",
         "displayName": "M92 Container 20ft",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Container_20ft"
     },
     {
-        "_id": "66508fafeaf4d629400edf93",
         "type": "Container_40ft",
         "displayName": "M92 Container 40ft",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Container_40ft"
     },
     {
-        "_id": "66508fafeaf4d629400edf95",
-        "type": "Container_watchtower",
-        "displayName": "M92 Container watchtower",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Container_watchtower"
-    },
-    {
-        "_id": "66508fafeaf4d629400edf97",
-        "type": "Container_watchtower_lights",
-        "displayName": "M92 Container watchtower lights",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Container_watchtower_lights"
-    },
-    {
-        "_id": "66508fafeaf4d629400edf99",
-        "type": "Container_office",
-        "displayName": "M92 Container office",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Container_office"
-    },
-    {
-        "_id": "66508fafeaf4d629400edf9b",
         "type": "Container_generator",
         "displayName": "M92 Container generator",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_Container_generator"
     },
     {
-        "_id": "66508fafeaf4d629400edf9d",
+        "type": "Container_office",
+        "displayName": "M92 Container office",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Container_office"
+    },
+    {
+        "type": "Container_watchtower",
+        "displayName": "M92 Container watchtower",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Container_watchtower"
+    },
+    {
+        "type": "Container_watchtower_lights",
+        "displayName": "M92 Container watchtower lights",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Container_watchtower_lights"
+    },
+    {
+        "type": "Czech hedgehogs 1",
+        "displayName": "Czech hedgehogs 1",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Czech_hedgehogs_01"
+    },
+    {
+        "type": "Czech hedgehogs 2",
+        "displayName": "Czech hedgehogs 2",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Czech_hedgehogs_02"
+    },
+    {
+        "type": "Dragonteeth 1",
+        "displayName": "Dragonteeth 1",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Dragonsteeth"
+    },
+    {
+        "type": "Dragonteeth 2",
+        "displayName": "Dragonteeth 2",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Dragonsteeth_01"
+    },
+    {
+        "type": "Dragonteeth 3",
+        "displayName": "Dragonteeth 3",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Dragonsteeth_02"
+    },
+    {
+        "type": "Dragonteeth 4",
+        "displayName": "Dragonteeth 4",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Dragonsteeth_03"
+    },
+    {
+        "type": "Dragonteeth 5",
+        "displayName": "Dragonteeth 5",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Dragonsteeth_04"
+    },
+    {
+        "type": "Electric power box",
+        "displayName": "Electric power box",
+        "shapeName": "tr_budka"
+    },
+    {
         "type": "ElevatedPlatform_down",
         "displayName": "M92 Elevated Platform down",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_ElevatedPlatform_down"
     },
     {
-        "_id": "66508fafeaf4d629400edf9f",
         "type": "ElevatedPlatform_up",
         "displayName": "M92 Elevated Platform up",
         "module": "Massun92-Assetpack",
         "shapeName": "M92_ElevatedPlatform_up"
     },
     {
-        "_id": "66508fafeaf4d629400edfa1",
-        "type": "FireExtinguisher01",
-        "displayName": "M92 Fire Extinguisher 01",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_FireExtinguisher01"
+        "type": "FARP Ammo Dump Coating",
+        "displayName": "FARP Ammo Storage",
+        "shapeName": "SetkaKP"
     },
     {
-        "_id": "66508fafeaf4d629400edfa3",
-        "type": "FireExtinguisher02",
-        "displayName": "M92 Fire Extinguisher 02",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_FireExtinguisher02"
+        "type": "FARP CP Blindage",
+        "displayName": "FARP Command Post",
+        "shapeName": "kp_ug"
     },
     {
-        "_id": "66508fafeaf4d629400edfa5",
-        "type": "FireExtinguisher03",
-        "displayName": "M92 Fire Extinguisher 03",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_FireExtinguisher03"
+        "type": "FARP Fuel Depot",
+        "displayName": "FARP Fuel Depot",
+        "shapeName": "GSM Rus"
     },
     {
-        "_id": "66508fafeaf4d629400edfa7",
-        "type": "HESCO_generator",
-        "displayName": "M92 HESCO generator",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_HESCO_generator"
+        "type": "FARP Tent",
+        "displayName": "FARP Tent",
+        "shapeName": "PalatkaB"
     },
     {
-        "_id": "66508fafeaf4d629400edfa9",
-        "type": "HESCO_post_1",
-        "displayName": "M92 HESCO post 1",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_HESCO_post_1"
+        "type": "Farm A",
+        "displayName": "Farm A",
+        "shapeName": "ferma_a"
     },
     {
-        "_id": "66508fafeaf4d629400edfab",
-        "type": "HESCO_wallperimeter_1",
-        "displayName": "M92 HESCO wallperimeter 1",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_HESCO_wallperimeter_1"
+        "type": "Farm B",
+        "displayName": "Farm B",
+        "shapeName": "ferma_b"
     },
     {
-        "_id": "66508fafeaf4d629400edfad",
-        "type": "HESCO_wallperimeter_2",
-        "displayName": "M92 HESCO wallperimeter 2",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_HESCO_wallperimeter_2"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfaf",
-        "type": "HESCO_wallperimeter_3",
-        "displayName": "M92 HESCO wallperimeter 3",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_HESCO_wallperimeter_3"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfb1",
-        "type": "HESCO_wallperimeter_4",
-        "displayName": "M92 HESCO wallperimeter 4",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_HESCO_wallperimeter_4"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfb3",
-        "type": "HESCO_wallperimeter_5",
-        "displayName": "M92 HESCO wallperimeter 5",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_HESCO_wallperimeter_5"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfb5",
-        "type": "HESCO_watchtower_1",
-        "displayName": "M92 HESCO watchtower 1",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_HESCO_watchtower_1"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfb7",
-        "type": "HESCO_watchtower_2",
-        "displayName": "M92 HESCO watchtower 2",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_HESCO_watchtower_2"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfb9",
-        "type": "HESCO_watchtower_3",
-        "displayName": "M92 HESCO watchtower 3",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_HESCO_watchtower_3"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfbb",
-        "type": "Jerrycan",
-        "displayName": "M92 Jerrycan",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Jerrycan"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfbd",
-        "type": "Ladder",
-        "displayName": "M92 Ladder",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Ladder"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfbf",
-        "type": "LHD_LHA",
-        "displayName": "M92 LHD LHA",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_LHD_LHA"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfc1",
-        "type": "M32-10C_01",
-        "displayName": "M92 M32-10C 01",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_M32-10C_01"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfc3",
-        "type": "M32-10C_02",
-        "displayName": "M92 M32-10C 02",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_M32-10C_02"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfc5",
-        "type": "M32-10C_03",
-        "displayName": "M92 M32-10C 03",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_M32-10C_03"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfc7",
-        "type": "M32-10C_04",
-        "displayName": "M92 M32-10C 04",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_M32-10C_04"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfc9",
-        "type": "MJ-1_01",
-        "displayName": "M92 MJ-1 01",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_MJ-1_01"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfcb",
-        "type": "MJ-1_02",
-        "displayName": "M92 MJ-1 02",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_MJ-1_02"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfcd",
-        "type": "NF-2_LightOn",
-        "displayName": "M92 NF-2 LightOn",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_NF-2_LightOn"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfcf",
-        "type": "NF-2_LightOff01",
-        "displayName": "M92 NF-2 LightOff 01",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_NF-2_LightOff01"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfd1",
-        "type": "NF-2_LightOff02",
-        "displayName": "M92 NF-2 LightOff 02",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_NF-2_LightOff02"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfd3",
-        "type": "Oil Barrel",
-        "displayName": "M92 Oil barrel",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Oilbarrel"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfd5",
-        "type": "Pile of Woods",
-        "displayName": "M92 Pile of woods",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Pileofwoods"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfd7",
-        "type": "P20_01",
-        "displayName": "M92 P20 01",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_P20_01"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfd9",
-        "type": "Revetment_x4",
-        "displayName": "M92 Revetment x4",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Revetment_x4"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfdb",
-        "type": "Revetment_x8",
-        "displayName": "M92 Revetment x8",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Revetment_x8"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfdd",
-        "type": "r11_volvo",
-        "displayName": "M92 R11 Volvo",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_r11_volvo"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfdf",
-        "type": "Sandbag_01",
-        "displayName": "M92 Sandbag 01",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Sandbag_01"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfe1",
-        "type": "Sandbag_02",
-        "displayName": "M92 Sandbag 02",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Sandbag_02"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfe3",
-        "type": "Sandbag_03",
-        "displayName": "M92 Sandbag 03",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Sandbag_03"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfe5",
-        "type": "Sandbag_04",
-        "displayName": "M92 Sandbag 04",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Sandbag_04"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfe7",
-        "type": "Sandbag_05",
-        "displayName": "M92 Sandbag 05",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Sandbag_05"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfe9",
-        "type": "Sandbag_06",
-        "displayName": "M92 Sandbag 06",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Sandbag_06"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfeb",
-        "type": "Sandbag_07",
-        "displayName": "M92 Sandbag 07",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Sandbag_07"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfed",
-        "type": "Sandbag_08",
-        "displayName": "M92 Sandbag 08",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Sandbag_08"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfef",
-        "type": "Sandbag_09",
-        "displayName": "M92 Sandbag 09",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Sandbag_09"
-    },
-    {
-        "_id": "66508fafeaf4d629400edff1",
-        "type": "Sandbag_10",
-        "displayName": "M92 Sandbag 10",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Sandbag_10"
-    },
-    {
-        "_id": "66508fafeaf4d629400edff3",
-        "type": "Sandbag_11",
-        "displayName": "M92 Sandbag 11",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Sandbag_11"
-    },
-    {
-        "_id": "66508fafeaf4d629400edff5",
-        "type": "Sandbag_12",
-        "displayName": "M92 Sandbag 12",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Sandbag_12"
-    },
-    {
-        "_id": "66508fafeaf4d629400edff7",
-        "type": "Sandbag_13",
-        "displayName": "M92 Sandbag 13",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Sandbag_13"
-    },
-    {
-        "_id": "66508fafeaf4d629400edff9",
-        "type": "Sandbag_15",
-        "displayName": "M92 Sandbag 15",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Sandbag_15"
-    },
-    {
-        "_id": "66508fafeaf4d629400edffb",
-        "type": "Sandbag_16",
-        "displayName": "M92 Sandbag 16",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Sandbag_16"
-    },
-    {
-        "_id": "66508fafeaf4d629400edffd",
-        "type": "Sandbag_17",
-        "displayName": "M92 Sandbag 17",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Sandbag_17"
-    },
-    {
-        "_id": "66508fafeaf4d629400edfff",
-        "type": "Shelter01",
-        "displayName": "M92 Shelter 01",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Shelter01"
-    },
-    {
-        "_id": "66508fafeaf4d629400ee001",
-        "type": "Shelter02",
-        "displayName": "M92 Shelter 02",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Shelter02"
-    },
-    {
-        "_id": "66508fafeaf4d629400ee003",
-        "type": "TugHarlan",
-        "displayName": "M92 Tug Harlan",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_TugHarlan"
-    },
-    {
-        "_id": "66508fafeaf4d629400ee005",
-        "type": "Tent05",
-        "displayName": "M92 Tent 05",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Tent05"
-    },
-    {
-        "_id": "66508fafeaf4d629400ee007",
-        "type": "Tent04",
-        "displayName": "M92 Tent 04",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Tent04"
-    },
-    {
-        "_id": "66508fafeaf4d629400ee009",
-        "type": "Tent03",
-        "displayName": "M92 Tent 03",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Tent03"
-    },
-    {
-        "_id": "66508fafeaf4d629400ee00b",
-        "type": "Tent02",
-        "displayName": "M92 Tent 02",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Tent02"
-    },
-    {
-        "_id": "66508fafeaf4d629400ee00d",
-        "type": "Tent01",
-        "displayName": "M92 Tent 01",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Tent01"
-    },
-    {
-        "_id": "66508fafeaf4d629400ee00f",
-        "type": "Toolbox01",
-        "displayName": "M92 Toolbox 01",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Toolbox01"
-    },
-    {
-        "_id": "66508fafeaf4d629400ee011",
-        "type": "Toolbox02",
-        "displayName": "M92 Toolbox 02",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Toolbox02"
-    },
-    {
-        "_id": "66508fafeaf4d629400ee013",
-        "type": "Twall_x1",
-        "displayName": "M92 Twall x1",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Twall_x1"
-    },
-    {
-        "_id": "66508fafeaf4d629400ee015",
-        "type": "Twall_x6",
-        "displayName": "M92 Twall x6",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Twall_x6"
-    },
-    {
-        "_id": "66508fafeaf4d629400ee017",
-        "type": "Twall_x6_3mts",
-        "displayName": "M92 Twall x6 3mts",
-        "module": "Massun92-Assetpack",
-        "shapeName": "M92_Twall_x6_3mts"
-    },
-    {
-        "_id": "66508fafeaf4d629400ee024",
-        "type": "FarpHide_small",
-        "displayName": "FARP Hide Single Small",
-        "module": "South_Atlantic_Assets",
-        "shapeName": "FarpHide_small"
-    },
-    {
-        "_id": "66508fafeaf4d629400ee026",
-        "type": "FarpHide_Med",
-        "displayName": "FARP Hide Single Med",
-        "module": "South_Atlantic_Assets",
-        "shapeName": "FarpHide_Med"
-    },
-    {
-        "_id": "66508fafeaf4d629400ee028",
-        "type": "FarpHide_Dsmall",
-        "displayName": "FARP Hide Double Small",
-        "module": "South_Atlantic_Assets",
-        "shapeName": "FarpHide_Dsmall"
-    },
-    {
-        "_id": "66508fafeaf4d629400ee02a",
         "type": "FarpHide_Dmed",
         "displayName": "FARP Hide Double Med",
         "module": "South_Atlantic_Assets",
         "shapeName": "FarpHide_Dmed"
     },
     {
-        "_id": "65328a714319326630cdf39b",
+        "type": "FarpHide_Dsmall",
+        "displayName": "FARP Hide Double Small",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "FarpHide_Dsmall"
+    },
+    {
+        "type": "FarpHide_Med",
+        "displayName": "FARP Hide Single Med",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "FarpHide_Med"
+    },
+    {
+        "type": "FarpHide_small",
+        "displayName": "FARP Hide Single Small",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "FarpHide_small"
+    },
+    {
+        "type": "Fire Control Bunker",
+        "displayName": "Fire control bunker",
+        "module": "WWII Armour and Technics",
+        "shapeName": "fire_control"
+    },
+    {
+        "type": "FireExtinguisher01",
+        "displayName": "M92 Fire Extinguisher 01",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_FireExtinguisher01"
+    },
+    {
+        "type": "FireExtinguisher02",
+        "displayName": "M92 Fire Extinguisher 02",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_FireExtinguisher02"
+    },
+    {
+        "type": "FireExtinguisher03",
+        "displayName": "M92 Fire Extinguisher 03",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_FireExtinguisher03"
+    },
+    {
         "type": "FlagPole",
         "displayName": "Flag Pole",
         "module": "TechWeaponPack",
         "shapeName": "FlagPoleStatic"
+    },
+    {
+        "type": "Freya_Shelter_Brick",
+        "displayName": "Freya Shelter Brick",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Freya_Shelter_Brick"
+    },
+    {
+        "type": "Freya_Shelter_Concrete",
+        "displayName": "Freya Shelter Concrete",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Freya_Shelter_Concrete"
+    },
+    {
+        "type": "Fuel tank",
+        "displayName": "Fuel tank",
+        "shapeName": "toplivo-bak"
+    },
+    {
+        "type": "Garage A",
+        "displayName": "Garage A",
+        "shapeName": "garage_a"
+    },
+    {
+        "type": "Garage B",
+        "displayName": "Garage B",
+        "shapeName": "garage_b"
+    },
+    {
+        "type": "Garage small A",
+        "displayName": "Garage small A",
+        "shapeName": "garagh-small-a"
+    },
+    {
+        "type": "Garage small B",
+        "displayName": "Garage small B",
+        "shapeName": "garagh-small-b"
+    },
+    {
+        "type": "GeneratorF",
+        "displayName": "GeneratorF",
+        "shapeName": "GeneratorF"
+    },
+    {
+        "type": "HESCO_generator",
+        "displayName": "M92 HESCO generator",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_HESCO_generator"
+    },
+    {
+        "type": "HESCO_post_1",
+        "displayName": "M92 HESCO post 1",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_HESCO_post_1"
+    },
+    {
+        "type": "HESCO_wallperimeter_1",
+        "displayName": "M92 HESCO wallperimeter 1",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_HESCO_wallperimeter_1"
+    },
+    {
+        "type": "HESCO_wallperimeter_2",
+        "displayName": "M92 HESCO wallperimeter 2",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_HESCO_wallperimeter_2"
+    },
+    {
+        "type": "HESCO_wallperimeter_3",
+        "displayName": "M92 HESCO wallperimeter 3",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_HESCO_wallperimeter_3"
+    },
+    {
+        "type": "HESCO_wallperimeter_4",
+        "displayName": "M92 HESCO wallperimeter 4",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_HESCO_wallperimeter_4"
+    },
+    {
+        "type": "HESCO_wallperimeter_5",
+        "displayName": "M92 HESCO wallperimeter 5",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_HESCO_wallperimeter_5"
+    },
+    {
+        "type": "HESCO_watchtower_1",
+        "displayName": "M92 HESCO watchtower 1",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_HESCO_watchtower_1"
+    },
+    {
+        "type": "HESCO_watchtower_2",
+        "displayName": "M92 HESCO watchtower 2",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_HESCO_watchtower_2"
+    },
+    {
+        "type": "HESCO_watchtower_3",
+        "displayName": "M92 HESCO watchtower 3",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_HESCO_watchtower_3"
+    },
+    {
+        "type": "Hangar A",
+        "displayName": "Hangar A",
+        "shapeName": "angar_a"
+    },
+    {
+        "type": "Hangar B",
+        "displayName": "Hangar B",
+        "shapeName": "angar_b"
+    },
+    {
+        "type": "Haystack 1",
+        "displayName": "Haystack 1",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Haystack_1"
+    },
+    {
+        "type": "Haystack 2",
+        "displayName": "Haystack 2",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Haystack_2"
+    },
+    {
+        "type": "Haystack 3",
+        "displayName": "Haystack 3",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Haystack_3"
+    },
+    {
+        "type": "Haystack 4",
+        "displayName": "Haystack 4",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Haystack_4"
+    },
+    {
+        "type": "Hemmkurvenhindernis",
+        "displayName": "Hemmkurvenhindernis",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Curved_rail"
+    },
+    {
+        "type": "Jerrycan",
+        "displayName": "M92 Jerrycan",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Jerrycan"
+    },
+    {
+        "type": "LHD_LHA",
+        "displayName": "M92 LHD LHA",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_LHD_LHA"
+    },
+    {
+        "type": "Ladder",
+        "displayName": "M92 Ladder",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Ladder"
+    },
+    {
+        "type": "Landmine",
+        "displayName": "Landmine",
+        "shapeName": "landmine"
+    },
+    {
+        "type": "Log posts 1",
+        "displayName": "Log posts 1",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Log_posts"
+    },
+    {
+        "type": "Log posts 2",
+        "displayName": "Log posts 2",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Log_posts_01"
+    },
+    {
+        "type": "Log posts 3",
+        "displayName": "Log posts 3",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Log_posts_02"
+    },
+    {
+        "type": "Log ramps 1",
+        "displayName": "Log ramps 1",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Log_ramps"
+    },
+    {
+        "type": "Log ramps 2",
+        "displayName": "Log ramps 2",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Log_ramps_01"
+    },
+    {
+        "type": "Log ramps 3",
+        "displayName": "Log ramps 3",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Log_ramps_02"
+    },
+    {
+        "type": "M32-10C_01",
+        "displayName": "M92 M32-10C 01",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_M32-10C_01"
+    },
+    {
+        "type": "M32-10C_02",
+        "displayName": "M92 M32-10C 02",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_M32-10C_02"
+    },
+    {
+        "type": "M32-10C_03",
+        "displayName": "M92 M32-10C 03",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_M32-10C_03"
+    },
+    {
+        "type": "M32-10C_04",
+        "displayName": "M92 M32-10C 04",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_M32-10C_04"
+    },
+    {
+        "type": "MJ-1_01",
+        "displayName": "M92 MJ-1 01",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_MJ-1_01"
+    },
+    {
+        "type": "MJ-1_02",
+        "displayName": "M92 MJ-1 02",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_MJ-1_02"
+    },
+    {
+        "type": "Military staff",
+        "displayName": "Military staff",
+        "shapeName": "aviashtab"
+    },
+    {
+        "type": "NF-2_LightOff01",
+        "displayName": "M92 NF-2 LightOff 01",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_NF-2_LightOff01"
+    },
+    {
+        "type": "NF-2_LightOff02",
+        "displayName": "M92 NF-2 LightOff 02",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_NF-2_LightOff02"
+    },
+    {
+        "type": "NF-2_LightOn",
+        "displayName": "M92 NF-2 LightOn",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_NF-2_LightOn"
+    },
+    {
+        "type": "Nodding_Donkey_Pump",
+        "displayName": "Nodding Donkey Pump",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "Nodding_Donkey"
+    },
+    {
+        "type": "Oil Barrel",
+        "displayName": "M92 Oil barrel",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Oilbarrel"
+    },
+    {
+        "type": "Oil derrick",
+        "displayName": "Oil derrick",
+        "shapeName": "neftevyshka"
+    },
+    {
+        "type": "Oil platform",
+        "displayName": "Oil platform",
+        "shapeName": "plavbaza"
+    },
+    {
+        "type": "Orca",
+        "displayName": "Orca Whale",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "Orca"
+    },
+    {
+        "type": "P20_01",
+        "displayName": "M92 P20 01",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_P20_01"
+    },
+    {
+        "type": "Pile of Woods",
+        "displayName": "M92 Pile of woods",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Pileofwoods"
+    },
+    {
+        "type": "Pump station",
+        "displayName": "Pump station",
+        "shapeName": "nasos"
+    },
+    {
+        "type": "Railway crossing A",
+        "displayName": "Railway crossing A",
+        "shapeName": "pereezd_big"
+    },
+    {
+        "type": "Railway crossing B",
+        "displayName": "Railway crossing B",
+        "shapeName": "pereezd_small"
+    },
+    {
+        "type": "Railway station",
+        "displayName": "Railway station",
+        "shapeName": "r_vok_sd"
+    },
+    {
+        "type": "Red_Flag",
+        "displayName": "Mark Flag Red",
+        "shapeName": "H-flag_R"
+    },
+    {
+        "type": "Repair workshop",
+        "displayName": "Repair workshop",
+        "shapeName": "tech"
+    },
+    {
+        "type": "Restaurant 1",
+        "displayName": "Restaurant 1",
+        "shapeName": "restoran1"
+    },
+    {
+        "type": "Revetment_x4",
+        "displayName": "M92 Revetment x4",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Revetment_x4"
+    },
+    {
+        "type": "Revetment_x8",
+        "displayName": "M92 Revetment x8",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Revetment_x8"
+    },
+    {
+        "type": "Sandbag_01",
+        "displayName": "M92 Sandbag 01",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Sandbag_01"
+    },
+    {
+        "type": "Sandbag_02",
+        "displayName": "M92 Sandbag 02",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Sandbag_02"
+    },
+    {
+        "type": "Sandbag_03",
+        "displayName": "M92 Sandbag 03",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Sandbag_03"
+    },
+    {
+        "type": "Sandbag_04",
+        "displayName": "M92 Sandbag 04",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Sandbag_04"
+    },
+    {
+        "type": "Sandbag_05",
+        "displayName": "M92 Sandbag 05",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Sandbag_05"
+    },
+    {
+        "type": "Sandbag_06",
+        "displayName": "M92 Sandbag 06",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Sandbag_06"
+    },
+    {
+        "type": "Sandbag_07",
+        "displayName": "M92 Sandbag 07",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Sandbag_07"
+    },
+    {
+        "type": "Sandbag_08",
+        "displayName": "M92 Sandbag 08",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Sandbag_08"
+    },
+    {
+        "type": "Sandbag_09",
+        "displayName": "M92 Sandbag 09",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Sandbag_09"
+    },
+    {
+        "type": "Sandbag_10",
+        "displayName": "M92 Sandbag 10",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Sandbag_10"
+    },
+    {
+        "type": "Sandbag_11",
+        "displayName": "M92 Sandbag 11",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Sandbag_11"
+    },
+    {
+        "type": "Sandbag_12",
+        "displayName": "M92 Sandbag 12",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Sandbag_12"
+    },
+    {
+        "type": "Sandbag_13",
+        "displayName": "M92 Sandbag 13",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Sandbag_13"
+    },
+    {
+        "type": "Sandbag_15",
+        "displayName": "M92 Sandbag 15",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Sandbag_15"
+    },
+    {
+        "type": "Sandbag_16",
+        "displayName": "M92 Sandbag 16",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Sandbag_16"
+    },
+    {
+        "type": "Sandbag_17",
+        "displayName": "M92 Sandbag 17",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Sandbag_17"
+    },
+    {
+        "type": "Shelter",
+        "displayName": "Shelter",
+        "shapeName": "ukrytie"
+    },
+    {
+        "type": "Shelter B",
+        "displayName": "Shelter B",
+        "shapeName": "ukrytie_b"
+    },
+    {
+        "type": "Shelter01",
+        "displayName": "M92 Shelter 01",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Shelter01"
+    },
+    {
+        "type": "Shelter02",
+        "displayName": "M92 Shelter 02",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Shelter02"
+    },
+    {
+        "type": "Shop",
+        "displayName": "Shop",
+        "shapeName": "magazin"
+    },
+    {
+        "type": "Siegfried Line",
+        "displayName": "Siegfried line",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Siegfried_Line"
+    },
+    {
+        "type": "Small house 1A",
+        "displayName": "Small house 1A",
+        "shapeName": "domik1a"
+    },
+    {
+        "type": "Small house 1A area",
+        "displayName": "Small house 1A area",
+        "shapeName": "domik1a-all"
+    },
+    {
+        "type": "Small house 1B",
+        "displayName": "Small house 1B",
+        "shapeName": "domik1b"
+    },
+    {
+        "type": "Small house 1B area",
+        "displayName": "Small house 1B area",
+        "shapeName": "domik1b-all"
+    },
+    {
+        "type": "Small house 1C area",
+        "displayName": "Small house 1C area",
+        "shapeName": "dom2c-all"
+    },
+    {
+        "type": "Small house 2C",
+        "displayName": "Small house 2C",
+        "shapeName": "dom2c"
+    },
+    {
+        "type": "Small werehouse 1",
+        "displayName": "Small warehouse 1",
+        "shapeName": "s1"
+    },
+    {
+        "type": "Small werehouse 2",
+        "displayName": "Small warehouse 2",
+        "shapeName": "s2"
+    },
+    {
+        "type": "Small werehouse 3",
+        "displayName": "Small warehouse 3",
+        "shapeName": "s3"
+    },
+    {
+        "type": "Small werehouse 4",
+        "displayName": "Small warehouse 4",
+        "shapeName": "s4"
+    },
+    {
+        "type": "Small_LightHouse",
+        "displayName": "Small_LightHouse",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "Small_LightHouse"
+    },
+    {
+        "type": "Stanley_LightHouse",
+        "displayName": "Stanley LightHouse",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "ST_LightHouse"
+    },
+    {
+        "type": "Subsidiary structure 1",
+        "displayName": "Subsidiary structure 1",
+        "shapeName": "hozdomik1"
+    },
+    {
+        "type": "Subsidiary structure 2",
+        "displayName": "Subsidiary structure 2",
+        "shapeName": "hozdomik2"
+    },
+    {
+        "type": "Subsidiary structure 3",
+        "displayName": "Subsidiary structure 3",
+        "shapeName": "hozdomik3"
+    },
+    {
+        "type": "Subsidiary structure A",
+        "displayName": "Subsidiary structure A",
+        "shapeName": "saray-a"
+    },
+    {
+        "type": "Subsidiary structure B",
+        "displayName": "Subsidiary structure B",
+        "shapeName": "saray-b"
+    },
+    {
+        "type": "Subsidiary structure C",
+        "displayName": "Subsidiary structure C",
+        "shapeName": "saray-c"
+    },
+    {
+        "type": "Subsidiary structure D",
+        "displayName": "Subsidiary structure D",
+        "shapeName": "saray-d"
+    },
+    {
+        "type": "Subsidiary structure E",
+        "displayName": "Subsidiary structure E",
+        "shapeName": "saray-e"
+    },
+    {
+        "type": "Subsidiary structure F",
+        "displayName": "Subsidiary structure F",
+        "shapeName": "saray-f"
+    },
+    {
+        "type": "Subsidiary structure G",
+        "displayName": "Subsidiary structure G",
+        "shapeName": "saray-g"
+    },
+    {
+        "type": "Supermarket A",
+        "displayName": "Supermarket A",
+        "shapeName": "uniwersam_a"
+    },
+    {
+        "type": "TV tower",
+        "displayName": "TV tower",
+        "shapeName": "tele_bash"
+    },
+    {
+        "type": "Tech combine",
+        "displayName": "Tech combine",
+        "shapeName": "kombinat"
+    },
+    {
+        "type": "Tech hangar A",
+        "displayName": "Tech hangar A",
+        "shapeName": "ceh_ang_a"
+    },
+    {
+        "type": "Tent01",
+        "displayName": "M92 Tent 01",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Tent01"
+    },
+    {
+        "type": "Tent02",
+        "displayName": "M92 Tent 02",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Tent02"
+    },
+    {
+        "type": "Tent03",
+        "displayName": "M92 Tent 03",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Tent03"
+    },
+    {
+        "type": "Tent04",
+        "displayName": "M92 Tent 04",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Tent04"
+    },
+    {
+        "type": "Tent05",
+        "displayName": "M92 Tent 05",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Tent05"
+    },
+    {
+        "type": "Tetrahydra",
+        "displayName": "Tetrahydra",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Concrete_tetra"
+    },
+    {
+        "type": "Toolbox01",
+        "displayName": "M92 Toolbox 01",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Toolbox01"
+    },
+    {
+        "type": "Toolbox02",
+        "displayName": "M92 Toolbox 02",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Toolbox02"
+    },
+    {
+        "type": "Tower Crane",
+        "displayName": "TowerCrane",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "TowerCrane_01"
+    },
+    {
+        "type": "TugHarlan",
+        "displayName": "M92 Tug Harlan",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_TugHarlan"
+    },
+    {
+        "type": "Twall_x1",
+        "displayName": "M92 Twall x1",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Twall_x1"
+    },
+    {
+        "type": "Twall_x6",
+        "displayName": "M92 Twall x6",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Twall_x6"
+    },
+    {
+        "type": "Twall_x6_3mts",
+        "displayName": "M92 Twall x6 3mts",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_Twall_x6_3mts"
+    },
+    {
+        "type": "WC",
+        "displayName": "WC",
+        "shapeName": "WC"
+    },
+    {
+        "type": "Water tower A",
+        "displayName": "Water tower A",
+        "shapeName": "wodokachka_a"
+    },
+    {
+        "type": "White_Flag",
+        "displayName": "Mark Flag White",
+        "shapeName": "H-Flag_W"
+    },
+    {
+        "type": "White_Tyre",
+        "displayName": "Mark Tyre White",
+        "shapeName": "H-tyre_W"
+    },
+    {
+        "type": "WindTurbine",
+        "displayName": "Wind Turbine",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "WindTurbine_10"
+    },
+    {
+        "type": "WindTurbine_11",
+        "displayName": "Wind Turbine 2",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "WindTurbine_11"
+    },
+    {
+        "type": "Windsock",
+        "displayName": "Windsock",
+        "shapeName": "H-Windsock_RW"
+    },
+    {
+        "type": "Workshop A",
+        "displayName": "Workshop A",
+        "shapeName": "tec_a"
+    },
+    {
+        "type": "billboard_motorized",
+        "displayName": "Billboard Motorized",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "billboard_motorized"
+    },
+    {
+        "type": "container_20ft",
+        "displayName": "Container 20ft",
+        "module": "TechWeaponPack",
+        "shapeName": "container_20ft"
+    },
+    {
+        "type": "container_40ft",
+        "displayName": "Container 40ft",
+        "module": "TechWeaponPack",
+        "shapeName": "container_40ft"
+    },
+    {
+        "type": "offshore WindTurbine",
+        "displayName": "Offshore Wind Turbine",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "offshore_windturbine"
+    },
+    {
+        "type": "offshore WindTurbine2",
+        "displayName": "Offshore Wind Turbine 2",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "offshore_windturbine2"
+    },
+    {
+        "type": "r11_volvo",
+        "displayName": "M92 R11 Volvo",
+        "module": "Massun92-Assetpack",
+        "shapeName": "M92_r11_volvo"
+    },
+    {
+        "type": "warning_board_a",
+        "displayName": "Warning Board: Spy Cannot Escape!",
+        "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shapeName": "biaoyu"
+    },
+    {
+        "type": "warning_board_b",
+        "displayName": "Warning Board: Catch Spy!",
+        "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shapeName": "biaoyu-2"
     }
 ]

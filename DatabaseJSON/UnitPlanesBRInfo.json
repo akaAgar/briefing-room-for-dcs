@@ -739,6 +739,22 @@
         "playerControllable": true
     },
     {
+        "type": "F-5E-3_FC",
+        "families": [
+            "PlaneFighter"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "F-86F_FC",
+        "families": [
+            "PlaneFighter"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
         "type": "F-86F Sabre",
         "families": [
             "PlaneFighter",
@@ -854,6 +870,14 @@
     },
     {
         "type": "MiG-15bis",
+        "families": [
+            "PlaneFighter"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "MiG-15bis_FC",
         "families": [
             "PlaneFighter"
         ],

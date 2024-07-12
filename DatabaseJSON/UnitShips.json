@@ -1,137 +1,5 @@
 [
     {
-        "_id": "65328a714319326630cdf3d7",
-        "type": "speedboat",
-        "displayName": "Boat Armed Hi-speed",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            }
-        ],
-        "shape": "Patrol_Boat",
-        "detectionRange": 5000,
-        "threatRange": 1000,
-        "operators": {
-            "ALL": [
-                1940,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf3d9",
-        "type": "VINSON",
-        "displayName": "CVN-70 Carl Vinson",
-        "categories": [
-            {
-                "name": "AircraftCarrier"
-            },
-            {
-                "name": "AircraftCarrier With Catapult"
-            },
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "AircraftCarrier With Arresting Gear"
-            }
-        ],
-        "shape": "vinson",
-        "helicopterStorage": 6,
-        "planeStorage": 72,
-        "detectionRange": 30000,
-        "threatRange": 15000,
-        "operators": {
-            "USA": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf3db",
-        "type": "PERRY",
-        "displayName": "FFG Oliver Hazard Perry",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "HelicopterCarrier"
-            }
-        ],
-        "shape": "perry",
-        "helicopterStorage": 2,
-        "detectionRange": 150000,
-        "threatRange": 100000,
-        "operators": {
-            "USA": [
-                1970,
-                2020
-            ],
-            "Turkey": [
-                1990,
-                2020
-            ],
-            "Spain": [
-                1980,
-                2020
-            ],
-            "Australia": [
-                1980,
-                2020
-            ],
-            "Egypt": [
-                1990,
-                2020
-            ],
-            "Pakistan": [
-                2010,
-                2020
-            ],
-            "Poland": [
-                2000,
-                2020
-            ],
-            "Bahrain": [
-                1990,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                1970,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf3dd",
-        "type": "TICONDEROG",
-        "displayName": "CG Ticonderoga",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "HelicopterCarrier"
-            }
-        ],
-        "shape": "ticonderoga",
-        "helicopterStorage": 2,
-        "detectionRange": 150000,
-        "threatRange": 100000,
-        "operators": {
-            "USA": [
-                1970,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                1990,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf3df",
         "type": "ALBATROS",
         "displayName": "Corvette 1124.4 Grisha",
         "categories": [
@@ -174,7 +42,491 @@
         }
     },
     {
-        "_id": "65328a714319326630cdf3e1",
+        "type": "BDK-775",
+        "displayName": "LS Ropucha",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            }
+        ],
+        "module": "TechWeaponPack",
+        "shape": "BDK_775",
+        "detectionRange": 25000,
+        "threatRange": 6000,
+        "operators": {
+            "Russia": [
+                1970,
+                2020
+            ],
+            "Ukraine": [
+                1970,
+                2020
+            ],
+            "Yemen": [
+                1970,
+                2020
+            ],
+            "USSR": [
+                1970,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CVN_71",
+        "displayName": "CVN-71 Theodore Roosevelt",
+        "categories": [
+            {
+                "name": "AircraftCarrier"
+            },
+            {
+                "name": "AircraftCarrier With Catapult"
+            },
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "AircraftCarrier With Arresting Gear"
+            }
+        ],
+        "module": "USS_Nimitz",
+        "shape": "Nimitz_CVN_71",
+        "helicopterStorage": 6,
+        "planeStorage": 72,
+        "detectionRange": 50000,
+        "threatRange": 25000,
+        "operators": {
+            "USA": [
+                1980,
+                2020
+            ],
+            "USAFAggressors": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CVN_72",
+        "displayName": "CVN-72 Abraham Lincoln",
+        "categories": [
+            {
+                "name": "AircraftCarrier"
+            },
+            {
+                "name": "AircraftCarrier With Catapult"
+            },
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "AircraftCarrier With Arresting Gear"
+            }
+        ],
+        "module": "USS_Nimitz",
+        "shape": "Nimitz_CVN_72",
+        "helicopterStorage": 6,
+        "planeStorage": 72,
+        "detectionRange": 50000,
+        "threatRange": 25000,
+        "operators": {
+            "USA": [
+                1990,
+                2020
+            ],
+            "USAFAggressors": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CVN_73",
+        "displayName": "CVN-73 George Washington",
+        "categories": [
+            {
+                "name": "AircraftCarrier"
+            },
+            {
+                "name": "AircraftCarrier With Catapult"
+            },
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "AircraftCarrier With Arresting Gear"
+            }
+        ],
+        "module": "USS_Nimitz",
+        "shape": "Nimitz_CVN_73",
+        "helicopterStorage": 6,
+        "planeStorage": 72,
+        "detectionRange": 50000,
+        "threatRange": 25000,
+        "operators": {
+            "USA": [
+                1990,
+                2020
+            ],
+            "USAFAggressors": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CVN_75",
+        "displayName": "CVN-75 Harry S. Truman",
+        "categories": [
+            {
+                "name": "AircraftCarrier"
+            },
+            {
+                "name": "AircraftCarrier With Catapult"
+            },
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "AircraftCarrier With Arresting Gear"
+            }
+        ],
+        "module": "USS_Nimitz",
+        "shape": "Nimitz_CVN_75",
+        "helicopterStorage": 6,
+        "planeStorage": 72,
+        "detectionRange": 50000,
+        "threatRange": 25000,
+        "operators": {
+            "USA": [
+                2000,
+                2020
+            ],
+            "USAFAggressors": [
+                2000,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2000,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CV_1143_5",
+        "displayName": "CV 1143.5 Admiral Kuznetsov(2017)",
+        "categories": [
+            {
+                "name": "AircraftCarrier"
+            },
+            {
+                "name": "AircraftCarrier With Tramplin"
+            },
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "AircraftCarrier With Arresting Gear"
+            }
+        ],
+        "module": "TAVKR 1143 High Detail",
+        "shape": "CV_1143_5",
+        "helicopterStorage": 12,
+        "planeStorage": 24,
+        "detectionRange": 25000,
+        "threatRange": 12000,
+        "operators": {
+            "USAFAggressors": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CastleClass_01",
+        "displayName": "Castle Class",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "South_Atlantic_Assets",
+        "shape": "CastleClass_01",
+        "helicopterStorage": 2,
+        "planeStorage": 0,
+        "detectionRange": 25000,
+        "threatRange": 3000,
+        "operators": {
+            "USAFAggressors": [
+                1970,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "Dry-cargo ship-1",
+        "displayName": "Bulker Yakushev",
+        "shape": "barge-2",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1940,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "Dry-cargo ship-2",
+        "displayName": "Cargo Ivanov",
+        "shape": "barge-1",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1940,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "ELNYA",
+        "displayName": "Tanker Elnya 160",
+        "shape": "elnya",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "Russia": [
+                1970,
+                2020
+            ],
+            "Ukraine": [
+                1970,
+                2020
+            ],
+            "Georgia": [
+                1970,
+                2020
+            ],
+            "Insurgents": [
+                1970,
+                2020
+            ],
+            "Abkhazia": [
+                1970,
+                2020
+            ],
+            "USSR": [
+                1970,
+                2020
+            ],
+            "Algeria": [
+                1970,
+                2020
+            ],
+            "Cuba": [
+                1970,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "Forrestal",
+        "displayName": "CV-59 Forrestal",
+        "categories": [
+            {
+                "name": "AircraftCarrier"
+            },
+            {
+                "name": "AircraftCarrier With Catapult"
+            },
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "AircraftCarrier With Arresting Gear"
+            }
+        ],
+        "module": "F-14B AI by Heatblur Simulations",
+        "shape": "CV-59-Forrestal_LOD0",
+        "helicopterStorage": 6,
+        "planeStorage": 72,
+        "detectionRange": 50000,
+        "threatRange": 25000,
+        "operators": {
+            "USAFAggressors": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "HandyWind",
+        "displayName": "Bulker Handy Wind",
+        "categories": [
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "TechWeaponPack",
+        "shape": "Ship_Handy_Wind",
+        "helicopterStorage": 1,
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1970,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "HarborTug",
+        "displayName": "Harbor Tug",
+        "module": "South_Atlantic_Assets",
+        "shape": "HarborTug",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1950,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "Higgins_boat",
+        "displayName": "Boat LCVP Higgins",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            }
+        ],
+        "module": "WWII Armour and Technics",
+        "shape": "Higgins_boat",
+        "detectionRange": 3000,
+        "threatRange": 1000,
+        "operators": {
+            "USA": [
+                1940,
+                1950
+            ],
+            "UnitedNationsPeacekeepers": [
+                1940,
+                1950
+            ]
+        }
+    },
+    {
+        "type": "IMPROVED_KILO",
+        "displayName": "SSK 636 Improved Kilo",
+        "shape": "kilo_636",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "Russia": [
+                1980,
+                2020
+            ],
+            "USAFAggressors": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "KILO",
+        "displayName": "SSK 877V Kilo",
+        "shape": "kilo",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "Russia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "China": [
+                1990,
+                2020
+            ],
+            "India": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1990,
+                2020
+            ],
+            "Poland": [
+                1980,
+                2020
+            ],
+            "Romania": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ],
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ]
+        }
+    },
+    {
         "type": "KUZNECOW",
         "displayName": "CV 1143.5 Admiral Kuznetsov",
         "categories": [
@@ -212,7 +564,119 @@
         }
     },
     {
-        "_id": "65328a714319326630cdf3e3",
+        "type": "LHA_Tarawa",
+        "displayName": "LHA-1 Tarawa",
+        "categories": [
+            {
+                "name": "AircraftCarrier"
+            },
+            {
+                "name": "AircraftCarrier With Tramplin"
+            },
+            {
+                "name": "Armed Ship"
+            }
+        ],
+        "module": "AV-8B N/A AI by RAZBAM Sims",
+        "shape": "LHA_Tarawa",
+        "helicopterStorage": 36,
+        "planeStorage": 40,
+        "detectionRange": 150000,
+        "threatRange": 20000,
+        "operators": {
+            "USA": [
+                1970,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "LST_Mk2",
+        "displayName": "LST Mk.II",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            }
+        ],
+        "module": "WWII Armour and Technics",
+        "shape": "LST_Mk2",
+        "detectionRange": 0,
+        "threatRange": 4000,
+        "operators": {
+            "USA": [
+                1940,
+                1970
+            ],
+            "UK": [
+                1940,
+                1970
+            ],
+            "Canada": [
+                1940,
+                1970
+            ],
+            "UnitedNationsPeacekeepers": [
+                1940,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "La_Combattante_II",
+        "displayName": "FAC La Combattante IIa",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            }
+        ],
+        "module": "TechWeaponPack",
+        "shape": "La_Combattante_II",
+        "detectionRange": 19000,
+        "threatRange": 4000,
+        "operators": {
+            "Germany": [
+                1970,
+                2020
+            ],
+            "Georgia": [
+                1970,
+                2020
+            ],
+            "Greece": [
+                1970,
+                2020
+            ],
+            "Iran": [
+                1970,
+                2020
+            ],
+            "Malaysia": [
+                1970,
+                2020
+            ],
+            "Indonesia": [
+                1970,
+                2020
+            ],
+            "Chile": [
+                1970,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ],
+            "Libya": [
+                1970,
+                2020
+            ]
+        }
+    },
+    {
         "type": "MOLNIYA",
         "displayName": "Corvette 1241.1 Molniya",
         "categories": [
@@ -291,7 +755,6 @@
         }
     },
     {
-        "_id": "65328a714319326630cdf3e5",
         "type": "MOSCOW",
         "displayName": "Cruiser 1164 Moskva",
         "categories": [
@@ -322,7 +785,6 @@
         }
     },
     {
-        "_id": "65328a714319326630cdf3e7",
         "type": "NEUSTRASH",
         "displayName": "Frigate 11540 Neustrashimy",
         "categories": [
@@ -353,7 +815,60 @@
         }
     },
     {
-        "_id": "65328a714319326630cdf3e9",
+        "type": "PERRY",
+        "displayName": "FFG Oliver Hazard Perry",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "shape": "perry",
+        "helicopterStorage": 2,
+        "detectionRange": 150000,
+        "threatRange": 100000,
+        "operators": {
+            "USA": [
+                1970,
+                2020
+            ],
+            "Turkey": [
+                1990,
+                2020
+            ],
+            "Spain": [
+                1980,
+                2020
+            ],
+            "Australia": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1990,
+                2020
+            ],
+            "Pakistan": [
+                2010,
+                2020
+            ],
+            "Poland": [
+                2000,
+                2020
+            ],
+            "Bahrain": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ]
+        }
+    },
+    {
         "type": "PIOTR",
         "displayName": "Battlecruiser 1144.2 Pyotr Velikiy",
         "categories": [
@@ -380,7 +895,6 @@
         }
     },
     {
-        "_id": "65328a714319326630cdf3eb",
         "type": "REZKY",
         "displayName": "Frigate 1135M Rezky",
         "categories": [
@@ -415,10 +929,9 @@
         }
     },
     {
-        "_id": "65328a714319326630cdf3ed",
-        "type": "ELNYA",
-        "displayName": "Tanker Elnya 160",
-        "shape": "elnya",
+        "type": "SOM",
+        "displayName": "SSK 641B Tango",
+        "shape": "som",
         "detectionRange": 0,
         "threatRange": 0,
         "operators": {
@@ -426,70 +939,394 @@
                 1970,
                 2020
             ],
-            "Ukraine": [
-                1970,
-                2020
-            ],
-            "Georgia": [
-                1970,
-                2020
-            ],
-            "Insurgents": [
-                1970,
-                2020
-            ],
-            "Abkhazia": [
-                1970,
-                2020
-            ],
             "USSR": [
                 1970,
                 2020
+            ]
+        }
+    },
+    {
+        "type": "Schnellboot_type_S130",
+        "displayName": "Boat Schnellboot type S130",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            }
+        ],
+        "module": "WWII Armour and Technics",
+        "shape": "Schnellboot_type_S130",
+        "detectionRange": 10000,
+        "threatRange": 4000,
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1940,
+                1950
             ],
-            "Algeria": [
-                1970,
+            "Thirdreich": [
+                1940,
+                1950
+            ],
+            "Italy": [
+                1940,
+                1950
+            ],
+            "Germany": [
+                1940,
+                1950
+            ]
+        }
+    },
+    {
+        "type": "Seawise_Giant",
+        "displayName": "Tanker Seawise Giant",
+        "categories": [
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "TechWeaponPack",
+        "shape": "seawise_giant",
+        "helicopterStorage": 1,
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1980,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "Ship_Tilde_Supply",
+        "displayName": "Supply Ship MV Tilde",
+        "categories": [
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "South_Atlantic_Assets",
+        "shape": "Ship_Tilde_Supply",
+        "helicopterStorage": 1,
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                2000,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "Stennis",
+        "displayName": "CVN-74 John C. Stennis",
+        "categories": [
+            {
+                "name": "AircraftCarrier"
+            },
+            {
+                "name": "AircraftCarrier With Catapult"
+            },
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "AircraftCarrier With Arresting Gear"
+            }
+        ],
+        "module": "USS_Nimitz",
+        "shape": "nimitz_cvn_74",
+        "helicopterStorage": 6,
+        "planeStorage": 72,
+        "detectionRange": 50000,
+        "threatRange": 25000,
+        "operators": {
+            "USA": [
+                1990,
                 2020
             ],
-            "Cuba": [
+            "USAFAggressors": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "TICONDEROG",
+        "displayName": "CG Ticonderoga",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "shape": "ticonderoga",
+        "helicopterStorage": 2,
+        "detectionRange": 150000,
+        "threatRange": 100000,
+        "operators": {
+            "USA": [
                 1970,
                 2020
             ],
             "UnitedNationsPeacekeepers": [
-                1970,
+                1990,
                 2020
             ]
         }
     },
     {
-        "_id": "65328a714319326630cdf3ef",
-        "type": "Dry-cargo ship-2",
-        "displayName": "Cargo Ivanov",
-        "shape": "barge-1",
-        "detectionRange": 0,
-        "threatRange": 0,
+        "type": "Type_052B",
+        "displayName": "Type 052B Destroyer",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "052b",
+        "helicopterStorage": 1,
+        "planeStorage": 0,
+        "detectionRange": 100000,
+        "threatRange": 30000,
         "operators": {
-            "ALL": [
-                1940,
+            "China": [
+                2000,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2000,
                 2020
             ]
         }
     },
     {
-        "_id": "65328a714319326630cdf3f1",
-        "type": "Dry-cargo ship-1",
-        "displayName": "Bulker Yakushev",
-        "shape": "barge-2",
-        "detectionRange": 0,
-        "threatRange": 0,
+        "type": "Type_052C",
+        "displayName": "Type 052C Destroyer",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "052c",
+        "helicopterStorage": 1,
+        "planeStorage": 0,
+        "detectionRange": 260000,
+        "threatRange": 100000,
         "operators": {
-            "ALL": [
-                1940,
+            "China": [
+                2000,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2000,
                 2020
             ]
         }
     },
     {
-        "_id": "65328a714319326630cdf3f3",
+        "type": "Type_054A",
+        "displayName": "Type 054A Frigate",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "054a",
+        "helicopterStorage": 1,
+        "planeStorage": 0,
+        "detectionRange": 160000,
+        "threatRange": 45000,
+        "operators": {
+            "China": [
+                2010,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2010,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "Type_071",
+        "displayName": "Type 071 Amphibious Transport Dock",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            },
+            {
+                "name": "AircraftCarrier"
+            },
+            {
+                "name": "AircraftCarrier With Tramplin"
+            }
+        ],
+        "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "071",
+        "helicopterStorage": 2,
+        "detectionRange": 300000,
+        "threatRange": 150000,
+        "operators": {
+            "China": [
+                2000,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2000,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "Type_093",
+        "displayName": "Type 093 Attack Submarine",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            }
+        ],
+        "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "093",
+        "detectionRange": 40000,
+        "threatRange": 40000,
+        "operators": {
+            "China": [
+                2000,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2000,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "USS_Arleigh_Burke_IIa",
+        "displayName": "DDG Arleigh Burke IIa",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "USS_Nimitz",
+        "shape": "Arleigh_Burke_IIa",
+        "helicopterStorage": 2,
+        "detectionRange": 150000,
+        "threatRange": 100000,
+        "operators": {
+            "USA": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "USS_Samuel_Chase",
+        "displayName": "LS Samuel Chase",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            }
+        ],
+        "module": "WWII Armour and Technics",
+        "shape": "uss_samuel_chase",
+        "detectionRange": 0,
+        "threatRange": 7000,
+        "operators": {
+            "USA": [
+                1940,
+                1950
+            ],
+            "UnitedNationsPeacekeepers": [
+                1940,
+                1950
+            ]
+        }
+    },
+    {
+        "type": "Uboat_VIIC",
+        "displayName": "U-boat VIIC U-flak",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            }
+        ],
+        "module": "WWII Armour and Technics",
+        "shape": "Uboat_typeVIIC",
+        "detectionRange": 20000,
+        "threatRange": 4000,
+        "operators": {
+            "Thirdreich": [
+                1940,
+                1950
+            ],
+            "Italy": [
+                1940,
+                1950
+            ],
+            "Germany": [
+                1940,
+                1950
+            ]
+        }
+    },
+    {
+        "type": "VINSON",
+        "displayName": "CVN-70 Carl Vinson",
+        "categories": [
+            {
+                "name": "AircraftCarrier"
+            },
+            {
+                "name": "AircraftCarrier With Catapult"
+            },
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "AircraftCarrier With Arresting Gear"
+            }
+        ],
+        "shape": "vinson",
+        "helicopterStorage": 6,
+        "planeStorage": 72,
+        "detectionRange": 30000,
+        "threatRange": 15000,
+        "operators": {
+            "USA": [
+                1980,
+                2020
+            ]
+        }
+    },
+    {
         "type": "ZWEZDNY",
         "displayName": "Boat Zvezdny type",
         "shape": "zwezdny",
@@ -539,394 +1376,6 @@
         }
     },
     {
-        "_id": "65328a714319326630cdf3f5",
-        "type": "KILO",
-        "displayName": "SSK 877V Kilo",
-        "shape": "kilo",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "Russia": [
-                1980,
-                2020
-            ],
-            "Ukraine": [
-                1980,
-                2020
-            ],
-            "China": [
-                1990,
-                2020
-            ],
-            "India": [
-                1980,
-                2020
-            ],
-            "Iran": [
-                1990,
-                2020
-            ],
-            "Poland": [
-                1980,
-                2020
-            ],
-            "Romania": [
-                1980,
-                2020
-            ],
-            "USSR": [
-                1980,
-                2020
-            ],
-            "Algeria": [
-                1980,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf3f7",
-        "type": "IMPROVED_KILO",
-        "displayName": "SSK 636 Improved Kilo",
-        "shape": "kilo_636",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "Russia": [
-                1980,
-                2020
-            ],
-            "USAFAggressors": [
-                1980,
-                2020
-            ],
-            "USSR": [
-                1980,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf3f9",
-        "type": "SOM",
-        "displayName": "SSK 641B Tango",
-        "shape": "som",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "Russia": [
-                1970,
-                2020
-            ],
-            "USSR": [
-                1970,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf3fb",
-        "type": "CV_1143_5",
-        "displayName": "CV 1143.5 Admiral Kuznetsov(2017)",
-        "categories": [
-            {
-                "name": "AircraftCarrier"
-            },
-            {
-                "name": "AircraftCarrier With Tramplin"
-            },
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "AircraftCarrier With Arresting Gear"
-            }
-        ],
-        "module": "TAVKR 1143 High Detail",
-        "shape": "CV_1143_5",
-        "helicopterStorage": 12,
-        "planeStorage": 24,
-        "detectionRange": 25000,
-        "threatRange": 12000,
-        "operators": {
-            "USAFAggressors": [
-                1990,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                1990,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf3fd",
-        "type": "CastleClass_01",
-        "displayName": "Castle Class",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "HelicopterCarrier"
-            }
-        ],
-        "module": "South_Atlantic_Assets",
-        "shape": "CastleClass_01",
-        "helicopterStorage": 2,
-        "planeStorage": 0,
-        "detectionRange": 25000,
-        "threatRange": 3000,
-        "operators": {
-            "USAFAggressors": [
-                1970,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                1970,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf3ff",
-        "type": "HarborTug",
-        "displayName": "Harbor Tug",
-        "module": "South_Atlantic_Assets",
-        "shape": "HarborTug",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf401",
-        "type": "hms_invincible",
-        "displayName": "HMS Invincible (R05)",
-        "categories": [
-            {
-                "name": "AircraftCarrier"
-            },
-            {
-                "name": "AircraftCarrier With Tramplin"
-            },
-            {
-                "name": "Armed Ship"
-            }
-        ],
-        "module": "South_Atlantic_Assets",
-        "shape": "hms_invincible",
-        "helicopterStorage": 6,
-        "planeStorage": 7,
-        "detectionRange": 100000,
-        "threatRange": 74000,
-        "operators": {
-            "USAFAggressors": [
-                1970,
-                2010
-            ],
-            "UnitedNationsPeacekeepers": [
-                1970,
-                2010
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf403",
-        "type": "leander-gun-achilles",
-        "displayName": "HMS Achilles (F12)",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "HelicopterCarrier"
-            }
-        ],
-        "module": "South_Atlantic_Assets",
-        "shape": "leander-gun-achilles",
-        "helicopterStorage": 1,
-        "detectionRange": 180000,
-        "threatRange": 8000,
-        "operators": {
-            "UnitedNationsPeacekeepers": [
-                1970,
-                1990
-            ],
-            "UK": [
-                1970,
-                1990
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf405",
-        "type": "leander-gun-andromeda",
-        "displayName": "HMS Andromeda (F57)",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "HelicopterCarrier"
-            }
-        ],
-        "module": "South_Atlantic_Assets",
-        "shape": "leander-gun-andromeda",
-        "helicopterStorage": 1,
-        "detectionRange": 180000,
-        "threatRange": 140000,
-        "operators": {
-            "UnitedNationsPeacekeepers": [
-                1970,
-                1990
-            ],
-            "UK": [
-                1970,
-                1990
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf407",
-        "type": "leander-gun-ariadne",
-        "displayName": "HMS Ariadne (F72)",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "HelicopterCarrier"
-            }
-        ],
-        "module": "South_Atlantic_Assets",
-        "shape": "leander-gun-ariadne",
-        "helicopterStorage": 1,
-        "detectionRange": 150000,
-        "threatRange": 100000,
-        "operators": {
-            "UnitedNationsPeacekeepers": [
-                1970,
-                1990
-            ],
-            "Chile": [
-                1970,
-                1990
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf409",
-        "type": "leander-gun-condell",
-        "displayName": "CNS Almirante Condell (PFG-06)",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "HelicopterCarrier"
-            }
-        ],
-        "module": "South_Atlantic_Assets",
-        "shape": "leander-gun-condell",
-        "helicopterStorage": 1,
-        "detectionRange": 150000,
-        "threatRange": 100000,
-        "operators": {
-            "UnitedNationsPeacekeepers": [
-                1970,
-                2010
-            ],
-            "Chile": [
-                2010,
-                2020
-            ],
-            "UK": [
-                1970,
-                2010
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf40b",
-        "type": "leander-gun-lynch",
-        "displayName": "CNS Almirante Lynch (PFG-07)",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "HelicopterCarrier"
-            }
-        ],
-        "module": "South_Atlantic_Assets",
-        "shape": "leander-gun-lynch",
-        "helicopterStorage": 1,
-        "detectionRange": 180000,
-        "threatRange": 140000,
-        "operators": {
-            "UnitedNationsPeacekeepers": [
-                1970,
-                1990
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf40d",
-        "type": "Ship_Tilde_Supply",
-        "displayName": "Supply Ship MV Tilde",
-        "categories": [
-            {
-                "name": "HelicopterCarrier"
-            }
-        ],
-        "module": "South_Atlantic_Assets",
-        "shape": "Ship_Tilde_Supply",
-        "helicopterStorage": 1,
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "UnitedNationsPeacekeepers": [
-                2000,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf40f",
-        "type": "santafe",
-        "displayName": "ARA Santa Fe S-21",
-        "module": "South_Atlantic_Assets",
-        "shape": "santafe",
-        "operators": {
-            "UnitedNationsPeacekeepers": [
-                1940,
-                1970
-            ],
-            "Argentina": [
-                1970,
-                1980
-            ],
-            "USA": [
-                1940,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf411",
         "type": "ara_vdm",
         "displayName": "ARA Veinticinco de Mayo",
         "categories": [
@@ -965,334 +1414,120 @@
         }
     },
     {
-        "_id": "65328a714319326630cdf413",
-        "type": "HandyWind",
-        "displayName": "Bulker Handy Wind",
+        "type": "hms_invincible",
+        "displayName": "HMS Invincible (R05)",
         "categories": [
             {
-                "name": "HelicopterCarrier"
-            }
-        ],
-        "module": "TechWeaponPack",
-        "shape": "Ship_Handy_Wind",
-        "helicopterStorage": 1,
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1970,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf415",
-        "type": "Seawise_Giant",
-        "displayName": "Tanker Seawise Giant",
-        "categories": [
+                "name": "AircraftCarrier"
+            },
             {
-                "name": "HelicopterCarrier"
-            }
-        ],
-        "module": "TechWeaponPack",
-        "shape": "seawise_giant",
-        "helicopterStorage": 1,
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf417",
-        "type": "La_Combattante_II",
-        "displayName": "FAC La Combattante IIa",
-        "categories": [
+                "name": "AircraftCarrier With Tramplin"
+            },
             {
                 "name": "Armed Ship"
             }
         ],
-        "module": "TechWeaponPack",
-        "shape": "La_Combattante_II",
-        "detectionRange": 19000,
-        "threatRange": 4000,
+        "module": "South_Atlantic_Assets",
+        "shape": "hms_invincible",
+        "helicopterStorage": 6,
+        "planeStorage": 7,
+        "detectionRange": 100000,
+        "threatRange": 74000,
         "operators": {
-            "Germany": [
+            "USAFAggressors": [
                 1970,
-                2020
+                2010
             ],
-            "Georgia": [
+            "UnitedNationsPeacekeepers": [
                 1970,
-                2020
+                2010
+            ]
+        }
+    },
+    {
+        "type": "leander-gun-achilles",
+        "displayName": "HMS Achilles (F12)",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "South_Atlantic_Assets",
+        "shape": "leander-gun-achilles",
+        "helicopterStorage": 1,
+        "detectionRange": 180000,
+        "threatRange": 8000,
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1970,
+                1990
             ],
-            "Greece": [
+            "UK": [
                 1970,
-                2020
+                1990
+            ]
+        }
+    },
+    {
+        "type": "leander-gun-andromeda",
+        "displayName": "HMS Andromeda (F57)",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "South_Atlantic_Assets",
+        "shape": "leander-gun-andromeda",
+        "helicopterStorage": 1,
+        "detectionRange": 180000,
+        "threatRange": 140000,
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1970,
+                1990
             ],
-            "Iran": [
+            "UK": [
                 1970,
-                2020
-            ],
-            "Malaysia": [
+                1990
+            ]
+        }
+    },
+    {
+        "type": "leander-gun-ariadne",
+        "displayName": "HMS Ariadne (F72)",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "South_Atlantic_Assets",
+        "shape": "leander-gun-ariadne",
+        "helicopterStorage": 1,
+        "detectionRange": 150000,
+        "threatRange": 100000,
+        "operators": {
+            "UnitedNationsPeacekeepers": [
                 1970,
-                2020
-            ],
-            "Indonesia": [
-                1970,
-                2020
+                1990
             ],
             "Chile": [
                 1970,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                1970,
-                2020
-            ],
-            "Libya": [
-                1970,
-                2020
+                1990
             ]
         }
     },
     {
-        "_id": "65328a714319326630cdf419",
-        "type": "BDK-775",
-        "displayName": "LS Ropucha",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            }
-        ],
-        "module": "TechWeaponPack",
-        "shape": "BDK_775",
-        "detectionRange": 25000,
-        "threatRange": 6000,
-        "operators": {
-            "Russia": [
-                1970,
-                2020
-            ],
-            "Ukraine": [
-                1970,
-                2020
-            ],
-            "Yemen": [
-                1970,
-                2020
-            ],
-            "USSR": [
-                1970,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                1970,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf41b",
-        "type": "CVN_71",
-        "displayName": "CVN-71 Theodore Roosevelt",
-        "categories": [
-            {
-                "name": "AircraftCarrier"
-            },
-            {
-                "name": "AircraftCarrier With Catapult"
-            },
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "AircraftCarrier With Arresting Gear"
-            }
-        ],
-        "module": "USS_Nimitz",
-        "shape": "Nimitz_CVN_71",
-        "helicopterStorage": 6,
-        "planeStorage": 72,
-        "detectionRange": 50000,
-        "threatRange": 25000,
-        "operators": {
-            "USA": [
-                1980,
-                2020
-            ],
-            "USAFAggressors": [
-                1980,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf41d",
-        "type": "CVN_72",
-        "displayName": "CVN-72 Abraham Lincoln",
-        "categories": [
-            {
-                "name": "AircraftCarrier"
-            },
-            {
-                "name": "AircraftCarrier With Catapult"
-            },
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "AircraftCarrier With Arresting Gear"
-            }
-        ],
-        "module": "USS_Nimitz",
-        "shape": "Nimitz_CVN_72",
-        "helicopterStorage": 6,
-        "planeStorage": 72,
-        "detectionRange": 50000,
-        "threatRange": 25000,
-        "operators": {
-            "USA": [
-                1990,
-                2020
-            ],
-            "USAFAggressors": [
-                1990,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                1990,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf41f",
-        "type": "CVN_73",
-        "displayName": "CVN-73 George Washington",
-        "categories": [
-            {
-                "name": "AircraftCarrier"
-            },
-            {
-                "name": "AircraftCarrier With Catapult"
-            },
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "AircraftCarrier With Arresting Gear"
-            }
-        ],
-        "module": "USS_Nimitz",
-        "shape": "Nimitz_CVN_73",
-        "helicopterStorage": 6,
-        "planeStorage": 72,
-        "detectionRange": 50000,
-        "threatRange": 25000,
-        "operators": {
-            "USA": [
-                1990,
-                2020
-            ],
-            "USAFAggressors": [
-                1990,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                1990,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf421",
-        "type": "Stennis",
-        "displayName": "CVN-74 John C. Stennis",
-        "categories": [
-            {
-                "name": "AircraftCarrier"
-            },
-            {
-                "name": "AircraftCarrier With Catapult"
-            },
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "AircraftCarrier With Arresting Gear"
-            }
-        ],
-        "module": "USS_Nimitz",
-        "shape": "nimitz_cvn_74",
-        "helicopterStorage": 6,
-        "planeStorage": 72,
-        "detectionRange": 50000,
-        "threatRange": 25000,
-        "operators": {
-            "USA": [
-                1990,
-                2020
-            ],
-            "USAFAggressors": [
-                1990,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                1990,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf423",
-        "type": "CVN_75",
-        "displayName": "CVN-75 Harry S. Truman",
-        "categories": [
-            {
-                "name": "AircraftCarrier"
-            },
-            {
-                "name": "AircraftCarrier With Catapult"
-            },
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "AircraftCarrier With Arresting Gear"
-            }
-        ],
-        "module": "USS_Nimitz",
-        "shape": "Nimitz_CVN_75",
-        "helicopterStorage": 6,
-        "planeStorage": 72,
-        "detectionRange": 50000,
-        "threatRange": 25000,
-        "operators": {
-            "USA": [
-                2000,
-                2020
-            ],
-            "USAFAggressors": [
-                2000,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                2000,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a714319326630cdf425",
-        "type": "USS_Arleigh_Burke_IIa",
-        "displayName": "DDG Arleigh Burke IIa",
+        "type": "leander-gun-condell",
+        "displayName": "CNS Almirante Condell (PFG-06)",
         "categories": [
             {
                 "name": "Armed Ship"
@@ -1301,371 +1536,84 @@
                 "name": "HelicopterCarrier"
             }
         ],
-        "module": "USS_Nimitz",
-        "shape": "Arleigh_Burke_IIa",
-        "helicopterStorage": 2,
+        "module": "South_Atlantic_Assets",
+        "shape": "leander-gun-condell",
+        "helicopterStorage": 1,
         "detectionRange": 150000,
         "threatRange": 100000,
         "operators": {
-            "USA": [
-                1980,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a724319326630cdf427",
-        "type": "LHA_Tarawa",
-        "displayName": "LHA-1 Tarawa",
-        "categories": [
-            {
-                "name": "AircraftCarrier"
-            },
-            {
-                "name": "AircraftCarrier With Tramplin"
-            },
-            {
-                "name": "Armed Ship"
-            }
-        ],
-        "module": "AV-8B N/A AI by RAZBAM Sims",
-        "shape": "LHA_Tarawa",
-        "helicopterStorage": 36,
-        "planeStorage": 40,
-        "detectionRange": 150000,
-        "threatRange": 20000,
-        "operators": {
-            "USA": [
-                1970,
-                2020
-            ],
             "UnitedNationsPeacekeepers": [
                 1970,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a724319326630cdf429",
-        "type": "Type_052B",
-        "displayName": "Type 052B Destroyer",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "HelicopterCarrier"
-            }
-        ],
-        "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
-        "shape": "052b",
-        "helicopterStorage": 1,
-        "planeStorage": 0,
-        "detectionRange": 100000,
-        "threatRange": 30000,
-        "operators": {
-            "China": [
-                2000,
-                2020
+                2010
             ],
-            "UnitedNationsPeacekeepers": [
-                2000,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a724319326630cdf42b",
-        "type": "Type_054A",
-        "displayName": "Type 054A Frigate",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "HelicopterCarrier"
-            }
-        ],
-        "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
-        "shape": "054a",
-        "helicopterStorage": 1,
-        "planeStorage": 0,
-        "detectionRange": 160000,
-        "threatRange": 45000,
-        "operators": {
-            "China": [
+            "Chile": [
                 2010,
                 2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a724319326630cdf42d",
-        "type": "Type_052C",
-        "displayName": "Type 052C Destroyer",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "HelicopterCarrier"
-            }
-        ],
-        "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
-        "shape": "052c",
-        "helicopterStorage": 1,
-        "planeStorage": 0,
-        "detectionRange": 260000,
-        "threatRange": 100000,
-        "operators": {
-            "China": [
-                2000,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                2000,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a724319326630cdf42f",
-        "type": "Type_093",
-        "displayName": "Type 093 Attack Submarine",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            }
-        ],
-        "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
-        "shape": "093",
-        "detectionRange": 40000,
-        "threatRange": 40000,
-        "operators": {
-            "China": [
-                2000,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                2000,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a724319326630cdf431",
-        "type": "Type_071",
-        "displayName": "Type 071 Amphibious Transport Dock",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "HelicopterCarrier"
-            },
-            {
-                "name": "AircraftCarrier"
-            },
-            {
-                "name": "AircraftCarrier With Tramplin"
-            }
-        ],
-        "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
-        "shape": "071",
-        "helicopterStorage": 2,
-        "detectionRange": 300000,
-        "threatRange": 150000,
-        "operators": {
-            "China": [
-                2000,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                2000,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a724319326630cdf433",
-        "type": "Forrestal",
-        "displayName": "CV-59 Forrestal",
-        "categories": [
-            {
-                "name": "AircraftCarrier"
-            },
-            {
-                "name": "AircraftCarrier With Catapult"
-            },
-            {
-                "name": "Armed Ship"
-            },
-            {
-                "name": "AircraftCarrier With Arresting Gear"
-            }
-        ],
-        "module": "F-14B AI by Heatblur Simulations",
-        "shape": "CV-59-Forrestal_LOD0",
-        "helicopterStorage": 6,
-        "planeStorage": 72,
-        "detectionRange": 50000,
-        "threatRange": 25000,
-        "operators": {
-            "USAFAggressors": [
-                1990,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                1990,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a724319326630cdf435",
-        "type": "LST_Mk2",
-        "displayName": "LST Mk.II",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            }
-        ],
-        "module": "WWII Armour and Technics",
-        "shape": "LST_Mk2",
-        "detectionRange": 0,
-        "threatRange": 4000,
-        "operators": {
-            "USA": [
-                1940,
-                1970
             ],
             "UK": [
-                1940,
-                1970
-            ],
-            "Canada": [
-                1940,
-                1970
-            ],
-            "UnitedNationsPeacekeepers": [
-                1940,
-                1970
+                1970,
+                2010
             ]
         }
     },
     {
-        "_id": "65328a724319326630cdf437",
-        "type": "USS_Samuel_Chase",
-        "displayName": "LS Samuel Chase",
+        "type": "leander-gun-lynch",
+        "displayName": "CNS Almirante Lynch (PFG-07)",
         "categories": [
             {
                 "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
             }
         ],
-        "module": "WWII Armour and Technics",
-        "shape": "uss_samuel_chase",
-        "detectionRange": 0,
-        "threatRange": 7000,
+        "module": "South_Atlantic_Assets",
+        "shape": "leander-gun-lynch",
+        "helicopterStorage": 1,
+        "detectionRange": 180000,
+        "threatRange": 140000,
         "operators": {
+            "UnitedNationsPeacekeepers": [
+                1970,
+                1990
+            ]
+        }
+    },
+    {
+        "type": "santafe",
+        "displayName": "ARA Santa Fe S-21",
+        "module": "South_Atlantic_Assets",
+        "shape": "santafe",
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1940,
+                1970
+            ],
+            "Argentina": [
+                1970,
+                1980
+            ],
             "USA": [
                 1940,
-                1950
-            ],
-            "UnitedNationsPeacekeepers": [
-                1940,
-                1950
+                1970
             ]
         }
     },
     {
-        "_id": "65328a724319326630cdf439",
-        "type": "Higgins_boat",
-        "displayName": "Boat LCVP Higgins",
+        "type": "speedboat",
+        "displayName": "Boat Armed Hi-speed",
         "categories": [
             {
                 "name": "Armed Ship"
             }
         ],
-        "module": "WWII Armour and Technics",
-        "shape": "Higgins_boat",
-        "detectionRange": 3000,
+        "shape": "Patrol_Boat",
+        "detectionRange": 5000,
         "threatRange": 1000,
         "operators": {
-            "USA": [
+            "ALL": [
                 1940,
-                1950
-            ],
-            "UnitedNationsPeacekeepers": [
-                1940,
-                1950
-            ]
-        }
-    },
-    {
-        "_id": "65328a724319326630cdf43b",
-        "type": "Uboat_VIIC",
-        "displayName": "U-boat VIIC U-flak",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            }
-        ],
-        "module": "WWII Armour and Technics",
-        "shape": "Uboat_typeVIIC",
-        "detectionRange": 20000,
-        "threatRange": 4000,
-        "operators": {
-            "Thirdreich": [
-                1940,
-                1950
-            ],
-            "Italy": [
-                1940,
-                1950
-            ],
-            "Germany": [
-                1940,
-                1950
-            ]
-        }
-    },
-    {
-        "_id": "65328a724319326630cdf43d",
-        "type": "Schnellboot_type_S130",
-        "displayName": "Boat Schnellboot type S130",
-        "categories": [
-            {
-                "name": "Armed Ship"
-            }
-        ],
-        "module": "WWII Armour and Technics",
-        "shape": "Schnellboot_type_S130",
-        "detectionRange": 10000,
-        "threatRange": 4000,
-        "operators": {
-            "UnitedNationsPeacekeepers": [
-                1940,
-                1950
-            ],
-            "Thirdreich": [
-                1940,
-                1950
-            ],
-            "Italy": [
-                1940,
-                1950
-            ],
-            "Germany": [
-                1940,
-                1950
+                2020
             ]
         }
     }

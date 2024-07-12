@@ -144,6 +144,15 @@
         "immovable": false
     },
     {
+        "type": "MaxxPro_MRAP",
+        "families": [
+            "VehicleAPC"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    
+    {
         "type": "M1126 Stryker ICV",
         "families": [
             "VehicleAPC"
@@ -857,6 +866,22 @@
         "immovable": true
     },
     {
+        "type": "outpost_road_r",
+        "families": [
+            "StaticStructureMilitary"
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "outpost_road_l",
+        "families": [
+            "StaticDecorative"
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
         "type": "outpost",
         "families": [
             "StaticStructureMilitary"
@@ -914,6 +939,14 @@
     },
     {
         "type": "M-1 Abrams",
+        "families": [
+            "VehicleMBT"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M1A2C_SEP_V3",
         "families": [
             "VehicleMBT"
         ],
@@ -1857,14 +1890,6 @@
         "type": "HQ-7_LN_P",
         "families": [
             "VehicleSAMShort"
-        ],
-        "lowPolly": false,
-        "immovable": false
-    },
-    {
-        "type": "HQ-7_LN_EO",
-        "families": [
-            "VehicleSAMShortIR"
         ],
         "lowPolly": false,
         "immovable": false

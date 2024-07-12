@@ -1824,6 +1824,18 @@
         "immovable": true
     },
     {
+        "type": "container_40ft",
+        "families": [
+            "StaticStructureProduction"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
         "type": "Container_watchtower",
         "families": [
             "StaticStructureMilitary"

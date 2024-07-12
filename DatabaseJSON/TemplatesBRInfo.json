@@ -479,6 +479,136 @@
         ]
     },
     {
+        "type": "SA-5 SAM Battery Iran",
+        "family": "VehicleSAMMedium",
+        "extraOperators": {
+            "Iran": []
+        },
+        "operational": [
+            1950,
+            2020
+        ]
+    },
+    {
+        "type": "SA-5 SAM Battery Syria",
+        "family": "VehicleSAMMedium",
+        "extraOperators": {
+            "Syria": []
+        },
+        "operational": [
+            1950,
+            2020
+        ]
+    },
+    {
+        "type": "SA-5 SAM Battery USSR",
+        "family": "VehicleSAMMedium",
+        "extraOperators": {
+            "USSR": []
+        },
+        "operational": [
+            1950,
+            2020
+        ]
+    },
+    {
+        "type": "SA-5 SAM Battery Ukraine",
+        "family": "VehicleSAMMedium",
+        "extraOperators": {
+            "Russia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1990,
+                2020
+            ],
+            "USAFAggressors": [
+                1950,
+                2020
+            ],
+            "Georgia": [
+                2000,
+                2020
+            ],
+            "Belarus": [
+                1960,
+                2020
+            ],
+            "Bulgaria": [
+                1950,
+                2020
+            ],
+            "CzechRepublic": [
+                1950,
+                2020
+            ],
+            "Hungary": [
+                1950,
+                2020
+            ],
+            "India": [
+                1950,
+                2020
+            ],
+            "Iran": [
+                1950,
+                2020
+            ],
+            "Kazakhstan": [
+                1950,
+                2020
+            ],
+            "NorthKorea": [
+                1950,
+                2020
+            ],
+            "Poland": [
+                1950,
+                2020
+            ],
+            "Syria": [
+                2010,
+                2020
+            ],
+            "Libya": [
+                1950,
+                2020
+            ],
+            "USSR": [
+                1950,
+                2020
+            ],
+            "Algeria": [
+                1950,
+                2020
+            ],
+            "GDR": [
+                1950,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1950,
+                2020
+            ]
+        },
+        "operational": [
+            1950,
+            2020
+        ]
+    },
+    {
+        "type": "SA-5 SAM Battery",
+        "family": "VehicleSAMMedium",
+        "extraOperators": {
+            "Ukraine": []
+        },
+        "operational": [
+            1950,
+            2020
+        ]
+    },
+    {
         "type": "SA-6 SAM Battery Iran",
         "family": "VehicleSAMMedium",
         "extraOperators": {
