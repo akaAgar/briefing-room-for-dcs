@@ -62,7 +62,7 @@ namespace BriefingRoom4DCS.Data
 
         internal static Dictionary<string, DBEntry> LoadJSON(string filepath, DatabaseLanguage LangDB)
         {
-            var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
+            var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCulture);
             var data = JsonConvert.DeserializeObject<List<Airbase>>(File.ReadAllText(filepath));
             foreach (var airbase in data)
             {
