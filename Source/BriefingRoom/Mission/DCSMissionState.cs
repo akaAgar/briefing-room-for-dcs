@@ -24,6 +24,7 @@ using System.Linq;
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Generator;
 using BriefingRoom4DCS.Mission.DCSLuaObjects;
+using BriefingRoom4DCS.Template;
 
 namespace BriefingRoom4DCS.Mission
 {

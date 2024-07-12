@@ -66,7 +66,9 @@ namespace BriefingRoom4DCS.Template
         internal bool SpawnAnywhere { get; init; }
         internal Dictionary<string, double[]> CarrierHints { get; init; }
         internal MissionTemplate Template { get; init; }
-
+        internal bool GlobalDynamicSpawn { get; init; }
+        internal bool DsAllowHotStart { get; init; }
+        public List<int> DsAirbases { get; internal set; }
 
         internal MissionTemplateRecord(MissionTemplate template)
         {
@@ -117,6 +119,9 @@ namespace BriefingRoom4DCS.Template
             SpawnAnywhere = template.OptionsMission.Contains("SpawnAnywhere") || template.ContextSituation == "None";
             CarrierHints = template.CarrierHints;
             Template = template;
+            GlobalDynamicSpawn = template.GlobalDynamicSpawn;
+            DsAllowHotStart = template.DSAllowHotStart;
+            DsAirbases = template.DsAirbases;
         }
 
         internal string GetCoalitionID(Coalition coalition)

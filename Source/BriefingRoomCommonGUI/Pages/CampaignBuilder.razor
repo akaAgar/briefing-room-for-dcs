@@ -351,6 +351,23 @@
                                 </div>
                             }
                         }
+                        <hr/>
+                        <div class="generator-block">
+                            <h3>@briefingRoom.Translate("DynamicSpawn")</h3>
+                            <div>&nbsp;<span class="oi oi-info"></span>&nbsp;@briefingRoom.Translate("DynamicSpawnWarn")&nbsp;</div>
+                            <div class="flex-block form-group">
+                                <label class="checkbox-wrapper">
+                                    <input type="checkbox" checked=@Template.GlobalDynamicSpawn
+                                        @onchange="eventArgs => { Template.GlobalDynamicSpawn = (bool)eventArgs.Value; StateHasChanged();}" />
+                                        <span>@briefingRoom.Translate("GlobalDynamicSpawn")</span>
+                                </label>
+                                    <label class="checkbox-wrapper">
+                                    <input type="checkbox" checked=@Template.DSAllowHotStart
+                                        @onchange="eventArgs => { Template.DSAllowHotStart = (bool)eventArgs.Value; StateHasChanged();}" />
+                                        <span>@briefingRoom.Translate("DSAllowHotStart")</span>
+                                </label>
+                            </div>
+                        </div>
                     </div>
                     break;
                     case "unitBanlist":

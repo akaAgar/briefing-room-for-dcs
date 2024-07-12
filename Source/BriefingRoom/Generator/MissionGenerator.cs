@@ -200,7 +200,7 @@ namespace BriefingRoom4DCS.Generator
             MissionGeneratorOptions.GenerateForcedOptions(ref mission, template);
 
             BriefingRoom.PrintToLog("Generating warehouses...");
-            MissionGeneratorWarehouses.GenerateWarehouses(ref mission, mission.CarrierDictionary);
+            MissionGeneratorWarehouses.GenerateWarehouses(ref mission, mission.CarrierDictionary, template.GlobalDynamicSpawn, template.DsAllowHotStart);
 
             return mission;
         }

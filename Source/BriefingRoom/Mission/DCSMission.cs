@@ -126,7 +126,7 @@ namespace BriefingRoom4DCS.Mission
             return rawText;
         }
 
-        internal void SetAirbase(int airbaseID, Coalition airbaseCoalition)
+        internal void SetAirbase(int airbaseID, Coalition airbaseCoalition, bool dynamicSpawn)
         {
             if (Airbases.ContainsKey(airbaseID))
                 Airbases[airbaseID] = airbaseCoalition;

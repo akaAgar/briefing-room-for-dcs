@@ -81,6 +81,7 @@
                     <InputDataBase ClassString="flex-block" Label=@briefingRoom.Translate("Situation") @bind-Value="Template.ContextSituation" Grouping="@Template.ContextTheater" DataBaseType="DatabaseEntryType.Situation" EmptOpt=@briefingRoom.Translate("Random") CustomOpt="None (Spawn Anywhere),None" />
                 </div>
                 <InputDataBase Label=@briefingRoom.Translate("HomeAirbase") @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt=@briefingRoom.Translate("Random")/>
+                <InputDataBase Label=@briefingRoom.Translate("HomeAirbase") @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt=@briefingRoom.Translate("Random")/>
                 <hr />
             </div>
             <div id="flight-groups" class="generator-block">
@@ -165,7 +166,24 @@
                    <a @onclick="() => ClearStrikePackages()" >@briefingRoom.Translate("RemoveStrikePackages")</a></p>  
                 }
                 <hr />
+            </div>  
+            <div class="generator-block">
+                <h3>@briefingRoom.Translate("DynamicSpawn")</h3>
+                <div>&nbsp;<span class="oi oi-info"></span>&nbsp;@briefingRoom.Translate("DynamicSpawnWarn")&nbsp;</div>
+                <div class="flex-block form-group">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" checked=@Template.GlobalDynamicSpawn
+                            @onchange="eventArgs => { Template.GlobalDynamicSpawn = (bool)eventArgs.Value; StateHasChanged();}" />
+                            <span>@briefingRoom.Translate("GlobalDynamicSpawn")</span>
+                    </label>
+                        <label class="checkbox-wrapper">
+                        <input type="checkbox" checked=@Template.DSAllowHotStart
+                            @onchange="eventArgs => { Template.DSAllowHotStart = (bool)eventArgs.Value; StateHasChanged();}" />
+                            <span>@briefingRoom.Translate("DSAllowHotStart")</span>
+                    </label>
+                </div>
             </div>
+            <hr/>
             <div id="objectives" class="generator-block">
                 <h3>@briefingRoom.Translate("Objectives")</h3>
                 <div class="generator-group flex-justify-spaced flex-margin-fix">
