@@ -9,9 +9,9 @@ namespace BriefingRoom4DCS.GUI.Utils
     public class Typeahead
     {
 
-        public static Task<List<DatabaseEntryInfo>> SearchDB(string langKey, DatabaseEntryType entryType, string searchText)
+        public static Task<List<DatabaseEntryInfo>> SearchDB(string langKey, DatabaseEntryType entryType, string searchText, string parameter = "")
         {
-            var list = BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(langKey, entryType);
+            var list = BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(langKey, entryType, parameter);
             return Task.FromResult(list.Where(x => x.Name.Get(langKey).ToLower().Contains(searchText.ToLower())).ToList());
         }
 
@@ -23,6 +23,7 @@ namespace BriefingRoom4DCS.GUI.Utils
         }
 
         public static string ConvertDB(DatabaseEntryInfo entry) => entry.ID;
+        public static string ConvertDBL(DatabaseEntryInfo entry, List<int> ids) => "";
 
         public static async Task<List<T>> SearchEnum<T>(string searchText)
         {

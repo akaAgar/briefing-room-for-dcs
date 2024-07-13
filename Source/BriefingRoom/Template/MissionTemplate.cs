@@ -49,8 +49,6 @@ namespace BriefingRoom4DCS.Template
         private List<MissionTemplatePackage> AircraftPackages_ = new();
         public Dictionary<string, double[]> CarrierHints { get; set; } = new Dictionary<string, double[]>();
 
-        public List<int> DsAirbases { get; set; }
-
         public MissionTemplate()
         {
             Clear();
@@ -80,7 +78,6 @@ namespace BriefingRoom4DCS.Template
             Objectives = new MissionTemplateObjective[] { new MissionTemplateObjective() }.ToList();
             AircraftPackages = new();
             CarrierHints = new Dictionary<string, double[]>();
-            DsAirbases= new List<int>();
 
             AssignAliases();
 
@@ -112,7 +109,6 @@ namespace BriefingRoom4DCS.Template
             FlightPlanObjectiveSeparationMax = ini.GetValue("FlightPlan", "ObjectiveSeparationMax", FlightPlanObjectiveSeparationMax);
             FlightPlanObjectiveSeparationMin = ini.GetValue("FlightPlan", "ObjectiveSeparationMin", FlightPlanObjectiveSeparationMin);
             BorderLimit = ini.GetValue("FlightPlan", "BorderLimit", BorderLimit);
-            DsAirbases = ini.GetValueDistinctList<int>("Options","DsAirbases");
 
             Objectives.Clear();
             foreach (string key in ini.GetTopLevelKeysInSection("Objectives"))
@@ -160,7 +156,6 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue("FlightPlan", "ObjectiveSeparationMax", FlightPlanObjectiveSeparationMax);
             ini.SetValue("FlightPlan", "ObjectiveSeparationMin", FlightPlanObjectiveSeparationMin);
             ini.SetValue("FlightPlan", "BorderLimit", BorderLimit);
-            ini.SetValueArray("Options", "DsAirbases", DsAirbases.ToArray());
 
             for (i = 0; i < Objectives.Count; i++)
                 Objectives[i].SaveToFile(ini, "Objectives", $"Objective{i:000}");

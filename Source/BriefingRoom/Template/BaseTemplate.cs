@@ -79,7 +79,8 @@ namespace BriefingRoom4DCS.Template
         private int CombinedArmsJTACBlue_;
         public int CombinedArmsJTACRed { get { return CombinedArmsJTACRed_; } set { CombinedArmsJTACRed_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
         private int CombinedArmsJTACRed_;
-        public bool GlobalDynamicSpawn { get; set; }
+        public bool AllAirbaseDynamicSpawn { get; set; }
+        public bool CarrierDynamicSpawn { get; set; }
         public bool DSAllowHotStart { get; set; }
 
         public void Clear()
@@ -122,7 +123,8 @@ namespace BriefingRoom4DCS.Template
             CombinedArmsCommanderRed = 0;
             CombinedArmsJTACBlue = 0;
             CombinedArmsJTACRed = 0;
-            GlobalDynamicSpawn = false;
+            AllAirbaseDynamicSpawn = false;
+            CarrierDynamicSpawn = false;
             DSAllowHotStart = false;
 
             AssignAliases();
@@ -168,7 +170,8 @@ namespace BriefingRoom4DCS.Template
             CombinedArmsJTACBlue = ini.GetValue("CombinedArms", "JTACBlue", CombinedArmsJTACBlue);
             CombinedArmsJTACRed = ini.GetValue("CombinedArms", "JTACRed", CombinedArmsJTACRed);
 
-            GlobalDynamicSpawn = ini.GetValue("Options", "GlobalDynamicSpawn", GlobalDynamicSpawn);
+            AllAirbaseDynamicSpawn = ini.GetValue("Options", "AllAirbaseDynamicSpawn", AllAirbaseDynamicSpawn);
+            CarrierDynamicSpawn = ini.GetValue("Options", "CarrierDynamicSpawn", CarrierDynamicSpawn);
             DSAllowHotStart = ini.GetValue("Options", "DSAllowHotStart", DSAllowHotStart);
 
             AssignAliases();
@@ -200,7 +203,8 @@ namespace BriefingRoom4DCS.Template
             ini.SetValueArray("Options", "Mission", OptionsMission.ToArray());
             ini.SetValueArray("Options", "Realism", OptionsRealism.ToArray());
             ini.SetValueArray("Options", "UnitBanList", OptionsUnitBanList.ToArray());
-            ini.SetValue("Options", "GlobalDynamicSpawn", GlobalDynamicSpawn);
+            ini.SetValue("Options", "AllAirbaseDynamicSpawn", AllAirbaseDynamicSpawn);
+            ini.SetValue("Options", "CarrierDynamicSpawn", CarrierDynamicSpawn);
             ini.SetValue("Options", "DSAllowHotStart", DSAllowHotStart);
 
             for (i = 0; i < PlayerFlightGroups.Count; i++)

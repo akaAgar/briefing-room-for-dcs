@@ -58,7 +58,7 @@ namespace BriefingRoom4DCS.Template
         public int CombinedArmsCommanderRed { get; set; }
         public int CombinedArmsJTACBlue { get; set; }
         public int CombinedArmsJTACRed { get; set; }
-        public bool GlobalDynamicSpawn { get; set; }
+        public bool AllAirbaseDynamicSpawn { get; set; }
         public bool DSAllowHotStart { get; set; }
 
         public void Clear();

@@ -29,7 +29,7 @@ namespace BriefingRoom4DCS.Generator
     {
         private static readonly string AIRPORT_TEMPLATE_FILEPATH = Path.Combine(BRPaths.INCLUDE_LUA, "Warehouses", "Airport.lua");
 
-        internal static void GenerateWarehouses(ref DCSMission mission, Dictionary<string, CarrierUnitMakerGroupInfo> carrierDictionary, bool globalDynamicSpawn, bool allowHotStart)
+        internal static void GenerateWarehouses(ref DCSMission mission, Dictionary<string, CarrierUnitMakerGroupInfo> carrierDictionary)
         {
             string warehousesAirportLua = "";
 
@@ -43,8 +43,8 @@ namespace BriefingRoom4DCS.Generator
                 string airportLua = airportLuaTemplate;
                 GeneratorTools.ReplaceKey(ref airportLua, "index", airbaseID);
                 GeneratorTools.ReplaceKey(ref airportLua, "coalition", mission.Airbases[airbaseID].ToString().ToUpper());
-                GeneratorTools.ReplaceKey(ref airportLua, "dynamicSpawn", globalDynamicSpawn);
-                GeneratorTools.ReplaceKey(ref airportLua, "allowHotStart", allowHotStart);
+                GeneratorTools.ReplaceKey(ref airportLua, "dynamicSpawn", mission.TemplateRecord.AllAirbaseDynamicSpawn);
+                GeneratorTools.ReplaceKey(ref airportLua, "allowHotStart", mission.TemplateRecord.DsAllowHotStart);
 
                 warehousesAirportLua += airportLua + "\r\n";
             }
@@ -58,8 +58,8 @@ namespace BriefingRoom4DCS.Generator
                 string carrierLua = airportLuaTemplate;
                 GeneratorTools.ReplaceKey(ref carrierLua, "index", carrier.UnitMakerGroupInfo.DCSGroup.Units[0].UnitId);
                 GeneratorTools.ReplaceKey(ref carrierLua, "coalition", carrier.Coalition.ToString().ToUpper());
-                 GeneratorTools.ReplaceKey(ref carrierLua, "dynamicSpawn", globalDynamicSpawn);
-                GeneratorTools.ReplaceKey(ref carrierLua, "allowHotStart", allowHotStart);
+                 GeneratorTools.ReplaceKey(ref carrierLua, "dynamicSpawn", mission.TemplateRecord.CarrierDynamicSpawn);
+                GeneratorTools.ReplaceKey(ref carrierLua, "allowHotStart",  mission.TemplateRecord.DsAllowHotStart);
 
                 warehousesCarriersLua += carrierLua + "\r\n";
             }

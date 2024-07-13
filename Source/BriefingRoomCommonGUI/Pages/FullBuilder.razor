@@ -500,9 +500,15 @@
                             <div>&nbsp;<span class="oi oi-info"></span>&nbsp;@briefingRoom.Translate("DynamicSpawnWarn")&nbsp;</div>
                             <div class="flex-block form-group">
                                 <label class="checkbox-wrapper">
-                                    <input type="checkbox" checked=@Template.GlobalDynamicSpawn
-                                        @onchange="eventArgs => { Template.GlobalDynamicSpawn = (bool)eventArgs.Value; StateHasChanged();}" />
-                                        <span>@briefingRoom.Translate("GlobalDynamicSpawn")</span>
+                                    <input type="checkbox" checked=@Template.AllAirbaseDynamicSpawn
+                                        @onchange="eventArgs => { Template.AllAirbaseDynamicSpawn = (bool)eventArgs.Value; StateHasChanged();}" />
+                                        <span>@briefingRoom.Translate("AllAirbaseDynamicSpawn")</span>
+                                </label>
+                                 <label class="checkbox-wrapper">
+                                    <input type="checkbox" checked=@Template.CarrierDynamicSpawn
+                                        @onchange="eventArgs => { Template.CarrierDynamicSpawn = (bool)eventArgs.Value; StateHasChanged();}" />
+                                        
+                                        <span>@briefingRoom.Translate("CarrierDynamicSpawn")</span>
                                 </label>
                                  <label class="checkbox-wrapper">
                                     <input type="checkbox" checked=@Template.DSAllowHotStart
