@@ -71,6 +71,7 @@ namespace BriefingRoom4DCS.Data.JSON
     {
         public string CLSID { get; set; }
         public int num { get; set; }
+        public Dictionary<string, object>? settings { get; set; }
     }
 
     public class CallSign

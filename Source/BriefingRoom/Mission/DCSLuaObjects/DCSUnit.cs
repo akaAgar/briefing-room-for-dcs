@@ -25,7 +25,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         internal string LiveryId { get; set; }
         internal string Skill { get; set; }
         internal Dictionary<string, object> PropsLua { get; set; } = new Dictionary<string, object>();
-        internal Dictionary<int, Dictionary<string, string>> Pylons { get; set; } = new Dictionary<int, Dictionary<string, string>>();
+        internal Dictionary<int, Dictionary<string, object>> Pylons { get; set; } = new Dictionary<int, Dictionary<string, object>>();
         internal Dictionary<string, object> PayloadCommon { get; set; } = new Dictionary<string, object>();
         internal dynamic Callsign { get; set; }
         internal string OnboardNum { get; set; }

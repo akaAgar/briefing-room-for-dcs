@@ -55,7 +55,7 @@ namespace BriefingRoom4DCS.Generator
         private const double AIRCRAFT_UNIT_SPACING = 50.0;
         private const double SHIP_UNIT_SPACING = 100.0;
         private const double VEHICLE_UNIT_SPACING = 10.0;
-        private readonly static List<string> IGNORE_PROPS = new() { "Skill" };
+        private readonly static List<string> IGNORE_PROPS = new() { "Skill", "Pylons" };
 
         internal static Tuple<List<string>, List<DBEntryJSONUnit>> GetUnits(
             ref DCSMission mission,
@@ -564,7 +564,7 @@ namespace BriefingRoom4DCS.Generator
                     (int?)extraSettings.GetValueOrDefault("AirbaseRadioModulation", null)
                     )).ToList();
                 unit.PayloadCommon = aircraftUnitDB.PayloadCommon;
-                unit.Pylons = (Dictionary<int, Dictionary<string, string>>)extraSettings.GetValueOrDefault("Pylons", new Dictionary<int, Dictionary<string, string>>());
+                unit.Pylons = (Dictionary<int, Dictionary<string, object>>)extraSettings.GetValueOrDefault("Pylons", new Dictionary<int, Dictionary<string, object>>());
                 unit.Parking = ((List<int>)extraSettings.GetValueOrDefault("ParkingID", new List<int>())).ElementAtOrDefault(unitLuaIndex - 1);
             }
             else

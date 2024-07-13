@@ -145,20 +145,20 @@ namespace BriefingRoom4DCS.Data
 
         public DBEntryAircraft() {}
 
-        internal Dictionary<int, Dictionary<string, string>> GetPylonsObject(string aircraftPayload)
+        internal Dictionary<int, Dictionary<string, object>> GetPylonsObject(string aircraftPayload)
         {
             var payload = Payloads.Find(x => x.name == aircraftPayload);
             if (payload == null)
-                return new Dictionary<int, Dictionary<string, string>>();
-            return payload.pylons.ToDictionary(x => x.num, x => new Dictionary<string, string> { { "CLSID", x.CLSID } });
+                return new Dictionary<int, Dictionary<string, object>>();
+            return payload.pylons.ToDictionary(x => x.num, x => new Dictionary<string, object> { { "CLSID", x.CLSID  }, {"settings", x.settings} });
         }
 
-        internal Dictionary<int, Dictionary<string, string>> GetPylonsObject(DCSTask task)
+        internal Dictionary<int, Dictionary<string, object>> GetPylonsObject(DCSTask task)
         {
             if (Payloads.Count == 0)
-                return new Dictionary<int, Dictionary<string, string>>();
+                return new Dictionary<int, Dictionary<string, object>>();
             var payload = Toolbox.RandomFrom(Payloads.Where(x => x.tasks.Contains((int)task)).ToList()) ?? Toolbox.RandomFrom(Payloads);
-            return payload.pylons.Where(x => x != null).ToDictionary(x => x.num, x => new Dictionary<string, string> { { "CLSID", x.CLSID } });
+            return payload.pylons.Where(x => x != null).ToDictionary(x => x.num, x => new Dictionary<string, object> { { "CLSID", x.CLSID }, {"settings", x.settings} });
         }
 
         internal void GetDCSPayloads()
@@ -194,10 +194,22 @@ namespace BriefingRoom4DCS.Data
                     foreach (var pylonItem in ((IDictionary)itemEntry["pylons"]).Values)
                     {
                         var pylonItemEntry = (IDictionary)pylonItem;
-                        pylons.Add(new Pylon{
+                        var pylon = new Pylon{
                             CLSID = (string)pylonItemEntry["CLSID"],
                             num = (int)(long)pylonItemEntry["num"],
-                        });
+                        };
+
+                        if(pylonItemEntry.Contains("settings"))
+                        {
+                            pylon.settings = new Dictionary<string, object>();
+                            foreach (var settingItem in ((IDictionary)pylonItemEntry["settings"]))
+                            {
+                                var settingKV = (DictionaryEntry)settingItem;
+                                pylon.settings.Add((string)settingKV.Key, settingKV.Value);
+                            }
+                        
+                        }
+                        pylons.Add(pylon);
                     }
             
                     var payload = new Payload {
