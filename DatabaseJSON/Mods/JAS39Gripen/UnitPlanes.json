@@ -1,6 +1,5 @@
 [
     {
-        "_id": "65328a714319326630cdf27f",
         "type": "JAS39Gripen",
         "EPLRS": true,
         "callsigns": {
@@ -7396,7 +7395,6 @@
         }
     },
     {
-        "_id": "65328a714319326630cdf281",
         "type": "JAS39Gripen_AG",
         "EPLRS": true,
         "callsigns": {

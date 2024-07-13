@@ -1,6 +1,5 @@
 [
     {
-        "_id": "65328a714319326630cdf2af",
         "type": "VSN_Eurofighter",
         "callsigns": {
             "0": [
@@ -4727,7 +4726,6 @@
         }
     },
     {
-        "_id": "65328a714319326630cdf2b1",
         "type": "VSN_Eurofighter_AG",
         "callsigns": {
             "0": [

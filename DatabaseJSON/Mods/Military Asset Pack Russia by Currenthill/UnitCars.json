@@ -1,6 +1,21 @@
 [
     {
-        "_id": "656665301f7407e942edda91",
+        "type": "CH_2S38",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "[CH] 2S38 SPAAG",
+        "module": "Military Asset Pack Russia by Currenthill",
+        "shape": "2S38",
+        "detectionRange": 12000,
+        "threatRange": 5000,
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
+    },
+    {
         "type": "CH_2S38_LG",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -18,59 +33,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942edda93",
-        "type": "CH_2S38",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] 2S38 SPAAG",
-        "module": "Military Asset Pack Russia by Currenthill",
-        "shape": "2S38",
-        "detectionRange": 12000,
-        "threatRange": 5000,
-        "operators": {
-            "Russia": [
-                2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942edda99",
-        "type": "K300P",
-        "category": "MissilesSS",
-        "paintSchemes": {},
-        "displayName": "[CH] Bastion-P LBASM TEL",
-        "module": "Military Asset Pack Russia by Currenthill",
-        "shape": "K-300P",
-        "detectionRange": 400000,
-        "threatRangeMin": 4500,
-        "threatRange": 400000,
-        "operators": {
-            "Russia": [
-                2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942edda9b",
-        "type": "MonolitB",
-        "category": "MissilesSS",
-        "paintSchemes": {},
-        "displayName": "[CH] Monolit-B LBASM STR",
-        "module": "Military Asset Pack Russia by Currenthill",
-        "shape": "Monolit-B",
-        "detectionRange": 800000,
-        "threatRange": 0,
-        "operators": {
-            "Russia": [
-                2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddaa1",
         "type": "CH_3K60_BAL",
         "category": "MissilesSS",
         "paintSchemes": {},
@@ -88,7 +50,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddaab",
         "type": "CH_DSHK_HMG_RUS",
         "category": "Infantry",
         "paintSchemes": {},
@@ -105,7 +66,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddaad",
         "type": "CH_DSHK_HMG_UKR",
         "category": "Infantry",
         "paintSchemes": {},
@@ -122,147 +82,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddaf9",
-        "type": "CH_S350_50P6_9M96D",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] S-350 50P6 9M96D LN",
-        "module": "Military Asset Pack Russia by Currenthill",
-        "shape": "S350_50P6_9M96D",
-        "detectionRange": 0,
-        "threatRangeMin": 2500,
-        "threatRange": 150000,
-        "operators": {
-            "Russia": [
-                2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddafb",
-        "type": "CH_S350_50P6_9M100",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] S-350 50P6 9M100 LN",
-        "module": "Military Asset Pack Russia by Currenthill",
-        "shape": "S350_50P6_9M100",
-        "detectionRange": 0,
-        "threatRangeMin": 1500,
-        "threatRange": 15000,
-        "operators": {
-            "Russia": [
-                2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddafd",
-        "type": "CH_S350_50N6",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] S-350 50N6 STR",
-        "module": "Military Asset Pack Russia by Currenthill",
-        "shape": "S350_50N6",
-        "detectionRange": 200000,
-        "threatRange": 0,
-        "operators": {
-            "Russia": [
-                2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddaff",
-        "type": "CH_S350_50K6",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] S-350 50K6 CP",
-        "module": "Military Asset Pack Russia by Currenthill",
-        "shape": "S350_50K6",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "Russia": [
-                2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb01",
-        "type": "CH_S350_96L6",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] S-350 96L6 SR",
-        "module": "Military Asset Pack Russia by Currenthill",
-        "shape": "S350_96L6",
-        "detectionRange": 300000,
-        "threatRange": 0,
-        "operators": {
-            "Russia": [
-                2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb1f",
-        "type": "CH_T14",
-        "category": "Armor",
-        "paintSchemes": {},
-        "displayName": "[CH] T-14 MBT",
-        "module": "Military Asset Pack Russia by Currenthill",
-        "shape": "T-14",
-        "detectionRange": 8000,
-        "threatRangeMin": 100,
-        "threatRange": 5000,
-        "operators": {
-            "Russia": [
-                2020,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb21",
-        "type": "CH_TigrM",
-        "category": "Armor",
-        "paintSchemes": {},
-        "displayName": "[CH] Tigr-M",
-        "module": "Military Asset Pack Russia by Currenthill",
-        "shape": "TigrM",
-        "detectionRange": 0,
-        "threatRange": 1200,
-        "operators": {
-            "Russia": [
-                2000,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb43",
-        "type": "CH_IskanderM",
-        "category": "MissilesSS",
-        "paintSchemes": {},
-        "displayName": "[CH] Iskander-M SRBM",
-        "module": "Military Asset Pack Russia by Currenthill",
-        "shape": "Iskander-M",
-        "detectionRange": 500000,
-        "threatRangeMin": 150000,
-        "threatRange": 500000,
-        "operators": {
-            "Russia": [
-                2000,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb45",
         "type": "CH_IskanderK",
         "category": "MissilesSS",
         "paintSchemes": {},
@@ -280,7 +99,188 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddb71",
+        "type": "CH_IskanderM",
+        "category": "MissilesSS",
+        "paintSchemes": {},
+        "displayName": "[CH] Iskander-M SRBM",
+        "module": "Military Asset Pack Russia by Currenthill",
+        "shape": "Iskander-M",
+        "detectionRange": 500000,
+        "threatRangeMin": 150000,
+        "threatRange": 500000,
+        "operators": {
+            "Russia": [
+                2000,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_S350_50K6",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "[CH] S-350 50K6 CP",
+        "module": "Military Asset Pack Russia by Currenthill",
+        "shape": "S350_50K6",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_S350_50N6",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "[CH] S-350 50N6 STR",
+        "module": "Military Asset Pack Russia by Currenthill",
+        "shape": "S350_50N6",
+        "detectionRange": 200000,
+        "threatRange": 0,
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_S350_50P6_9M100",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "[CH] S-350 50P6 9M100 LN",
+        "module": "Military Asset Pack Russia by Currenthill",
+        "shape": "S350_50P6_9M100",
+        "detectionRange": 0,
+        "threatRangeMin": 1500,
+        "threatRange": 15000,
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_S350_50P6_9M96D",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "[CH] S-350 50P6 9M96D LN",
+        "module": "Military Asset Pack Russia by Currenthill",
+        "shape": "S350_50P6_9M96D",
+        "detectionRange": 0,
+        "threatRangeMin": 2500,
+        "threatRange": 150000,
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_S350_96L6",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "[CH] S-350 96L6 SR",
+        "module": "Military Asset Pack Russia by Currenthill",
+        "shape": "S350_96L6",
+        "detectionRange": 300000,
+        "threatRange": 0,
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_T14",
+        "category": "Armor",
+        "paintSchemes": {},
+        "displayName": "[CH] T-14 MBT",
+        "module": "Military Asset Pack Russia by Currenthill",
+        "shape": "T-14",
+        "detectionRange": 8000,
+        "threatRangeMin": 100,
+        "threatRange": 5000,
+        "operators": {
+            "Russia": [
+                2020,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_T90M",
+        "category": "Armor",
+        "paintSchemes": {},
+        "displayName": "[CH] T-90M MBT",
+        "module": "Military Asset Pack Russia by Currenthill",
+        "shape": "T-90M",
+        "detectionRange": 8000,
+        "threatRangeMin": 100,
+        "threatRange": 5000,
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_TigrM",
+        "category": "Armor",
+        "paintSchemes": {},
+        "displayName": "[CH] Tigr-M",
+        "module": "Military Asset Pack Russia by Currenthill",
+        "shape": "TigrM",
+        "detectionRange": 0,
+        "threatRange": 1200,
+        "operators": {
+            "Russia": [
+                2000,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "K300P",
+        "category": "MissilesSS",
+        "paintSchemes": {},
+        "displayName": "[CH] Bastion-P LBASM TEL",
+        "module": "Military Asset Pack Russia by Currenthill",
+        "shape": "K-300P",
+        "detectionRange": 400000,
+        "threatRangeMin": 4500,
+        "threatRange": 400000,
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "MonolitB",
+        "category": "MissilesSS",
+        "paintSchemes": {},
+        "displayName": "[CH] Monolit-B LBASM STR",
+        "module": "Military Asset Pack Russia by Currenthill",
+        "shape": "Monolit-B",
+        "detectionRange": 800000,
+        "threatRange": 0,
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
+    },
+    {
         "type": "PantsirS1",
         "category": "Air Defence",
         "paintSchemes": {
@@ -659,7 +659,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddb73",
         "type": "PantsirS2",
         "category": "Air Defence",
         "paintSchemes": {
@@ -1038,43 +1037,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddb7b",
-        "type": "CH_T90M",
-        "category": "Armor",
-        "paintSchemes": {},
-        "displayName": "[CH] T-90M MBT",
-        "module": "Military Asset Pack Russia by Currenthill",
-        "shape": "T-90M",
-        "detectionRange": 8000,
-        "threatRangeMin": 100,
-        "threatRange": 5000,
-        "operators": {
-            "Russia": [
-                2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb7d",
-        "type": "TorM2K",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] Tor M2K SHORAD",
-        "module": "Military Asset Pack Russia by Currenthill",
-        "shape": "Tor-M2K",
-        "detectionRange": 25000,
-        "threatRangeMin": 1000,
-        "threatRange": 12000,
-        "operators": {
-            "Russia": [
-                2000,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb7f",
         "type": "TorM2",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -1092,7 +1054,23 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddb81",
+        "type": "TorM2K",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "[CH] Tor M2K SHORAD",
+        "module": "Military Asset Pack Russia by Currenthill",
+        "shape": "Tor-M2K",
+        "detectionRange": 25000,
+        "threatRangeMin": 1000,
+        "threatRange": 12000,
+        "operators": {
+            "Russia": [
+                2000,
+                2020
+            ]
+        }
+    },
+    {
         "type": "TorM2M",
         "category": "Air Defence",
         "paintSchemes": {},

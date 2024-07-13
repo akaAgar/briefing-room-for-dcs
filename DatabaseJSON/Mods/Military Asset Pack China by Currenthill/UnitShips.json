@@ -1,6 +1,5 @@
 [
     {
-        "_id": "656665311f7407e942eddc73",
         "type": "CH_Type022",
         "displayName": "[CH] Type 022 FAC",
         "categories": [
@@ -23,7 +22,6 @@
         }
     },
     {
-        "_id": "656665311f7407e942eddc87",
         "type": "Type052D",
         "displayName": "[CH] Type 052D Destroyer",
         "categories": [
@@ -49,7 +47,6 @@
         }
     },
     {
-        "_id": "656665311f7407e942eddc89",
         "type": "Type055",
         "displayName": "[CH] Type 055 Destroyer",
         "categories": [

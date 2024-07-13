@@ -1,6 +1,5 @@
 [
     {
-        "_id": "656665311f7407e942eddc8b",
         "type": "CH_Type26",
         "displayName": "[CH] Type 26 Frigate",
         "categories": [
@@ -26,7 +25,6 @@
         }
     },
     {
-        "_id": "656665311f7407e942eddc8d",
         "type": "Type45",
         "displayName": "[CH] Type 45 Destroyer",
         "categories": [

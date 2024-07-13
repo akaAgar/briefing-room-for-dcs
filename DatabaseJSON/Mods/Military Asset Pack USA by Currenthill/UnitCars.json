@@ -1,6 +1,21 @@
 [
     {
-        "_id": "656665301f7407e942eddab7",
+        "type": "CH_Centurion_C_RAM",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "[CH] Centurion C-RAM",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "Centurion_C-RAM",
+        "detectionRange": 20000,
+        "threatRange": 2000,
+        "operators": {
+            "USA": [
+                2000,
+                2020
+            ]
+        }
+    },
+    {
         "type": "CH_LAVAD",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -18,7 +33,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddacf",
         "type": "CH_M10",
         "category": "Armor",
         "paintSchemes": {
@@ -396,7 +410,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddad1",
         "type": "CH_M1A2SEPV3",
         "category": "Armor",
         "paintSchemes": {
@@ -774,7 +787,141 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddad3",
+        "type": "CH_M270A1_ATACMS",
+        "category": "Artillery",
+        "paintSchemes": {},
+        "displayName": "[CH] M270A1 MLRS (ATACMS)",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "M270A1_ATACMS",
+        "detectionRange": 0,
+        "threatRangeMin": 74000,
+        "threatRange": 296000,
+        "operators": {
+            "USA": [
+                1990,
+                2020
+            ],
+            "Ukraine": [
+                1990,
+                2020
+            ],
+            "Finland": [
+                1990,
+                2020
+            ],
+            "France": [
+                1990,
+                2020
+            ],
+            "Germany": [
+                1990,
+                2020
+            ],
+            "Italy": [
+                1990,
+                2020
+            ],
+            "South Korea": [
+                1990,
+                2020
+            ],
+            "UK": [
+                1990,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_M270A1_GLSDB",
+        "category": "Artillery",
+        "paintSchemes": {},
+        "displayName": "[CH] M270A1 MLRS (GLSDB)",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "M270A1",
+        "detectionRange": 0,
+        "threatRangeMin": 55000,
+        "threatRange": 150000,
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ],
+            "Finland": [
+                2020,
+                2020
+            ],
+            "France": [
+                2020,
+                2020
+            ],
+            "Germany": [
+                2020,
+                2020
+            ],
+            "Italy": [
+                2020,
+                2020
+            ],
+            "South Korea": [
+                2020,
+                2020
+            ],
+            "UK": [
+                2020,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_M270A1_GMLRS",
+        "category": "Artillery",
+        "paintSchemes": {},
+        "displayName": "[CH] M270A1 MLRS (GMLRS)",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "M270A1",
+        "detectionRange": 0,
+        "threatRangeMin": 15000,
+        "threatRange": 92000,
+        "operators": {
+            "USA": [
+                2000,
+                2020
+            ],
+            "Ukraine": [
+                2000,
+                2020
+            ],
+            "Finland": [
+                2000,
+                2020
+            ],
+            "France": [
+                2000,
+                2020
+            ],
+            "Germany": [
+                2000,
+                2020
+            ],
+            "Italy": [
+                2000,
+                2020
+            ],
+            "South Korea": [
+                2000,
+                2020
+            ],
+            "UK": [
+                2000,
+                2020
+            ]
+        }
+    },
+    {
         "type": "CH_M551",
         "category": "Armor",
         "paintSchemes": {
@@ -1152,7 +1299,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddad5",
         "type": "CH_M777LTH",
         "category": "Artillery",
         "paintSchemes": {
@@ -1535,7 +1681,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddad7",
         "type": "CH_M777LTH_MTVR",
         "category": "Artillery",
         "paintSchemes": {
@@ -1918,7 +2063,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddad9",
         "type": "CH_MTVR",
         "category": "Unarmed",
         "paintSchemes": {
@@ -2300,7 +2444,72 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddadd",
+        "type": "CH_NASAMS3_CP",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "[CH] NASAMS 3 CP",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "NASAMS_Command_Post",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_NASAMS3_LN_AIM9X2",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "[CH] NASAMS 3 LCHR LN (AIM-9X-2)",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "NASAMS3_HX_LCHR",
+        "detectionRange": 0,
+        "threatRangeMin": 200,
+        "threatRange": 20000,
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_NASAMS3_LN_AMRAAM_ER",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "[CH] NASAMS 3 LCHR LN (AMRAAM-ER)",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "NASAMS3_HX_LCHR",
+        "detectionRange": 0,
+        "threatRangeMin": 2000,
+        "threatRange": 50000,
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_NASAMS3_SR",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "[CH] NASAMS 3 SR",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "NASAMS_Radar_MPQ64F1",
+        "detectionRange": 120000,
+        "threatRange": 0,
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ]
+        }
+    },
+    {
         "type": "CH_OshkoshLATV_M2",
         "category": "Armor",
         "paintSchemes": {
@@ -2682,7 +2891,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddadf",
         "type": "CH_OshkoshLATV_MK19",
         "category": "Armor",
         "paintSchemes": {
@@ -3065,7 +3273,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddae1",
         "type": "CH_OshkoshMATV_M2",
         "category": "Armor",
         "paintSchemes": {
@@ -3447,7 +3654,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddae3",
         "type": "CH_OshkoshMATV_MK19",
         "category": "Armor",
         "paintSchemes": {
@@ -3830,7 +4036,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddb23",
         "type": "CH_USInfantry_FGM148",
         "category": "Infantry",
         "paintSchemes": {},
@@ -3848,144 +4053,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddb25",
-        "type": "CH_USInfantry_M136",
-        "category": "Infantry",
-        "paintSchemes": {},
-        "displayName": "[CH] M136 AT Soldier",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "US_Infantry_M136",
-        "detectionRange": 0,
-        "threatRangeMin": 30,
-        "threatRange": 400,
-        "operators": {
-            "USA": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb27",
-        "type": "CH_USInfantry_M2",
-        "category": "Infantry",
-        "paintSchemes": {},
-        "displayName": "[CH] M2 HMG Soldier",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "US_Infantry_M2",
-        "detectionRange": 0,
-        "threatRange": 1800,
-        "operators": {
-            "USA": [
-                1930,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb29",
-        "type": "CH_USInfantry_M82",
-        "category": "Infantry",
-        "paintSchemes": {},
-        "displayName": "[CH] M82 AMR Soldier",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "US_Infantry_M82",
-        "detectionRange": 0,
-        "threatRange": 1800,
-        "operators": {
-            "USA": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb2b",
-        "type": "CH_USInfantry_MK19",
-        "category": "Infantry",
-        "paintSchemes": {},
-        "displayName": "[CH] Mk19 AGL Soldier",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "US_Infantry_MK19",
-        "detectionRange": 0,
-        "threatRange": 1500,
-        "operators": {
-            "USA": [
-                1960,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb2d",
-        "type": "CH_USInfantry_M4",
-        "category": "Infantry",
-        "paintSchemes": {},
-        "displayName": "[CH] M4 AR Soldier",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "US_Infantry_M4",
-        "detectionRange": 0,
-        "threatRange": 500,
-        "operators": {
-            "USA": [
-                1990,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb2f",
-        "type": "CH_USInfantry_M240",
-        "category": "Infantry",
-        "paintSchemes": {},
-        "displayName": "[CH] M240 GPMG Soldier",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "US_Infantry_M240",
-        "detectionRange": 0,
-        "threatRange": 1200,
-        "operators": {
-            "USA": [
-                1970,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb31",
-        "type": "CH_USInfantry_M249",
-        "category": "Infantry",
-        "paintSchemes": {},
-        "displayName": "[CH] M249 LMG Soldier",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "US_Infantry_M249",
-        "detectionRange": 0,
-        "threatRange": 700,
-        "operators": {
-            "USA": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb33",
-        "type": "CH_USInfantry_M4M203",
-        "category": "Infantry",
-        "paintSchemes": {},
-        "displayName": "[CH] M4/M203 AR/GL Soldier",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "US_Infantry_M4M203",
-        "detectionRange": 0,
-        "threatRange": 500,
-        "operators": {
-            "USA": [
-                1990,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb35",
         "type": "CH_USInfantry_FIM92",
         "category": "Infantry",
         "paintSchemes": {},
@@ -4003,7 +4070,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddb37",
         "type": "CH_USInfantry_M120",
         "category": "Infantry",
         "paintSchemes": {},
@@ -4021,46 +4087,135 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddb3f",
-        "type": "CH_Centurion_C_RAM",
-        "category": "Air Defence",
+        "type": "CH_USInfantry_M136",
+        "category": "Infantry",
         "paintSchemes": {},
-        "displayName": "[CH] Centurion C-RAM",
+        "displayName": "[CH] M136 AT Soldier",
         "module": "Military Asset Pack USA by Currenthill",
-        "shape": "Centurion_C-RAM",
-        "detectionRange": 20000,
-        "threatRange": 2000,
-        "operators": {
-            "USA": [
-                2000,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb47",
-        "type": "M142_HIMARS_GLSDB",
-        "category": "Artillery",
-        "paintSchemes": {},
-        "displayName": "[CH] M142 HIMARS (GLSDB)",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "M142-HIMARS",
+        "shape": "US_Infantry_M136",
         "detectionRange": 0,
-        "threatRangeMin": 55000,
-        "threatRange": 150000,
+        "threatRangeMin": 30,
+        "threatRange": 400,
         "operators": {
             "USA": [
-                2020,
-                2020
-            ],
-            "Ukraine": [
-                2020,
+                1980,
                 2020
             ]
         }
     },
     {
-        "_id": "656665301f7407e942eddb49",
+        "type": "CH_USInfantry_M2",
+        "category": "Infantry",
+        "paintSchemes": {},
+        "displayName": "[CH] M2 HMG Soldier",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "US_Infantry_M2",
+        "detectionRange": 0,
+        "threatRange": 1800,
+        "operators": {
+            "USA": [
+                1930,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_USInfantry_M240",
+        "category": "Infantry",
+        "paintSchemes": {},
+        "displayName": "[CH] M240 GPMG Soldier",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "US_Infantry_M240",
+        "detectionRange": 0,
+        "threatRange": 1200,
+        "operators": {
+            "USA": [
+                1970,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_USInfantry_M249",
+        "category": "Infantry",
+        "paintSchemes": {},
+        "displayName": "[CH] M249 LMG Soldier",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "US_Infantry_M249",
+        "detectionRange": 0,
+        "threatRange": 700,
+        "operators": {
+            "USA": [
+                1980,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_USInfantry_M4",
+        "category": "Infantry",
+        "paintSchemes": {},
+        "displayName": "[CH] M4 AR Soldier",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "US_Infantry_M4",
+        "detectionRange": 0,
+        "threatRange": 500,
+        "operators": {
+            "USA": [
+                1990,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_USInfantry_M4M203",
+        "category": "Infantry",
+        "paintSchemes": {},
+        "displayName": "[CH] M4/M203 AR/GL Soldier",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "US_Infantry_M4M203",
+        "detectionRange": 0,
+        "threatRange": 500,
+        "operators": {
+            "USA": [
+                1990,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_USInfantry_M82",
+        "category": "Infantry",
+        "paintSchemes": {},
+        "displayName": "[CH] M82 AMR Soldier",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "US_Infantry_M82",
+        "detectionRange": 0,
+        "threatRange": 1800,
+        "operators": {
+            "USA": [
+                1980,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_USInfantry_MK19",
+        "category": "Infantry",
+        "paintSchemes": {},
+        "displayName": "[CH] Mk19 AGL Soldier",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "US_Infantry_MK19",
+        "detectionRange": 0,
+        "threatRange": 1500,
+        "operators": {
+            "USA": [
+                1960,
+                2020
+            ]
+        }
+    },
+    {
         "type": "M142_HIMARS_ATACMS",
         "category": "Artillery",
         "paintSchemes": {},
@@ -4082,7 +4237,27 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddb4b",
+        "type": "M142_HIMARS_GLSDB",
+        "category": "Artillery",
+        "paintSchemes": {},
+        "displayName": "[CH] M142 HIMARS (GLSDB)",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "M142-HIMARS",
+        "detectionRange": 0,
+        "threatRangeMin": 55000,
+        "threatRange": 150000,
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ]
+        }
+    },
+    {
         "type": "M142_HIMARS_GMLRS",
         "category": "Artillery",
         "paintSchemes": {},
@@ -4104,7 +4279,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddb4d",
         "type": "M142_HIMARS_PRSM",
         "category": "Artillery",
         "paintSchemes": {},
@@ -4126,7 +4300,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddb4f",
         "type": "M142_HIMARS_PRSM_ASHM",
         "category": "Artillery",
         "paintSchemes": {},
@@ -4148,145 +4321,326 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddb51",
-        "type": "CH_M270A1_GLSDB",
-        "category": "Artillery",
+        "type": "MIM104_ANMPQ65",
+        "category": "Air Defence",
         "paintSchemes": {},
-        "displayName": "[CH] M270A1 MLRS (GLSDB)",
+        "displayName": "[CH] SAM MIM-104 AN/MPQ-65 STR",
         "module": "Military Asset Pack USA by Currenthill",
-        "shape": "M270A1",
-        "detectionRange": 0,
-        "threatRangeMin": 55000,
-        "threatRange": 150000,
+        "shape": "MIM104_ANMPQ65",
+        "detectionRange": 200000,
+        "threatRange": 0,
         "operators": {
             "USA": [
-                2020,
+                2010,
                 2020
             ],
             "Ukraine": [
                 2020,
                 2020
             ],
-            "Finland": [
-                2020,
-                2020
-            ],
-            "France": [
-                2020,
-                2020
-            ],
             "Germany": [
-                2020,
+                2010,
                 2020
             ],
-            "Italy": [
-                2020,
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Israel": [
+                2010,
+                2020
+            ],
+            "Japan": [
+                2010,
+                2020
+            ],
+            "Poland": [
+                2010,
+                2020
+            ],
+            "Spain": [
+                2010,
+                2020
+            ],
+            "Romania": [
+                2010,
                 2020
             ],
             "South Korea": [
-                2020,
+                2010,
                 2020
             ],
-            "UK": [
-                2020,
+            "Jordan": [
+                2010,
+                2020
+            ],
+            "Saudi Arabia": [
+                2010,
+                2020
+            ],
+            "United Arab Emirates": [
+                2010,
                 2020
             ]
         }
     },
     {
-        "_id": "656665301f7407e942eddb53",
-        "type": "CH_M270A1_ATACMS",
-        "category": "Artillery",
+        "type": "MIM104_ANMPQ65A",
+        "category": "Air Defence",
         "paintSchemes": {},
-        "displayName": "[CH] M270A1 MLRS (ATACMS)",
+        "displayName": "[CH] SAM MIM-104 AN/MPQ-65A STR",
         "module": "Military Asset Pack USA by Currenthill",
-        "shape": "M270A1_ATACMS",
-        "detectionRange": 0,
-        "threatRangeMin": 74000,
-        "threatRange": 296000,
+        "shape": "MIM104_ANMPQ65A",
+        "detectionRange": 260000,
+        "threatRange": 0,
         "operators": {
             "USA": [
-                1990,
+                2010,
                 2020
             ],
             "Ukraine": [
-                1990,
-                2020
-            ],
-            "Finland": [
-                1990,
-                2020
-            ],
-            "France": [
-                1990,
+                2020,
                 2020
             ],
             "Germany": [
-                1990,
+                2010,
                 2020
             ],
-            "Italy": [
-                1990,
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Israel": [
+                2010,
+                2020
+            ],
+            "Japan": [
+                2010,
+                2020
+            ],
+            "Poland": [
+                2010,
+                2020
+            ],
+            "Spain": [
+                2010,
+                2020
+            ],
+            "Romania": [
+                2010,
                 2020
             ],
             "South Korea": [
-                1990,
+                2010,
                 2020
             ],
-            "UK": [
-                1990,
+            "Jordan": [
+                2010,
+                2020
+            ],
+            "Saudi Arabia": [
+                2010,
+                2020
+            ],
+            "United Arab Emirates": [
+                2010,
                 2020
             ]
         }
     },
     {
-        "_id": "656665301f7407e942eddb55",
-        "type": "CH_M270A1_GMLRS",
-        "category": "Artillery",
+        "type": "MIM104_ECS",
+        "category": "Air Defence",
         "paintSchemes": {},
-        "displayName": "[CH] M270A1 MLRS (GMLRS)",
+        "displayName": "[CH] SAM MIM-104 ECS",
         "module": "Military Asset Pack USA by Currenthill",
-        "shape": "M270A1",
+        "shape": "MIM104_ECS",
         "detectionRange": 0,
-        "threatRangeMin": 15000,
-        "threatRange": 92000,
+        "threatRange": 0,
         "operators": {
             "USA": [
-                2000,
+                2010,
                 2020
             ],
             "Ukraine": [
-                2000,
-                2020
-            ],
-            "Finland": [
-                2000,
-                2020
-            ],
-            "France": [
-                2000,
+                2020,
                 2020
             ],
             "Germany": [
-                2000,
+                2010,
                 2020
             ],
-            "Italy": [
-                2000,
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Israel": [
+                2010,
+                2020
+            ],
+            "Japan": [
+                2010,
+                2020
+            ],
+            "Poland": [
+                2010,
+                2020
+            ],
+            "Spain": [
+                2010,
+                2020
+            ],
+            "Romania": [
+                2010,
                 2020
             ],
             "South Korea": [
-                2000,
+                2010,
                 2020
             ],
-            "UK": [
-                2000,
+            "Jordan": [
+                2010,
+                2020
+            ],
+            "Saudi Arabia": [
+                2010,
+                2020
+            ],
+            "United Arab Emirates": [
+                2010,
                 2020
             ]
         }
     },
     {
-        "_id": "656665301f7407e942eddb57",
+        "type": "MIM104_EPP",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "[CH] SAM MIM-104 EPP",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "MIM104_EPP",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "USA": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ],
+            "Germany": [
+                2010,
+                2020
+            ],
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Israel": [
+                2010,
+                2020
+            ],
+            "Japan": [
+                2010,
+                2020
+            ],
+            "Poland": [
+                2010,
+                2020
+            ],
+            "Spain": [
+                2010,
+                2020
+            ],
+            "Romania": [
+                2010,
+                2020
+            ],
+            "South Korea": [
+                2010,
+                2020
+            ],
+            "Jordan": [
+                2010,
+                2020
+            ],
+            "Saudi Arabia": [
+                2010,
+                2020
+            ],
+            "United Arab Emirates": [
+                2010,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "MIM104_LTAMDS",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "[CH] SAM MIM-104 LTAMDS STR",
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "MIM104_LTAMDS",
+        "detectionRange": 400000,
+        "threatRange": 0,
+        "operators": {
+            "USA": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ],
+            "Germany": [
+                2010,
+                2020
+            ],
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Israel": [
+                2010,
+                2020
+            ],
+            "Japan": [
+                2010,
+                2020
+            ],
+            "Poland": [
+                2010,
+                2020
+            ],
+            "Spain": [
+                2010,
+                2020
+            ],
+            "Romania": [
+                2010,
+                2020
+            ],
+            "South Korea": [
+                2010,
+                2020
+            ],
+            "Jordan": [
+                2010,
+                2020
+            ],
+            "Saudi Arabia": [
+                2010,
+                2020
+            ],
+            "United Arab Emirates": [
+                2010,
+                2020
+            ]
+        }
+    },
+    {
         "type": "MIM104_M903_PAC2",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -4352,7 +4706,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddb59",
         "type": "MIM104_M903_PAC3",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -4413,401 +4766,6 @@
             ],
             "United Arab Emirates": [
                 2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb5b",
-        "type": "MIM104_ECS",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] SAM MIM-104 ECS",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "MIM104_ECS",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "USA": [
-                2010,
-                2020
-            ],
-            "Ukraine": [
-                2020,
-                2020
-            ],
-            "Germany": [
-                2010,
-                2020
-            ],
-            "Greece": [
-                2010,
-                2020
-            ],
-            "Israel": [
-                2010,
-                2020
-            ],
-            "Japan": [
-                2010,
-                2020
-            ],
-            "Poland": [
-                2010,
-                2020
-            ],
-            "Spain": [
-                2010,
-                2020
-            ],
-            "Romania": [
-                2010,
-                2020
-            ],
-            "South Korea": [
-                2010,
-                2020
-            ],
-            "Jordan": [
-                2010,
-                2020
-            ],
-            "Saudi Arabia": [
-                2010,
-                2020
-            ],
-            "United Arab Emirates": [
-                2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb5d",
-        "type": "MIM104_ANMPQ65",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] SAM MIM-104 AN/MPQ-65 STR",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "MIM104_ANMPQ65",
-        "detectionRange": 200000,
-        "threatRange": 0,
-        "operators": {
-            "USA": [
-                2010,
-                2020
-            ],
-            "Ukraine": [
-                2020,
-                2020
-            ],
-            "Germany": [
-                2010,
-                2020
-            ],
-            "Greece": [
-                2010,
-                2020
-            ],
-            "Israel": [
-                2010,
-                2020
-            ],
-            "Japan": [
-                2010,
-                2020
-            ],
-            "Poland": [
-                2010,
-                2020
-            ],
-            "Spain": [
-                2010,
-                2020
-            ],
-            "Romania": [
-                2010,
-                2020
-            ],
-            "South Korea": [
-                2010,
-                2020
-            ],
-            "Jordan": [
-                2010,
-                2020
-            ],
-            "Saudi Arabia": [
-                2010,
-                2020
-            ],
-            "United Arab Emirates": [
-                2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb5f",
-        "type": "MIM104_ANMPQ65A",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] SAM MIM-104 AN/MPQ-65A STR",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "MIM104_ANMPQ65A",
-        "detectionRange": 260000,
-        "threatRange": 0,
-        "operators": {
-            "USA": [
-                2010,
-                2020
-            ],
-            "Ukraine": [
-                2020,
-                2020
-            ],
-            "Germany": [
-                2010,
-                2020
-            ],
-            "Greece": [
-                2010,
-                2020
-            ],
-            "Israel": [
-                2010,
-                2020
-            ],
-            "Japan": [
-                2010,
-                2020
-            ],
-            "Poland": [
-                2010,
-                2020
-            ],
-            "Spain": [
-                2010,
-                2020
-            ],
-            "Romania": [
-                2010,
-                2020
-            ],
-            "South Korea": [
-                2010,
-                2020
-            ],
-            "Jordan": [
-                2010,
-                2020
-            ],
-            "Saudi Arabia": [
-                2010,
-                2020
-            ],
-            "United Arab Emirates": [
-                2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb61",
-        "type": "MIM104_LTAMDS",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] SAM MIM-104 LTAMDS STR",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "MIM104_LTAMDS",
-        "detectionRange": 400000,
-        "threatRange": 0,
-        "operators": {
-            "USA": [
-                2010,
-                2020
-            ],
-            "Ukraine": [
-                2020,
-                2020
-            ],
-            "Germany": [
-                2010,
-                2020
-            ],
-            "Greece": [
-                2010,
-                2020
-            ],
-            "Israel": [
-                2010,
-                2020
-            ],
-            "Japan": [
-                2010,
-                2020
-            ],
-            "Poland": [
-                2010,
-                2020
-            ],
-            "Spain": [
-                2010,
-                2020
-            ],
-            "Romania": [
-                2010,
-                2020
-            ],
-            "South Korea": [
-                2010,
-                2020
-            ],
-            "Jordan": [
-                2010,
-                2020
-            ],
-            "Saudi Arabia": [
-                2010,
-                2020
-            ],
-            "United Arab Emirates": [
-                2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb63",
-        "type": "MIM104_EPP",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] SAM MIM-104 EPP",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "MIM104_EPP",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "USA": [
-                2010,
-                2020
-            ],
-            "Ukraine": [
-                2020,
-                2020
-            ],
-            "Germany": [
-                2010,
-                2020
-            ],
-            "Greece": [
-                2010,
-                2020
-            ],
-            "Israel": [
-                2010,
-                2020
-            ],
-            "Japan": [
-                2010,
-                2020
-            ],
-            "Poland": [
-                2010,
-                2020
-            ],
-            "Spain": [
-                2010,
-                2020
-            ],
-            "Romania": [
-                2010,
-                2020
-            ],
-            "South Korea": [
-                2010,
-                2020
-            ],
-            "Jordan": [
-                2010,
-                2020
-            ],
-            "Saudi Arabia": [
-                2010,
-                2020
-            ],
-            "United Arab Emirates": [
-                2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb65",
-        "type": "CH_NASAMS3_LN_AMRAAM_ER",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] NASAMS 3 LCHR LN (AMRAAM-ER)",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "NASAMS3_HX_LCHR",
-        "detectionRange": 0,
-        "threatRangeMin": 2000,
-        "threatRange": 50000,
-        "operators": {
-            "USA": [
-                2020,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb67",
-        "type": "CH_NASAMS3_LN_AIM9X2",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] NASAMS 3 LCHR LN (AIM-9X-2)",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "NASAMS3_HX_LCHR",
-        "detectionRange": 0,
-        "threatRangeMin": 200,
-        "threatRange": 20000,
-        "operators": {
-            "USA": [
-                2020,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb69",
-        "type": "CH_NASAMS3_SR",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] NASAMS 3 SR",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "NASAMS_Radar_MPQ64F1",
-        "detectionRange": 120000,
-        "threatRange": 0,
-        "operators": {
-            "USA": [
-                2020,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb6b",
-        "type": "CH_NASAMS3_CP",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] NASAMS 3 CP",
-        "module": "Military Asset Pack USA by Currenthill",
-        "shape": "NASAMS_Command_Post",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "USA": [
-                2020,
                 2020
             ]
         }

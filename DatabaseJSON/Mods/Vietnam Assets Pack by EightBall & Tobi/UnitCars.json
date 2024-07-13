@@ -1,643 +1,11 @@
 [
     {
-        "_id": "66508fa9eaf4d629400ed5d0",
-        "type": "vap_mule",
-        "category": "Unarmed",
-        "paintSchemes": {
-            "0": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "1": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "2": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "3": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "4": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "5": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "6": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "7": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "8": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "9": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "10": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "11": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "12": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "13": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "15": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "16": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "17": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "18": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "19": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "20": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "21": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "22": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "23": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "24": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "25": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "26": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "27": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "28": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "29": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "30": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "31": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "32": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "33": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "34": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "35": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "36": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "37": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "38": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "39": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "40": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "41": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "42": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "43": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "44": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "45": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "46": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "47": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "48": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "49": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "50": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "51": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "52": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "53": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "54": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "55": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "56": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "57": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "58": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "59": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "60": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "61": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "62": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "63": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "64": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "65": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "66": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "67": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "68": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "69": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "70": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "71": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "72": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "73": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "74": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "75": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "76": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "77": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "78": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "79": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "80": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "81": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "82": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "83": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "84": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "85": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "86": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "87": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "88": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "89": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ],
-            "90": [
-                "Static - Ammo",
-                "Static - Cargo",
-                "Static - Fuel",
-                "desert",
-                "green"
-            ]
-        },
-        "displayName": "VAP US Mule",
+        "type": "vap_ammo_50cal_line",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP US Ammo 50Cal Line",
         "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_mule",
+        "shape": "vap_ammo_50cal_line",
         "detectionRange": 0,
         "threatRange": 0,
         "operators": {
@@ -648,618 +16,230 @@
         }
     },
     {
-        "_id": "66508fa9eaf4d629400ed5d2",
-        "type": "vap_mutt",
-        "category": "Unarmed",
-        "paintSchemes": {
-            "0": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "1": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "2": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "3": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "4": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "5": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "6": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "7": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "8": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "9": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "10": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "11": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "12": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "13": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "15": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "16": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "17": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "18": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "19": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "20": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "21": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "22": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "23": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "24": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "25": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "26": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "27": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "28": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "29": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "30": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "31": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "32": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "33": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "34": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "35": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "36": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "37": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "38": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "39": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "40": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "41": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "42": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "43": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "44": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "45": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "46": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "47": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "48": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "49": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "50": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "51": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "52": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "53": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "54": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "55": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "56": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "57": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "58": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "59": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "60": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "61": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "62": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "63": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "64": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "65": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "66": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "67": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "68": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "69": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "70": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "71": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "72": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "73": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "74": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "75": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "76": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "77": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "78": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "79": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "80": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "81": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "82": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "83": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "84": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "85": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "86": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "87": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "88": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "89": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ],
-            "90": [
-                "Static - Antennas",
-                "Static - Windshield Down"
-            ]
-        },
-        "displayName": "VAP US MUTT",
+        "type": "vap_ammo_50cal_pack",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP US Ammo 50Cal Pack",
         "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_mutt",
+        "shape": "vap_ammo_50cal_pack",
         "detectionRange": 0,
         "threatRange": 0,
         "operators": {
-            "Argentina": [
-                1950,
-                1990
-            ],
-            "Bahrain": [
-                1950,
-                1990
-            ],
-            "Brazil": [
-                1950,
-                1990
-            ],
-            "Canada": [
-                1950,
-                1990
-            ],
-            "Chile": [
-                1950,
-                1990
-            ],
-            "Denmark": [
-                1950,
-                1990
-            ],
-            "Egypt": [
-                1950,
-                1990
-            ],
-            "France": [
-                1950,
-                1990
-            ],
-            "Greece": [
-                1950,
-                1990
-            ],
-            "Indonesia": [
-                1950,
-                1990
-            ],
-            "Israel": [
-                1950,
-                1990
-            ],
-            "Jordan": [
-                1950,
-                1990
-            ],
-            "Kuwait": [
-                1950,
-                1990
-            ],
-            "Lebanon": [
-                1950,
-                1990
-            ],
-            "Libya": [
-                1950,
-                1990
-            ],
-            "Morocco": [
-                1950,
-                1990
-            ],
-            "TheNetherlands": [
-                1950,
-                1990
-            ],
-            "Pakistan": [
-                1950,
-                1990
-            ],
-            "Portugal": [
-                1950,
-                1990
-            ],
-            "SaudiArabia": [
-                1950,
-                1990
-            ],
-            "SouthKorea": [
-                1950,
-                1990
-            ],
-            "Spain": [
-                1950,
-                1990
-            ],
-            "Thailand": [
-                1950,
-                1990
-            ],
-            "Turkey": [
-                1950,
-                1990
-            ],
-            "UK": [
-                1950,
-                1990
-            ],
             "USA": [
                 1950,
-                1990
-            ],
-            "Vietnam": [
-                1950,
-                1990
-            ],
-            "Yemen": [
-                1950,
-                1990
+                1970
             ]
         }
     },
     {
-        "_id": "66508fa9eaf4d629400ed5d4",
-        "type": "vap_mutt_gun",
-        "category": "Artillery",
+        "type": "vap_ammo_box_pile",
+        "category": "Fortification",
         "paintSchemes": {},
-        "displayName": "VAP US MUTT Gun",
+        "displayName": "VAP Ammo Box Pile",
         "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_mutt_gun",
+        "shape": "vap_ammo_box_pile",
         "detectionRange": 0,
-        "threatRange": 5000,
+        "threatRange": 0,
         "operators": {
-            "Argentina": [
+            "ALL": [
                 1950,
-                1990
-            ],
-            "Bahrain": [
-                1950,
-                1990
-            ],
-            "Brazil": [
-                1950,
-                1990
-            ],
-            "Canada": [
-                1950,
-                1990
-            ],
-            "Chile": [
-                1950,
-                1990
-            ],
-            "Denmark": [
-                1950,
-                1990
-            ],
-            "Egypt": [
-                1950,
-                1990
-            ],
-            "France": [
-                1950,
-                1990
-            ],
-            "Greece": [
-                1950,
-                1990
-            ],
-            "Indonesia": [
-                1950,
-                1990
-            ],
-            "Israel": [
-                1950,
-                1990
-            ],
-            "Jordan": [
-                1950,
-                1990
-            ],
-            "Kuwait": [
-                1950,
-                1990
-            ],
-            "Lebanon": [
-                1950,
-                1990
-            ],
-            "Libya": [
-                1950,
-                1990
-            ],
-            "Morocco": [
-                1950,
-                1990
-            ],
-            "TheNetherlands": [
-                1950,
-                1990
-            ],
-            "Pakistan": [
-                1950,
-                1990
-            ],
-            "Portugal": [
-                1950,
-                1990
-            ],
-            "SaudiArabia": [
-                1950,
-                1990
-            ],
-            "SouthKorea": [
-                1950,
-                1990
-            ],
-            "Spain": [
-                1950,
-                1990
-            ],
-            "Thailand": [
-                1950,
-                1990
-            ],
-            "Turkey": [
-                1950,
-                1990
-            ],
-            "UK": [
-                1950,
-                1990
-            ],
-            "USA": [
-                1950,
-                1990
-            ],
-            "Vietnam": [
-                1950,
-                1990
-            ],
-            "Yemen": [
-                1950,
-                1990
+                1970
             ]
         }
     },
     {
-        "_id": "66508fa9eaf4d629400ed5d6",
+        "type": "vap_ammo_box_wood_long",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP Ammo Box Long",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_ammo_box_wood_long",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_ammo_box_wood_small",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP Ammo Box Small",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_ammo_box_wood_small",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_barrel_green",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP Barrel Green",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_barrel_green",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_barrel_red",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP Barrel Red",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_barrel_red",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_barrels",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP Barrels Pack",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_barrels",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_barrels_line",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP Barrels Line",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_barrels_line",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_house1",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP Bamboo House",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_house1",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_house_T",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP Bamboo House T-Shape",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_house_T",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_house_high",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP Bamboo House High",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_house_high",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_house_long",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP Bamboo House Long",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_house_long",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_house_small",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP Bamboo House Small",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_house_small",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_house_tiny",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP Bamboo House Tiny",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_house_tiny",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
         "type": "vap_m35_truck",
         "category": "Unarmed",
         "paintSchemes": {
@@ -1913,7 +893,1310 @@
         }
     },
     {
-        "_id": "66508fa9eaf4d629400ed5d8",
+        "type": "vap_mixed_cargo_1",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP US Mixed Cargo 1",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_mixed_cargo_1",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_mixed_cargo_2",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP US Mixed Cargo 2",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_mixed_cargo_2",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_mre_boxes",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP US MRE Boxes",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_mre_boxes",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_mule",
+        "category": "Unarmed",
+        "paintSchemes": {
+            "0": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "1": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "2": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "3": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "4": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "5": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "6": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "7": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "8": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "9": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "10": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "11": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "12": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "13": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "15": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "16": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "17": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "18": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "19": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "20": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "21": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "22": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "23": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "24": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "25": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "26": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "27": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "28": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "29": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "30": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "31": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "32": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "33": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "34": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "35": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "36": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "37": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "38": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "39": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "40": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "41": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "42": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "43": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "44": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "45": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "46": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "47": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "48": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "49": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "50": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "51": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "52": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "53": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "54": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "55": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "56": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "57": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "58": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "59": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "60": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "61": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "62": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "63": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "64": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "65": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "66": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "67": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "68": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "69": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "70": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "71": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "72": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "73": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "74": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "75": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "76": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "77": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "78": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "79": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "80": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "81": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "82": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "83": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "84": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "85": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "86": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "87": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "88": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "89": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ],
+            "90": [
+                "Static - Ammo",
+                "Static - Cargo",
+                "Static - Fuel",
+                "desert",
+                "green"
+            ]
+        },
+        "displayName": "VAP US Mule",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_mule",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "USA": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_mutt",
+        "category": "Unarmed",
+        "paintSchemes": {
+            "0": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "1": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "2": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "3": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "4": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "5": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "6": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "7": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "8": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "9": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "10": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "11": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "12": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "13": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "15": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "16": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "17": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "18": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "19": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "20": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "21": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "22": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "23": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "24": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "25": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "26": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "27": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "28": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "29": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "30": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "31": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "32": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "33": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "34": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "35": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "36": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "37": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "38": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "39": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "40": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "41": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "42": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "43": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "44": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "45": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "46": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "47": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "48": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "49": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "50": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "51": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "52": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "53": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "54": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "55": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "56": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "57": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "58": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "59": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "60": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "61": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "62": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "63": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "64": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "65": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "66": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "67": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "68": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "69": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "70": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "71": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "72": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "73": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "74": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "75": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "76": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "77": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "78": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "79": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "80": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "81": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "82": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "83": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "84": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "85": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "86": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "87": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "88": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "89": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ],
+            "90": [
+                "Static - Antennas",
+                "Static - Windshield Down"
+            ]
+        },
+        "displayName": "VAP US MUTT",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_mutt",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "Argentina": [
+                1950,
+                1990
+            ],
+            "Bahrain": [
+                1950,
+                1990
+            ],
+            "Brazil": [
+                1950,
+                1990
+            ],
+            "Canada": [
+                1950,
+                1990
+            ],
+            "Chile": [
+                1950,
+                1990
+            ],
+            "Denmark": [
+                1950,
+                1990
+            ],
+            "Egypt": [
+                1950,
+                1990
+            ],
+            "France": [
+                1950,
+                1990
+            ],
+            "Greece": [
+                1950,
+                1990
+            ],
+            "Indonesia": [
+                1950,
+                1990
+            ],
+            "Israel": [
+                1950,
+                1990
+            ],
+            "Jordan": [
+                1950,
+                1990
+            ],
+            "Kuwait": [
+                1950,
+                1990
+            ],
+            "Lebanon": [
+                1950,
+                1990
+            ],
+            "Libya": [
+                1950,
+                1990
+            ],
+            "Morocco": [
+                1950,
+                1990
+            ],
+            "TheNetherlands": [
+                1950,
+                1990
+            ],
+            "Pakistan": [
+                1950,
+                1990
+            ],
+            "Portugal": [
+                1950,
+                1990
+            ],
+            "SaudiArabia": [
+                1950,
+                1990
+            ],
+            "SouthKorea": [
+                1950,
+                1990
+            ],
+            "Spain": [
+                1950,
+                1990
+            ],
+            "Thailand": [
+                1950,
+                1990
+            ],
+            "Turkey": [
+                1950,
+                1990
+            ],
+            "UK": [
+                1950,
+                1990
+            ],
+            "USA": [
+                1950,
+                1990
+            ],
+            "Vietnam": [
+                1950,
+                1990
+            ],
+            "Yemen": [
+                1950,
+                1990
+            ]
+        }
+    },
+    {
+        "type": "vap_mutt_gun",
+        "category": "Artillery",
+        "paintSchemes": {},
+        "displayName": "VAP US MUTT Gun",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_mutt_gun",
+        "detectionRange": 0,
+        "threatRange": 5000,
+        "operators": {
+            "Argentina": [
+                1950,
+                1990
+            ],
+            "Bahrain": [
+                1950,
+                1990
+            ],
+            "Brazil": [
+                1950,
+                1990
+            ],
+            "Canada": [
+                1950,
+                1990
+            ],
+            "Chile": [
+                1950,
+                1990
+            ],
+            "Denmark": [
+                1950,
+                1990
+            ],
+            "Egypt": [
+                1950,
+                1990
+            ],
+            "France": [
+                1950,
+                1990
+            ],
+            "Greece": [
+                1950,
+                1990
+            ],
+            "Indonesia": [
+                1950,
+                1990
+            ],
+            "Israel": [
+                1950,
+                1990
+            ],
+            "Jordan": [
+                1950,
+                1990
+            ],
+            "Kuwait": [
+                1950,
+                1990
+            ],
+            "Lebanon": [
+                1950,
+                1990
+            ],
+            "Libya": [
+                1950,
+                1990
+            ],
+            "Morocco": [
+                1950,
+                1990
+            ],
+            "TheNetherlands": [
+                1950,
+                1990
+            ],
+            "Pakistan": [
+                1950,
+                1990
+            ],
+            "Portugal": [
+                1950,
+                1990
+            ],
+            "SaudiArabia": [
+                1950,
+                1990
+            ],
+            "SouthKorea": [
+                1950,
+                1990
+            ],
+            "Spain": [
+                1950,
+                1990
+            ],
+            "Thailand": [
+                1950,
+                1990
+            ],
+            "Turkey": [
+                1950,
+                1990
+            ],
+            "UK": [
+                1950,
+                1990
+            ],
+            "USA": [
+                1950,
+                1990
+            ],
+            "Vietnam": [
+                1950,
+                1990
+            ],
+            "Yemen": [
+                1950,
+                1990
+            ]
+        }
+    },
+    {
         "type": "vap_type63_mlrs",
         "category": "Artillery",
         "paintSchemes": {},
@@ -1986,7 +2269,135 @@
         }
     },
     {
-        "_id": "66508fa9eaf4d629400ed5da",
+        "type": "vap_us_hooch_LP",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP US Hooch Low Poly",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_us_hooch_LP",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "USA": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_us_hooch_closed",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP US Hooch",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_us_hooch_closed",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "USA": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_us_hooch_radio",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP US Hooch Radio",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_us_hooch_radio",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "USA": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_vc_bicycle",
+        "category": "Unarmed",
+        "paintSchemes": {},
+        "displayName": "VAP VC Bicycle",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_vc_bicycle",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "Vietnam": [
+                1940,
+                1980
+            ]
+        }
+    },
+    {
+        "type": "vap_vc_bicycle_ak",
+        "category": "Armor",
+        "paintSchemes": {},
+        "displayName": "VAP VC Bicycle AK",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_vc_bicycle_ak",
+        "detectionRange": 5000,
+        "threatRange": 500,
+        "operators": {
+            "Vietnam": [
+                1940,
+                1980
+            ]
+        }
+    },
+    {
+        "type": "vap_vc_bicycle_mortar",
+        "category": "Artillery",
+        "paintSchemes": {},
+        "displayName": "VAP VC Bicycle Mortar",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_vc_bicycle_mortar",
+        "detectionRange": 0,
+        "threatRangeMin": 30,
+        "threatRange": 7000,
+        "operators": {
+            "Vietnam": [
+                1940,
+                1980
+            ]
+        }
+    },
+    {
+        "type": "vap_vc_bunker_single",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP VC Bunker",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_vc_bunker_single",
+        "detectionRange": 0,
+        "threatRange": 800,
+        "operators": {
+            "Vietnam": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
+        "type": "vap_vc_mg_nest",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP VC MG Nest",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_vc_mg_nest",
+        "detectionRange": 1000,
+        "threatRange": 500,
+        "operators": {
+            "Vietnam": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
         "type": "vap_vc_zil",
         "category": "Armor",
         "paintSchemes": {},
@@ -2011,7 +2422,6 @@
         }
     },
     {
-        "_id": "66508fa9eaf4d629400ed5dc",
         "type": "vap_vc_zis",
         "category": "Unarmed",
         "paintSchemes": {},
@@ -2036,7 +2446,22 @@
         }
     },
     {
-        "_id": "66508fa9eaf4d629400ed5de",
+        "type": "vap_watchtower",
+        "category": "Fortification",
+        "paintSchemes": {},
+        "displayName": "VAP Vietcong Watchtower",
+        "module": "Vietnam Assets Pack by EightBall & Tobi",
+        "shape": "vap_watchtower",
+        "detectionRange": 0,
+        "threatRange": 0,
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
+    },
+    {
         "type": "vap_zis_150_aa",
         "category": "Air Defence",
         "paintSchemes": {
@@ -2418,466 +2843,6 @@
             "China": [
                 1940,
                 1980
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed5e0",
-        "type": "vap_vc_bicycle",
-        "category": "Unarmed",
-        "paintSchemes": {},
-        "displayName": "VAP VC Bicycle",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_vc_bicycle",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "Vietnam": [
-                1940,
-                1980
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed5e2",
-        "type": "vap_vc_bicycle_mortar",
-        "category": "Artillery",
-        "paintSchemes": {},
-        "displayName": "VAP VC Bicycle Mortar",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_vc_bicycle_mortar",
-        "detectionRange": 0,
-        "threatRangeMin": 30,
-        "threatRange": 7000,
-        "operators": {
-            "Vietnam": [
-                1940,
-                1980
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed5e4",
-        "type": "vap_vc_bicycle_ak",
-        "category": "Armor",
-        "paintSchemes": {},
-        "displayName": "VAP VC Bicycle AK",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_vc_bicycle_ak",
-        "detectionRange": 5000,
-        "threatRange": 500,
-        "operators": {
-            "Vietnam": [
-                1940,
-                1980
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed5e6",
-        "type": "vap_us_hooch_LP",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP US Hooch Low Poly",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_us_hooch_LP",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "USA": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed5e8",
-        "type": "vap_ammo_50cal_line",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP US Ammo 50Cal Line",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_ammo_50cal_line",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "USA": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed5ea",
-        "type": "vap_ammo_50cal_pack",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP US Ammo 50Cal Pack",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_ammo_50cal_pack",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "USA": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed5ec",
-        "type": "vap_barrels_line",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP Barrels Line",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_barrels_line",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed5ee",
-        "type": "vap_barrels",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP Barrels Pack",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_barrels",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed5f0",
-        "type": "vap_ammo_box_pile",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP Ammo Box Pile",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_ammo_box_pile",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed5f2",
-        "type": "vap_ammo_box_wood_long",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP Ammo Box Long",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_ammo_box_wood_long",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed5f4",
-        "type": "vap_ammo_box_wood_small",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP Ammo Box Small",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_ammo_box_wood_small",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed5f6",
-        "type": "vap_barrel_red",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP Barrel Red",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_barrel_red",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed5f8",
-        "type": "vap_barrel_green",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP Barrel Green",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_barrel_green",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed5fa",
-        "type": "vap_mre_boxes",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP US MRE Boxes",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_mre_boxes",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed5fc",
-        "type": "vap_mixed_cargo_1",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP US Mixed Cargo 1",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_mixed_cargo_1",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed5fe",
-        "type": "vap_mixed_cargo_2",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP US Mixed Cargo 2",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_mixed_cargo_2",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed600",
-        "type": "vap_watchtower",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP Vietcong Watchtower",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_watchtower",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed602",
-        "type": "vap_house_high",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP Bamboo House High",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_house_high",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed604",
-        "type": "vap_house_long",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP Bamboo House Long",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_house_long",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed606",
-        "type": "vap_house_small",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP Bamboo House Small",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_house_small",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed608",
-        "type": "vap_house_T",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP Bamboo House T-Shape",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_house_T",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed60a",
-        "type": "vap_house_tiny",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP Bamboo House Tiny",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_house_tiny",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed60c",
-        "type": "vap_house1",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP Bamboo House",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_house1",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "ALL": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed60e",
-        "type": "vap_us_hooch_radio",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP US Hooch Radio",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_us_hooch_radio",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "USA": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed610",
-        "type": "vap_us_hooch_closed",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP US Hooch",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_us_hooch_closed",
-        "detectionRange": 0,
-        "threatRange": 0,
-        "operators": {
-            "USA": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed612",
-        "type": "vap_vc_bunker_single",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP VC Bunker",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_vc_bunker_single",
-        "detectionRange": 0,
-        "threatRange": 800,
-        "operators": {
-            "Vietnam": [
-                1950,
-                1970
-            ]
-        }
-    },
-    {
-        "_id": "66508fa9eaf4d629400ed614",
-        "type": "vap_vc_mg_nest",
-        "category": "Fortification",
-        "paintSchemes": {},
-        "displayName": "VAP VC MG Nest",
-        "module": "Vietnam Assets Pack by EightBall & Tobi",
-        "shape": "vap_vc_mg_nest",
-        "detectionRange": 1000,
-        "threatRange": 500,
-        "operators": {
-            "Vietnam": [
-                1950,
-                1970
             ]
         }
     }

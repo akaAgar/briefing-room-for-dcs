@@ -1,6 +1,5 @@
 [
     {
-        "_id": "65328a714319326630cdf2db",
         "type": "VSN_MirageIIIC",
         "callsigns": {
             "0": [
@@ -4003,7 +4002,6 @@
         }
     },
     {
-        "_id": "65328a714319326630cdf2dd",
         "type": "VSN_MirageIIIC_AG",
         "callsigns": {
             "0": [
@@ -8006,7 +8004,6 @@
         }
     },
     {
-        "_id": "65328a714319326630cdf2df",
         "type": "VSN_MirageIIIS",
         "callsigns": {
             "0": [

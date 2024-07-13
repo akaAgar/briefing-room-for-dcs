@@ -1,6 +1,5 @@
 [
     {
-        "_id": "656665301f7407e942eddadb",
         "type": "CH_Marder1A5",
         "category": "Armor",
         "paintSchemes": {},
@@ -22,24 +21,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddae7",
-        "type": "CH_PumaA1",
-        "category": "Armor",
-        "paintSchemes": {},
-        "displayName": "[CH] Puma A1 IFV",
-        "module": "Military Asset Pack Germany by Currenthill",
-        "shape": "PumaA1",
-        "detectionRange": 0,
-        "threatRange": 3000,
-        "operators": {
-            "Germany": [
-                2020,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddae9",
         "type": "CH_PZH2000",
         "category": "Artillery",
         "paintSchemes": {},
@@ -55,6 +36,22 @@
                 2020
             ],
             "Ukraine": [
+                2020,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "CH_PumaA1",
+        "category": "Armor",
+        "paintSchemes": {},
+        "displayName": "[CH] Puma A1 IFV",
+        "module": "Military Asset Pack Germany by Currenthill",
+        "shape": "PumaA1",
+        "detectionRange": 0,
+        "threatRange": 3000,
+        "operators": {
+            "Germany": [
                 2020,
                 2020
             ]

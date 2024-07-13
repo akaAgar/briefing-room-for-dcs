@@ -1,6 +1,5 @@
 [
     {
-        "_id": "656665301f7407e942eddaa5",
         "type": "CH_CJ10",
         "category": "MissilesSS",
         "paintSchemes": {},
@@ -18,7 +17,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddab1",
         "type": "CH_HQ22_LN",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -36,24 +34,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddab3",
-        "type": "CH_HQ22_STR",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] HQ-22 H-200 STR",
-        "module": "Military Asset Pack China by Currenthill",
-        "shape": "HQ22_STR",
-        "detectionRange": 200000,
-        "threatRange": 0,
-        "operators": {
-            "China": [
-                2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddab5",
         "type": "CH_HQ22_SR",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -70,7 +50,22 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddab9",
+        "type": "CH_HQ22_STR",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "[CH] HQ-22 H-200 STR",
+        "module": "Military Asset Pack China by Currenthill",
+        "shape": "HQ22_STR",
+        "detectionRange": 200000,
+        "threatRange": 0,
+        "operators": {
+            "China": [
+                2010,
+                2020
+            ]
+        }
+    },
+    {
         "type": "CH_LD3000",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -87,7 +82,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddabb",
         "type": "CH_LD3000_stationary",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -104,7 +98,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddae5",
         "type": "CH_PCL181",
         "category": "Artillery",
         "paintSchemes": {},
@@ -122,61 +115,6 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddb3d",
-        "type": "CH_ZBD04A-AT",
-        "category": "Armor",
-        "paintSchemes": {},
-        "displayName": "[CH] ZBD-04A AT SPATGM",
-        "module": "Military Asset Pack China by Currenthill",
-        "shape": "ZBD-04A-AT",
-        "detectionRange": 0,
-        "threatRangeMin": 1000,
-        "threatRange": 10000,
-        "operators": {
-            "China": [
-                1990,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb41",
-        "type": "HQ17A",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] HQ-17A SHORAD",
-        "module": "Military Asset Pack China by Currenthill",
-        "shape": "HQ-17A",
-        "detectionRange": 45000,
-        "threatRangeMin": 1500,
-        "threatRange": 20000,
-        "operators": {
-            "China": [
-                2010,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb6d",
-        "type": "PGL_625",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "[CH] PGL-625 SPAAGM",
-        "module": "Military Asset Pack China by Currenthill",
-        "shape": "PGL_625",
-        "detectionRange": 20000,
-        "threatRangeMin": 500,
-        "threatRange": 10000,
-        "operators": {
-            "China": [
-                2000,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "656665301f7407e942eddb6f",
         "type": "CH_PGZ09",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -194,7 +132,23 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddb83",
+        "type": "CH_ZBD04A-AT",
+        "category": "Armor",
+        "paintSchemes": {},
+        "displayName": "[CH] ZBD-04A AT SPATGM",
+        "module": "Military Asset Pack China by Currenthill",
+        "shape": "ZBD-04A-AT",
+        "detectionRange": 0,
+        "threatRangeMin": 1000,
+        "threatRange": 10000,
+        "operators": {
+            "China": [
+                1990,
+                2020
+            ]
+        }
+    },
+    {
         "type": "CH_ZTQ_15",
         "category": "Armor",
         "paintSchemes": {},
@@ -212,7 +166,40 @@
         }
     },
     {
-        "_id": "656665301f7407e942eddb85",
+        "type": "HQ17A",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "[CH] HQ-17A SHORAD",
+        "module": "Military Asset Pack China by Currenthill",
+        "shape": "HQ-17A",
+        "detectionRange": 45000,
+        "threatRangeMin": 1500,
+        "threatRange": 20000,
+        "operators": {
+            "China": [
+                2010,
+                2020
+            ]
+        }
+    },
+    {
+        "type": "PGL_625",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "[CH] PGL-625 SPAAGM",
+        "module": "Military Asset Pack China by Currenthill",
+        "shape": "PGL_625",
+        "detectionRange": 20000,
+        "threatRangeMin": 500,
+        "threatRange": 10000,
+        "operators": {
+            "China": [
+                2000,
+                2020
+            ]
+        }
+    },
+    {
         "type": "ZTZ_99A2",
         "category": "Armor",
         "paintSchemes": {},

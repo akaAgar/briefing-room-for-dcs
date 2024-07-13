@@ -1,6 +1,5 @@
 [
     {
-        "_id": "65328a714319326630cdf3d5",
         "type": "VSN_Edwards_ATC_tower",
         "displayName": "VSN Edwards ATC tower",
         "module": "VSN_F104G",
