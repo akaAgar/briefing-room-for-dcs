@@ -170,12 +170,8 @@
             <div class="generator-block">
                 <h3>@briefingRoom.Translate("DynamicSpawn")</h3>
                 <div>&nbsp;<span class="oi oi-info"></span>&nbsp;@briefingRoom.Translate("DynamicSpawnWarn")&nbsp;</div>
+                <InputEnum ClassString="flex-block" @bind-Value="Template.AirbaseDynamicSpawn" EnumType="DsAirbase"/>
                 <div class="flex-block form-group">
-                    <label class="checkbox-wrapper">
-                        <input type="checkbox" checked=@Template.AllAirbaseDynamicSpawn
-                            @onchange="eventArgs => { Template.AllAirbaseDynamicSpawn = (bool)eventArgs.Value; StateHasChanged();}" />
-                            <span>@briefingRoom.Translate("AllAirbaseDynamicSpawn")</span>
-                    </label>
                      <label class="checkbox-wrapper">
                                     <input type="checkbox" checked=@Template.CarrierDynamicSpawn
                                         @onchange="eventArgs => { Template.CarrierDynamicSpawn = (bool)eventArgs.Value; StateHasChanged();}" />

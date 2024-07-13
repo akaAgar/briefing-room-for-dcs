@@ -66,7 +66,7 @@ namespace BriefingRoom4DCS.Template
         internal bool SpawnAnywhere { get; init; }
         internal Dictionary<string, double[]> CarrierHints { get; init; }
         internal MissionTemplate Template { get; init; }
-        internal bool AllAirbaseDynamicSpawn { get; init; }
+        internal DsAirbase AirbaseDynamicSpawn { get; init; }
         internal bool DsAllowHotStart { get; init; }
         internal bool CarrierDynamicSpawn { get; init; }
 
@@ -119,7 +119,7 @@ namespace BriefingRoom4DCS.Template
             SpawnAnywhere = template.OptionsMission.Contains("SpawnAnywhere") || template.ContextSituation == "None";
             CarrierHints = template.CarrierHints;
             Template = template;
-            AllAirbaseDynamicSpawn = template.AllAirbaseDynamicSpawn;
+            AirbaseDynamicSpawn = template.AirbaseDynamicSpawn;
             DsAllowHotStart = template.DSAllowHotStart;
             CarrierDynamicSpawn = template.CarrierDynamicSpawn;
         }

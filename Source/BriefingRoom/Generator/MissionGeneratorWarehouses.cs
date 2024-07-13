@@ -19,9 +19,11 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Mission;
+using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -41,9 +43,17 @@ namespace BriefingRoom4DCS.Generator
             foreach (int airbaseID in mission.Airbases.Keys)
             {
                 string airportLua = airportLuaTemplate;
+                bool AllowDynamicSpawn = mission.TemplateRecord.AirbaseDynamicSpawn switch
+                {
+                    DsAirbase.All => true,
+                    DsAirbase.Friendly => mission.Airbases[airbaseID] == mission.TemplateRecord.ContextPlayerCoalition,
+                    DsAirbase.StrikePackages => mission.StrikePackages.Select(sp => sp.Airbase.DCSID).Contains(airbaseID),
+                    DsAirbase.HomeAirbase => airbaseID == mission.PlayerAirbase.DCSID,
+                    _ => false,
+                };
                 GeneratorTools.ReplaceKey(ref airportLua, "index", airbaseID);
                 GeneratorTools.ReplaceKey(ref airportLua, "coalition", mission.Airbases[airbaseID].ToString().ToUpper());
-                GeneratorTools.ReplaceKey(ref airportLua, "dynamicSpawn", mission.TemplateRecord.AllAirbaseDynamicSpawn);
+                GeneratorTools.ReplaceKey(ref airportLua, "dynamicSpawn", AllowDynamicSpawn);
                 GeneratorTools.ReplaceKey(ref airportLua, "allowHotStart", mission.TemplateRecord.DsAllowHotStart);
 
                 warehousesAirportLua += airportLua + "\r\n";
@@ -58,8 +68,8 @@ namespace BriefingRoom4DCS.Generator
                 string carrierLua = airportLuaTemplate;
                 GeneratorTools.ReplaceKey(ref carrierLua, "index", carrier.UnitMakerGroupInfo.DCSGroup.Units[0].UnitId);
                 GeneratorTools.ReplaceKey(ref carrierLua, "coalition", carrier.Coalition.ToString().ToUpper());
-                 GeneratorTools.ReplaceKey(ref carrierLua, "dynamicSpawn", mission.TemplateRecord.CarrierDynamicSpawn);
-                GeneratorTools.ReplaceKey(ref carrierLua, "allowHotStart",  mission.TemplateRecord.DsAllowHotStart);
+                GeneratorTools.ReplaceKey(ref carrierLua, "dynamicSpawn", mission.TemplateRecord.CarrierDynamicSpawn);
+                GeneratorTools.ReplaceKey(ref carrierLua, "allowHotStart", mission.TemplateRecord.DsAllowHotStart);
 
                 warehousesCarriersLua += carrierLua + "\r\n";
             }
