@@ -94,9 +94,10 @@ namespace BriefingRoom4DCS.Generator
                 }
                 var unitDB = unitDBs.First();
                 var unitFamily = unitDB.Families.First();
+                string airbaseName = null;
                 try
                 {
-                    SetAirbase(featureDB, ref mission, unitDB, groupSide, ref coordinatesValue, coordinates2.Value, unitCount, ref extraSettings);
+                    airbaseName = SetAirbase(featureDB, ref mission, unitDB, groupSide, ref coordinatesValue, coordinates2.Value, unitCount, ref extraSettings);
                 }
                 catch (BriefingRoomException)
                 {
@@ -131,8 +132,8 @@ namespace BriefingRoom4DCS.Generator
                             $"{groupInfo.Value.Name.Split("-")[0]}\t" +
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get(mission.LangKey)}\t" +
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}{TACANStr}\t" +
-                            $"{featureDB.UnitGroupTask}"); // TODO: human-readable payload name
-
+                            $"{featureDB.UnitGroupTask}" +
+                             (airbaseName != null ? $"\t{airbaseName}": "")); 
                 if (!groupInfo.Value.UnitDB.IsAircraft)
                     mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Families[0]}-{groupSide}-{groupInfo.Value.GroupID}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
 
@@ -250,10 +251,10 @@ namespace BriefingRoom4DCS.Generator
                     throw new BriefingRoomException(mission.LangKey, "NoUnitsFoundForMissionFeature", featureDB.ID);
                 }
                 var unitDB = unitDBs.First();
-
+                string airbaseName = null;
                 try
                 {
-                    SetAirbase(featureDB, ref mission, unitDB, groupSide, ref coordinates, coordinates2, unitCount, ref extraSettings);
+                   airbaseName = SetAirbase(featureDB, ref mission, unitDB, groupSide, ref coordinates, coordinates2, unitCount, ref extraSettings);
                 }
                 catch (BriefingRoomException)
                 {
@@ -287,13 +288,14 @@ namespace BriefingRoom4DCS.Generator
                             $"{groupInfo.Value.Name.Split("-")[0]}\t" +
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get(mission.LangKey)}\t" +
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
-                            $"{featureDB.UnitGroupTask}");
+                            $"{featureDB.UnitGroupTask}" + 
+                            (airbaseName != null ? $"\t{airbaseName}": ""));
                 if (!groupInfo.Value.UnitDB.IsAircraft)
                     mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Families[0]}-{groupSide}-{groupInfo.Value.GroupID}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
             }
         }
 
-        private static void SetAirbase(T featureDB, ref DCSMission mission, DBEntryJSONUnit unitDB, Side groupSide, ref Coordinates coordinates, Coordinates coordinates2, int unitCount, ref Dictionary<string, object> extraSettings)
+        private static string SetAirbase(T featureDB, ref DCSMission mission, DBEntryJSONUnit unitDB, Side groupSide, ref Coordinates coordinates, Coordinates coordinates2, int unitCount, ref Dictionary<string, object> extraSettings)
         {
             if ((mission.TemplateRecord.MissionFeatures.Contains("ContextGroundStartAircraft") || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.GroundStart)) && unitDB.IsAircraft && featureDB.UnitGroupLuaGroup != "AircraftEscort")
             {
@@ -312,7 +314,9 @@ namespace BriefingRoom4DCS.Generator
                 extraSettings.AddIfKeyUnused("GroupMidX", midPoint.X);
                 extraSettings.AddIfKeyUnused("GroupMidY", midPoint.Y);
                 mission.MapData.AddIfKeyUnused($"AIRBASE_AI_{groupSide}_${airbase.Name}", new List<double[]> { airbase.Coordinates.ToArray() });
+                return airbase.Name;
             }
+            return null;
         }
 
         private static void SetCarrier(ref DCSMission mission, T featureDB, Side side, ref UnitMakerGroupInfo? groupInfo)
