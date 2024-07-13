@@ -63,9 +63,9 @@ const config = {
     scale_factor: 0.9996,
   },
   Afghanistan: {
-    central_meridian: 69,
-    false_easting: 368731.68852747,
-    false_northing: -3759657,
+    central_meridian: 63,
+    false_easting: -300149.9999999864,
+    false_northing: -3759657.000000049,
     scale_factor: 0.9996,
   },
 };

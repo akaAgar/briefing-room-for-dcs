@@ -30,7 +30,7 @@ namespace BriefingRoom4DCS.Data
 {
     internal class DBEntryTheater : DBEntry
     {
-        internal static readonly List<string> DESERT_MAPS = new() { "Nevada", "PersianGulf", "Syria", "SinaiMap" };
+        internal static readonly List<string> DESERT_MAPS = new() { "Nevada", "PersianGulf", "Syria", "SinaiMap", "Afghanistan" };
         private static readonly MinMaxI DEFAULT_DAYTIME = new(8 * 60, 19 * 60);
 
         internal Coordinates DefaultMapCenter { get; private set; }
