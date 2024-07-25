@@ -32,6 +32,41 @@ function briefingRoom.f10MenuCommands.debug.destroyTargetUnit()
   trigger.action.outText("No target units found", 2)
 end
 
+function briefingRoom.f10MenuCommands.debug.destroyRandomEnemyUnit()
+  local u = math.randomFromTable(
+    table.merge(
+      dcsExtensions.getCoalitionUnits(briefingRoom.enemyCoalition),
+      dcsExtensions.getCoalitionStaticObjects(briefingRoom.enemyCoalition)
+    )
+  )
+  if u ~= nil then
+    trigger.action.outText("Destroyed " .. u:getName(), 2)
+    trigger.action.explosion(u:getPoint(), 100)
+  else
+    trigger.action.outText("No target units found", 2)
+  end
+
+end
+
+function briefingRoom.f10MenuCommands.debug.destroyRandomAllyUnit()
+  local u = math.randomFromTable(
+    table.merge(
+      dcsExtensions.getCoalitionUnits(briefingRoom.playerCoalition),
+      dcsExtensions.getCoalitionStaticObjects(briefingRoom.playerCoalition)
+    )
+  )
+  if u ~= nil then
+    trigger.action.outText("Destroyed " .. u:getName(), 2)
+    trigger.action.explosion(u:getPoint(), 100)
+  else
+    trigger.action.outText("No target units found", 2)
+  end
+
+end
+
+
+
+
 function briefingRoom.f10MenuCommands.debug.dumpAirbaseDataType(o)
   if o == 16 then return "Runway" end
   if o == 40 then return "HelicopterOnly" end
@@ -131,10 +166,14 @@ end
 -- Create the debug menu
 do
   briefingRoom.f10Menu.debug = missionCommands.addSubMenu("(DEBUG MENU)", nil)
-  missionCommands.addCommand("Destroy target unit", briefingRoom.f10Menu.debug,
-    briefingRoom.f10MenuCommands.debug.destroyTargetUnit)
   missionCommands.addCommand("Simulate player takeoff (start mission)", briefingRoom.f10Menu.debug,
     briefingRoom.mission.coreFunctions.beginMission)
+  missionCommands.addCommand("Destroy target unit", briefingRoom.f10Menu.debug,
+    briefingRoom.f10MenuCommands.debug.destroyTargetUnit)
+  missionCommands.addCommand("Destroy random enemy unit", briefingRoom.f10Menu.debug,
+    briefingRoom.f10MenuCommands.debug.destroyRandomEnemyUnit)
+    missionCommands.addCommand("Destroy random ally unit", briefingRoom.f10Menu.debug,
+    briefingRoom.f10MenuCommands.debug.destroyRandomAllyUnit)
   missionCommands.addCommand("Activate all aircraft groups", briefingRoom.f10Menu.debug,
     briefingRoom.f10MenuCommands.debug.activateAllAircraft)
   missionCommands.addCommand("Dump All Airbase parking Data", briefingRoom.f10Menu.debug,

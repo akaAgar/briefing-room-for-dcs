@@ -388,6 +388,18 @@ function dcsExtensions.getCoalitionUnits(coalID)
 end
 
 
+function dcsExtensions.getCoalitionStaticObjects(coalID)
+  local units = { }
+  for _,u in pairs(coalition.getStaticObjects(coalID)) do
+    if u:getLife() >= 1 then
+      table.insert(units, u)
+    end
+  end
+
+  return units
+end
+
+
 function dcsExtensions.getGroupNamesContaining(search)
   local groups = { }
   for coaName, i in pairs(coalition.side) do
@@ -689,6 +701,7 @@ briefingRoom.eventHandler.BDASetting = "$BDASETTING$"
 function briefingRoom.handleGeneralKill(event) 
   if event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_CRASH then
     if event.initiator == nil then return end -- no initiator
+    briefingRoom.debugPrint("initiator "..event.initiator:getCategory())
     if event.initiator:getCategory() ~= Object.Category.UNIT and event.initiator:getCategory() ~= Object.Category.STATIC then return end -- initiator was not an unit or static
 
     if event.initiator:getCoalition() ~= briefingRoom.playerCoalition then -- unit is an enemy, radio some variation of a "enemy destroyed" message
