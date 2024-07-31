@@ -3,6 +3,23 @@ let mapGroups = {}
 let leafMap, leafHintMap, hintMarkerMap, hintTarget
 
 
+const request = new XMLHttpRequest();
+
+request.open("GET", "https://maps.dcsolympus.com" + "/config.json", true);
+
+request.onload = () => {
+    if (request.status >= 200 && request.status < 400) {
+        let config = JSON.parse(request.responseText);
+        for (let mapName in config) {
+            for (let i in config[mapName]) {
+                L.tileLayer("https://maps.dcsolympus.com" + "/maps/" + mapName + "/{z}/{x}/{y}.png", config[mapName][i]).addTo(map);
+            }
+        }
+    }
+};
+
+request.send();
+
 let hintPositions = {}
 let hintMarkers = {}
 
