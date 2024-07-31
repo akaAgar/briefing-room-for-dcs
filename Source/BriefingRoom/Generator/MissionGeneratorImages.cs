@@ -38,11 +38,12 @@ namespace BriefingRoom4DCS.Generator
             string titleHTML = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "CampaignTitleImage.html"));
             string winHTML = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "CampaignWinImage.html"));
             string lossHTML = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "CampaignLossImage.html"));
-            string[] theaterImages = Directory.GetFiles(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters"), $"{Database.Instance.GetEntry<DBEntryTheater>(campaignTemplate.ContextTheater).DCSID}*.jpg");
+            string[] theaterImages = Directory.GetFiles(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters"), $"{Database.Instance.GetEntry<DBEntryTheater>(campaignTemplate.ContextTheater).DCSID}*.*")
+                .Where(x => x.EndsWith(".jpg") || x.EndsWith(".png")).ToArray();
             var backgroundImage = "_default.jpg";
             if (theaterImages.Length > 0)
                 backgroundImage = Path.GetFileName(Toolbox.RandomFrom(theaterImages));
-            
+
             GeneratorTools.ReplaceKey(ref titleHTML, "BackgroundImage", GetInternalImageHTMLBase64(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters", backgroundImage)));
             GeneratorTools.ReplaceKey(ref winHTML, "BackgroundImage", GetInternalImageHTMLBase64(Path.Combine(BRPaths.INCLUDE_JPG, "Sky.jpg")));
             GeneratorTools.ReplaceKey(ref lossHTML, "BackgroundImage", GetInternalImageHTMLBase64(Path.Combine(BRPaths.INCLUDE_JPG, "Fire.jpg")));
@@ -54,7 +55,7 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref winHTML, "PlayerFlag", GetInternalImageHTMLBase64(playerFlagPath));
                 GeneratorTools.ReplaceKey(ref lossHTML, "PlayerFlag", GetInternalImageHTMLBase64(playerFlagPath));
             }
-        
+
             var enemyFlagPath = Path.Combine(BRPaths.INCLUDE_JPG, "Flags", $"{campaignTemplate.GetCoalitionID(campaignTemplate.ContextPlayerCoalition.GetEnemy())}.png");
             if (File.Exists(enemyFlagPath))
             {
@@ -62,7 +63,7 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref winHTML, "EnemyFlag", GetInternalImageHTMLBase64(enemyFlagPath));
                 GeneratorTools.ReplaceKey(ref lossHTML, "EnemyFlag", GetInternalImageHTMLBase64(enemyFlagPath));
             }
-                
+
 
             GeneratorTools.ReplaceKey(ref titleHTML, "MissionName", campaign.Name);
             GeneratorTools.ReplaceKey(ref winHTML, "MissionName", campaign.Name);
@@ -74,7 +75,7 @@ namespace BriefingRoom4DCS.Generator
 
             var langKey = campaign.Missions[0].LangKey;
             await GenerateCampaignImageAsync(langKey, titleHTML, campaign, $"{baseFileName}_Title");
-            await GenerateCampaignImageAsync(langKey, winHTML, campaign, $"{baseFileName}_Success");  
+            await GenerateCampaignImageAsync(langKey, winHTML, campaign, $"{baseFileName}_Success");
             await GenerateCampaignImageAsync(langKey, lossHTML, campaign, $"{baseFileName}_Failure");
 
         }
@@ -82,7 +83,8 @@ namespace BriefingRoom4DCS.Generator
         internal static async Task GenerateTitleImage(DCSMission mission)
         {
             string html = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "MissionTitleImage.html"));
-            string[] theaterImages = Directory.GetFiles(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters"), $"{Database.Instance.GetEntry<DBEntryTheater>(mission.TemplateRecord.ContextTheater).DCSID}*.jpg");
+            string[] theaterImages = Directory.GetFiles(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters"), $"{Database.Instance.GetEntry<DBEntryTheater>(mission.TemplateRecord.ContextTheater).DCSID}*.*")
+               .Where(x => x.EndsWith(".jpg") || x.EndsWith(".png")).ToArray();
             var backgroundImage = "_default.jpg";
             if (theaterImages.Length > 0)
                 backgroundImage = Path.GetFileName(Toolbox.RandomFrom(theaterImages));
@@ -97,7 +99,7 @@ namespace BriefingRoom4DCS.Generator
 
             GeneratorTools.ReplaceKey(ref html, "MissionName", mission.Briefing.Name);
             GeneratorTools.ReplaceKey(ref html, "Watermark", GetInternalImageHTMLBase64(Path.Combine(BRPaths.INCLUDE_JPG, "IconSlim.png")));
-            
+
             await GenerateTitleImageAsync(html, mission);
         }
 
