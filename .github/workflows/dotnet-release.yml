@@ -54,13 +54,8 @@ jobs:
           dotnet publish Source/BriefingRoomWeb -o BriefingRoom-V0.5.${{ steps.current-date.outputs.formattedTime }} -c Release
           dotnet publish Source/BriefingRoomDesktop -o BriefingRoom-V0.5.${{ steps.current-date.outputs.formattedTime }} -c Release
 
-      - name: Get previous version
-        id: previous_version
-        run: |
-          echo "::set-output name=version_tag::$(git describe  --abbrev=0 HEAD --tags)"
-
       - name: Zip Release
-        run: 7z a -tzip "BriefingRoom-V0.5.${{ steps.current-date.outputs.formattedTime }}".zip BriefingRoom-V0.5.${{ steps.current-date.outputs.formattedTime }} "-xr!.git\" "-xr!.github\" "-xr!.git*" "-xr!.vscode\" "-xr!dataExtractors\"  "-xr!Source\" "-xr!docs\" "-x!*.bat" "-x!*.filelist"
+        run: 7z a -tzip BriefingRoom-V0.5.${{ steps.current-date.outputs.formattedTime }}.zip BriefingRoom-V0.5.${{ steps.current-date.outputs.formattedTime }} "-xr!.git\" "-xr!.github\" "-xr!.git*" "-xr!.vscode\" "-xr!dataExtractors\"  "-xr!Source\" "-xr!docs\" "-x!*.bat" "-x!*.filelist"
 
       - name: Upload Release
         uses: ncipollo/release-action@v1
