@@ -54,13 +54,9 @@ namespace BriefingRoom4DCS.Generator
             DBEntryAirbaseParkingSpot? lastSpot = null;
             for (int i = 0; i < unitCount; i++)
             {
-                var viableSpots = FilterAndSortSuitableSpots(mission.LangKey, mission.AirbaseParkingSpots[airbaseID].ToArray(), aircraftDB, requiresOpenAirParking);
+                var viableSpots = FilterAndSortSuitableSpots(mission.LangKey, mission.AirbaseParkingSpots[airbaseID].ToArray(), aircraftDB, requiresOpenAirParking, lastSpot);
                 if (viableSpots.Count == 0) throw new BriefingRoomException(mission.LangKey, "AirbaseNotEnoughParkingSpots", airbaseDB.UIDisplayName.Get(mission.LangKey));
                 var parkingSpot = viableSpots.First();
-                if (lastSpot.HasValue) //find nearest spot distance wise in attempt to cluster
-                    parkingSpot = viableSpots
-                        .Aggregate((acc, x) => acc.Coordinates.GetDistanceFrom(lastSpot.Value.Coordinates) > x.Coordinates.GetDistanceFrom(lastSpot.Value.Coordinates) ? x : acc);
-
                 lastSpot = parkingSpot;
                 mission.AirbaseParkingSpots[airbaseID].Remove(parkingSpot);
                 parkingSpots.Add(parkingSpot);
@@ -235,14 +231,14 @@ namespace BriefingRoom4DCS.Generator
         }
 
         internal static double GetDirToFrontLine(ref DCSMission mission, Coordinates coords)
-        {   
-            if(mission.FrontLine.Count == 0)
+        {
+            if (mission.FrontLine.Count == 0)
                 return Toolbox.RandomAngle();
             var nearestFrontLinePoint = ShapeManager.GetNearestPointBorder(coords, mission.FrontLine);
             return nearestFrontLinePoint.Item2.GetHeadingFrom(coords);
         }
 
-        private static List<DBEntryAirbaseParkingSpot> FilterAndSortSuitableSpots(string langKey, DBEntryAirbaseParkingSpot[] parkingspots, DBEntryAircraft aircraftDB, bool requiresOpenAirParking)
+        private static List<DBEntryAirbaseParkingSpot> FilterAndSortSuitableSpots(string langKey, DBEntryAirbaseParkingSpot[] parkingspots, DBEntryAircraft aircraftDB, bool requiresOpenAirParking, DBEntryAirbaseParkingSpot? lastParkingSpot)
         {
             if (parkingspots.Any(x => x.Height == 0))
             {
@@ -255,10 +251,16 @@ namespace BriefingRoom4DCS.Generator
                 && aircraftDB.Length < x.Length
                 && aircraftDB.Width < x.Width
                 && (!requiresOpenAirParking || x.ParkingType != ParkingSpotType.HardenedAirShelter)
-             );
-            if (category == UnitCategory.Helicopter)
-                return opts.Where(x => x.ParkingType != ParkingSpotType.AirplaneOnly || x.ParkingType != ParkingSpotType.HardenedAirShelter).ToList();
-            return opts.Where(x => x.ParkingType != ParkingSpotType.HelicopterOnly).ToList();
+                && (
+                    (category == UnitCategory.Helicopter) ? (x.ParkingType != ParkingSpotType.AirplaneOnly || x.ParkingType != ParkingSpotType.HardenedAirShelter) : (x.ParkingType != ParkingSpotType.HelicopterOnly)
+                    )
+             )
+             .OrderBy(x => x.ParkingType)
+             .ThenBy(x => x.Length * x.Width * x.Height);
+
+             if (lastParkingSpot.HasValue)
+                opts = opts.ThenBy(x => x.Coordinates.GetDistanceFrom(lastParkingSpot.Value.Coordinates));
+            return opts.ToList();
         }
 
         private static List<DBEntryAirbaseParkingSpot> FilterAndSortSuitableSpotsSimple(DBEntryAirbaseParkingSpot[] parkingspots, UnitFamily unitFamily, bool requiresOpenAirParking)
@@ -360,7 +362,7 @@ namespace BriefingRoom4DCS.Generator
             if (frontLineDB.UnitLimits.ContainsKey(unitFamily))
                 distanceLimit = frontLineDB.UnitLimits[unitFamily][onFriendlySideOfLineIndex];
 
-            return  distanceLimit.Contains(distance * Toolbox.METERS_TO_NM);
+            return distanceLimit.Contains(distance * Toolbox.METERS_TO_NM);
 
         }
 
