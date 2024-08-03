@@ -46,16 +46,11 @@ jobs:
           dotnet publish Source/BriefingRoomWeb -o BriefingRoom-build${{ steps.current-time.outputs.formattedTime }} -c Release
           dotnet publish Source/BriefingRoomDesktop -o BriefingRoom-build${{ steps.current-time.outputs.formattedTime }} -c Release
 
-      - name: Get previous version
-        id: previous_version
-        run: |
-          echo "::set-output name=version_tag::$(git describe  --abbrev=0 HEAD --tags)"
-
       - name: Create Changelog
         id: change_log
         shell: bash
         run: |
-          LOGS=$(git log --pretty=oneline HEAD...${{ steps.previous_version.outputs.version_tag}})
+          LOGS=$(git log --pretty=format:"%s" HEAD...$(git describe  --abbrev=0 HEAD --tags))
           LOGS="${LOGS//'%'/'%25'}"
           LOGS="${LOGS//$'\n'/'%0A'}"
           LOGS="${LOGS//$'\r'/'%0D'}"
@@ -73,5 +68,5 @@ jobs:
             This is a automated beta build. This may not work. Its not recommend to overwrite a official release with this.
             ${{ steps.change_log.outputs.log }}
           prerelease: true
-          artifacts: "beta-release-${{ steps.current-time.outputs.formattedTime }}"
+          artifacts: "beta-release-${{ steps.current-time.outputs.formattedTime }}.zip"
           token: ${{ secrets.GITHUB_TOKEN }}

@@ -57,14 +57,24 @@ jobs:
       - name: Zip Release
         run: 7z a -tzip BriefingRoom-V0.5.${{ steps.current-date.outputs.formattedTime }}.zip BriefingRoom-V0.5.${{ steps.current-date.outputs.formattedTime }} "-xr!.git\" "-xr!.github\" "-xr!.git*" "-xr!.vscode\" "-xr!dataExtractors\"  "-xr!Source\" "-xr!docs\" "-x!*.bat" "-x!*.filelist"
 
+
+      - name: Create Changelog
+        id: change_log
+        shell: bash
+        run: |
+          LOGS=$(git log --pretty=format:"%s" HEAD...$(git describe --tags --match="release*" --abbrev=0 HEAD))
+          LOGS="${LOGS//'%'/'%25'}"
+          LOGS="${LOGS//$'\n'/'%0A'}"
+          LOGS="${LOGS//$'\r'/'%0D'}"
+          echo "::set-output name=log::$LOGS"
+
       - name: Upload Release
         uses: ncipollo/release-action@v1
         with:
           tag: "release-${{ steps.current-date.outputs.formattedTime }}-${{ steps.current-time.outputs.formattedTime }}-${{ github.run_id }}-${{ github.run_attempt }}"
           name: "Version 0.5.${{ steps.current-date.outputs.formattedTime }}"
           body: |
-            THIS IS A TEST
+            ${{ steps.change_log.outputs.log }}
           prerelease: true
-          generateReleaseNotes: true
-          artifacts: "BriefingRoom-V0.5.${{ steps.current-date.outputs.formattedTime }}"
+          artifacts: "BriefingRoom-V0.5.${{ steps.current-date.outputs.formattedTime }}.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
