@@ -700,7 +700,7 @@ briefingRoom.eventHandler.BDASetting = "$BDASETTING$"
 
 function briefingRoom.handleGeneralKill(event) 
   if event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_CRASH then
-    if event.initiator == nil then return end -- no initiator
+    if event.initiator == nil or event.initiator.getCategory == nil then  return end -- no initiator
     briefingRoom.debugPrint("initiator "..event.initiator:getCategory())
     if event.initiator:getCategory() ~= Object.Category.UNIT and event.initiator:getCategory() ~= Object.Category.STATIC then return end -- initiator was not an unit or static
 
