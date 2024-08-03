@@ -75,6 +75,6 @@ jobs:
           name: "Version 0.5.${{ steps.current-date.outputs.formattedTime }}"
           body: |
             ${{ steps.change_log.outputs.log }}
-          prerelease: true
+          prerelease: false
           artifacts: "BriefingRoom-V0.5.${{ steps.current-date.outputs.formattedTime }}.zip"
           token: ${{ secrets.GITHUB_TOKEN }}

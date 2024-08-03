@@ -1,4 +1,6 @@
 ## Changelog
+**Changelog is no longer maintained manually please use [github](https://github.com/akaAgar/briefing-room-for-dcs/releases)**
+
 * Version 0.5.403.05(March, 05, 2024)
     * Added:
         * Added: 3 more Syria Situations
