@@ -34,6 +34,11 @@ jobs:
         id: build_version
         run: |
           (Get-Content -path  Source\BriefingRoom\BriefingRoom.cs -Raw) -replace '~BUILD_VERSION~','${{ steps.current-time.outputs.formattedTime }}' | Set-Content Source\BriefingRoom\BriefingRoom.cs
+      
+      - name: Set Release Version
+        id: release_version
+        run: |
+          (Get-Content -path  Source\BriefingRoom\BriefingRoom.cs -Raw) -replace '~RELEASE_VERSION~','BETA' | Set-Content Source\BriefingRoom\BriefingRoom.cs
 
       - name: Build and Publish App
         run: |
@@ -68,5 +73,5 @@ jobs:
             This is a automated beta build. This may not work. Its not recommend to overwrite a official release with this.
             ${{ steps.change_log.outputs.log }}
           prerelease: true
-          artifacts: "beta-release-${{ steps.current-time.outputs.formattedTime }}.zip"
+          artifacts: "beta-release-${{ steps.current-time.outputs.formattedTime }}"
           token: ${{ secrets.GITHUB_TOKEN }}

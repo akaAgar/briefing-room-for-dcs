@@ -1,0 +1,75 @@
+name: release
+
+on:
+  push:
+    branches: ["release"]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Set git to use LF
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol crlf
+      - uses: actions/checkout@v1
+        name: Checkout Code
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Restore NuGet Packages
+        run: dotnet restore Source/BriefingRoom.sln
+
+      - name: Get current time
+        uses: 1466587594/get-current-time@v2
+        id: current-time
+        with:
+          format: YYMMDD-HHMMSS
+          utcOffset: "+00:00"
+      
+      - name: Get current date
+        uses: 1466587594/get-current-time@v2
+        id: current-date
+        with:
+          format: YMM.DD
+          utcOffset: "+00:00"
+
+
+      - name: Set Build Version
+        id: build_version
+        run: |
+          (Get-Content -path  Source\BriefingRoom\BriefingRoom.cs -Raw) -replace '~BUILD_VERSION~','${{ steps.current-time.outputs.formattedTime }}' | Set-Content Source\BriefingRoom\BriefingRoom.cs
+
+      - name: Set Release Version
+        id: release_version
+        run: |
+          (Get-Content -path  Source\BriefingRoom\BriefingRoom.cs -Raw) -replace '~RELEASE_VERSION~','${{ steps.current-date.outputs.formattedTime }}' | Set-Content Source\BriefingRoom\BriefingRoom.cs
+    
+      - name: Build and Publish App
+        run: |
+          dotnet publish Source/BriefingRoomCommandLine -o BriefingRoom-V0.5.${{ steps.current-date.outputs.formattedTime }} -c Release
+          dotnet publish Source/BriefingRoomWeb -o BriefingRoom-V0.5.${{ steps.current-date.outputs.formattedTime }} -c Release
+          dotnet publish Source/BriefingRoomDesktop -o BriefingRoom-V0.5.${{ steps.current-date.outputs.formattedTime }} -c Release
+
+      - name: Get previous version
+        id: previous_version
+        run: |
+          echo "::set-output name=version_tag::$(git describe  --abbrev=0 HEAD --tags)"
+
+      - name: Zip Release
+        run: 7z a -tzip "BriefingRoom-V0.5.${{ steps.current-date.outputs.formattedTime }}".zip BriefingRoom-V0.5.${{ steps.current-date.outputs.formattedTime }} "-xr!.git\" "-xr!.github\" "-xr!.git*" "-xr!.vscode\" "-xr!dataExtractors\"  "-xr!Source\" "-xr!docs\" "-x!*.bat" "-x!*.filelist"
+
+      - name: Upload Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: "release-${{ steps.current-date.outputs.formattedTime }}-${{ steps.current-time.outputs.formattedTime }}-${{ github.run_id }}-${{ github.run_attempt }}"
+          name: "Version 0.5.${{ steps.current-date.outputs.formattedTime }}"
+          body: |
+            THIS IS A TEST
+          prerelease: true
+          generateReleaseNotes: true
+          artifacts: "BriefingRoom-V0.5.${{ steps.current-date.outputs.formattedTime }}"
+          token: ${{ secrets.GITHUB_TOKEN }}

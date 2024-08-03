@@ -44,7 +44,7 @@ namespace BriefingRoom4DCS
 
         public const string DISCORD_URL = "https://discord.gg/MvdFTYxkpx";
 
-        public const string VERSION = "0.5.403.05";
+        public const string VERSION = "0.5.~RELEASE_VERSION~";
 
         public const string BUILD_VERSION = "~BUILD_VERSION~";
 
