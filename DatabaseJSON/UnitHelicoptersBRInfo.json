@@ -59,6 +59,14 @@
         "playerControllable": false
     },
     {
+        "type": "CH-47Fbl1",
+        "families": [
+            "HelicopterTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
         "type": "SH-3W",
         "families": [
             "HelicopterTransport"

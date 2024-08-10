@@ -272,6 +272,9 @@
             ],
             "90": [
                 "Desert"
+            ],
+            "91": [
+                "Desert"
             ]
         },
         "displayName": "EWR 1L13",
@@ -949,6 +952,13 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Desert",
                 "Spring",
@@ -2061,6 +2071,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SAM SA-19 Tunguska \"Grison\" ",
@@ -2382,6 +2403,9 @@
                 "Desert"
             ],
             "90": [
+                "Desert"
+            ],
+            "91": [
                 "Desert"
             ]
         },
@@ -3417,6 +3441,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SAM SA-3 S-125 \"Goa\" LN",
@@ -4089,6 +4124,12 @@
                 "spring",
                 "summer",
                 "winter"
+            ],
+            "91": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
             ]
         },
         "displayName": "Firefighter Vehicle AA-7.2/60",
@@ -4744,6 +4785,13 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "APC AAV-7 Amphibious",
@@ -5069,6 +5117,9 @@
                 "Desert"
             ],
             "90": [
+                "Desert"
+            ],
+            "91": [
                 "Desert"
             ]
         },
@@ -5419,6 +5470,9 @@
                 "Desert"
             ],
             "90": [
+                "Desert"
+            ],
+            "91": [
                 "Desert"
             ]
         },
@@ -6032,6 +6086,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
@@ -7001,6 +7061,16 @@
                 "spring",
                 "summer",
                 "winter"
+            ],
+            "91": [
+                "DG_autumn",
+                "DG_spring",
+                "DG_summer",
+                "DG_winter",
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
             ]
         },
         "displayName": "Refueler ATZ-60 Tractor (MAZ-7410)",
@@ -7359,6 +7429,9 @@
                 "civil version"
             ],
             "90": [
+                "civil version"
+            ],
+            "91": [
                 "civil version"
             ]
         },
@@ -8447,6 +8520,18 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Desert",
+                "IRAN - camo",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Desert",
                 "IRAN - camo",
@@ -10599,6 +10684,29 @@
                 "UKR_Summer",
                 "UKR_Winter",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter",
+                "GRG_Autumn",
+                "GRG_Spring",
+                "GRG_Summer",
+                "GRG_Winter",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "UKR_Autumn",
+                "UKR_Spring",
+                "UKR_Summer",
+                "UKR_Winter",
+                "Winter"
             ]
         },
         "displayName": "IFV BMP-1",
@@ -12465,6 +12573,25 @@
                 "UKR_Summer",
                 "UKR_Winter",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "GRG_Autumn",
+                "GRG_Spring",
+                "GRG_Summer",
+                "GRG_Winter",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "UKR_Autumn",
+                "UKR_Spring",
+                "UKR_Summer",
+                "UKR_Winter",
+                "Winter"
             ]
         },
         "displayName": "IFV BMP-2",
@@ -13579,6 +13706,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "IFV BMP-3",
@@ -14624,6 +14762,17 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Desert",
                 "RUS_Autumn",
@@ -16482,6 +16631,25 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Desert",
+                "Green_Autumn",
+                "Green_Spring",
+                "Green_Summer",
+                "Green_Winter",
+                "Light Green Autumn",
+                "Light Green Spring",
+                "Light Green Winter",
+                "Light_Green_Summer",
+                "Military Police Autumn",
+                "Military Police Spring",
+                "Military Police Summer",
+                "Military Police Winter",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Desert",
                 "Green_Autumn",
@@ -18412,6 +18580,26 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "Desert2",
+                "Green_Autumn",
+                "Green_Spring",
+                "Green_Summer",
+                "Green_Winter",
+                "Light Green Autumn",
+                "Light Green Spring",
+                "Light Green Winter",
+                "Light_Green_Summer",
+                "Military Police Autumn",
+                "Military Police Spring",
+                "Military Police Summer",
+                "Military Police Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "IFV BTR-82A",
@@ -19431,6 +19619,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "APC BTR-RD",
@@ -20195,6 +20394,14 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "2TAFMED",
+                "Autumn",
+                "RAF_Ambulance",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Truck Bedford",
@@ -20936,6 +21143,14 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "CamoAmbulance",
+                "GreyAmbulance",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Truck Opel Blitz",
@@ -21493,6 +21708,12 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Spring",
                 "Summer",
@@ -22445,6 +22666,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Truck GMC \"Jimmy\" 6x6",
@@ -23014,6 +23241,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Tk Centaur IV CS",
@@ -23425,6 +23658,10 @@
                 "Winter"
             ],
             "90": [
+                "Desert",
+                "Winter"
+            ],
+            "91": [
                 "Desert",
                 "Winter"
             ]
@@ -24351,6 +24588,16 @@
                 "desert spring",
                 "desert summer",
                 "desert winter"
+            ],
+            "91": [
+                "Cam autumn",
+                "Cam spring",
+                "Cam summer",
+                "Cam winter",
+                "desert autumn",
+                "desert spring",
+                "desert summer",
+                "desert winter"
             ]
         },
         "displayName": "MBT Chieftain Mk.3",
@@ -24932,6 +25179,12 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Spring",
                 "Summer",
@@ -25768,6 +26021,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Tk Cromwell IV",
@@ -26181,6 +26440,10 @@
             "90": [
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Loco DRG Class 86",
@@ -26588,6 +26851,10 @@
                 "Winter"
             ],
             "90": [
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Summer",
                 "Winter"
             ]
@@ -27175,6 +27442,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
@@ -28586,6 +28859,21 @@
                 "UKR_Summer",
                 "UKR_Winter",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "UKR_Autumn",
+                "UKR_Spring",
+                "UKR_Summer",
+                "UKR_Winter",
+                "Winter"
             ]
         },
         "displayName": "MCC-SR Sborka \"Dog Ear\" SR",
@@ -29718,6 +30006,18 @@
                 "Winter_NoFlag",
                 "Winter_blue",
                 "Winter_orange"
+            ],
+            "91": [
+                "Autumn",
+                "Blue",
+                "NoFlag",
+                "Orange",
+                "Spring",
+                "Summer",
+                "Winter",
+                "Winter_NoFlag",
+                "Winter_blue",
+                "Winter_orange"
             ]
         },
         "displayName": "Loco ES44AH",
@@ -30327,6 +30627,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SPG Elefant TD",
@@ -30884,6 +31190,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
@@ -31541,6 +31853,12 @@
                 "spring",
                 "summer",
                 "winter"
+            ],
+            "91": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
             ]
         },
         "displayName": "EWR AN/FPS-117 Radar (domed)",
@@ -32190,6 +32508,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
@@ -32847,6 +33171,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SL Flakscheinwerfer 37",
@@ -33404,6 +33734,12 @@
                 "Grey_Winter"
             ],
             "90": [
+                "Grey_Autumn",
+                "Grey_Spring",
+                "Grey_Summer",
+                "Grey_Winter"
+            ],
+            "91": [
                 "Grey_Autumn",
                 "Grey_Spring",
                 "Grey_Summer",
@@ -33969,6 +34305,12 @@
                 "spring",
                 "summer",
                 "winter"
+            ],
+            "91": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
             ]
         },
         "displayName": "EWR FuSe-65 Würzburg-Riese",
@@ -34318,6 +34660,9 @@
                 "Desert"
             ],
             "90": [
+                "Desert"
+            ],
+            "91": [
                 "Desert"
             ]
         },
@@ -35373,6 +35718,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Truck GAZ-66",
@@ -36067,6 +36423,13 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SPAAA Gepard",
@@ -36469,6 +36832,10 @@
                 "Winter"
             ],
             "90": [
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Summer",
                 "Winter"
             ]
@@ -36874,6 +37241,10 @@
                 "Winter"
             ],
             "90": [
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Summer",
                 "Winter"
             ]
@@ -37513,6 +37884,9 @@
                 "Desert"
             ],
             "90": [
+                "Desert"
+            ],
+            "91": [
                 "Desert"
             ]
         },
@@ -38166,6 +38540,12 @@
                 "spring",
                 "summer",
                 "winter"
+            ],
+            "91": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
             ]
         },
         "displayName": "MLRS HL with B8M1 80mm",
@@ -38783,6 +39163,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
@@ -39424,6 +39810,12 @@
                 "spring",
                 "summer",
                 "winter"
+            ],
+            "91": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
             ]
         },
         "displayName": "Scout HL with KORD 12.7mm",
@@ -40061,6 +40453,12 @@
                 "spring",
                 "summer",
                 "winter"
+            ],
+            "91": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
             ]
         },
         "displayName": "SPAAA HL with ZU-23",
@@ -40460,6 +40858,9 @@
             ],
             "90": [
                 "Desert"
+            ],
+            "91": [
+                "Desert"
             ]
         },
         "displayName": "HQ-7 Self-Propelled LN",
@@ -40762,6 +41163,9 @@
                 "Desert"
             ],
             "90": [
+                "Desert"
+            ],
+            "91": [
                 "Desert"
             ]
         },
@@ -41891,6 +42295,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "LUV Horch 901 Staff Car",
@@ -42910,6 +43320,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "LUV HMMWV Jeep",
@@ -43328,7 +43749,7 @@
         "type": "Infantry AK Ins",
         "category": "Infantry",
         "paintSchemes": {},
-        "displayName": "Insurgent AK-74",
+        "displayName": "Insurgent AKM",
         "shape": "soldier_ins_00",
         "detectionRange": 0,
         "threatRange": 500,
@@ -44083,6 +44504,12 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Spring",
                 "Summer",
@@ -45098,6 +45525,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Truck KAMAZ 43101",
@@ -45746,6 +46184,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "AAA Kdo.G.40",
@@ -46303,6 +46747,12 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Spring",
                 "Summer",
@@ -47496,6 +47946,18 @@
                 "Summer",
                 "Winter",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Autumn",
+                "Desert",
+                "Desert camo",
+                "Spring",
+                "Spring",
+                "Summer",
+                "Summer",
+                "Winter",
+                "Winter"
             ]
         },
         "displayName": "Truck KrAZ-6322 6x6",
@@ -48185,6 +48647,13 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Desert",
                 "Spring",
@@ -48939,6 +49408,13 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Desert",
                 "Spring",
@@ -49778,6 +50254,14 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "CamoAmbulance",
+                "GreyAmbulance",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "CamoAmbulance",
                 "GreyAmbulance",
@@ -50895,6 +51379,17 @@
                 "Winter",
                 "green",
                 "sand"
+            ],
+            "91": [
+                "AUS_Summer",
+                "AUS_Winter",
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter",
+                "green",
+                "sand"
             ]
         },
         "displayName": "IFV LAV-25",
@@ -51530,6 +52025,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Truck Land Rover 101 FC",
@@ -52099,6 +52600,12 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Spring",
                 "Summer",
@@ -52680,6 +53187,12 @@
                 "spring",
                 "summer",
                 "winter"
+            ],
+            "91": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
             ]
         },
         "displayName": "FH LeFH-18 105mm",
@@ -52970,6 +53483,9 @@
                 "Desert"
             ],
             "90": [
+                "Desert"
+            ],
+            "91": [
                 "Desert"
             ]
         },
@@ -56505,6 +57021,45 @@
                 "winter",
                 "winter",
                 "winter"
+            ],
+            "91": [
+                "Autumn",
+                "CAN_Summer",
+                "CAN_Winter",
+                "CAN_autumn",
+                "CAN_spring",
+                "DEN_Autumn",
+                "DEN_Spring",
+                "DEN_Summer",
+                "DEN_Winter",
+                "DE_Desert_summer",
+                "Desert",
+                "Desert_autumn",
+                "Desert_spring",
+                "Desert_summer",
+                "Desert_winter",
+                "FIN_autumn",
+                "FIN_spring",
+                "FIN_summer",
+                "FIN_winter",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter",
+                "NETH_Summer",
+                "NETH_Winter",
+                "SPN_Summer",
+                "SPN_Winter",
+                "Spring",
+                "Summer",
+                "Winter",
+                "autumn",
+                "spring",
+                "spring",
+                "summer",
+                "winter",
+                "winter",
+                "winter"
             ]
         },
         "displayName": "MBT Leopard-2A6M",
@@ -57838,6 +58393,20 @@
                 "spring",
                 "summer",
                 "summer"
+            ],
+            "91": [
+                "Desert_autumn",
+                "Desert_spring",
+                "Desert_summer",
+                "Desert_winter",
+                "Kfor_autumn",
+                "Kfor_spring",
+                "Kfor_summer",
+                "Kfor_summer",
+                "autumn",
+                "spring",
+                "summer",
+                "summer"
             ]
         },
         "displayName": "MBT Leopard-2A5",
@@ -58877,6 +59446,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "MBT Leopard 1A3",
@@ -59576,6 +60156,12 @@
                 "spring",
                 "summer",
                 "winter"
+            ],
+            "91": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
             ]
         },
         "displayName": "Truck M939 Heavy",
@@ -60049,6 +60635,9 @@
                 "Desert_summer"
             ],
             "90": [
+                "Desert_summer"
+            ],
+            "91": [
                 "Desert_summer"
             ]
         },
@@ -61072,6 +61661,17 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Desert",
                 "GRC_Autumn",
@@ -63182,6 +63782,28 @@
                 "summer",
                 "winter",
                 "winter"
+            ],
+            "91": [
+                "Desert",
+                "Desert",
+                "GRC_autumn",
+                "GRC_autumn",
+                "GRC_spring",
+                "GRC_spring",
+                "GRC_summer",
+                "GRC_summer",
+                "GRC_winter",
+                "GRC_winter",
+                "autumn",
+                "autumn",
+                "green",
+                "green",
+                "spring",
+                "spring",
+                "summer",
+                "summer",
+                "winter",
+                "winter"
             ]
         },
         "displayName": "APC M113",
@@ -64000,6 +64622,13 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "IFV M2A2 Bradley",
@@ -64661,6 +65290,13 @@
                 "winter"
             ],
             "90": [
+                "Desert",
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "Desert",
                 "autumn",
                 "spring",
@@ -65739,6 +66375,17 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Desert",
                 "GRC_Autumn",
@@ -66942,6 +67589,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "ATGM HMMWV",
@@ -67701,6 +68359,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SPG M10 GMC TD",
@@ -68359,6 +69023,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SPH M12 GMC 155mm",
@@ -68653,6 +69323,9 @@
                 "Desert_summer"
             ],
             "90": [
+                "Desert_summer"
+            ],
+            "91": [
                 "Desert_summer"
             ]
         },
@@ -69223,6 +69896,12 @@
                 "spring",
                 "summer",
                 "winter"
+            ],
+            "91": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
             ]
         },
         "displayName": "AAA M1 37mm",
@@ -69784,6 +70463,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
@@ -70505,6 +71190,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "APC M2A1 Halftrack",
@@ -71150,6 +71841,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Ammo M30 Cargo Carrier",
@@ -71711,6 +72408,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
@@ -73106,6 +73809,21 @@
                 "USA_Summer",
                 "USA_Winter",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "ISR_Autumn",
+                "ISR_Spring",
+                "ISR_Summer",
+                "ISR_Winter",
+                "Spring",
+                "Summer",
+                "USA_Autumn",
+                "USA_Spring",
+                "USA_Summer",
+                "USA_Winter",
+                "Winter"
             ]
         },
         "displayName": "SAM Chaparral M48",
@@ -73694,6 +74412,12 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Spring",
                 "Summer",
@@ -74287,6 +75011,12 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Spring",
                 "Summer",
@@ -74968,6 +75698,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
@@ -75687,6 +76423,13 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SAM Linebacker - Bradley M6",
@@ -76247,6 +76990,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
@@ -76929,6 +77678,13 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Desert",
                 "Spring",
@@ -77755,6 +78511,13 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "IFV Warrior ",
@@ -78319,6 +79082,12 @@
                 "option 5"
             ],
             "90": [
+                "option 2",
+                "option 3",
+                "option 4",
+                "option 5"
+            ],
+            "91": [
                 "option 2",
                 "option 3",
                 "option 4",
@@ -79321,6 +80090,17 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Desert",
                 "GRC_Autumn",
@@ -80540,6 +81320,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "APC MTLB",
@@ -81274,6 +82065,13 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "IFV Marder",
@@ -81842,6 +82640,12 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Spring",
                 "Summer",
@@ -82514,6 +83318,12 @@
                 "spring",
                 "summer",
                 "winter"
+            ],
+            "91": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
             ]
         },
         "displayName": "SAM NASAMS C2",
@@ -83103,6 +83913,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
@@ -83724,6 +84540,12 @@
                 "spring",
                 "summer",
                 "winter"
+            ],
+            "91": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
             ]
         },
         "displayName": "SAM NASAMS LN AIM-120C",
@@ -84313,6 +85135,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
@@ -84995,6 +85823,13 @@
                 "GRC_Winter"
             ],
             "90": [
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter"
+            ],
+            "91": [
                 "Desert",
                 "GRC_Autumn",
                 "GRC_Spring",
@@ -85738,6 +86573,13 @@
                 "post service",
                 "swat",
                 "the mig killers"
+            ],
+            "91": [
+                "fire dept",
+                "police",
+                "post service",
+                "swat",
+                "the mig killers"
             ]
         },
         "displayName": "M92 P20 drivable",
@@ -86156,6 +86998,9 @@
                 "summer"
             ],
             "90": [
+                "summer"
+            ],
+            "91": [
                 "summer"
             ]
         },
@@ -86910,6 +87755,13 @@
                 "GRC_Spring",
                 "GRC_Summer",
                 "GRC_Winter"
+            ],
+            "91": [
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter"
             ]
         },
         "displayName": "SAM Patriot CR (AMG AN/MRC-137)",
@@ -87607,6 +88459,13 @@
                 "GRC_Winter"
             ],
             "90": [
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter"
+            ],
+            "91": [
                 "Desert",
                 "GRC_Autumn",
                 "GRC_Spring",
@@ -88314,6 +89173,13 @@
                 "GRC_Spring",
                 "GRC_Summer",
                 "GRC_Winter"
+            ],
+            "91": [
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter"
             ]
         },
         "displayName": "SAM Patriot EPP-III",
@@ -89011,6 +89877,13 @@
                 "GRC_Winter"
             ],
             "90": [
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter"
+            ],
+            "91": [
                 "Desert",
                 "GRC_Autumn",
                 "GRC_Spring",
@@ -89718,6 +90591,13 @@
                 "GRC_Spring",
                 "GRC_Summer",
                 "GRC_Winter"
+            ],
+            "91": [
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter"
             ]
         },
         "displayName": "SAM Patriot LN",
@@ -90415,6 +91295,13 @@
                 "GRC_Winter"
             ],
             "90": [
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter"
+            ],
+            "91": [
                 "Desert",
                 "GRC_Autumn",
                 "GRC_Spring",
@@ -91150,6 +92037,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Tk PzIV H",
@@ -91727,6 +92620,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
@@ -92324,6 +93223,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SAM SA-2 S-75 RD-75 Amazonka RF",
@@ -92881,6 +93786,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
@@ -94578,6 +95489,24 @@
                 "S-200_Radar_Syria_Spring",
                 "S-200_Radar_Syria_Summer",
                 "S-200_Radar_Syria_Winter"
+            ],
+            "91": [
+                "S-200_Radar_Cam_Autumn",
+                "S-200_Radar_Cam_Spring",
+                "S-200_Radar_Cam_Summer",
+                "S-200_Radar_Cam_Winter",
+                "S-200_Radar_Desert_Autumn",
+                "S-200_Radar_Desert_Spring",
+                "S-200_Radar_Desert_Summer",
+                "S-200_Radar_Desert_Winter",
+                "S-200_Radar_Green_Autumn",
+                "S-200_Radar_Green_Spring",
+                "S-200_Radar_Green_Summer",
+                "S-200_Radar_Green_Winter",
+                "S-200_Radar_Syria_Autumn",
+                "S-200_Radar_Syria_Spring",
+                "S-200_Radar_Syria_Summer",
+                "S-200_Radar_Syria_Winter"
             ]
         },
         "displayName": "SAM SA-5 S-200 \"Square Pair\" TR",
@@ -94937,6 +95866,9 @@
             ],
             "90": [
                 "Desert"
+            ],
+            "91": [
+                "Desert"
             ]
         },
         "displayName": "SAM Roland ADS",
@@ -95270,6 +96202,9 @@
                 "Desert"
             ],
             "90": [
+                "Desert"
+            ],
+            "91": [
                 "Desert"
             ]
         },
@@ -96951,6 +97886,24 @@
                 "S-200_Launcher_Syria_Spring",
                 "S-200_Launcher_Syria_Summer",
                 "S-200_Launcher_Syria_Winter"
+            ],
+            "91": [
+                "S-200_Cam_Autumn",
+                "S-200_Launcher_Cam_Spring",
+                "S-200_Launcher_Cam_Summer",
+                "S-200_Launcher_Cam_Winter",
+                "S-200_Launcher_Desert_Autumn",
+                "S-200_Launcher_Desert_Spring",
+                "S-200_Launcher_Desert_Summer",
+                "S-200_Launcher_Desert_Winter",
+                "S-200_Launcher_Green_Autumn",
+                "S-200_Launcher_Green_Spring",
+                "S-200_Launcher_Green_Summer",
+                "S-200_Launcher_Green_Winter",
+                "S-200_Launcher_Syria_Autumn",
+                "S-200_Launcher_Syria_Spring",
+                "S-200_Launcher_Syria_Summer",
+                "S-200_Launcher_Syria_Winter"
             ]
         },
         "displayName": "SAM SA-5 S-200 \"Gammon\" LN",
@@ -97671,6 +98624,13 @@
                 "GRC_Spring",
                 "GRC_Summer",
                 "GRC_Winter"
+            ],
+            "91": [
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter"
             ]
         },
         "displayName": "SAM SA-10 S-300 \"Grumble\" Flap Lid-A TR",
@@ -98385,6 +99345,13 @@
                 "GRC_Winter"
             ],
             "90": [
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter"
+            ],
+            "91": [
                 "Desert",
                 "GRC_Autumn",
                 "GRC_Spring",
@@ -99193,6 +100160,13 @@
                 "GRC_Spring",
                 "GRC_Summer",
                 "GRC_Winter"
+            ],
+            "91": [
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter"
             ]
         },
         "displayName": "SAM SA-10 S-300 \"Grumble\" C2",
@@ -99996,6 +100970,13 @@
                 "GRC_Spring",
                 "GRC_Summer",
                 "GRC_Winter"
+            ],
+            "91": [
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter"
             ]
         },
         "displayName": "SAM SA-10 S-300 \"Grumble\" TEL C",
@@ -100706,6 +101687,13 @@
                 "GRC_Winter"
             ],
             "90": [
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter"
+            ],
+            "91": [
                 "Desert",
                 "GRC_Autumn",
                 "GRC_Spring",
@@ -101426,6 +102414,13 @@
                 "GRC_Spring",
                 "GRC_Summer",
                 "GRC_Winter"
+            ],
+            "91": [
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter"
             ]
         },
         "displayName": "SAM SA-10 S-300 \"Grumble\" Big Bird SR",
@@ -101785,6 +102780,9 @@
                 "Green"
             ],
             "90": [
+                "Green"
+            ],
+            "91": [
                 "Green"
             ]
         },
@@ -103277,6 +104275,21 @@
                 "UKR_Summer",
                 "UKR_Winter",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "UKR_Autumn",
+                "UKR_Spring",
+                "UKR_Summer",
+                "UKR_Winter",
+                "Winter"
             ]
         },
         "displayName": "SAM SA-11 Buk \"Gadfly\" C2 ",
@@ -103622,6 +104635,9 @@
                 "Desert"
             ],
             "90": [
+                "Desert"
+            ],
+            "91": [
                 "Desert"
             ]
         },
@@ -105032,6 +106048,21 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "UKR_Autumn",
+                "UKR_Spring",
+                "UKR_Summer",
+                "UKR_Winter",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Desert",
                 "RUS_Autumn",
@@ -106563,6 +107594,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SPM 2S9 Nona 120mm M",
@@ -107601,6 +108643,17 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Desert",
                 "RUS_Autumn",
@@ -108692,6 +109745,17 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Desert",
                 "RUS_Autumn",
@@ -109832,6 +110896,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SPH 2S19 Msta 152mm",
@@ -110154,6 +111229,9 @@
                 "Desert"
             ],
             "90": [
+                "Desert"
+            ],
+            "91": [
                 "Desert"
             ]
         },
@@ -110889,6 +111967,13 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SAM SA-2 S-75 \"Fan Song\" TR",
@@ -111550,6 +112635,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
@@ -112293,6 +113384,13 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SAM SA-2 S-75 \"Guideline\" LN",
@@ -112955,6 +114053,12 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Spring",
                 "Summer",
@@ -113708,6 +114812,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Scout Puma AC",
@@ -114265,6 +115375,12 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Spring",
                 "Summer",
@@ -114842,6 +115958,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Tractor Sd.Kfz.7 Art'y Tractor",
@@ -115131,6 +116253,9 @@
                 "Default"
             ],
             "90": [
+                "Default"
+            ],
+            "91": [
                 "Default"
             ]
         },
@@ -116260,6 +117385,16 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Infantry M249",
@@ -117208,6 +118343,16 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Infantry M4",
@@ -117752,6 +118897,9 @@
                 "Desert"
             ],
             "90": [
+                "Desert"
+            ],
+            "91": [
                 "Desert"
             ]
         },
@@ -118427,6 +119575,13 @@
                 "multicam"
             ],
             "90": [
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter",
+                "multicam"
+            ],
+            "91": [
                 "GRC_Autumn",
                 "GRC_Spring",
                 "GRC_Summer",
@@ -119605,6 +120760,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SAM SA-9 Strela 1 \"Gaskin\" TEL",
@@ -120731,6 +121897,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SAM SA-13 Strela 10M3 \"Gopher\" TEL",
@@ -121343,6 +122520,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SPG StuG III G AG",
@@ -121908,6 +123091,12 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Spring",
                 "Summer",
@@ -122953,6 +124142,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "MBT T-55",
@@ -123402,6 +124602,9 @@
                 "Desert"
             ],
             "90": [
+                "Desert"
+            ],
+            "91": [
                 "Desert"
             ]
         },
@@ -124039,6 +125242,12 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Spring",
                 "Summer",
@@ -125246,6 +126455,19 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "Iran - 01",
+                "Iran - 02",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "MBT T-80U",
@@ -126284,6 +127506,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "MBT T-90",
@@ -127228,6 +128461,16 @@
                 "summer",
                 "winter",
                 "winter"
+            ],
+            "91": [
+                "autumn",
+                "autumn",
+                "spring",
+                "spring",
+                "summer",
+                "summer",
+                "winter",
+                "winter"
             ]
         },
         "displayName": "SPH T155 Firtina 155mm",
@@ -127919,6 +129162,12 @@
                 "spring",
                 "summer",
                 "winter"
+            ],
+            "91": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
             ]
         },
         "displayName": "Refueler TZ-22 Tractor (KrAZ-258B1)",
@@ -128504,6 +129753,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Tank Cartrinity",
@@ -129085,6 +130340,12 @@
                 "spring",
                 "summer",
                 "winter"
+            ],
+            "91": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
             ]
         },
         "displayName": "Tk Tetrach",
@@ -129658,6 +130919,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Tk Tiger 1",
@@ -129968,6 +131235,9 @@
                 "Desert"
             ],
             "90": [
+                "Desert"
+            ],
+            "91": [
                 "Desert"
             ]
         },
@@ -131367,6 +132637,21 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SAM SA-15 Tor \"Gauntlet\"",
@@ -131882,6 +133167,10 @@
             "90": [
                 "green",
                 "white"
+            ],
+            "91": [
+                "green",
+                "white"
             ]
         },
         "displayName": "M92 Tug Harlan drivable",
@@ -132379,6 +133668,9 @@
             ],
             "90": [
                 "Desert"
+            ],
+            "91": [
+                "Desert"
             ]
         },
         "displayName": "Truck Ural-4320",
@@ -132813,6 +134105,9 @@
             ],
             "90": [
                 "desert"
+            ],
+            "91": [
+                "desert"
             ]
         },
         "displayName": "Truck Ural-4320 MCC",
@@ -133146,6 +134441,9 @@
                 "Desert"
             ],
             "90": [
+                "Desert"
+            ],
+            "91": [
                 "Desert"
             ]
         },
@@ -133561,6 +134859,9 @@
             ],
             "90": [
                 "Desert"
+            ],
+            "91": [
+                "Desert"
             ]
         },
         "displayName": "AAA ZU-23 on Ural-4320 Insurgent",
@@ -133854,6 +135155,9 @@
                 "Desert"
             ],
             "90": [
+                "Desert"
+            ],
+            "91": [
                 "Desert"
             ]
         },
@@ -134192,6 +135496,9 @@
                 "Desert"
             ],
             "90": [
+                "Desert"
+            ],
+            "91": [
                 "Desert"
             ]
         },
@@ -135231,6 +136538,17 @@
                 "summer_green",
                 "winter",
                 "winter"
+            ],
+            "91": [
+                "autumn",
+                "autumn_green",
+                "desert",
+                "spring",
+                "spring_green",
+                "summer",
+                "summer_green",
+                "winter",
+                "winter"
             ]
         },
         "displayName": "Truck Ural-4320T",
@@ -136179,6 +137497,16 @@
                 "Woodland Winter"
             ],
             "90": [
+                "Desert Autumn",
+                "Desert Spring",
+                "Desert Summer",
+                "Desert Winter",
+                "Woodland Autumn",
+                "Woodland Spring",
+                "Woodland Summer",
+                "Woodland Winter"
+            ],
+            "91": [
                 "Desert Autumn",
                 "Desert Spring",
                 "Desert Summer",
@@ -137681,6 +139009,21 @@
                 "USA_Summer",
                 "USA_Winter",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "ISR_Autumn",
+                "ISR_Spring",
+                "ISR_Summer",
+                "ISR_Winter",
+                "Spring",
+                "Summer",
+                "USA_Autumn",
+                "USA_Spring",
+                "USA_Summer",
+                "USA_Winter",
+                "Winter"
             ]
         },
         "displayName": "SPAAA Vulcan M163",
@@ -138477,6 +139820,14 @@
                 "Summer",
                 "Winter",
                 "Winter_nobrand"
+            ],
+            "91": [
+                "Autumn",
+                "Nobrand",
+                "Spring",
+                "Summer",
+                "Winter",
+                "Winter_nobrand"
             ]
         },
         "displayName": "Well Car",
@@ -139054,6 +140405,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
@@ -139971,6 +141328,16 @@
                 "Winter"
             ],
             "90": [
+                "2TAF-RAF-Ambulance",
+                "2TAF-RCAF-AMBULANCE",
+                "ARMY-Ambulance",
+                "Autumn",
+                "RAF-EARLY-Ambulance",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "2TAF-RAF-Ambulance",
                 "2TAF-RCAF-AMBULANCE",
                 "ARMY-Ambulance",
@@ -141052,6 +142419,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "Truck ZIL-131 (C2)",
@@ -142109,6 +143487,17 @@
                 "RUS_Winter"
             ],
             "90": [
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Summer",
+                "RUS_Winter",
+                "RUS_Winter"
+            ],
+            "91": [
                 "Desert",
                 "RUS_Autumn",
                 "RUS_Autumn",
@@ -143984,6 +145373,25 @@
                 "UKR_Summer",
                 "UKR_Winter",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "GRG_Autumn",
+                "GRG_Spring",
+                "GRG_Summer",
+                "GRG_Winter",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "UKR_Autumn",
+                "UKR_Spring",
+                "UKR_Summer",
+                "UKR_Winter",
+                "Winter"
             ]
         },
         "displayName": "SPAAA ZSU-23-4 Shilka \"Gun Dish\"",
@@ -144770,6 +146178,13 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SPAAA ZSU-57-2",
@@ -145132,6 +146547,9 @@
                 "Jungle Camo"
             ],
             "90": [
+                "Jungle Camo"
+            ],
+            "91": [
                 "Jungle Camo"
             ]
         },
@@ -145802,6 +147220,13 @@
                 "GRC_Winter"
             ],
             "90": [
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter"
+            ],
+            "91": [
                 "Desert",
                 "GRC_Autumn",
                 "GRC_Spring",
@@ -146613,6 +148038,13 @@
                 "GRC_Spring",
                 "GRC_Summer",
                 "GRC_Winter"
+            ],
+            "91": [
+                "Desert",
+                "GRC_Autumn",
+                "GRC_Spring",
+                "GRC_Summer",
+                "GRC_Winter"
             ]
         },
         "displayName": "AAA ZU-23 Closed Emplacement",
@@ -147077,6 +148509,9 @@
                 "Desert"
             ],
             "90": [
+                "Desert"
+            ],
+            "91": [
                 "Desert"
             ]
         },
@@ -147694,6 +149129,12 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Spring",
                 "Summer",
@@ -148535,6 +149976,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "AAA 8,8cm Flak 18",
@@ -149092,6 +150539,12 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Spring",
                 "Summer",
@@ -149657,6 +151110,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "AAA 8,8cm Flak 36",
@@ -150214,6 +151673,12 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Spring",
                 "Summer",
@@ -150779,6 +152244,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "AAA Flak-Vierling 38 Quad 20mm",
@@ -151340,6 +152811,12 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "AAA 8,8cm Flak 41",
@@ -151897,6 +153374,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
@@ -153518,6 +155001,11 @@
                 "IRQ_Yellow"
             ],
             "90": [
+                "Green",
+                "IRN_Yellow",
+                "IRQ_Yellow"
+            ],
+            "91": [
                 "Green",
                 "IRN_Yellow",
                 "IRQ_Yellow"
@@ -155542,6 +157030,28 @@
                 "woodland_autumn",
                 "woodland_spring",
                 "woodland_summer"
+            ],
+            "91": [
+                "CHL_autumn",
+                "CHL_spring",
+                "CHL_summer",
+                "CHL_winter",
+                "CHL_winter",
+                "FIN_autumn",
+                "FIN_spring",
+                "FIN_summer",
+                "FIN_winter",
+                "HEL_autumn",
+                "HEL_spring",
+                "HEL_summer",
+                "HEL_winter",
+                "autumn",
+                "spring",
+                "summer",
+                "winter",
+                "woodland_autumn",
+                "woodland_spring",
+                "woodland_summer"
             ]
         },
         "displayName": "MBT Leopard-2A4",
@@ -156163,6 +157673,12 @@
                 "Winter_Woodland"
             ],
             "90": [
+                "Autumn_Woodland",
+                "Spring_Woodland",
+                "Summer_Woodland",
+                "Winter_Woodland"
+            ],
+            "91": [
                 "Autumn_Woodland",
                 "Spring_Woodland",
                 "Summer_Woodland",
@@ -158306,6 +159822,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SAM SA-2/3/5 P19 \"Flat Face\" SR ",
@@ -159108,6 +160635,13 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SAM Rapier Blindfire TR",
@@ -159815,6 +161349,13 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SAM Rapier LN",
@@ -160517,6 +162058,13 @@
                 "Winter"
             ],
             "90": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
                 "Autumn",
                 "Desert",
                 "Spring",
@@ -161589,6 +163137,17 @@
                 "Spring",
                 "Summer",
                 "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "RUS_Autumn",
+                "RUS_Spring",
+                "RUS_Summer",
+                "RUS_Winter",
+                "Spring",
+                "Summer",
+                "Winter"
             ]
         },
         "displayName": "SAM SA-3 S-125 \"Low Blow\" TR",
@@ -162333,6 +163892,12 @@
                 "spring",
                 "summer",
                 "winter"
+            ],
+            "91": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
             ]
         },
         "displayName": "MLRS LC with B8M1 80mm",
@@ -162950,6 +164515,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
@@ -163591,6 +165162,12 @@
                 "spring",
                 "summer",
                 "winter"
+            ],
+            "91": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
             ]
         },
         "displayName": "Scout LC with KORD 12.7mm",
@@ -164224,6 +165801,12 @@
                 "winter"
             ],
             "90": [
+                "autumn",
+                "spring",
+                "summer",
+                "winter"
+            ],
+            "91": [
                 "autumn",
                 "spring",
                 "summer",
