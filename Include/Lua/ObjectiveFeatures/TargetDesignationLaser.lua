@@ -1,5 +1,6 @@
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser = { }
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.laserSpot = nil -- current laser spot
+briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.laserIRSpot = nil -- current laser spot
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.laserTarget = nil -- current lased target
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.laserCode = $LASERCODE$ -- current lased target
 
@@ -39,9 +40,11 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
   targetPos.y = targetPos.y + 2.0
   targetPos.z = targetPos.z + targetSpeed.z
   if objFeature.targetDesignationLaser.laserSpot == nil then
+    objFeature.targetDesignationLaser.laserIRSpot = Spot.createInfraRed(objFeature.targetDesignationLaser.laserTarget, { x = 0, y = 2.0, z = 0 }, targetPos)
     objFeature.targetDesignationLaser.laserSpot = Spot.createLaser(objFeature.targetDesignationLaser.laserTarget, { x = 0, y = 2.0, z = 0 }, targetPos, objFeature.targetDesignationLaser.laserCode)
     briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: Created Laser "..objFeature.targetDesignationLaser.laserSpot:getCode()..":"..tostring(targetPos.x)..","..tostring(targetPos.y)..","..tostring(targetPos.z), 1)
   else -- spot already exists, update its position
+    objFeature.targetDesignationLaser.laserIRSpot:setPoint(targetPos)
     objFeature.targetDesignationLaser.laserSpot:setPoint(targetPos)
     briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: Update Laser Pos "..objFeature.targetDesignationLaser.laserSpot:getCode()..":"..tostring(targetPos.x)..","..tostring(targetPos.y)..","..tostring(targetPos.z), 1)
   end
@@ -54,6 +57,8 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
   if objFeature.targetDesignationLaser.laserSpot ~= nil then
     Spot.destroy(objFeature.targetDesignationLaser.laserSpot)
     objFeature.targetDesignationLaser.laserSpot = nil
+    Spot.destroy(objFeature.targetDesignationLaser.laserIRSpot)
+    objFeature.targetDesignationLaser.laserIRSpot = nil
   end
 
   -- unset target and play radio message
