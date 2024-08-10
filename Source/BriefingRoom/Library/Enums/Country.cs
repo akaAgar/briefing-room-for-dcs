@@ -114,5 +114,6 @@ namespace BriefingRoom4DCS
         Nigeria = 88,
         Peru = 89,
         Ecuador = 90,
+        Afghanistan = 91,
     }
 }
