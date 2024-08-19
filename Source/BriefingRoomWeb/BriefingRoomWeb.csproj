@@ -16,7 +16,7 @@
   </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.0" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.1" />
       <ProjectReference Include="../BriefingRoomCommonGUI/BriefingRoomCommonGUI.csproj" />
     </ItemGroup>
 
