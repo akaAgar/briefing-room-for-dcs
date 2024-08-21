@@ -548,7 +548,7 @@
                                         <label>@briefingRoom.Translate("Objectives")</label>
                                         <CheckBoxList
                                             Data="Template.GetTasksFlat()"
-                                            TextField="@(item =>item.Alias + ": " + item.Task + "-" + item.Target)"
+                                            TextField="@(item =>item.Alias + ": " + (item.HasPreset ? item.Preset   : item.Task + "-" + item.Target))"
                                             ValueField="@(item =>Template.GetTasksFlat().IndexOf(item))"
                                             SelectedValues="package.ObjectiveIndexes"
                                             TItem="MissionTemplateSubTask" TItemOutput="int">
