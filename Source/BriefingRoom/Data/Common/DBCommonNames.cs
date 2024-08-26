@@ -62,8 +62,16 @@ namespace BriefingRoom4DCS.Data
 
             for (i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
             {
-                UnitFamilies[i] = ini.GetLangStrings(LangDB, className, "Name", "UnitFamilies", ((UnitFamily)i).ToString());
-                UnitGroups[i] = ini.GetLangStrings(LangDB, className, "Name", "UnitGroups", ((UnitFamily)i).ToString());
+                var unitFamily = ((UnitFamily)i).ToString();
+                var unitFamilyNames = ini.GetLangStrings(LangDB, className, "Name", "UnitFamilies", unitFamily);
+                if (unitFamilyNames.Count() == 0)
+                    throw new BriefingRoomException("en", $"No UnitFamilies name for {unitFamily}.");
+                UnitFamilies[i] = unitFamilyNames;
+
+                var unitGroupNames = ini.GetLangStrings(LangDB, className, "Name", "UnitGroups", unitFamily);
+                if (unitGroupNames.Count() == 0)
+                    throw new BriefingRoomException("en", $"No UnitGroups name for {unitFamily}.");
+                UnitGroups[i] = unitGroupNames;
             }
 
             WPEgressName = ini.GetLangStrings(LangDB, className, "Name", "Waypoints", "Egress");
