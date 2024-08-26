@@ -1133,9 +1133,9 @@ for objIndex,obj in ipairs(briefingRoom.mission.objectives) do
       end
       return u:isExist()
     end)
-    if(next(obj.unitNames) == nil) then
-      briefingRoom.mission.coreFunctions.completeObjective(objIndex)
-    end
+  end
+  if(next(obj.unitNames) == nil) then
+    briefingRoom.mission.coreFunctions.completeObjective(objIndex)
   end
 end
 
