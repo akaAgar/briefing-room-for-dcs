@@ -81,6 +81,8 @@ namespace BriefingRoom4DCS.Template
         private int CombinedArmsJTACRed_;
         public DsAirbase AirbaseDynamicSpawn { get; set; }
         public bool CarrierDynamicSpawn { get; set; }
+        public DsAirbase AirbaseDynamicCargo { get; set; }
+        public bool CarrierDynamicCargo { get; set; }
         public bool DSAllowHotStart { get; set; }
 
         public void Clear()
@@ -123,9 +125,14 @@ namespace BriefingRoom4DCS.Template
             CombinedArmsCommanderRed = 0;
             CombinedArmsJTACBlue = 0;
             CombinedArmsJTACRed = 0;
+
             AirbaseDynamicSpawn = DsAirbase.None;
             CarrierDynamicSpawn = false;
             DSAllowHotStart = false;
+
+            AirbaseDynamicCargo = DsAirbase.Friendly;
+            CarrierDynamicCargo = true;
+
 
             AssignAliases();
         }
@@ -174,6 +181,10 @@ namespace BriefingRoom4DCS.Template
             CarrierDynamicSpawn = ini.GetValue("Options", "CarrierDynamicSpawn", CarrierDynamicSpawn);
             DSAllowHotStart = ini.GetValue("Options", "DSAllowHotStart", DSAllowHotStart);
 
+            AirbaseDynamicCargo = ini.GetValue("Options", "AirbaseDynamicCargo", AirbaseDynamicCargo);
+            CarrierDynamicCargo = ini.GetValue("Options", "CarrierDynamicCargo", CarrierDynamicCargo);
+
+
             AssignAliases();
             return true;
         }
@@ -203,9 +214,13 @@ namespace BriefingRoom4DCS.Template
             ini.SetValueArray("Options", "Mission", OptionsMission.ToArray());
             ini.SetValueArray("Options", "Realism", OptionsRealism.ToArray());
             ini.SetValueArray("Options", "UnitBanList", OptionsUnitBanList.ToArray());
+
             ini.SetValue("Options", "AirbaseDynamicSpawn", AirbaseDynamicSpawn);
             ini.SetValue("Options", "CarrierDynamicSpawn", CarrierDynamicSpawn);
             ini.SetValue("Options", "DSAllowHotStart", DSAllowHotStart);
+
+            ini.SetValue("Options", "AirbaseDynamicCargo", AirbaseDynamicCargo);
+            ini.SetValue("Options", "CarrierDynamicCargo", CarrierDynamicCargo);
 
             for (i = 0; i < PlayerFlightGroups.Count; i++)
                 PlayerFlightGroups[i].SaveToFile(ini, "PlayerFlightGroups", $"PlayerFlightGroup{i:000}");

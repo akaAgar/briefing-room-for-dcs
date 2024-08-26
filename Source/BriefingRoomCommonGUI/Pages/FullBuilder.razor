@@ -514,6 +514,19 @@
                             </div>
                         </div>
                         <hr/>
+                        <div class="generator-block">
+                            <h3>@briefingRoom.Translate("DynamicCargo")</h3>
+                            <InputEnum ClassString="flex-block" @bind-Value="Template.AirbaseDynamicCargo" EnumType="DsAirbase"/>
+                            <div class="flex-block form-group">
+                                    <label class="checkbox-wrapper">
+                                    <input type="checkbox" checked=@Template.CarrierDynamicCargo
+                                        @onchange="eventArgs => { Template.CarrierDynamicCargo = (bool)eventArgs.Value; StateHasChanged();}" />
+                                        
+                                        <span>@briefingRoom.Translate("CarrierDynamicSpawn")</span>
+                                </label>
+                            </div>
+                        </div>
+                        <hr/>
                          <div id="flight-groups" class="generator-block">
                         <h3>@briefingRoom.Translate("StrikePackages")</h3>
                         <ul class="nav nav-tabs">

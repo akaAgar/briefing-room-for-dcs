@@ -67,8 +67,11 @@ namespace BriefingRoom4DCS.Template
         internal Dictionary<string, double[]> CarrierHints { get; init; }
         internal MissionTemplate Template { get; init; }
         internal DsAirbase AirbaseDynamicSpawn { get; init; }
-        internal bool DsAllowHotStart { get; init; }
         internal bool CarrierDynamicSpawn { get; init; }
+        internal bool DsAllowHotStart { get; init; }
+
+        internal DsAirbase AirbaseDynamicCargo { get; init; }
+        internal bool CarrierDynamicCargo { get; init; }
 
         internal MissionTemplateRecord(MissionTemplate template)
         {
@@ -120,8 +123,10 @@ namespace BriefingRoom4DCS.Template
             CarrierHints = template.CarrierHints;
             Template = template;
             AirbaseDynamicSpawn = template.AirbaseDynamicSpawn;
-            DsAllowHotStart = template.DSAllowHotStart;
             CarrierDynamicSpawn = template.CarrierDynamicSpawn;
+            DsAllowHotStart = template.DSAllowHotStart;
+            AirbaseDynamicCargo = template.AirbaseDynamicCargo;
+            CarrierDynamicCargo = template.CarrierDynamicCargo;
         }
 
         internal string GetCoalitionID(Coalition coalition)

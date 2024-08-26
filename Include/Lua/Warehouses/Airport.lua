@@ -35,6 +35,7 @@
     }, -- end of ["weapons"]
     ["OperatingLevel_Fuel"] = 10,
     ["unlimitedAircrafts"] = true,
+    ["dynamicCargo"] = $DYNAMICCARGO$,
     ["dynamicSpawn"] = $DYNAMICSPAWN$,
     ["allowHotStart"] = $ALLOWHOTSTART$,
 }, -- end of [$INDEX$]
