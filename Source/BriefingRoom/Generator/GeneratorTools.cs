@@ -378,10 +378,10 @@ namespace BriefingRoom4DCS.Generator
             int fakeGroupNumber = groupID * 10 + Toolbox.RandomInt(1, 10);
             name = name.Replace("$N$", fakeGroupNumber.ToString(NumberFormatInfo.InvariantInfo));
             name = name.Replace("$NTH$", Toolbox.GetOrdinalAdjective(fakeGroupNumber));
-            if (isUsingSkynet)
-                return SetSkyNetPrefix(name, family, side);
             if (string.IsNullOrEmpty(name))
                 throw new BriefingRoomException(langKey, "NoEmptyGroupName", family);
+            if (isUsingSkynet)
+                return SetSkyNetPrefix(name, family, side);
             return name;
         }
 
