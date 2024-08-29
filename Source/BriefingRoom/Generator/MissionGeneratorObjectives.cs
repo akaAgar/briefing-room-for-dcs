@@ -230,7 +230,7 @@ namespace BriefingRoom4DCS.Generator
                         throw new BriefingRoomException(mission.LangKey, "FailedToFindCargoSpawn");
                     unitCoordinates = spawnPoints.First();
                 }
-                if (targetBehaviorDB.ID.StartsWith("RecoverToBase") || taskDB.IsEscort())
+                if (targetBehaviorDB.ID.StartsWith("RecoverToBase") || (taskDB.IsEscort() & !targetBehaviorDB.ID.StartsWith("ToFrontLine")))
                 {
                     (unitCoordinates, objectiveCoordinates) = (objectiveCoordinates, unitCoordinates);
                     isInverseTransportWayPoint = true;
@@ -362,7 +362,7 @@ namespace BriefingRoom4DCS.Generator
                 }
             }
             foreach (string featureID in featureList)
-                MissionGeneratorFeaturesObjectives.GenerateMissionFeature(ref mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget), overrideCoords: (targetBehaviorDB.ID.StartsWith("ToFrontLine") ? objectiveCoordinates : null));
+                MissionGeneratorFeaturesObjectives.GenerateMissionFeature(ref mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget), overrideCoords: targetBehaviorDB.ID.StartsWith("ToFrontLine") ? objectiveCoordinates : null);
 
             mission.ObjectiveCoordinates.Add(isInverseTransportWayPoint ? unitCoordinates : objectiveCoordinates);
             var objCoords = objectiveCoordinates;
@@ -446,7 +446,7 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.GetSpawnPointCoalition(mission.TemplateRecord, Side.Enemy));
 
             if (!spawnPoint.HasValue)
-                throw new BriefingRoomException(mission.LangKey,"FailedToSpawnObjectiveGroup", String.Join(", ", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList()));
+                throw new BriefingRoomException(mission.LangKey, "FailedToSpawnObjectiveGroup", String.Join(", ", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList()));
 
             Coordinates objectiveCoordinates = spawnPoint.Value;
             return objectiveCoordinates;
@@ -488,10 +488,10 @@ namespace BriefingRoom4DCS.Generator
         private static void ObjectiveNullCheck(string langKey, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB)
         {
             if (targetDB == null) throw new BriefingRoomException(langKey, "TargetNotFound", targetDB.UIDisplayName);
-            if (targetBehaviorDB == null) throw new BriefingRoomException(langKey,"BehaviorNotFound", targetBehaviorDB.UIDisplayName);
-            if (taskDB == null) throw new BriefingRoomException(langKey,"TaskNotFound", taskDB.UIDisplayName);
+            if (targetBehaviorDB == null) throw new BriefingRoomException(langKey, "BehaviorNotFound", targetBehaviorDB.UIDisplayName);
+            if (taskDB == null) throw new BriefingRoomException(langKey, "TaskNotFound", taskDB.UIDisplayName);
             if (!taskDB.ValidUnitCategories.Contains(targetDB.UnitCategory))
-                throw new BriefingRoomException(langKey,"TaskTargetsInvalid",taskDB.UIDisplayName, targetDB.UnitCategory);
+                throw new BriefingRoomException(langKey, "TaskTargetsInvalid", taskDB.UIDisplayName, targetDB.UnitCategory);
         }
 
 
@@ -586,7 +586,7 @@ namespace BriefingRoom4DCS.Generator
                 coreCoordinates, remove);
 
             if (!spawnPoint.HasValue)
-                throw new BriefingRoomException(mission.LangKey, "FailedToLaunchNearbyObjective",String.Join(",", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList()));
+                throw new BriefingRoomException(mission.LangKey, "FailedToLaunchNearbyObjective", String.Join(",", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList()));
 
             Coordinates objectiveCoordinates = spawnPoint.Value;
             return objectiveCoordinates;
