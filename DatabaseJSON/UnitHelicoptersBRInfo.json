@@ -47,7 +47,7 @@
         "families": [
             "HelicopterTransport"
         ],
-        "lowPolly": false,
+        "lowPolly": true,
         "playerControllable": false
     },
     {
@@ -71,7 +71,7 @@
         "families": [
             "HelicopterTransport"
         ],
-        "lowPolly": false,
+        "lowPolly": true,
         "playerControllable": false
     },
     {
@@ -103,7 +103,7 @@
         "families": [
             "HelicopterUtility"
         ],
-        "lowPolly": false,
+        "lowPolly": true,
         "playerControllable": false
     },
     {
