@@ -726,12 +726,13 @@ function briefingRoom.handleGeneralPlayerKill(event)
     briefingRoom.aircraftActivator.possibleResponsiveSpawn()
   else
     briefingRoom.debugPrint("Friendly Fire Event: "..event.initiator:getName().." ("..playerName..") killed "..event.target:getName())
+    -- TODO friendly fire message
   end 
 end
 
 function briefingRoom.handleGeneralPlayerKilled(event)
   local playerName = event.target:getPlayerName()
-    if playerName == nil then return end
+  if playerName == nil then return end
     briefingRoom.debugPrint("Player Killed Event: "..event.initiator:getName().." killed "..event.target:getName().." ("..playerName..")")
     briefingRoom.handleTroopsInAircraft(event)
 end
@@ -766,7 +767,6 @@ function briefingRoom.handleGeneralKill(event)
 
   if event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_CRASH then
     if event.initiator == nil or event.initiator.getCategory == nil then  return end -- no initiator
-    briefingRoom.debugPrint("initiator "..event.initiator:getCategory())
     if event.initiator:getCategory() ~= Object.Category.UNIT and event.initiator:getCategory() ~= Object.Category.STATIC then return end -- initiator was not an unit or static
     if event.initiator:getCoalition() == briefingRoom.playerCoalition then
       local unitName = event.initiator:getName()
@@ -1005,9 +1005,6 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
   -- Debug missions called complete early
   if briefingRoom.printDebugMessages then
     briefingRoom.debugPrint("Objective Completion state: "..tostring(completeCount).."/"..tostring(#briefingRoom.mission.objectives).."=".. tostring(missionOver))
-    for k,v in pairs(briefingRoom.mission.objectives) do
-      briefingRoom.debugPrint("Objective state: "..tostring(k).."=".. tostring(v.complete))
-    end
   end
   -- End Debug
   if missionOver then
