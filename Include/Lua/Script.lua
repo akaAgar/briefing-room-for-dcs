@@ -726,12 +726,13 @@ function briefingRoom.handleGeneralPlayerKill(event)
     briefingRoom.aircraftActivator.possibleResponsiveSpawn()
   else
     briefingRoom.debugPrint("Friendly Fire Event: "..event.initiator:getName().." ("..playerName..") killed "..event.target:getName())
+    -- TODO friendly fire message
   end 
 end
 
 function briefingRoom.handleGeneralPlayerKilled(event)
   local playerName = event.target:getPlayerName()
-    if playerName == nil then return end
+  if playerName == nil then return end
     briefingRoom.debugPrint("Player Killed Event: "..event.initiator:getName().." killed "..event.target:getName().." ("..playerName..")")
     briefingRoom.handleTroopsInAircraft(event)
 end
