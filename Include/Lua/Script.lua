@@ -1150,6 +1150,74 @@ function briefingRoom.mission.objectiveTimerSchedule(args, time)
   return time + 1
 end
 
+function briefingRoom.mission.destroyCallout(objectiveIndex, killedUnit, eventID)
+  if killedUnit == nil or killedUnit.getName == nil  then return false end
+  local unitName = killedUnit:getName()
+  if not table.contains(briefingRoom.mission.objectives[objectiveIndex].unitNames, unitName) then return false end
+
+    -- Remove the unit from the list of targets
+    table.removeValue(briefingRoom.mission.objectives[objectiveIndex].unitNames, unitName)
+
+    -- Play "target destroyed" radio message
+    local soundName = "TargetDestroyed"
+    local messages = { "$LANG_COMMAND$: $LANG_TARGETDESTROY1$", "$LANG_COMMAND$: $LANG_TARGETDESTROY2$", "$LANG_COMMAND$: $LANG_TARGETSHOOTDOWN1$", "$LANG_COMMAND$: $LANG_TARGETSHOOTDOWN2$" }
+    local targetType = "Ground"
+    local messageIndex = math.random(1, 2)
+    local messageIndexOffset = 0
+    if eventID == world.event.S_EVENT_CRASH and killedUnit:inAir() then
+      targetType = "Air"
+      messageIndexOffset = 2
+    end
+    if briefingRoom.eventHandler.BDASetting == "ALL" or briefingRoom.eventHandler.BDASetting == "TARGETONLY" then
+      briefingRoom.radioManager.play(messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
+    end
+
+    -- Mark the objective as complete if all targets have been destroyed
+    if #briefingRoom.mission.objectives[objectiveIndex].unitNames < 1 then -- all target units destroyed, objective complete
+      briefingRoom.mission.coreFunctions.completeObjective(objectiveIndex)
+    else
+      briefingRoom.aircraftActivator.possibleResponsiveSpawn()
+    end
+end
+
+function briefingRoom.mission.isSoftKillEvent(eventID)
+  return eventID == world.event.S_EVENT_DEAD or
+ eventID == world.event.S_EVENT_CRASH or
+ eventID == world.event.S_EVENT_AI_ABORT_MISSION
+end
+
+function briefingRoom.mission.getDestroyFunction(objectiveIndex)
+  return function(event)
+
+    -- Mission complete, nothing to do
+    if briefingRoom.mission.complete then return false end
+
+    -- Objective complete, nothing to do
+    if briefingRoom.mission.objectives[objectiveIndex].complete then return false end
+
+    -- Check if event is a "destruction" event
+    local destructionEvent = false
+    local killedUnit = event.initiator
+    if event.id == world.event.S_EVENT_KILL then
+      destructionEvent = true
+      killedUnit = event.target
+    elseif 
+      briefingRoom.mission.isSoftKillEvent(event.id) or
+      (event.id == world.event.S_EVENT_LAND and briefingRoom.mission.objectives[objectiveIndex].targetCategory == Unit.Category.HELICOPTER) then -- Check if parked AI Aircraft are damaged enough to be considered dead
+      destructionEvent = true
+    end
+    -- "Landing" events are considered kills for helicopter targets
+
+    if 
+      not destructionEvent or
+      killedUnit == nil or
+      Object.getCategory(killedUnit) ~= Object.Category.UNIT and Object.getCategory(killedUnit) ~= Object.Category.STATIC
+    then return false end
+
+    return briefingRoom.mission.destroyCallout(objectiveIndex, killedUnit, event.id)
+  end
+end
+
 for objIndex,obj in ipairs(briefingRoom.mission.objectives) do
   if obj.unitsCount > 0 then
     obj.unitNames = table.filter(obj.unitNames, function(o, k, i)
