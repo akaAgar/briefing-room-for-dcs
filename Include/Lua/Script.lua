@@ -704,7 +704,7 @@ function briefingRoom.handleGeneralPlayerKill(event)
   briefingRoom.debugPrint("Kill Event: "..event.initiator:getName().." ("..playerName..") killed "..event.target:getName())
   if event.target:getCoalition() ~= briefingRoom.playerCoalition then -- unit is an enemy, radio some variation of a "enemy destroyed" message
     local soundName = "UnitDestroyed"
-    local messages = { "$LANG_COMMAND$: $LANG_DESTROY1$", "$LANG_COMMAND$: $LANG_DESTROY2$", "$LANG_COMMAND$: $LANG_SHOOTDOWN1$", "$LANG_COMMAND$: $LANG_SHOOTDOWN2$" }
+    local messages = { "$LANG_DESTROY1$", "$LANG_DESTROY2$", "$LANG_SHOOTDOWN1$", "$LANG_SHOOTDOWN2$" }
     local messageIndex = math.random(1, 2)
     local messageIndexOffset = 0
 
@@ -721,12 +721,12 @@ function briefingRoom.handleGeneralPlayerKill(event)
       end
     end
     if briefingRoom.eventHandler.BDASetting == "ALL" then
-      briefingRoom.radioManager.play(messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
+      briefingRoom.radioManager.play("$LANG_COMMAND$: "..playerName.." "..messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
     end
     briefingRoom.aircraftActivator.possibleResponsiveSpawn()
   else
     briefingRoom.debugPrint("Friendly Fire Event: "..event.initiator:getName().." ("..playerName..") killed "..event.target:getName())
-    -- TODO friendly fire message
+    briefingRoom.radioManager.play("$LANG_COMMAND$: "..playerName.." $LANG_TEAMKILL$", "RadioHQTeamkill", math.random(1, 3))
   end 
 end
 
@@ -1160,7 +1160,7 @@ function briefingRoom.mission.destroyCallout(objectiveIndex, killedUnit, eventID
 
     -- Play "target destroyed" radio message
     local soundName = "TargetDestroyed"
-    local messages = { "$LANG_COMMAND$: $LANG_TARGETDESTROY1$", "$LANG_COMMAND$: $LANG_TARGETDESTROY2$", "$LANG_COMMAND$: $LANG_TARGETSHOOTDOWN1$", "$LANG_COMMAND$: $LANG_TARGETSHOOTDOWN2$" }
+    local messages = { "$LANG_TARGETDESTROY1$", "$LANG_TARGETDESTROY2$", "$LANG_TARGETSHOOTDOWN1$", "$LANG_TARGETSHOOTDOWN2$" }
     local targetType = "Ground"
     local messageIndex = math.random(1, 2)
     local messageIndexOffset = 0
@@ -1169,7 +1169,7 @@ function briefingRoom.mission.destroyCallout(objectiveIndex, killedUnit, eventID
       messageIndexOffset = 2
     end
     if briefingRoom.eventHandler.BDASetting == "ALL" or briefingRoom.eventHandler.BDASetting == "TARGETONLY" then
-      briefingRoom.radioManager.play(messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
+      briefingRoom.radioManager.play("$LANG_COMMAND$: "..messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
     end
 
     -- Mark the objective as complete if all targets have been destroyed
