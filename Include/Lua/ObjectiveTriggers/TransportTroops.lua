@@ -1,3 +1,51 @@
+briefingRoom.mission.objectives[$OBJECTIVEINDEX$].forcePickup = function()
+  local objectiveIndex = $OBJECTIVEINDEX$
+  if briefingRoom.mission.objectives[objectiveIndex].complete then return end
+  local players = dcsExtensions.getAllPlayers()
+    for _,p in ipairs(players) do
+      if not p:inAir() then
+      briefingRoom.debugPrint("Player on ground")
+      local position = dcsExtensions.toVec2(p:getPoint())
+      local collect = {}
+      -- Pickup
+      for _,id in ipairs(briefingRoom.mission.objectives[objectiveIndex].unitNames) do
+        local targetUnit = Unit.getByName(id)
+        if targetUnit ~= nil then
+          local targetPosition = dcsExtensions.toVec2(targetUnit:getPoint())
+          briefingRoom.debugPrint("Player distance"..dcsExtensions.getDistance(position, targetPosition))
+          if dcsExtensions.getDistance(position, targetPosition) < 500 then
+            table.insert(collect, id)
+          end
+        end
+      end
+
+
+      if #collect > 0 then
+        briefingRoom.debugPrint("Loading "..#collect.." troops")
+        briefingRoom.transportManager.troopsMoveToGetIn(p:getName(), collect)
+      end
+    end
+  end
+end
+
+briefingRoom.mission.objectives[$OBJECTIVEINDEX$].forceDrop = function()
+  local objectiveIndex = $OBJECTIVEINDEX$
+  if briefingRoom.mission.objectives[objectiveIndex].complete then return end
+  local players = dcsExtensions.getAllPlayers()
+    for _,p in ipairs(players) do
+      if not p:inAir() then
+        briefingRoom.debugPrint("Player on ground")
+        briefingRoom.transportManager.removeTroopCargo(p:getName(), briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames)
+    end
+  end
+end
+
+
+
+
+table.insert(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].f10Commands, {text = "$LANG_FORCEPICKUP$", func = briefingRoom.mission.objectives[$OBJECTIVEINDEX$].forcePickup, args =  nil})
+table.insert(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].f10Commands, {text = "$LANG_FORCEDROP$", func = briefingRoom.mission.objectives[$OBJECTIVEINDEX$].forceDrop, args =  nil})
+
 briefingRoom.mission.objectiveTimers[$OBJECTIVEINDEX$] = function()
   if briefingRoom.mission.objectives[$OBJECTIVEINDEX$].complete then return false end -- Objective complete, nothing to do
   for __,u in ipairs(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames) do
