@@ -41,7 +41,8 @@ table.insert(briefingRoom.mission.objectiveTriggers, function(event)
       table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, value)
     end
     if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames < 1 then -- all target units moved or dead, objective complete
-      briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_TROOPSDELIVERED$", "RadioPilotTroopsDelivered")
+      local playername = event.initiator.getPlayerName and event.initiator:getPlayerName() or nil
+      briefingRoom.radioManager.play((playername or"$LANG_PILOT$")..": $LANG_TROOPSDELIVERED$", "RadioPilotTroopsDelivered")
       briefingRoom.mission.coreFunctions.completeObjective($OBJECTIVEINDEX$)
     end
     return true

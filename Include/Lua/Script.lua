@@ -732,22 +732,22 @@ function briefingRoom.handleGeneralPlayerKilled(event)
   local playerName = event.target:getPlayerName()
   if playerName == nil then return end
     briefingRoom.handleTroopsInAircraft(event)
-  end
+end
 
-  function briefingRoom.handleTroopsInAircraft(event)
-    local unitName = event.initiator:getName()
-    -- TODO see if we can detect units in aircraft that embarked using DCS radio
-    if table.containsKey(briefingRoom.transportManager.transportRoster, unitName) then
-      local toopNames={}
-      local n=0
-      for k,v in pairs(briefingRoom.transportManager.transportRoster[unitName].troops) do
-        n=n+1
-        toopNames[n]=k
-      end
-      briefingRoom.debugPrint("unpacking troops "..#toopNames)
-      -- Assume all troops are main characters and survive the crash no issues
-      briefingRoom.transportManager.removeTroopCargo(unitName, toopNames, event.initiator:getPoint())
+function briefingRoom.handleTroopsInAircraft(event)
+  local unitName = event.initiator:getName()
+  -- TODO see if we can detect units in aircraft that embarked using DCS radio
+  if table.containsKey(briefingRoom.transportManager.transportRoster, unitName) then
+    local toopNames={}
+    local n=0
+    for k,v in pairs(briefingRoom.transportManager.transportRoster[unitName].troops) do
+      n=n+1
+      toopNames[n]=k
     end
+    briefingRoom.debugPrint("unpacking troops "..#toopNames)
+    -- Assume all troops are main characters and survive the crash no issues
+    briefingRoom.transportManager.removeTroopCargo(unitName, toopNames, event.initiator:getPoint())
+  end
 end
 
 function briefingRoom.handleGeneralKill(event)
@@ -897,26 +897,34 @@ function briefingRoom.transportManager.removeTroopCargo(transportUnitName, unitN
     return {}
   end
   local removed = {}
+  local spawnUnits = {}
+  local country = nil
   for index, unitName in ipairs(unitNames) do
     if table.containsKey(briefingRoom.transportManager.transportRoster[transportUnitName].troops, unitName) then
       local unitDeets = briefingRoom.transportManager.transportRoster[transportUnitName].troops[unitName]
+      country = unitDeets.country
       briefingRoom.transportManager.transportRoster[transportUnitName].troops[unitName] = nil
       table.insert(removed, unitName)
-      mist.dynAdd({
-        units = { [1] ={
-          ["y"] = transportUnitPoint.z + math.random(-30, 30),
-          ["type"] = unitDeets.type,
-          ["name"] = unitDeets.name,
-          ["heading"] = 0,
-          ["playerCanDrive"] = true,
-          ["skill"] = "Excellent",
-          ["x"] = transportUnitPoint.x + math.random(-30, 30),
-        }},
-        country = unitDeets.country,
-        category = Group.Category.GROUND
+      table.insert(spawnUnits, {
+        ["y"] = transportUnitPoint.z + math.random(-30, 30),
+        ["type"] = unitDeets.type,
+        ["name"] = unitDeets.name,
+        ["heading"] = 0,
+        ["playerCanDrive"] = true,
+        ["skill"] = "Excellent",
+        ["x"] = transportUnitPoint.x + math.random(-30, 30),
       })
+      
     end
   end
+  if #spawnUnits > 0 then
+    mist.dynAdd({
+      units = spawnUnits,
+      country = country,
+      category = Group.Category.GROUND
+    })
+  end
+
   if unitPos == nil then
     briefingRoom.radioManager.play("$LANG_TROOP$: $LANG_TRANSPORTEVERYONEOUT$ ($LANG_REMAININGTROOPS$: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopTakeoff")
   end
