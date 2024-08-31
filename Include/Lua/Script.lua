@@ -701,7 +701,6 @@ briefingRoom.eventHandler.BDASetting = "$BDASETTING$"
 function briefingRoom.handleGeneralPlayerKill(event)
   local playerName = event.initiator:getPlayerName()
   if playerName == nil then return end
-  briefingRoom.debugPrint("Kill Event: "..event.initiator:getName().." ("..playerName..") killed "..event.target:getName())
   if event.target:getCoalition() ~= briefingRoom.playerCoalition then -- unit is an enemy, radio some variation of a "enemy destroyed" message
     local soundName = "UnitDestroyed"
     local messages = { "$LANG_DESTROY1$", "$LANG_DESTROY2$", "$LANG_SHOOTDOWN1$", "$LANG_SHOOTDOWN2$" }
@@ -725,7 +724,6 @@ function briefingRoom.handleGeneralPlayerKill(event)
     end
     briefingRoom.aircraftActivator.possibleResponsiveSpawn()
   else
-    briefingRoom.debugPrint("Friendly Fire Event: "..event.initiator:getName().." ("..playerName..") killed "..event.target:getName())
     briefingRoom.radioManager.play("$LANG_COMMAND$: "..playerName.." $LANG_TEAMKILL$", "RadioHQTeamkill", math.random(1, 3))
   end 
 end
@@ -733,19 +731,7 @@ end
 function briefingRoom.handleGeneralPlayerKilled(event)
   local playerName = event.target:getPlayerName()
   if playerName == nil then return end
-    briefingRoom.debugPrint("Player Killed Event: "..event.initiator:getName().." killed "..event.target:getName().." ("..playerName..")")
     briefingRoom.handleTroopsInAircraft(event)
-end
-
-function briefingRoom.handleGeneralKill(event)
-  if event.id == world.event.S_EVENT_KILL then 
-    if event.initiator == nil or event.target == nil or (event.initiator.getPlayerName == nil and event.target.getPlayerName == nil) then return end -- Incomplete event or player not involved
-    if event.initiator.getPlayerName ~= nil then
-      briefingRoom.handleGeneralPlayerKill(event)
-    end
-    if event.target.getPlayerName ~= nil then
-      briefingRoom.handleGeneralPlayerKilled(event)
-    end
   end
 
   function briefingRoom.handleTroopsInAircraft(event)
@@ -762,10 +748,20 @@ function briefingRoom.handleGeneralKill(event)
       -- Assume all troops are main characters and survive the crash no issues
       briefingRoom.transportManager.removeTroopCargo(unitName, toopNames, event.initiator:getPoint())
     end
-    
+end
+
+function briefingRoom.handleGeneralKill(event)
+  if event.id == world.event.S_EVENT_KILL then 
+    if event.initiator == nil or event.target == nil or (event.initiator.getPlayerName == nil and event.target.getPlayerName == nil) then return end -- Incomplete event or player not involved
+    if event.initiator.getPlayerName ~= nil then
+      briefingRoom.handleGeneralPlayerKill(event)
+    end
+    if event.target.getPlayerName ~= nil then
+      briefingRoom.handleGeneralPlayerKilled(event)
+    end
   end
 
-  if event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_CRASH then
+  if event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_CRASH or event.id == world.event.S_EVENT_PLAYER_LEAVE_UNIT then
     if event.initiator == nil or event.initiator.getCategory == nil then  return end -- no initiator
     if event.initiator:getCategory() ~= Object.Category.UNIT and event.initiator:getCategory() ~= Object.Category.STATIC then return end -- initiator was not an unit or static
     if event.initiator:getCoalition() == briefingRoom.playerCoalition then
@@ -1150,7 +1146,7 @@ function briefingRoom.mission.objectiveTimerSchedule(args, time)
   return time + 1
 end
 
-function briefingRoom.mission.destroyCallout(objectiveIndex, killedUnit, eventID)
+function briefingRoom.mission.destroyCallout(objectiveIndex, killedUnit, eventID, playerName)
   if killedUnit == nil or killedUnit.getName == nil  then return false end
   local unitName = killedUnit:getName()
   if not table.contains(briefingRoom.mission.objectives[objectiveIndex].unitNames, unitName) then return false end
@@ -1169,7 +1165,7 @@ function briefingRoom.mission.destroyCallout(objectiveIndex, killedUnit, eventID
       messageIndexOffset = 2
     end
     if briefingRoom.eventHandler.BDASetting == "ALL" or briefingRoom.eventHandler.BDASetting == "TARGETONLY" then
-      briefingRoom.radioManager.play("$LANG_COMMAND$: "..messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
+      briefingRoom.radioManager.play("$LANG_COMMAND$: "..(playerName or "").." "..messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
     end
 
     -- Mark the objective as complete if all targets have been destroyed
@@ -1198,9 +1194,11 @@ function briefingRoom.mission.getDestroyFunction(objectiveIndex)
     -- Check if event is a "destruction" event
     local destructionEvent = false
     local killedUnit = event.initiator
+    local playerName = nil
     if event.id == world.event.S_EVENT_KILL then
       destructionEvent = true
       killedUnit = event.target
+      playerName = event.initiator.getPlayerName and event.initiator:getPlayerName() or nil
     elseif 
       briefingRoom.mission.isSoftKillEvent(event.id) or
       (event.id == world.event.S_EVENT_LAND and briefingRoom.mission.objectives[objectiveIndex].targetCategory == Unit.Category.HELICOPTER) then -- Check if parked AI Aircraft are damaged enough to be considered dead
@@ -1214,7 +1212,7 @@ function briefingRoom.mission.getDestroyFunction(objectiveIndex)
       Object.getCategory(killedUnit) ~= Object.Category.UNIT and Object.getCategory(killedUnit) ~= Object.Category.STATIC
     then return false end
 
-    return briefingRoom.mission.destroyCallout(objectiveIndex, killedUnit, event.id)
+    return briefingRoom.mission.destroyCallout(objectiveIndex, killedUnit, event.id, playerName)
   end
 end
 
