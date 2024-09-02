@@ -1159,29 +1159,30 @@ function briefingRoom.mission.destroyCallout(objectiveIndex, killedUnit, eventID
   local unitName = killedUnit:getName()
   if not table.contains(briefingRoom.mission.objectives[objectiveIndex].unitNames, unitName) then return false end
 
-    -- Remove the unit from the list of targets
-    table.removeValue(briefingRoom.mission.objectives[objectiveIndex].unitNames, unitName)
+  -- Remove the unit from the list of targets
+  table.removeValue(briefingRoom.mission.objectives[objectiveIndex].unitNames, unitName)
 
-    -- Play "target destroyed" radio message
-    local soundName = "TargetDestroyed"
-    local messages = { "$LANG_TARGETDESTROY1$", "$LANG_TARGETDESTROY2$", "$LANG_TARGETSHOOTDOWN1$", "$LANG_TARGETSHOOTDOWN2$" }
-    local targetType = "Ground"
-    local messageIndex = math.random(1, 2)
-    local messageIndexOffset = 0
-    if eventID == world.event.S_EVENT_CRASH and killedUnit:inAir() then
-      targetType = "Air"
-      messageIndexOffset = 2
-    end
-    if briefingRoom.eventHandler.BDASetting == "ALL" or briefingRoom.eventHandler.BDASetting == "TARGETONLY" then
-      briefingRoom.radioManager.play("$LANG_COMMAND$: "..(playerName or "").." "..messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
-    end
+  -- Play "target destroyed" radio message
+  local soundName = "TargetDestroyed"
+  local messages = { "$LANG_TARGETDESTROY1$", "$LANG_TARGETDESTROY2$", "$LANG_TARGETSHOOTDOWN1$", "$LANG_TARGETSHOOTDOWN2$" }
+  local targetType = "Ground"
+  local messageIndex = math.random(1, 2)
+  local messageIndexOffset = 0
+  if eventID == world.event.S_EVENT_CRASH and killedUnit:inAir() then
+    targetType = "Air"
+    messageIndexOffset = 2
+  end
+  if briefingRoom.eventHandler.BDASetting == "ALL" or briefingRoom.eventHandler.BDASetting == "TARGETONLY" then
+    briefingRoom.radioManager.play("$LANG_COMMAND$: "..(playerName or "").." "..messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
+  end
 
-    -- Mark the objective as complete if all targets have been destroyed
-    if #briefingRoom.mission.objectives[objectiveIndex].unitNames < 1 then -- all target units destroyed, objective complete
-      briefingRoom.mission.coreFunctions.completeObjective(objectiveIndex)
-    else
-      briefingRoom.aircraftActivator.possibleResponsiveSpawn()
-    end
+  -- Mark the objective as complete if all targets have been destroyed
+  if #briefingRoom.mission.objectives[objectiveIndex].unitNames < 1 then -- all target units destroyed, objective complete
+    briefingRoom.mission.coreFunctions.completeObjective(objectiveIndex)
+  else
+    briefingRoom.aircraftActivator.possibleResponsiveSpawn()
+  end
+  return true
 end
 
 function briefingRoom.mission.isSoftKillEvent(eventID)
