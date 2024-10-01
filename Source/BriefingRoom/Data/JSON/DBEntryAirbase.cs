@@ -67,6 +67,10 @@ namespace BriefingRoom4DCS.Data
             foreach (var airbase in data)
             {
                 var id = $"{airbase.theatre}{airbase.typeName}";
+                if(airbase.typeName == "H") // Hack for Syria Heliports marked with just H
+                {
+                    id = $"{airbase.theatre}{airbase.typeName}{airbase.ID}";
+                }
                 itemMap.Add(id, new DBEntryAirbase
                 {
                     ID = id,

@@ -2674,5 +2674,29 @@
         ],
         "lowPolly": false,
         "immovable": true
+    },
+    {
+        "type": "af_hq",
+        "families": [
+            "StaticStructureMilitary"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "ip_tower",
+        "families": [
+            "StaticDecorative"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
     }
 ]

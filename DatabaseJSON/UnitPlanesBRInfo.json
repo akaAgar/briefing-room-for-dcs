@@ -1156,6 +1156,26 @@
         "playerControllable": false
     },
     {
+        "type": "Mirage-F1AD",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1AZ",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
         "type": "B-17G",
         "families": [
             "PlaneBomber"
@@ -1175,6 +1195,14 @@
         "type": "C-47",
         "families": [
             "PlaneTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Falcon_Gyrocopter",
+        "families": [
+            "PlaneAttack"
         ],
         "lowPolly": false,
         "playerControllable": false

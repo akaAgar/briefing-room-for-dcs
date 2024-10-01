@@ -1215,6 +1215,12 @@
         "shapeName": "tec_a"
     },
     {
+        "type": "af_hq",
+        "displayName": "HQ Building",
+        "module": "F-4E AI by Heatblur Simulations",
+        "shapeName": "syr_af_hq"
+    },
+    {
         "type": "billboard_motorized",
         "displayName": "Billboard Motorized",
         "module": "South_Atlantic_Assets",
@@ -1231,6 +1237,12 @@
         "displayName": "Container 40ft",
         "module": "TechWeaponPack",
         "shapeName": "container_40ft"
+    },
+    {
+        "type": "ip_tower",
+        "displayName": "IP Tower",
+        "module": "F-4E AI by Heatblur Simulations",
+        "shapeName": "ip_tower"
     },
     {
         "type": "offshore WindTurbine",

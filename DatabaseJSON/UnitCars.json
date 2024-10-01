@@ -116406,7 +116406,645 @@
     {
         "type": "Smerch",
         "category": "Artillery",
-        "paintSchemes": {},
+        "paintSchemes": {
+            "0": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "1": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "2": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "3": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "4": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "5": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "6": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "7": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "8": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "9": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "10": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "11": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "12": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "13": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "15": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "16": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "17": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "18": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "19": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "20": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "21": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "22": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "23": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "24": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "25": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "26": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "27": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "28": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "29": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "30": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "31": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "32": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "33": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "34": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "35": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "36": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "37": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "38": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "39": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "40": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "41": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "42": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "43": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "44": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "45": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "46": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "47": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "48": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "49": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "50": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "51": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "52": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "53": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "54": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "55": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "56": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "57": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "58": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "59": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "60": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "61": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "62": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "63": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "64": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "65": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "66": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "67": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "68": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "69": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "70": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "71": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "72": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "73": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "74": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "75": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "76": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "77": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "78": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "79": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "80": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "81": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "82": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "83": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "84": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "85": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "86": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "87": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "88": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "89": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "90": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ]
+        },
         "displayName": "MLRS 9A52 Smerch CM 300mm",
         "shape": "smerch",
         "detectionRange": 0,
@@ -116478,7 +117116,645 @@
     {
         "type": "Smerch_HE",
         "category": "Artillery",
-        "paintSchemes": {},
+        "paintSchemes": {
+            "0": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "1": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "2": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "3": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "4": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "5": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "6": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "7": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "8": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "9": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "10": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "11": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "12": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "13": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "15": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "16": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "17": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "18": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "19": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "20": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "21": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "22": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "23": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "24": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "25": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "26": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "27": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "28": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "29": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "30": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "31": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "32": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "33": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "34": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "35": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "36": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "37": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "38": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "39": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "40": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "41": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "42": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "43": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "44": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "45": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "46": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "47": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "48": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "49": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "50": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "51": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "52": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "53": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "54": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "55": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "56": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "57": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "58": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "59": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "60": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "61": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "62": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "63": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "64": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "65": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "66": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "67": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "68": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "69": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "70": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "71": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "72": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "73": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "74": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "75": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "76": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "77": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "78": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "79": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "80": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "81": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "82": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "83": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "84": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "85": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "86": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "87": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "88": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "89": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "90": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ],
+            "91": [
+                "Autumn",
+                "Desert",
+                "Spring",
+                "Summer",
+                "Winter"
+            ]
+        },
         "displayName": "MLRS 9A52 Smerch HE 300mm",
         "shape": "smerch",
         "detectionRange": 0,
