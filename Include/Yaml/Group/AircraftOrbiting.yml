@@ -46,8 +46,8 @@ waypoints:
     type: Turning Point
     etaLocked: false
     speedLocked: true
-    y: $GROUPY$
-    x: $GROUPX$
+    y: $GROUPY2$
+    x: $GROUPX2$
     tasks:
     - id: Orbit
       parameters:
