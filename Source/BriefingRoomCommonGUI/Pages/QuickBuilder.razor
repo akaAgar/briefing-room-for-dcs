@@ -81,7 +81,6 @@
                     <InputDataBase ClassString="flex-block" Label=@briefingRoom.Translate("Situation") @bind-Value="Template.ContextSituation" Grouping="@Template.ContextTheater" DataBaseType="DatabaseEntryType.Situation" EmptOpt=@briefingRoom.Translate("Random") CustomOpt="None (Spawn Anywhere),None" />
                 </div>
                 <InputDataBase Label=@briefingRoom.Translate("HomeAirbase") @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt=@briefingRoom.Translate("Random")/>
-                <InputDataBase Label=@briefingRoom.Translate("HomeAirbase") @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt=@briefingRoom.Translate("Random")/>
                 <hr />
             </div>
             <div id="flight-groups" class="generator-block">
@@ -193,7 +192,7 @@
                         <input type="checkbox" checked=@Template.CarrierDynamicCargo
                             @onchange="eventArgs => { Template.CarrierDynamicCargo = (bool)eventArgs.Value; StateHasChanged();}" />
                             
-                            <span>@briefingRoom.Translate("CarrierDynamicCargo")</span>
+                            <span>@briefingRoom.Translate("CarrierDynamicSpawn")</span>
                     </label>
                 </div>
             </div>
