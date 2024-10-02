@@ -257,8 +257,10 @@ namespace BriefingRoom4DCS.Generator
                 if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ImmediateAircraftSpawn))
                 {
                     dCSGroup.Name += "-IQ-";
-                    if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ScrambleStart))
+                    if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ScrambleStart)) {
                         dCSGroup.LateActivation = false;
+                        dCSGroup.Uncontrolled = false;
+                    }
                 }
                 else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.RadioAircraftSpawn))
                     mission.AppendValue("AircraftRadioActivator", $"{{{mission.GroupID}, \"{groupName}\"}},");
