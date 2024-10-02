@@ -207,9 +207,11 @@
                                             </CheckBoxList>
                                         </div>
                                     }
-                                    @if(objective.SubTasks.Count > 0){
+                                    <hr/>
+                                    <h5>@briefingRoom.Translate("Nearby")</h5>
+                                    @if(objective.SubTasks.Count == 0)
+                                    {
                                         <hr/>
-                                        <h5>@briefingRoom.Translate("Nearby")</h5>
                                     }
                                     @foreach (var subTask in objective.SubTasks)
                                     {
