@@ -278,6 +278,8 @@
             </div>
             <div id="mission-features" class="generator-block row">
                 <div class="col-6">
+                    <h3>@briefingRoom.Translate("Options")</h3>
+                        <InputEnum Label="Fog of war" @bind-Value="Template.OptionsFogOfWar" EnumType="FogOfWar"/>
                     <h3>@briefingRoom.Translate("MissionFeatures")</h3>
                     <CheckBoxList
                         Data="briefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
