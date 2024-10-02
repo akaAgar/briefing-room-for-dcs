@@ -76,6 +76,7 @@ namespace BriefingRoom4DCS.Data
                             select airbase).ToList();
             foreach (var airbase in airbases)
             {
+                airbase.Coalition = Coalition.Neutral;
                 if (ShapeManager.IsPosValid(airbase.Coordinates, GetBlueZones(invertCoalition)))
                     airbase.Coalition = Coalition.Blue;
                 if (ShapeManager.IsPosValid(airbase.Coordinates, GetRedZones(invertCoalition)))
