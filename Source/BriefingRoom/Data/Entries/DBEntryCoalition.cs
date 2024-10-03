@@ -126,14 +126,9 @@ namespace BriefingRoom4DCS.Data
                 case DCSUnitCategory.Plane:
                     count = Toolbox.Clamp(count, 1, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE);
                     break;
-                // Units are ships or static buildings, only one unit per group (that's the law in DCS World, buddy)
-                case DCSUnitCategory.Ship:
-                    count = 1;
-                    break;
-                case DCSUnitCategory.Static:
-                    count = 1;
-                    break;
                 // Units are ground vehicles, allow multiple unit types in the group
+                case DCSUnitCategory.Static:
+                case DCSUnitCategory.Ship:
                 case DCSUnitCategory.Vehicle:
                     allowDifferentUnitTypes = families.Count > 1 || !SINGLE_TYPE_FAMILIES.Contains(families.First());
                     break;
