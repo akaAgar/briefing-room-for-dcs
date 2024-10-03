@@ -42,9 +42,10 @@ namespace BriefingRoom4DCS.Template
         private string Preset_ = "Custom";
         public bool HasPreset { get { return Preset_ != "Custom"; } }
 
-        public bool ProgressionActivation { get; set; } = false;
-        public List<int> ProgressionDependentTasks { get; set; } = new List<int>();
-        public bool ProgressionDependentIsAny { get; set; } = false;
+        public bool ProgressionActivation { get; set; }
+        public List<int> ProgressionDependentTasks { get { return ProgressionDependentTasks_; } set { ProgressionDependentTasks_ = value.Distinct().ToList(); } }
+        private List<int> ProgressionDependentTasks_;
+        public bool ProgressionDependentIsAny { get; set; } 
         public List<ObjectiveProgressionOption> ProgressionOptions { get { return ProgressionOptions_; } set { ProgressionOptions_ = value.Distinct().ToList(); } }
         private List<ObjectiveProgressionOption> ProgressionOptions_;
 
@@ -56,6 +57,10 @@ namespace BriefingRoom4DCS.Template
             TargetCount = Amount.Average;
             Task = "DestroyAll";
             Preset = "Custom";
+            ProgressionActivation = false;
+            ProgressionDependentTasks = new List<int>();
+            ProgressionDependentIsAny = false;
+            ProgressionOptions = new List<ObjectiveProgressionOption>();
         }
 
         public MissionTemplateSubTask(string target, string targetBehavior, string task, Amount targetCount = Amount.Average, params ObjectiveOption[] options)
@@ -81,6 +86,10 @@ namespace BriefingRoom4DCS.Template
             TargetCount = ini.GetValue<Amount>(section, $"{key}.TargetCount");
             Task = ini.GetValue<string>(section, $"{key}.Task");
             Preset = ini.GetValue<string>(section, $"{key}.Preset", "Custom");
+            ProgressionActivation = ini.GetValue<bool>(section, $"{key}.Progression.Activation");;
+            ProgressionDependentTasks = ini.GetValueArray<int>(section, $"{key}.Progression.DependentTasks").ToList();
+            ProgressionDependentIsAny = ini.GetValue<bool>(section, $"{key}.Progression.IsAny");
+            ProgressionOptions = ini.GetValueArray<ObjectiveProgressionOption>(section, $"{key}.Progression.Options").ToList();
         }
 
         internal void SaveToFile(INIFile ini, string section, string key)
@@ -91,6 +100,10 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue(section, $"{key}.TargetBehavior", TargetBehavior);
             ini.SetValue(section, $"{key}.TargetCount", TargetCount);
             ini.SetValue(section, $"{key}.Preset", Preset);
+            ini.SetValue(section, $"{key}.Progression.Activation", ProgressionActivation);
+            ini.SetValueArray(section, $"{key}.Progression.DependentTasks", ProgressionDependentTasks.Select(x => x.ToString()).ToArray());
+            ini.SetValue(section, $"{key}.Progression.IsAny", ProgressionDependentIsAny);
+            ini.SetValueArray(section, $"{key}.Progression.Options", ProgressionOptions.ToArray());
         }
     }
 }
