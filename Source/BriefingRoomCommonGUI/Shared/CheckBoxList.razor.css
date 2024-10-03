@@ -34,6 +34,12 @@
     color: white;
 }
 
+.checkboxList-item>input:disabled+span {
+    background-color: #6a84a1;
+    border-color: grey;
+    color: black;
+}
+
 .checkboxList-item .description {
     font-size: 70%;
     display: none;

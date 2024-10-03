@@ -20,6 +20,7 @@ If not, see https://www.gnu.org/licenses/
 */
 
 using BriefingRoom4DCS.Data;
+using System;
 using System.Collections.Generic;
 
 using System.Linq;
@@ -42,12 +43,13 @@ namespace BriefingRoom4DCS.Template
         private string Preset_ = "Custom";
         public bool HasPreset { get { return Preset_ != "Custom"; } }
 
-        public bool ProgressionActivation { get { return ProgressionDependentTasks.Count > 0; } }
+        public bool ProgressionActivation { get { return ProgressionDependentTasks.Count > 0 || !string.IsNullOrEmpty(ProgressionOverrideCondition); } }
         public List<int> ProgressionDependentTasks { get { return ProgressionDependentTasks_; } set { ProgressionDependentTasks_ = value.Distinct().ToList(); } }
         private List<int> ProgressionDependentTasks_;
         public bool ProgressionDependentIsAny { get; set; } 
         public List<ObjectiveProgressionOption> ProgressionOptions { get { return ProgressionOptions_; } set { ProgressionOptions_ = value.Distinct().ToList(); } }
         private List<ObjectiveProgressionOption> ProgressionOptions_;
+        public string ProgressionOverrideCondition {get; set;}
 
         public MissionTemplateSubTask()
         {
@@ -60,6 +62,7 @@ namespace BriefingRoom4DCS.Template
             ProgressionDependentTasks = new List<int>();
             ProgressionDependentIsAny = false;
             ProgressionOptions = new List<ObjectiveProgressionOption>();
+            ProgressionOverrideCondition = "";
         }
 
         public MissionTemplateSubTask(string target, string targetBehavior, string task, Amount targetCount = Amount.Average, params ObjectiveOption[] options)
@@ -88,6 +91,7 @@ namespace BriefingRoom4DCS.Template
             ProgressionDependentTasks = ini.GetValueArray<int>(section, $"{key}.Progression.DependentTasks").ToList();
             ProgressionDependentIsAny = ini.GetValue<bool>(section, $"{key}.Progression.IsAny");
             ProgressionOptions = ini.GetValueArray<ObjectiveProgressionOption>(section, $"{key}.Progression.Options").ToList();
+            ProgressionOverrideCondition = ini.GetValue<string>(section, $"{key}.Progression.OverrideCondition");
         }
 
         internal void SaveToFile(INIFile ini, string section, string key)
@@ -101,6 +105,7 @@ namespace BriefingRoom4DCS.Template
             ini.SetValueArray(section, $"{key}.Progression.DependentTasks", ProgressionDependentTasks.Select(x => x.ToString()).ToArray());
             ini.SetValue(section, $"{key}.Progression.IsAny", ProgressionDependentIsAny);
             ini.SetValueArray(section, $"{key}.Progression.Options", ProgressionOptions.ToArray());
+            ini.SetValue(section, $"{key}.Progression.OverrideCondition", ProgressionOverrideCondition);
         }
     }
 }

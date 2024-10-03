@@ -183,6 +183,7 @@
                                     <h4>@briefingRoom.Translate("Tasks")</h4>
                                     <h5>@briefingRoom.Translate("Base")</h5>
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
+                                        <h6 class="row-button">@(Template.GetTasksFlat().IndexOf(objective) + 1)</h6>
                                         <InputDataBase ClassString="flex-block" Label=@briefingRoom.Translate("Preset") @bind-Value="objective.Preset" DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
                                         @if (!objective.HasPreset)
                                         {
@@ -222,12 +223,12 @@
                                                         <h6>@briefingRoom.Translate("PrerequisiteObjectives")</h6>
                                                         <div class="radio-wrapper">
                                                             <label class="checkbox-wrapper">
-                                                                <input type="radio" name="all-any" checked=@(!objective.ProgressionDependentIsAny)
+                                                                <input type="radio" name="all-any" checked=@(!objective.ProgressionDependentIsAny) disabled=@(!string.IsNullOrEmpty(objective.ProgressionOverrideCondition))
                                                                     @onchange="eventArgs => { objective.ProgressionDependentIsAny = false; StateHasChanged();}" />
                                                                     <span>@briefingRoom.Translate("All")</span>
                                                             </label>
                                                             <label class="checkbox-wrapper">
-                                                                <input type="radio" name="all-any" checked=@objective.ProgressionDependentIsAny
+                                                                <input type="radio" name="all-any" checked=@objective.ProgressionDependentIsAny disabled=@(!string.IsNullOrEmpty(objective.ProgressionOverrideCondition))
                                                                     @onchange="eventArgs => { objective.ProgressionDependentIsAny = true; StateHasChanged();}" />
                                                                     <span>@briefingRoom.Translate("Any")</span>
                                                             </label>
@@ -239,8 +240,13 @@
                                                             ValueField="@(item =>Template.GetTasksFlat().IndexOf(item))"
                                                             SelectedValues="objective.ProgressionDependentTasks"
                                                             ParentStateHasChanged="@(() => StateHasChanged())"
+                                                            IsDisabled=@(!string.IsNullOrEmpty(objective.ProgressionOverrideCondition))
                                                             TItem="MissionTemplateSubTask" TItemOutput="int">
                                                         </CheckBoxList>
+                                                        <div class="form-group flex-block">
+                                                            <label>@briefingRoom.Translate("ProgressionOverrideCondition")</label>
+                                                            <input class="form-control" type="text" @bind="objective.ProgressionOverrideCondition" placeholder=@briefingRoom.Translate("ProgressionOverrideConditionPlaceHolder") />
+                                                        </div>
                                                         <hr/>
                                                         <h6>@briefingRoom.Translate("Options")</h6>
                                                         <CheckBoxList
@@ -268,6 +274,7 @@
                                     {
                                     <hr/>
                                         <div class="generator-group flex-justify-spaced flex-margin-fix">
+                                        <h6 class="row-button">@(Template.GetTasksFlat().IndexOf(subTask) + 1)</h6>
                                             <InputDataBase ClassString="flex-block" Label=@briefingRoom.Translate("Preset") @bind-Value="subTask.Preset" DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
                                         @if (!subTask.HasPreset)
                                         {
@@ -324,6 +331,10 @@
                                                             ParentStateHasChanged="@(() => StateHasChanged())"
                                                             TItem="MissionTemplateSubTask" TItemOutput="int">
                                                         </CheckBoxList>
+                                                        <div class="form-group flex-block">
+                                                            <label>@briefingRoom.Translate("ProgressionOverrideCondition")</label>
+                                                            <input class="form-control" type="text" @bind="subTask.ProgressionOverrideCondition" placeholder=@briefingRoom.Translate("ProgressionOverrideConditionPlaceHolder") />
+                                                        </div>
                                                         <hr/>
                                                         <h6>@briefingRoom.Translate("Options")</h6>
                                                         <CheckBoxList

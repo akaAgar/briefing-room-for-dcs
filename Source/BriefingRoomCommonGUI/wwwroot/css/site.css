@@ -287,6 +287,12 @@ h4 {
     color: white;
 }
 
+.checkbox-wrapper>input:disabled+span {
+    background-color: #6a84a1;
+    border-color: grey;
+    color: black;
+}
+
 .checkbox-wrapper .description {
     font-size: 70%;
     display: none;

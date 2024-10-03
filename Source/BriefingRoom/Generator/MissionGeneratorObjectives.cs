@@ -27,6 +27,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -513,6 +514,9 @@ namespace BriefingRoom4DCS.Generator
 
         private static void CreateLua(ref DCSMission mission, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTask taskDB, int objectiveIndex, string objectiveName, UnitMakerGroupInfo? targetGroupInfo, string taskString, MissionTemplateSubTaskRecord task)
         {
+            if(!string.IsNullOrEmpty(task.ProgressionOverrideCondition) && !Regex.IsMatch(task.ProgressionOverrideCondition, @"([\(\)\d+]| and | or )+")) {
+                throw new BriefingRoomException(mission.LangKey, "InvalidProgressionOverrideCondition", objectiveIndex + 1, task.ProgressionOverrideCondition);
+            }
             // Add Lua table for this objective
             string objectiveLua = $"briefingRoom.mission.objectives[{objectiveIndex + 1}] = {{ ";
             objectiveLua += $"complete = false, ";
@@ -527,7 +531,7 @@ namespace BriefingRoom4DCS.Generator
             objectiveLua += $"unitNames = dcsExtensions.getUnitNamesByGroupNameSuffix(\"-TGT-{objectiveName}\"), ";
             objectiveLua += $"progressionHidden = {(task.ProgressionActivation ? "true" : "false")},";
             objectiveLua += $"progressionHiddenBrief = {(task.ProgressionOptions.Contains(ObjectiveProgressionOption.ProgressionHiddenBrief) ? "true" : "false")},";
-            objectiveLua += $"progressionCondition = \"{string.Join(task.ProgressionDependentIsAny ? " or " : " and ", task.ProgressionDependentTasks.Select(x => x  + 1).ToList())}\", ";
+            objectiveLua += $"progressionCondition = \"{(!string.IsNullOrEmpty(task.ProgressionOverrideCondition) ? task.ProgressionOverrideCondition : string.Join(task.ProgressionDependentIsAny ? " or " : " and ", task.ProgressionDependentTasks.Select(x => x  + 1).ToList()))}\", ";
             objectiveLua += $"f10MenuText = \"$LANG_OBJECTIVE$ {objectiveName}\",";
             objectiveLua += $"f10Commands = {{}}";
             objectiveLua += "}\n";

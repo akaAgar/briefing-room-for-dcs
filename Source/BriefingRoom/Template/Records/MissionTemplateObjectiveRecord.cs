@@ -44,6 +44,7 @@ namespace BriefingRoom4DCS.Template
             ProgressionDependentTasks = objective.ProgressionDependentTasks;
             ProgressionDependentIsAny = objective.ProgressionDependentIsAny;
             ProgressionOptions = objective.ProgressionOptions;
+            ProgressionOverrideCondition = objective.ProgressionOverrideCondition;
             SubTasks = objective.SubTasks.Select(x => new MissionTemplateSubTaskRecord(x)).ToList();
         }
 
