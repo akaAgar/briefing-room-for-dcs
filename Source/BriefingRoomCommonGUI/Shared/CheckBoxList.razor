@@ -23,7 +23,7 @@
                             Checked = true;
                         }
                         <label class="checkboxList-item">
-                            <input type="checkbox" checked=@Checked
+                            <input type="checkbox" checked=@Checked disabled=@IsDisabled
                                 @onchange="eventArgs => { CheckboxClicked((TItemOutput)Value, eventArgs.Value); }" />
                             <span>
                                 @Text
@@ -59,6 +59,8 @@
     [Parameter] public RenderFragment ChildContent { get; set; }
     // The array which contains the list of selected checkboxs
     [Parameter] public List<TItemOutput> SelectedValues { get; set; }
+    [Parameter]public EventCallback ParentStateHasChanged { get; set; }
+    [Parameter]public bool IsDisabled { get; set; }
 
     //Method to update the selected value on click on checkbox
     public void CheckboxClicked(TItemOutput aSelectedId, object aChecked)
@@ -78,5 +80,6 @@
             }
         }
         StateHasChanged();
+        ParentStateHasChanged.InvokeAsync();
     }
 }

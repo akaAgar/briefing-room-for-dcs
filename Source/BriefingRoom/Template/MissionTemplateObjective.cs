@@ -87,6 +87,10 @@ namespace BriefingRoom4DCS.Template
             TargetBehavior = ini.GetValue<string>(section, $"{key}.TargetBehavior");
             TargetCount = ini.GetValue<Amount>(section, $"{key}.TargetCount");
             Task = ini.GetValue<string>(section, $"{key}.Task");
+            ProgressionDependentTasks = ini.GetValueArray<int>(section, $"{key}.Progression.DependentTasks").ToList();
+            ProgressionDependentIsAny = ini.GetValue<bool>(section, $"{key}.Progression.IsAny");
+            ProgressionOptions = ini.GetValueArray<ObjectiveProgressionOption>(section, $"{key}.Progression.Options").ToList();
+            ProgressionOverrideCondition = ini.GetValue<string>(section, $"{key}.Progression.OverrideCondition");
             CoordinateHint_ = ini.GetValue<Coordinates>(section, $"{key}.CoordinateHint");
             foreach (var subKey in ini.GetKeysInSection(section)
                 .Where(x => x.Contains(key))
@@ -108,6 +112,10 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue(section, $"{key}.TargetBehavior", TargetBehavior);
             ini.SetValue(section, $"{key}.TargetCount", TargetCount);
             ini.SetValue(section, $"{key}.CoordinateHint", CoordinateHint_);
+            ini.SetValueArray(section, $"{key}.Progression.DependentTasks", ProgressionDependentTasks.Select(x => x.ToString()).ToArray());
+            ini.SetValue(section, $"{key}.Progression.IsAny", ProgressionDependentIsAny);
+            ini.SetValueArray(section, $"{key}.Progression.Options", ProgressionOptions.ToArray());
+            ini.SetValue(section, $"{key}.Progression.OverrideCondition", ProgressionOverrideCondition);
             var i = 0;
             foreach (var subTask in SubTasks)
             {

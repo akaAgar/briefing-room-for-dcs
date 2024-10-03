@@ -21,17 +21,9 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS.Template
 {
-    public enum ObjectiveOption
+    public enum ObjectiveProgressionOption
     {
-        EmbeddedAirDefense,
-
-        HideTarget,
-
-        InaccurateWaypoint,
-
-        ShowTarget,
-        Invisible,
-
-        NoAircraftWaypoint
+        PreProgressionSpottable,
+        ProgressionHiddenBrief,
     }
 }

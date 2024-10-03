@@ -32,6 +32,11 @@ namespace BriefingRoom4DCS.Template
         internal string TargetBehavior { get; init; }
         internal Amount TargetCount { get; init; }
         internal string Task { get; init; }
+        internal bool ProgressionActivation { get { return ProgressionDependentTasks.Count > 0; } }
+        internal List<int> ProgressionDependentTasks { get; init; }
+        internal bool ProgressionDependentIsAny { get; init; }
+        internal List<ObjectiveProgressionOption> ProgressionOptions { get; init; }
+        internal string ProgressionOverrideCondition { get; init; }
 
         public MissionTemplateSubTaskRecord() { }
         public MissionTemplateSubTaskRecord(MissionTemplateSubTask objective)
@@ -42,6 +47,11 @@ namespace BriefingRoom4DCS.Template
             TargetCount = objective.TargetCount;
             Task = objective.Task;
             Preset = objective.Preset;
+            ProgressionDependentTasks = objective.ProgressionDependentTasks;
+            ProgressionDependentIsAny = objective.ProgressionDependentIsAny;
+            ProgressionOptions = objective.ProgressionOptions;
+            ProgressionOverrideCondition = objective.ProgressionOverrideCondition;
+
         }
     }
 }

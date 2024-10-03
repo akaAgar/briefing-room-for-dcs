@@ -41,6 +41,10 @@ namespace BriefingRoom4DCS.Template
             TargetCount = objective.TargetCount;
             Task = objective.Task;
             CoordinatesHint = objective.CoordinateHint_;
+            ProgressionDependentTasks = objective.ProgressionDependentTasks;
+            ProgressionDependentIsAny = objective.ProgressionDependentIsAny;
+            ProgressionOptions = objective.ProgressionOptions;
+            ProgressionOverrideCondition = objective.ProgressionOverrideCondition;
             SubTasks = objective.SubTasks.Select(x => new MissionTemplateSubTaskRecord(x)).ToList();
         }
 

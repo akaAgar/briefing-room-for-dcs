@@ -961,10 +961,9 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
   briefingRoom.mission.objectives[index].complete = true
   briefingRoom.mission.objectives[index].failed = failed
   briefingRoom.aircraftActivator.pushFromReserveQueue() -- activate next batch of aircraft (so more CAP will pop up)
-  local idx = index + 1
-  repeat
-    if briefingRoom.mission.objectives[idx] ~= nil and briefingRoom.mission.objectives[idx].progressionHidden then
-      local acGroup = Group.getByName(briefingRoom.mission.objectives[idx].groupName) -- get the group
+  for k,objective in pairs(briefingRoom.mission.objectives) do
+    if objective ~= nil and objective.progressionHidden and briefingRoom.mission.coreFunctions.assesCondition(objective.progressionCondition)  then
+      local acGroup = Group.getByName(objective.groupName) -- get the group
       if acGroup ~= nil then -- activate the group, if it exists
         acGroup:activate()
         local Start = {
@@ -974,22 +973,21 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
         }
         acGroup:getController():setCommand(Start)
         briefingRoom.debugPrint("Activating objective group "..acGroup:getName())
-        briefingRoom.mission.objectives[idx].progressionHidden = false
+        objective.progressionHidden = false
       else
-        briefingRoom.debugPrint("Failed to activate objective group "..briefingRoom.mission.objectives[idx].name)
+        briefingRoom.debugPrint("Failed to activate objective group "..objective.name)
       end
     end
-    if briefingRoom.mission.objectives[idx] ~= nil and briefingRoom.mission.objectives[idx].progressionHiddenBrief then
-      briefingRoom.mission.objectives[idx].progressionHiddenBrief = false
-      briefingRoom.f10MenuCommands.activateObjective(idx)
-      if briefingRoom.mission.objectives[idx].waypoint ~= nil and briefingRoom.mission.MapMarkers then
-        local vec3pos = dcsExtensions.toVec3(briefingRoom.mission.objectives[idx].waypoint)
-        trigger.action.textToAll(briefingRoom.playerCoalition, idx * 100 , vec3pos,{0, 0, 0, .53} , {1, 1, 1, .53} , 15, true , briefingRoom.mission.objectives[idx].name)
+    if objective ~= nil and objective.progressionHiddenBrief then
+      objective.progressionHiddenBrief = false
+      briefingRoom.f10MenuCommands.activateObjective(k)
+      if objective.waypoint ~= nil and briefingRoom.mission.MapMarkers then
+        local vec3pos = dcsExtensions.toVec3(objective.waypoint)
+        trigger.action.textToAll(briefingRoom.playerCoalition, k * 100 , vec3pos,{0, 0, 0, .53} , {1, 1, 1, .53} , 15, true , objective.name)
       end
       revealObjective = revealObjective + 1
     end
-    idx = idx + 1
-  until( briefingRoom.mission.objectives[idx] == nil or briefingRoom.mission.objectives[idx].progressionBundle == false)
+  end
   
 
   -- Remove objective menu from the F10 menu
@@ -1044,6 +1042,20 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
       end
     end
   end
+end
+
+function briefingRoom.mission.coreFunctions.assesCondition(condition)
+    if condition == nil then return true end -- better to have a objective activate than not
+    briefingRoom.debugPrint("Assessing raw condition: "..condition)
+    local parsedCondition = string.gsub(condition, "(%d+)", "briefingRoom.mission.objectives[%1].complete == true")
+    briefingRoom.debugPrint("Assessing parsed condition: "..parsedCondition)
+    local f,err=loadstring("return "..parsedCondition)
+    if f then
+        return f()
+    else
+        briefingRoom.debugPrint("Condition Parsing Error: "..err)
+        return true -- better to have a objective activate than not
+    end
 end
 
 -- Begins the mission (called when the first player takes off)

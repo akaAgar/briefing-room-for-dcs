@@ -183,6 +183,7 @@
                                     <h4>@briefingRoom.Translate("Tasks")</h4>
                                     <h5>@briefingRoom.Translate("Base")</h5>
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
+                                        <h6 class="row-button">@(Template.GetTasksFlat().IndexOf(objective) + 1)</h6>
                                         <InputDataBase ClassString="flex-block" Label=@briefingRoom.Translate("Preset") @bind-Value="objective.Preset" DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
                                         @if (!objective.HasPreset)
                                         {
@@ -196,6 +197,7 @@
                                      @if (!objective.HasPreset)
                                      {
                                         <div class="form-group">
+                                            <h6>@briefingRoom.Translate("Options")</h6>
                                             <CheckBoxList
                                                 Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
                                                 TextField="@(item =>BriefingRoomGUITools.GetEnumName(briefingRoom.LanguageKey, item))"
@@ -207,16 +209,72 @@
                                             </CheckBoxList>
                                         </div>
                                     }
+                                     @if(Template.GetTasksFlat().Count > 1) {
+                                        <br/>
+                                        <div class="accordion" id="accordionExample">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="headingObjective">
+                                                <button class="accordion-button collapsed @(objective.ProgressionActivation ? "progression-active" : "")" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProgression" aria-expanded="false" aria-controls="collapseProgression">
+                                                    @briefingRoom.Translate("Progression")@(objective.ProgressionActivation ? ": " + briefingRoom.Translate("Active") : "")
+                                                </button>
+                                                </h2>
+                                                <div id="collapseProgression" class="accordion-collapse collapse" aria-labelledby="headingObjective" data-bs-parent="#accordionExample">
+                                                    <div class="accordion-body">
+                                                        <h6>@briefingRoom.Translate("PrerequisiteObjectives")</h6>
+                                                        <div class="radio-wrapper">
+                                                            <label class="checkbox-wrapper">
+                                                                <input type="radio" name="all-any" checked=@(!objective.ProgressionDependentIsAny) disabled=@(!string.IsNullOrEmpty(objective.ProgressionOverrideCondition))
+                                                                    @onchange="eventArgs => { objective.ProgressionDependentIsAny = false; StateHasChanged();}" />
+                                                                    <span>@briefingRoom.Translate("All")</span>
+                                                            </label>
+                                                            <label class="checkbox-wrapper">
+                                                                <input type="radio" name="all-any" checked=@objective.ProgressionDependentIsAny disabled=@(!string.IsNullOrEmpty(objective.ProgressionOverrideCondition))
+                                                                    @onchange="eventArgs => { objective.ProgressionDependentIsAny = true; StateHasChanged();}" />
+                                                                    <span>@briefingRoom.Translate("Any")</span>
+                                                            </label>
+                                                        </div>
+
+                                                        <CheckBoxList
+                                                            Data="Template.GetTasksFlat().Where(x => x != objective).ToList()"
+                                                            TextField="@(item =>item.Alias + ": " + (item.HasPreset ? item.Preset   : item.Task + "-" + item.Target))"
+                                                            ValueField="@(item =>Template.GetTasksFlat().IndexOf(item))"
+                                                            SelectedValues="objective.ProgressionDependentTasks"
+                                                            ParentStateHasChanged="@(() => StateHasChanged())"
+                                                            IsDisabled=@(!string.IsNullOrEmpty(objective.ProgressionOverrideCondition))
+                                                            TItem="MissionTemplateSubTask" TItemOutput="int">
+                                                        </CheckBoxList>
+                                                        <div class="form-group flex-block">
+                                                            <label>@briefingRoom.Translate("ProgressionOverrideCondition")</label>
+                                                            <input class="form-control" type="text" @bind="objective.ProgressionOverrideCondition" placeholder=@briefingRoom.Translate("ProgressionOverrideConditionPlaceHolder") />
+                                                        </div>
+                                                        <hr/>
+                                                        <h6>@briefingRoom.Translate("Options")</h6>
+                                                        <CheckBoxList
+                                                            Data="Enum.GetValues(typeof(ObjectiveProgressionOption)).Cast<ObjectiveProgressionOption>()"
+                                                            TextField="@(item =>BriefingRoomGUITools.GetEnumName(briefingRoom.LanguageKey, item))"
+                                                            DescriptionField="@(item => BriefingRoomGUITools.GetEnumDescription(briefingRoom.LanguageKey, item))"
+                                                            ValueField="@(item =>item)"
+                                                            SelectedValues="objective.ProgressionOptions"
+                                                            TItem="ObjectiveProgressionOption"
+                                                            TItemOutput="ObjectiveProgressionOption">
+                                                        </CheckBoxList>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    
                                     <hr/>
                                     <h5>@briefingRoom.Translate("Nearby")</h5>
                                     @if(objective.SubTasks.Count == 0)
                                     {
                                         <hr/>
                                     }
-                                    @foreach (var subTask in objective.SubTasks)
+                                    @foreach (var (subTask, i) in objective.SubTasks.Select((value, i) => ( value, i )))
                                     {
                                     <hr/>
                                         <div class="generator-group flex-justify-spaced flex-margin-fix">
+                                        <h6 class="row-button">@(Template.GetTasksFlat().IndexOf(subTask) + 1)</h6>
                                             <InputDataBase ClassString="flex-block" Label=@briefingRoom.Translate("Preset") @bind-Value="subTask.Preset" DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
                                         @if (!subTask.HasPreset)
                                         {
@@ -225,11 +283,13 @@
                                             <InputDataBase ClassString="flex-block" Label=@briefingRoom.Translate("TargetBehavior") @bind-Value="subTask.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior" Grouping="@string.Join(',', new List<string>{subTask.Task, subTask.Target})" HasDescription/>
                                         }
                                             <InputEnum ClassString="flex-block" Label=@briefingRoom.Translate("TargetCount") @bind-Value="subTask.TargetCount" EnumType="Amount"/>
+                                            
                                             <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.CloneObjectiveSubTask(subTask, objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
                                             <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.RemoveSubTask(objective, subTask)">x</button>
                                         </div>
                                         @if (!subTask.HasPreset)
                                         {
+                                            <h6>@briefingRoom.Translate("Options")</h6>
                                             <CheckBoxList
                                                 Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
                                                 TextField="@(item =>BriefingRoomGUITools.GetEnumName(briefingRoom.LanguageKey, item))"
@@ -240,6 +300,56 @@
                                                 TItemOutput="ObjectiveOption">
                                             </CheckBoxList>
                                         }
+                                        <br/>
+                                        <div class="accordion" id="accordionExample">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="headingObjective">
+                                                <button class="accordion-button collapsed @(subTask.ProgressionActivation ? "progression-active" : "")" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProgression@(i)" aria-expanded="false" aria-controls="collapseProgression@(i)">
+                                                    @briefingRoom.Translate("Progression")@(subTask.ProgressionActivation ? ": " + briefingRoom.Translate("Active") : "")
+                                                </button>
+                                                </h2>
+                                                <div id="collapseProgression@(i)" class="accordion-collapse collapse" aria-labelledby="headingObjective" data-bs-parent="#accordionExample">
+                                                    <div class="accordion-body">
+                                                        <h6>@briefingRoom.Translate("PrerequisiteObjectives")</h6>
+                                                        <div class="radio-wrapper">
+                                                            <label class="checkbox-wrapper">
+                                                                <input type="radio" name="all-any@(i)" checked=@(!subTask.ProgressionDependentIsAny)
+                                                                    @onchange="eventArgs => { subTask.ProgressionDependentIsAny = false; StateHasChanged();}" />
+                                                                    <span>@briefingRoom.Translate("All")</span>
+                                                            </label>
+                                                            <label class="checkbox-wrapper">
+                                                                <input type="radio" name="all-any@(i)" checked=@subTask.ProgressionDependentIsAny
+                                                                    @onchange="eventArgs => { subTask.ProgressionDependentIsAny = true; StateHasChanged();}" />
+                                                                    <span>@briefingRoom.Translate("Any")</span>
+                                                            </label>
+                                                        </div>
+                                                        <CheckBoxList
+                                                            Data="Template.GetTasksFlat().Where(x => x != subTask).ToList()"
+                                                            TextField="@(item =>item.Alias + ": " + (item.HasPreset ? item.Preset   : item.Task + "-" + item.Target))"
+                                                            ValueField="@(item =>Template.GetTasksFlat().IndexOf(item))"
+                                                            SelectedValues="subTask.ProgressionDependentTasks"
+                                                            ParentStateHasChanged="@(() => StateHasChanged())"
+                                                            TItem="MissionTemplateSubTask" TItemOutput="int">
+                                                        </CheckBoxList>
+                                                        <div class="form-group flex-block">
+                                                            <label>@briefingRoom.Translate("ProgressionOverrideCondition")</label>
+                                                            <input class="form-control" type="text" @bind="subTask.ProgressionOverrideCondition" placeholder=@briefingRoom.Translate("ProgressionOverrideConditionPlaceHolder") />
+                                                        </div>
+                                                        <hr/>
+                                                        <h6>@briefingRoom.Translate("Options")</h6>
+                                                        <CheckBoxList
+                                                            Data="Enum.GetValues(typeof(ObjectiveProgressionOption)).Cast<ObjectiveProgressionOption>()"
+                                                            TextField="@(item =>BriefingRoomGUITools.GetEnumName(briefingRoom.LanguageKey, item))"
+                                                            DescriptionField="@(item => BriefingRoomGUITools.GetEnumDescription(briefingRoom.LanguageKey, item))"
+                                                            ValueField="@(item =>item)"
+                                                            SelectedValues="subTask.ProgressionOptions"
+                                                            TItem="ObjectiveProgressionOption"
+                                                            TItemOutput="ObjectiveProgressionOption">
+                                                        </CheckBoxList>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     }
                                     <button type="button" class="btn btn-secondary form-control" @onclick="() => objectiveUtil.AddSubTask(objective)">+</button>
                                 </div>

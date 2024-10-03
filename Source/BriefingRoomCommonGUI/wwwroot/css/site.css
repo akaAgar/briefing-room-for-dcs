@@ -287,6 +287,12 @@ h4 {
     color: white;
 }
 
+.checkbox-wrapper>input:disabled+span {
+    background-color: #6a84a1;
+    border-color: grey;
+    color: black;
+}
+
 .checkbox-wrapper .description {
     font-size: 70%;
     display: none;
@@ -302,6 +308,25 @@ h4 {
     border-radius: .25rem;
     margin: 2px;
     color: black;
+}
+
+.radio-wrapper {
+    margin: 4px;
+}
+
+.radio-wrapper>.checkbox-wrapper>span {
+    margin-right: -3px;
+    margin-left: -3px;
+}
+
+.radio-wrapper>.checkbox-wrapper:first-of-type>span {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.radio-wrapper>.checkbox-wrapper:last-of-type>span {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .custom-warning {
@@ -623,4 +648,8 @@ a.kofi-button:active {
 
 .decorationContentClass {
     background: lightblue;
+}
+
+.accordion .accordion-button.progression-active {
+    background-color: #1b6ec2;
 }

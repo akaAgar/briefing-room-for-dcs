@@ -27,6 +27,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -259,7 +260,7 @@ namespace BriefingRoom4DCS.Generator
                 !AIR_ON_GROUND_LOCATIONS.Contains(targetBehaviorDB.Location)
                 )
             {
-                if (objectiveIndex > 0 && objectiveOptions.Contains(ObjectiveOption.ProgressionActivation))
+                if (task.ProgressionActivation)
                     groupFlags |= UnitMakerGroupFlags.ProgressionAircraftSpawn;
                 else
                     groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
@@ -281,10 +282,10 @@ namespace BriefingRoom4DCS.Generator
             if (mission.TemplateRecord.MissionFeatures.Contains("ContextScrambleStart") && !taskDB.UICategory.ContainsValue("Transport"))
                 targetGroupInfo.Value.DCSGroup.LateActivation = false;
 
-            if (objectiveIndex > 0 && objectiveOptions.Contains(ObjectiveOption.ProgressionActivation))
+            if (task.ProgressionActivation)
             {
                 targetGroupInfo.Value.DCSGroup.LateActivation = true;
-                targetGroupInfo.Value.DCSGroup.Visible = objectiveOptions.Contains(ObjectiveOption.PreProgressionSpottable);
+                targetGroupInfo.Value.DCSGroup.Visible = task.ProgressionOptions.Contains(ObjectiveProgressionOption.PreProgressionSpottable);
             }
 
             if (targetDB.UnitCategory.IsAircraft())
@@ -319,8 +320,8 @@ namespace BriefingRoom4DCS.Generator
             var length = isStatic ? targetGroupInfo.Value.DCSGroups.Count : targetGroupInfo.Value.UnitNames.Length;
             var pluralIndex = length == 1 ? 0 : 1;
             var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex].Get(mission.LangKey), mission).Replace("\"", "''");
-            CreateTaskString(ref mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily, objectiveOptions);
-            CreateLua(ref mission, targetDB, taskDB, objectiveIndex, objectiveName, targetGroupInfo, taskString, objectiveOptions);
+            CreateTaskString(ref mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily, task);
+            CreateLua(ref mission, targetDB, taskDB, objectiveIndex, objectiveName, targetGroupInfo, taskString, task);
 
             // Add briefing remarks for this objective task
             var remarksString = taskDB.BriefingRemarks.Get(mission.LangKey);
@@ -367,7 +368,7 @@ namespace BriefingRoom4DCS.Generator
             mission.ObjectiveCoordinates.Add(isInverseTransportWayPoint ? unitCoordinates : objectiveCoordinates);
             var objCoords = objectiveCoordinates;
             var furthestWaypoint = targetGroupInfo.Value.DCSGroup.Waypoints.Aggregate(objectiveCoordinates, (furthest, x) => objCoords.GetDistanceFrom(x.Coordinates) > objCoords.GetDistanceFrom(furthest) ? x.Coordinates : furthest);
-            var waypoint = GenerateObjectiveWaypoint(ref mission, task, objectiveCoordinates, furthestWaypoint, objectiveName, targetGroupInfo.Value.GroupID, hiddenMapMarker: objectiveOptions.Contains(ObjectiveOption.ProgressionHiddenBrief));
+            var waypoint = GenerateObjectiveWaypoint(ref mission, task, objectiveCoordinates, furthestWaypoint, objectiveName, targetGroupInfo.Value.GroupID, hiddenMapMarker: task.ProgressionOptions.Contains(ObjectiveProgressionOption.ProgressionHiddenBrief));
             mission.Waypoints.Add(waypoint);
             objectiveWaypoints.Add(waypoint);
             mission.MapData.Add($"OBJECTIVE_AREA_{objectiveIndex}", new List<double[]> { waypoint.Coordinates.ToArray() });
@@ -511,8 +512,11 @@ namespace BriefingRoom4DCS.Generator
                     extraSettings);
         }
 
-        private static void CreateLua(ref DCSMission mission, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTask taskDB, int objectiveIndex, string objectiveName, UnitMakerGroupInfo? targetGroupInfo, string taskString, ObjectiveOption[] objectiveOptions)
+        private static void CreateLua(ref DCSMission mission, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTask taskDB, int objectiveIndex, string objectiveName, UnitMakerGroupInfo? targetGroupInfo, string taskString, MissionTemplateSubTaskRecord task)
         {
+            if(!string.IsNullOrEmpty(task.ProgressionOverrideCondition) && !Regex.IsMatch(task.ProgressionOverrideCondition, @"([\(\)\d+]| and | or )+")) {
+                throw new BriefingRoomException(mission.LangKey, "InvalidProgressionOverrideCondition", objectiveIndex + 1, task.ProgressionOverrideCondition);
+            }
             // Add Lua table for this objective
             string objectiveLua = $"briefingRoom.mission.objectives[{objectiveIndex + 1}] = {{ ";
             objectiveLua += $"complete = false, ";
@@ -525,9 +529,9 @@ namespace BriefingRoom4DCS.Generator
             objectiveLua += $"task = \"{taskString}\", ";
             objectiveLua += $"unitsCount = #dcsExtensions.getUnitNamesByGroupNameSuffix(\"-TGT-{objectiveName}\"), ";
             objectiveLua += $"unitNames = dcsExtensions.getUnitNamesByGroupNameSuffix(\"-TGT-{objectiveName}\"), ";
-            objectiveLua += $"progressionHidden = {(objectiveOptions.Contains(ObjectiveOption.ProgressionActivation) ? "true" : "false")},";
-            objectiveLua += $"progressionHiddenBrief = {(objectiveOptions.Contains(ObjectiveOption.ProgressionHiddenBrief) ? "true" : "false")},";
-            objectiveLua += $"progressionBundle = {(objectiveOptions.Contains(ObjectiveOption.ProgressionBundle) ? "true" : "false")},";
+            objectiveLua += $"progressionHidden = {(task.ProgressionActivation ? "true" : "false")},";
+            objectiveLua += $"progressionHiddenBrief = {(task.ProgressionOptions.Contains(ObjectiveProgressionOption.ProgressionHiddenBrief) ? "true" : "false")},";
+            objectiveLua += $"progressionCondition = \"{(!string.IsNullOrEmpty(task.ProgressionOverrideCondition) ? task.ProgressionOverrideCondition : string.Join(task.ProgressionDependentIsAny ? " or " : " and ", task.ProgressionDependentTasks.Select(x => x  + 1).ToList()))}\", ";
             objectiveLua += $"f10MenuText = \"$LANG_OBJECTIVE$ {objectiveName}\",";
             objectiveLua += $"f10Commands = {{}}";
             objectiveLua += "}\n";
@@ -544,13 +548,13 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        private static void CreateTaskString(ref DCSMission mission, int pluralIndex, ref string taskString, string objectiveName, UnitFamily objectiveTargetUnitFamily, ObjectiveOption[] objectiveOptions)
+        private static void CreateTaskString(ref DCSMission mission, int pluralIndex, ref string taskString, string objectiveName, UnitFamily objectiveTargetUnitFamily, MissionTemplateSubTaskRecord task)
         {
             // Get tasking string for the briefing
             if (string.IsNullOrEmpty(taskString)) taskString = "Complete objective $OBJECTIVENAME$";
             GeneratorTools.ReplaceKey(ref taskString, "ObjectiveName", objectiveName);
             GeneratorTools.ReplaceKey(ref taskString, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily].Get(mission.LangKey).Split(",")[pluralIndex]);
-            if (!objectiveOptions.Contains(ObjectiveOption.ProgressionHiddenBrief))
+            if (!task.ProgressionOptions.Contains(ObjectiveProgressionOption.ProgressionHiddenBrief))
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, taskString);
         }
 
