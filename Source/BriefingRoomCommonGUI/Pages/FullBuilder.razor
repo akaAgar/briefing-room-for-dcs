@@ -192,8 +192,8 @@
                                         }
                                         <InputEnum ClassString="flex-block" Label=@briefingRoom.Translate("TargetCount") @bind-Value="objective.TargetCount" EnumType="Amount"/>
                                         <label class="checkbox-wrapper">
-                                                <input type="checkbox" checked=@objective.Options.Contains(ObjectiveOption.ProgressionActivation)
-                                                    @onchange="eventArgs => { if((bool)eventArgs.Value) { objective.Options.Add(ObjectiveOption.ProgressionActivation); } else {  objective.Options.Remove(ObjectiveOption.ProgressionActivation);}; StateHasChanged();}" />
+                                                <input type="checkbox" checked=@objective.ProgressionActivation
+                                                    @onchange="eventArgs => { objective.ProgressionActivation = (bool)eventArgs.Value;; StateHasChanged();}" />
                                                     <span>@briefingRoom.Translate("Progression")</span>
                                             </label>
                                         <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.CloneObjectiveTask(objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
@@ -213,18 +213,18 @@
                                         </div>
                                     }
 
-                                     @if (objective.Options.Contains(ObjectiveOption.ProgressionActivation)) {
+                                     @if (objective.ProgressionActivation) {
                                        <CheckBoxList
                                             Data="Template.GetTasksFlat().Where(x => x != objective).ToList()"
                                             TextField="@(item =>item.Alias + ": " + (item.HasPreset ? item.Preset   : item.Task + "-" + item.Target))"
                                             ValueField="@(item =>Template.GetTasksFlat().IndexOf(item))"
-                                            SelectedValues="objective.DependentTasks"
+                                            SelectedValues="objective.ProgressionDependentTasks"
                                             TItem="MissionTemplateSubTask" TItemOutput="int">
                                         </CheckBoxList> 
-                                        if(objective.DependentTasks.Count > 1) {
+                                        if(objective.ProgressionDependentTasks.Count > 1) {
                                             <label class="checkbox-wrapper">
-                                                <input type="checkbox" checked=@objective.DependentIsAny
-                                                    @onchange="eventArgs => { objective.DependentIsAny = (bool)eventArgs.Value; StateHasChanged();}" />
+                                                <input type="checkbox" checked=@objective.ProgressionDependentIsAny
+                                                    @onchange="eventArgs => { objective.ProgressionDependentIsAny = (bool)eventArgs.Value; StateHasChanged();}" />
                                                     <span>@briefingRoom.Translate("Any")</span>
                                             </label>
                                         }
@@ -248,8 +248,8 @@
                                         }
                                             <InputEnum ClassString="flex-block" Label=@briefingRoom.Translate("TargetCount") @bind-Value="subTask.TargetCount" EnumType="Amount"/>
                                             <label class="checkbox-wrapper">
-                                                <input type="checkbox" checked=@subTask.Options.Contains(ObjectiveOption.ProgressionActivation)
-                                                    @onchange="eventArgs => { if((bool)eventArgs.Value) { subTask.Options.Add(ObjectiveOption.ProgressionActivation); } else {  subTask.Options.Remove(ObjectiveOption.ProgressionActivation);}; StateHasChanged();}" />
+                                                <input type="checkbox" checked=@subTask.ProgressionActivation
+                                                    @onchange="eventArgs => { subTask.ProgressionActivation = (bool)eventArgs.Value; StateHasChanged();}" />
                                                     <span>@briefingRoom.Translate("Progression")</span>
                                             </label>
                                             <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.CloneObjectiveSubTask(subTask, objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
@@ -267,18 +267,18 @@
                                                 TItemOutput="ObjectiveOption">
                                             </CheckBoxList>
                                         }
-                                         @if (subTask.Options.Contains(ObjectiveOption.ProgressionActivation)) {
+                                         @if (subTask.ProgressionActivation) {
                                             <CheckBoxList
                                                 Data="Template.GetTasksFlat().Where(x => x != subTask).ToList()"
                                                 TextField="@(item =>item.Alias + ": " + (item.HasPreset ? item.Preset   : item.Task + "-" + item.Target))"
                                                 ValueField="@(item =>Template.GetTasksFlat().IndexOf(item))"
-                                                SelectedValues="subTask.DependentTasks"
+                                                SelectedValues="subTask.ProgressionDependentTasks"
                                                 TItem="MissionTemplateSubTask" TItemOutput="int">
                                             </CheckBoxList> 
-                                            if(subTask.DependentTasks.Count > 1) {
+                                            if(subTask.ProgressionDependentTasks.Count > 1) {
                                                 <label class="checkbox-wrapper">
-                                                    <input type="checkbox" checked=@subTask.DependentIsAny
-                                                        @onchange="eventArgs => { subTask.DependentIsAny = (bool)eventArgs.Value; StateHasChanged();}" />
+                                                    <input type="checkbox" checked=@subTask.ProgressionDependentIsAny
+                                                        @onchange="eventArgs => { subTask.ProgressionDependentIsAny = (bool)eventArgs.Value; StateHasChanged();}" />
                                                         <span>@briefingRoom.Translate("Any")</span>
                                                 </label>
                                             }
