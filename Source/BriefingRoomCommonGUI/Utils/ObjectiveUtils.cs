@@ -38,7 +38,11 @@ namespace BriefingRoom4DCS.GUI.Utils
                 Options = obj.Options,
                 Features = obj.Features,
                 SubTasks = obj.SubTasks,
-                Preset = obj.Preset
+                Preset = obj.Preset,
+                ProgressionDependentTasks = obj.ProgressionDependentTasks,
+                ProgressionDependentIsAny = obj.ProgressionDependentIsAny,
+                ProgressionOptions = obj.ProgressionOptions,
+                ProgressionOverrideCondition = obj.ProgressionOverrideCondition,
             };
             newObj.Alias = BriefingRoom.GetAlias(Template.Objectives.Count);
             Template.Objectives.Add(newObj);
@@ -54,7 +58,11 @@ namespace BriefingRoom4DCS.GUI.Utils
                 TargetCount = obj.TargetCount,
                 Task = obj.Task,
                 Options = obj.Options,
-                Preset = obj.Preset
+                Preset = obj.Preset,
+                ProgressionDependentTasks = obj.ProgressionDependentTasks,
+                ProgressionDependentIsAny = obj.ProgressionDependentIsAny,
+                ProgressionOptions = obj.ProgressionOptions,
+                ProgressionOverrideCondition = obj.ProgressionOverrideCondition
             };
             obj.SubTasks.Add(newSubT);
         }
@@ -69,6 +77,10 @@ namespace BriefingRoom4DCS.GUI.Utils
                 Options = subTask.Options,
                 Preset = subTask.Preset,
                 Alias = $"{obj.Alias}{obj.SubTasks.Count + 2}",
+                ProgressionDependentTasks = subTask.ProgressionDependentTasks,
+                ProgressionDependentIsAny = subTask.ProgressionDependentIsAny,
+                ProgressionOptions = subTask.ProgressionOptions,
+                ProgressionOverrideCondition = subTask.ProgressionOverrideCondition
             };
             obj.SubTasks.Add(newSubT);
         }

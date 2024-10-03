@@ -236,7 +236,7 @@
 
                                                         <CheckBoxList
                                                             Data="Template.GetTasksFlat().Where(x => x != objective).ToList()"
-                                                            TextField="@(item =>item.Alias + ": " + (item.HasPreset ? item.Preset   : item.Task + "-" + item.Target))"
+                                                            TextField="@(item =>(Template.GetTasksFlat().IndexOf(item) + 1) + ": " + item.Alias + ": " + (item.HasPreset ? item.Preset   : item.Task + "-" + item.Target))"
                                                             ValueField="@(item =>Template.GetTasksFlat().IndexOf(item))"
                                                             SelectedValues="objective.ProgressionDependentTasks"
                                                             ParentStateHasChanged="@(() => StateHasChanged())"
@@ -313,22 +313,23 @@
                                                         <h6>@briefingRoom.Translate("PrerequisiteObjectives")</h6>
                                                         <div class="radio-wrapper">
                                                             <label class="checkbox-wrapper">
-                                                                <input type="radio" name="all-any@(i)" checked=@(!subTask.ProgressionDependentIsAny)
+                                                                <input type="radio" name="all-any@(i)" checked=@(!subTask.ProgressionDependentIsAny) disabled=@(!string.IsNullOrEmpty(subTask.ProgressionOverrideCondition))
                                                                     @onchange="eventArgs => { subTask.ProgressionDependentIsAny = false; StateHasChanged();}" />
                                                                     <span>@briefingRoom.Translate("All")</span>
                                                             </label>
                                                             <label class="checkbox-wrapper">
-                                                                <input type="radio" name="all-any@(i)" checked=@subTask.ProgressionDependentIsAny
+                                                                <input type="radio" name="all-any@(i)" checked=@subTask.ProgressionDependentIsAny disabled=@(!string.IsNullOrEmpty(subTask.ProgressionOverrideCondition))
                                                                     @onchange="eventArgs => { subTask.ProgressionDependentIsAny = true; StateHasChanged();}" />
                                                                     <span>@briefingRoom.Translate("Any")</span>
                                                             </label>
                                                         </div>
                                                         <CheckBoxList
                                                             Data="Template.GetTasksFlat().Where(x => x != subTask).ToList()"
-                                                            TextField="@(item =>item.Alias + ": " + (item.HasPreset ? item.Preset   : item.Task + "-" + item.Target))"
+                                                            TextField="@(item =>(Template.GetTasksFlat().IndexOf(item) + 1) + ": " + item.Alias + ": " + (item.HasPreset ? item.Preset   : item.Task + "-" + item.Target))"
                                                             ValueField="@(item =>Template.GetTasksFlat().IndexOf(item))"
                                                             SelectedValues="subTask.ProgressionDependentTasks"
                                                             ParentStateHasChanged="@(() => StateHasChanged())"
+                                                            IsDisabled=@(!string.IsNullOrEmpty(subTask.ProgressionOverrideCondition))
                                                             TItem="MissionTemplateSubTask" TItemOutput="int">
                                                         </CheckBoxList>
                                                         <div class="form-group flex-block">

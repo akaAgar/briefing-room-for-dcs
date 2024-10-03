@@ -51,7 +51,6 @@ namespace BriefingRoom4DCS.Template
             ProgressionDependentIsAny = objective.ProgressionDependentIsAny;
             ProgressionOptions = objective.ProgressionOptions;
             ProgressionOverrideCondition = objective.ProgressionOverrideCondition;
-
         }
     }
 }
