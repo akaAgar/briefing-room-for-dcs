@@ -527,7 +527,7 @@ namespace BriefingRoom4DCS.Generator
             objectiveLua += $"unitNames = dcsExtensions.getUnitNamesByGroupNameSuffix(\"-TGT-{objectiveName}\"), ";
             objectiveLua += $"progressionHidden = {(objectiveOptions.Contains(ObjectiveOption.ProgressionActivation) ? "true" : "false")},";
             objectiveLua += $"progressionHiddenBrief = {(objectiveOptions.Contains(ObjectiveOption.ProgressionHiddenBrief) ? "true" : "false")},";
-            objectiveLua += $"progressionBundle = {(objectiveOptions.Contains(ObjectiveOption.ProgressionBundle) ? "true" : "false")},";
+            objectiveLua += $"progressionCondition = \"1\", ";
             objectiveLua += $"f10MenuText = \"$LANG_OBJECTIVE$ {objectiveName}\",";
             objectiveLua += $"f10Commands = {{}}";
             objectiveLua += "}\n";
