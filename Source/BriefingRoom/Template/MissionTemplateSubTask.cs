@@ -30,6 +30,8 @@ namespace BriefingRoom4DCS.Template
     {
         public List<ObjectiveOption> Options { get { return Options_; } set { Options_ = value.Distinct().ToList(); } }
         private List<ObjectiveOption> Options_;
+        public List<int> DependentTasks { get; set; } = new List<int>();
+        public bool DependentIsAny { get; set; } = false;
         public string Target { get { return Target_; } set { Target_ = Database.Instance.CheckID<DBEntryObjectiveTarget>(value); } }
         private string Target_;
         public string TargetBehavior { get { return TargetBehavior_; } set { TargetBehavior_ = Database.Instance.CheckID<DBEntryObjectiveTargetBehavior>(value); } }

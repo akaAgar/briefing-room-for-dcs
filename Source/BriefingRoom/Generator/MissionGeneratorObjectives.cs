@@ -320,7 +320,7 @@ namespace BriefingRoom4DCS.Generator
             var pluralIndex = length == 1 ? 0 : 1;
             var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex].Get(mission.LangKey), mission).Replace("\"", "''");
             CreateTaskString(ref mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily, objectiveOptions);
-            CreateLua(ref mission, targetDB, taskDB, objectiveIndex, objectiveName, targetGroupInfo, taskString, objectiveOptions);
+            CreateLua(ref mission, targetDB, taskDB, objectiveIndex, objectiveName, targetGroupInfo, taskString, objectiveOptions, task.DependentIsAny, task.DependentTasks);
 
             // Add briefing remarks for this objective task
             var remarksString = taskDB.BriefingRemarks.Get(mission.LangKey);
@@ -511,8 +511,9 @@ namespace BriefingRoom4DCS.Generator
                     extraSettings);
         }
 
-        private static void CreateLua(ref DCSMission mission, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTask taskDB, int objectiveIndex, string objectiveName, UnitMakerGroupInfo? targetGroupInfo, string taskString, ObjectiveOption[] objectiveOptions)
+        private static void CreateLua(ref DCSMission mission, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTask taskDB, int objectiveIndex, string objectiveName, UnitMakerGroupInfo? targetGroupInfo, string taskString, ObjectiveOption[] objectiveOptions, bool dependentIsAny, List<int> dependentTasks = null)
         {
+            Console.WriteLine($"Creating Lua for objective {dependentIsAny} - {dependentTasks.Count}");
             // Add Lua table for this objective
             string objectiveLua = $"briefingRoom.mission.objectives[{objectiveIndex + 1}] = {{ ";
             objectiveLua += $"complete = false, ";
@@ -527,7 +528,7 @@ namespace BriefingRoom4DCS.Generator
             objectiveLua += $"unitNames = dcsExtensions.getUnitNamesByGroupNameSuffix(\"-TGT-{objectiveName}\"), ";
             objectiveLua += $"progressionHidden = {(objectiveOptions.Contains(ObjectiveOption.ProgressionActivation) ? "true" : "false")},";
             objectiveLua += $"progressionHiddenBrief = {(objectiveOptions.Contains(ObjectiveOption.ProgressionHiddenBrief) ? "true" : "false")},";
-            objectiveLua += $"progressionCondition = \"1\", ";
+            objectiveLua += $"progressionCondition = \"{string.Join(dependentIsAny ? " or " : " and ", dependentTasks.Select(x => x  + 1).ToList())}\", ";
             objectiveLua += $"f10MenuText = \"$LANG_OBJECTIVE$ {objectiveName}\",";
             objectiveLua += $"f10Commands = {{}}";
             objectiveLua += "}\n";

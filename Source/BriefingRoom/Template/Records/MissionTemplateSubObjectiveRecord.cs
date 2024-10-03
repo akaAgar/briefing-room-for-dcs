@@ -32,6 +32,8 @@ namespace BriefingRoom4DCS.Template
         internal string TargetBehavior { get; init; }
         internal Amount TargetCount { get; init; }
         internal string Task { get; init; }
+        internal List<int> DependentTasks { get; set; } = new List<int>();
+        internal bool DependentIsAny { get; set; } = false;
 
         public MissionTemplateSubTaskRecord() { }
         public MissionTemplateSubTaskRecord(MissionTemplateSubTask objective)
@@ -42,6 +44,8 @@ namespace BriefingRoom4DCS.Template
             TargetCount = objective.TargetCount;
             Task = objective.Task;
             Preset = objective.Preset;
+            DependentTasks = objective.DependentTasks;
+            DependentIsAny = objective.DependentIsAny;
         }
     }
 }

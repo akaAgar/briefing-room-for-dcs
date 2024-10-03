@@ -191,6 +191,11 @@
                                             <InputDataBase ClassString="flex-block" Label=@briefingRoom.Translate("TargetBehavior") @bind-Value="objective.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior" Grouping="@string.Join(',', new List<string>{objective.Task, objective.Target})" HasDescription/>
                                         }
                                         <InputEnum ClassString="flex-block" Label=@briefingRoom.Translate("TargetCount") @bind-Value="objective.TargetCount" EnumType="Amount"/>
+                                        <label class="checkbox-wrapper">
+                                                <input type="checkbox" checked=@objective.Options.Contains(ObjectiveOption.ProgressionActivation)
+                                                    @onchange="eventArgs => { if((bool)eventArgs.Value) { objective.Options.Add(ObjectiveOption.ProgressionActivation); } else {  objective.Options.Remove(ObjectiveOption.ProgressionActivation);}; StateHasChanged();}" />
+                                                    <span>@briefingRoom.Translate("Progression")</span>
+                                            </label>
                                         <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.CloneObjectiveTask(objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
                                     </div>
                                      @if (!objective.HasPreset)
@@ -207,6 +212,23 @@
                                             </CheckBoxList>
                                         </div>
                                     }
+
+                                     @if (objective.Options.Contains(ObjectiveOption.ProgressionActivation)) {
+                                       <CheckBoxList
+                                            Data="Template.GetTasksFlat().Where(x => x != objective).ToList()"
+                                            TextField="@(item =>item.Alias + ": " + (item.HasPreset ? item.Preset   : item.Task + "-" + item.Target))"
+                                            ValueField="@(item =>Template.GetTasksFlat().IndexOf(item))"
+                                            SelectedValues="objective.DependentTasks"
+                                            TItem="MissionTemplateSubTask" TItemOutput="int">
+                                        </CheckBoxList> 
+                                        if(objective.DependentTasks.Count > 1) {
+                                            <label class="checkbox-wrapper">
+                                                <input type="checkbox" checked=@objective.DependentIsAny
+                                                    @onchange="eventArgs => { objective.DependentIsAny = (bool)eventArgs.Value; StateHasChanged();}" />
+                                                    <span>@briefingRoom.Translate("Any")</span>
+                                            </label>
+                                        }
+                                     }
                                     <hr/>
                                     <h5>@briefingRoom.Translate("Nearby")</h5>
                                     @if(objective.SubTasks.Count == 0)
@@ -225,6 +247,11 @@
                                             <InputDataBase ClassString="flex-block" Label=@briefingRoom.Translate("TargetBehavior") @bind-Value="subTask.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior" Grouping="@string.Join(',', new List<string>{subTask.Task, subTask.Target})" HasDescription/>
                                         }
                                             <InputEnum ClassString="flex-block" Label=@briefingRoom.Translate("TargetCount") @bind-Value="subTask.TargetCount" EnumType="Amount"/>
+                                            <label class="checkbox-wrapper">
+                                                <input type="checkbox" checked=@subTask.Options.Contains(ObjectiveOption.ProgressionActivation)
+                                                    @onchange="eventArgs => { if((bool)eventArgs.Value) { subTask.Options.Add(ObjectiveOption.ProgressionActivation); } else {  subTask.Options.Remove(ObjectiveOption.ProgressionActivation);}; StateHasChanged();}" />
+                                                    <span>@briefingRoom.Translate("Progression")</span>
+                                            </label>
                                             <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.CloneObjectiveSubTask(subTask, objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
                                             <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.RemoveSubTask(objective, subTask)">x</button>
                                         </div>
@@ -239,6 +266,22 @@
                                                 TItem="ObjectiveOption"
                                                 TItemOutput="ObjectiveOption">
                                             </CheckBoxList>
+                                        }
+                                         @if (subTask.Options.Contains(ObjectiveOption.ProgressionActivation)) {
+                                            <CheckBoxList
+                                                Data="Template.GetTasksFlat().Where(x => x != subTask).ToList()"
+                                                TextField="@(item =>item.Alias + ": " + (item.HasPreset ? item.Preset   : item.Task + "-" + item.Target))"
+                                                ValueField="@(item =>Template.GetTasksFlat().IndexOf(item))"
+                                                SelectedValues="subTask.DependentTasks"
+                                                TItem="MissionTemplateSubTask" TItemOutput="int">
+                                            </CheckBoxList> 
+                                            if(subTask.DependentTasks.Count > 1) {
+                                                <label class="checkbox-wrapper">
+                                                    <input type="checkbox" checked=@subTask.DependentIsAny
+                                                        @onchange="eventArgs => { subTask.DependentIsAny = (bool)eventArgs.Value; StateHasChanged();}" />
+                                                        <span>@briefingRoom.Translate("Any")</span>
+                                                </label>
+                                            }
                                         }
                                     }
                                     <button type="button" class="btn btn-secondary form-control" @onclick="() => objectiveUtil.AddSubTask(objective)">+</button>
