@@ -87,7 +87,6 @@ namespace BriefingRoom4DCS.Template
             TargetBehavior = ini.GetValue<string>(section, $"{key}.TargetBehavior");
             TargetCount = ini.GetValue<Amount>(section, $"{key}.TargetCount");
             Task = ini.GetValue<string>(section, $"{key}.Task");
-            ProgressionActivation = ini.GetValue<bool>(section, $"{key}.Progression.Activation");;
             ProgressionDependentTasks = ini.GetValueArray<int>(section, $"{key}.Progression.DependentTasks").ToList();
             ProgressionDependentIsAny = ini.GetValue<bool>(section, $"{key}.Progression.IsAny");
             ProgressionOptions = ini.GetValueArray<ObjectiveProgressionOption>(section, $"{key}.Progression.Options").ToList();
@@ -112,7 +111,6 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue(section, $"{key}.TargetBehavior", TargetBehavior);
             ini.SetValue(section, $"{key}.TargetCount", TargetCount);
             ini.SetValue(section, $"{key}.CoordinateHint", CoordinateHint_);
-            ini.SetValue(section, $"{key}.Progression.Activation", ProgressionActivation);
             ini.SetValueArray(section, $"{key}.Progression.DependentTasks", ProgressionDependentTasks.Select(x => x.ToString()).ToArray());
             ini.SetValue(section, $"{key}.Progression.IsAny", ProgressionDependentIsAny);
             ini.SetValueArray(section, $"{key}.Progression.Options", ProgressionOptions.ToArray());

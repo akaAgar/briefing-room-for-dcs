@@ -304,6 +304,25 @@ h4 {
     color: black;
 }
 
+.radio-wrapper {
+    margin: 4px;
+}
+
+.radio-wrapper>.checkbox-wrapper>span {
+    margin-right: -3px;
+    margin-left: -3px;
+}
+
+.radio-wrapper>.checkbox-wrapper:first-of-type>span {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.radio-wrapper>.checkbox-wrapper:last-of-type>span {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
 .custom-warning {
     font-size: small;
     margin: 0;
@@ -623,4 +642,8 @@ a.kofi-button:active {
 
 .decorationContentClass {
     background: lightblue;
+}
+
+.accordion .accordion-button.progression-active {
+    background-color: #1b6ec2;
 }

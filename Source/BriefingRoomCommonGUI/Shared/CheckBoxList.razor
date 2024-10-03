@@ -59,6 +59,7 @@
     [Parameter] public RenderFragment ChildContent { get; set; }
     // The array which contains the list of selected checkboxs
     [Parameter] public List<TItemOutput> SelectedValues { get; set; }
+    [Parameter]public EventCallback ParentStateHasChanged { get; set; }
 
     //Method to update the selected value on click on checkbox
     public void CheckboxClicked(TItemOutput aSelectedId, object aChecked)
@@ -78,5 +79,6 @@
             }
         }
         StateHasChanged();
+        ParentStateHasChanged.InvokeAsync();
     }
 }

@@ -52,6 +52,7 @@
 
 .darkMode .accordion-body {
     background-color: #020A10;
+    color: white;
 }
 
 .darkMode .accordion-button {
