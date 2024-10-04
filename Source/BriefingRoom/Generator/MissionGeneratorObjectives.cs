@@ -19,7 +19,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Data;
-using BriefingRoom4DCS.Data.JSON;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Mission.DCSLuaObjects;
 using BriefingRoom4DCS.Template;
@@ -27,7 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
+
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -514,9 +513,6 @@ namespace BriefingRoom4DCS.Generator
 
         private static void CreateLua(ref DCSMission mission, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTask taskDB, int objectiveIndex, string objectiveName, UnitMakerGroupInfo? targetGroupInfo, string taskString, MissionTemplateSubTaskRecord task)
         {
-            if(!string.IsNullOrEmpty(task.ProgressionOverrideCondition) && !Regex.IsMatch(task.ProgressionOverrideCondition, @"([\(\)\d+]| and | or )+")) {
-                throw new BriefingRoomException(mission.LangKey, "InvalidProgressionOverrideCondition", objectiveIndex + 1, task.ProgressionOverrideCondition);
-            }
             // Add Lua table for this objective
             string objectiveLua = $"briefingRoom.mission.objectives[{objectiveIndex + 1}] = {{ ";
             objectiveLua += $"complete = false, ";

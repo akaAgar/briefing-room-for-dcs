@@ -214,12 +214,10 @@ namespace BriefingRoom4DCS.Generator
             }
 
 
-
             int objectiveCount = GetObjectiveCountForMission(campaignTemplate.MissionsObjectiveCount);
             var i = 0;
             do {
                 var obj = new MissionTemplateObjective(Toolbox.RandomFrom(campaignTemplate.MissionsObjectives), campaignTemplate.MissionTargetCount);
-                template.Objectives.Add(obj);
                 i++;
                 while (i < Toolbox.RandomInt(i, Math.Min(i + 5, objectiveCount))) {
                     obj.SubTasks.Add(new MissionTemplateSubTask(Toolbox.RandomFrom(campaignTemplate.MissionsObjectives), campaignTemplate.MissionTargetCount));

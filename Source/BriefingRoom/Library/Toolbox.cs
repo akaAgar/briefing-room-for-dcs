@@ -598,6 +598,42 @@ namespace BriefingRoom4DCS
                 maxY = coord.Y;
         }
 
+        internal static void CheckObjectiveProgressionLogic(MissionTemplateRecord template, string langKey)
+        {
+            var tasks = new List<MissionTemplateSubTaskRecord>();
+            template.Objectives.ForEach(x => { tasks.Add(x); tasks.AddRange(x.SubTasks);});
+            tasks.Select((value, i) => new { i, value }).ToList().ForEach(x => CheckProgressionLogic(x.value, x.i + 1, tasks, langKey));
+        }
+
+        internal static void CheckProgressionLogic(MissionTemplateSubTaskRecord task, int taskIndex,  List<MissionTemplateSubTaskRecord> tasks,  string langKey)
+        {
+            if(!task.ProgressionActivation)
+                return;
+            if(!string.IsNullOrEmpty(task.ProgressionOverrideCondition) && !Regex.IsMatch(task.ProgressionOverrideCondition, @"^([\(\)\d+]| and | or )+$")) 
+                throw new BriefingRoomException(langKey, "InvalidProgressionOverrideCondition", taskIndex , task.ProgressionOverrideCondition);
+            CheckProgressionDeps(tasks, task, taskIndex, taskIndex, langKey);
+        }
+
+        internal static void CheckProgressionDeps(List<MissionTemplateSubTaskRecord> tasks, MissionTemplateSubTaskRecord task, int taskIndex, int searchIndex, string langKey, List<int> seenTaskIndexes = null)
+        {
+            if(seenTaskIndexes is null)
+                seenTaskIndexes = new List<int>();
+            if(seenTaskIndexes.Contains(taskIndex))
+                return; // Skip paths we have already seen
+
+            var dependentTasks = string.IsNullOrEmpty(task.ProgressionOverrideCondition) ? task.ProgressionDependentTasks.Select(x => x + 1).ToList() : Regex.Matches(task.ProgressionOverrideCondition, @"\d+").Select(x => int.Parse(x.Value)).ToList();
+
+            if(dependentTasks.Count == 0)
+                return;
+            if(dependentTasks.Contains(searchIndex))
+            {
+                throw new BriefingRoomException(langKey, "InvalidProgressionDependentTasks", searchIndex , taskIndex);
+            }
+
+            seenTaskIndexes.Add(taskIndex);
+            dependentTasks.ForEach(x => CheckProgressionDeps(tasks, tasks[x -1], x, searchIndex, langKey, seenTaskIndexes));
+        }
+
         [GeneratedRegex("\\[\\\"(.*?)\\\"\\] ?= ?(.*)")]
         private static partial Regex LuaDictRegex();
     }

@@ -42,7 +42,6 @@ namespace BriefingRoom4DCS.Template
         public string Preset { get { return Preset_; } set { Preset_ = Database.Instance.CheckID<DBEntryObjectivePreset>(value); } }
         private string Preset_ = "Custom";
         public bool HasPreset { get { return Preset_ != "Custom"; } }
-
         public bool ProgressionActivation { get { return ProgressionDependentTasks.Count > 0 || !string.IsNullOrEmpty(ProgressionOverrideCondition); } }
         public List<int> ProgressionDependentTasks { get { return ProgressionDependentTasks_; } set { ProgressionDependentTasks_ = value.Distinct().ToList(); } }
         private List<int> ProgressionDependentTasks_;
@@ -59,6 +58,35 @@ namespace BriefingRoom4DCS.Template
             TargetCount = Amount.Average;
             Task = "DestroyAll";
             Preset = "Custom";
+            ProgressionDependentTasks = new List<int>();
+            ProgressionDependentIsAny = false;
+            ProgressionOptions = new List<ObjectiveProgressionOption>();
+            ProgressionOverrideCondition = "";
+        }
+
+        public MissionTemplateSubTask(string presetID, Amount targetCount)
+        {
+            DBEntryObjectivePreset preset = Database.Instance.GetEntry<DBEntryObjectivePreset>(presetID);
+
+            if (preset == null) // Preset doesn't exist.
+            {
+                Options = new List<ObjectiveOption>();
+                Preset = "";
+                Target = "VehicleAny";
+                TargetBehavior = "Idle";
+                TargetCount = Amount.Average;
+                Task = "DestroyAll";
+
+            }
+            else
+            {
+                Options = preset.Options.ToList();
+                Preset = presetID;
+                Target = Toolbox.RandomFrom(preset.Targets);
+                TargetBehavior = Toolbox.RandomFrom(preset.TargetsBehaviors);
+                TargetCount = targetCount;
+                Task = preset.Task;
+            }
             ProgressionDependentTasks = new List<int>();
             ProgressionDependentIsAny = false;
             ProgressionOptions = new List<ObjectiveProgressionOption>();

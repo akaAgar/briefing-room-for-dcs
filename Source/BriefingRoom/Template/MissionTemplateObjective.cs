@@ -71,6 +71,11 @@ namespace BriefingRoom4DCS.Template
                 TargetCount = targetCount;
                 Task = preset.Task;
             }
+
+            ProgressionDependentTasks = new List<int>();
+            ProgressionDependentIsAny = false;
+            ProgressionOptions = new List<ObjectiveProgressionOption>();
+            ProgressionOverrideCondition = "";
         }
 
         internal MissionTemplateObjective(INIFile ini, string section, string key)

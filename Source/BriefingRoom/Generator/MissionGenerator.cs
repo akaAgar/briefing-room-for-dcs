@@ -26,6 +26,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -53,6 +55,8 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.CheckDBForMissingEntry<DBEntryTheater>(template.ContextTheater);
             if (!template.PlayerFlightGroups.Any(x => !x.Hostile))
                 throw new BriefingRoomException(langKey, "NoFullyHostilePlayers");
+
+            Toolbox.CheckObjectiveProgressionLogic(template, langKey);
 
             var mission = new DCSMission(langKey, template);
 
