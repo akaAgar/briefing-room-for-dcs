@@ -41,6 +41,7 @@ namespace BriefingRoom4DCS.Template
             TargetCount = objective.TargetCount;
             Task = objective.Task;
             CoordinatesHint = objective.CoordinateHint_;
+            ProgressionActivation = objective.ProgressionActivation;
             ProgressionDependentTasks = objective.ProgressionDependentTasks;
             ProgressionDependentIsAny = objective.ProgressionDependentIsAny;
             ProgressionOptions = objective.ProgressionOptions;
