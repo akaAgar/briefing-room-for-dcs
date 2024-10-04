@@ -653,3 +653,11 @@ a.kofi-button:active {
 .accordion .accordion-button.progression-active {
     background-color: #1b6ec2;
 }
+
+.notification {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    z-index: 999999;
+    margin: auto;
+}

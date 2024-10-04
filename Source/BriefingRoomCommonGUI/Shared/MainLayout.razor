@@ -52,6 +52,11 @@
                         @onchange="eventArgs => SetDarkMode((bool)eventArgs.Value)" />
                     <span class="oi oi-@((darkmode? "sun" : "moon"))"></span>
                 </label>
+                <label class="bulb" style="margin-bottom: 3px">
+                    <input type="checkbox" checked=@autoLoadPreviousState
+                        @onchange="eventArgs => SetAutoLoadPreviousState((bool)eventArgs.Value)" />
+                    <span class="oi oi-aperture" style="color: @((autoLoadPreviousState? "inherit" : "gray"));"></span>
+                </label>
             </div>
 
             <div class="content px-4">
@@ -64,6 +69,7 @@
 
 @code {
     public bool darkmode = false;
+    public bool autoLoadPreviousState = false;
 
     public static List<Tuple<DateTime, LogMessageErrorLevel, string>> logs = new List<Tuple<DateTime, LogMessageErrorLevel,
     string>>();
@@ -82,6 +88,7 @@
             try
             {
                 darkmode = await localStorage.GetItemAsync<bool>("DCSUseDarkMode");
+                autoLoadPreviousState = await localStorage.GetItemAsync<bool>("DCSAutoLoadPreviousState");
                 briefingRoom.LanguageKey = await localStorage.GetItemAsync<string>("DCSLanguage");
                 if (string.IsNullOrEmpty(briefingRoom.LanguageKey))
                     briefingRoom.LanguageKey = "en";
@@ -102,6 +109,19 @@
         try
         {
             await localStorage.SetItemAsync("DCSUseDarkMode", darkModeOn);
+        }
+        catch (System.Exception)
+        {
+        }
+    }
+
+    private async Task SetAutoLoadPreviousState(bool state)
+    {
+        autoLoadPreviousState = state;
+        StateHasChanged();
+        try
+        {
+            await localStorage.SetItemAsync("DCSAutoLoadPreviousState", autoLoadPreviousState);
         }
         catch (System.Exception)
         {

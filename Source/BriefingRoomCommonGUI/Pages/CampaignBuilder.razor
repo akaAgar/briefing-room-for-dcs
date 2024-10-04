@@ -25,7 +25,7 @@
     <div class="generator-form">
         <div>
             @if(!string.IsNullOrEmpty(tempateMessage)){
-                <div class="alert alert-info" role="info">
+                <div class="alert alert-info notification" role="info">
                     @tempateMessage
                 </div>
                 }
@@ -466,16 +466,39 @@
         flightGroupUtil.Tab = Template.PlayerFlightGroups[0];
     }
 
-    private void clearTemplateMessageDelay()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        Task.Delay(1000).ContinueWith(t=> clearTemplateMessage());
+        if (!firstRender) {
+            await localStorage.SetItemAsync("DCSCampaignEditorTemplate", Template.GetIniBytes());
+        } else {
+             try
+            {
+                var autoLoadPreviousState = await localStorage.GetItemAsync<bool>("DCSAutoLoadPreviousState");
+                if(!autoLoadPreviousState) return;
+                var templateBytes = await localStorage.GetItemAsync<byte[]>("DCSCampaignEditorTemplate");
+                if(templateBytes == null)
+                {
+                    throw new Exception("Template is null");
+                }
+                Template.LoadFromString(Encoding.Default.GetString(templateBytes));
+                tempateMessage = "Loaded Previous Template State";
+                clearTemplateMessageDelay();
+                StateHasChanged();
+            }
+            catch (System.Exception)
+            {
+                Template = new CampaignTemplate();
+                flightGroupUtil.Tab = Template.PlayerFlightGroups[0];
+            }
+        }
     }
 
-    private Task clearTemplateMessage()
+ 
+    private async void clearTemplateMessageDelay()
     {
+        await Task.Delay(1000);
         tempateMessage = "";
         StateHasChanged();
-        return Task.CompletedTask;
     }
 
     private async Task LoadTemplate(InputFileChangeEventArgs e)
