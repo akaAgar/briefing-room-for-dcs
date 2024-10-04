@@ -477,7 +477,7 @@ namespace BriefingRoom4DCS.Generator
                     targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(Toolbox.RandomFrom(presetDB.Targets));
                     targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(Toolbox.RandomFrom(presetDB.TargetsBehaviors));
                     taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(presetDB.Task);
-                    objectiveOptions = presetDB.Options.ToArray();
+                    objectiveOptions = presetDB.Options.Concat(objectiveTemplate.Options).Distinct().ToArray();
                 }
             }
 

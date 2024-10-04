@@ -194,21 +194,18 @@
                                         <InputEnum ClassString="flex-block" Label=@briefingRoom.Translate("TargetCount") @bind-Value="objective.TargetCount" EnumType="Amount"/>
                                         <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.CloneObjectiveTask(objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
                                     </div>
-                                     @if (!objective.HasPreset)
-                                     {
-                                        <div class="form-group">
-                                            <h6>@briefingRoom.Translate("Options")</h6>
-                                            <CheckBoxList
-                                                Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
-                                                TextField="@(item =>BriefingRoomGUITools.GetEnumName(briefingRoom.LanguageKey, item))"
-                                                DescriptionField="@(item => BriefingRoomGUITools.GetEnumDescription(briefingRoom.LanguageKey, item))"
-                                                ValueField="@(item =>item)"
-                                                SelectedValues="objective.Options"
-                                                TItem="ObjectiveOption"
-                                                TItemOutput="ObjectiveOption">
-                                            </CheckBoxList>
-                                        </div>
-                                    }
+                                    <div class="form-group">
+                                        <h6>@briefingRoom.Translate("Options")</h6>
+                                        <CheckBoxList
+                                            Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
+                                            TextField="@(item =>BriefingRoomGUITools.GetEnumName(briefingRoom.LanguageKey, item))"
+                                            DescriptionField="@(item => BriefingRoomGUITools.GetEnumDescription(briefingRoom.LanguageKey, item))"
+                                            ValueField="@(item =>item)"
+                                            SelectedValues="objective.Options"
+                                            TItem="ObjectiveOption"
+                                            TItemOutput="ObjectiveOption">
+                                        </CheckBoxList>
+                                    </div>
                                      @if(Template.GetTasksFlat().Count > 1) {
                                         <br/>
                                         <div class="accordion" id="accordionExample">
@@ -287,19 +284,16 @@
                                             <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.CloneObjectiveSubTask(subTask, objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
                                             <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.RemoveSubTask(objective, subTask)">x</button>
                                         </div>
-                                        @if (!subTask.HasPreset)
-                                        {
-                                            <h6>@briefingRoom.Translate("Options")</h6>
-                                            <CheckBoxList
-                                                Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
-                                                TextField="@(item =>BriefingRoomGUITools.GetEnumName(briefingRoom.LanguageKey, item))"
-                                                DescriptionField="@(item => BriefingRoomGUITools.GetEnumDescription(briefingRoom.LanguageKey, item))"
-                                                ValueField="@(item =>item)"
-                                                SelectedValues="subTask.Options"
-                                                TItem="ObjectiveOption"
-                                                TItemOutput="ObjectiveOption">
-                                            </CheckBoxList>
-                                        }
+                                        <h6>@briefingRoom.Translate("Options")</h6>
+                                        <CheckBoxList
+                                            Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
+                                            TextField="@(item =>BriefingRoomGUITools.GetEnumName(briefingRoom.LanguageKey, item))"
+                                            DescriptionField="@(item => BriefingRoomGUITools.GetEnumDescription(briefingRoom.LanguageKey, item))"
+                                            ValueField="@(item =>item)"
+                                            SelectedValues="subTask.Options"
+                                            TItem="ObjectiveOption"
+                                            TItemOutput="ObjectiveOption">
+                                        </CheckBoxList>
                                         <br/>
                                         <div class="accordion" id="accordionExample">
                                             <div class="accordion-item">
