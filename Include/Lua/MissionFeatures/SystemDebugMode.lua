@@ -32,6 +32,23 @@ function briefingRoom.f10MenuCommands.debug.destroyTargetUnit()
   trigger.action.outText("No target units found", 2)
 end
 
+function briefingRoom.f10MenuCommands.debug.destroySpecificTargetUnit(i)
+  local objective = briefingRoom.mission.objectives[i]
+  if (#objective.unitNames > 0) then
+    local u = Unit.getByName(objective.unitNames[1])
+    if u == nil then
+      u = StaticObject.getByName(objective.unitNames[1])
+    end
+    if u ~= nil then
+      trigger.action.outText("Destroyed " .. u:getName(), 2)
+      trigger.action.explosion(u:getPoint(), 100)
+      return
+    end
+  end
+
+  trigger.action.outText("No target units found", 2)
+end
+
 function briefingRoom.f10MenuCommands.debug.destroyRandomEnemyUnit()
   local u = math.randomFromTable(
     table.merge(

@@ -977,14 +977,14 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
       else
         briefingRoom.debugPrint("Failed to activate objective group "..objective.name)
       end
-    if objective ~= nil and objective.progressionHiddenBrief then
-      objective.progressionHiddenBrief = false
-      briefingRoom.f10MenuCommands.activateObjective(k)
-      if objective.waypoint ~= nil and briefingRoom.mission.MapMarkers then
-        local vec3pos = dcsExtensions.toVec3(objective.waypoint)
-        trigger.action.textToAll(briefingRoom.playerCoalition, k * 100 , vec3pos,{0, 0, 0, .53} , {1, 1, 1, .53} , 15, true , objective.name)
-      end
-      revealObjective = revealObjective + 1
+      if objective ~= nil and objective.progressionHiddenBrief then
+        objective.progressionHiddenBrief = false
+        briefingRoom.f10MenuCommands.activateObjective(k)
+        if objective.waypoint ~= nil and briefingRoom.mission.MapMarkers then
+          local vec3pos = dcsExtensions.toVec3(objective.waypoint)
+          trigger.action.textToAll(briefingRoom.playerCoalition, k * 100 , vec3pos,{0, 0, 0, .53} , {1, 1, 1, .53} , 15, true , objective.name)
+        end
+        revealObjective = revealObjective + 1
       end
     end
   end
@@ -1134,6 +1134,9 @@ function briefingRoom.f10MenuCommands.activateObjective(i)
   briefingRoom.f10Menu.objectives[i] = missionCommands.addSubMenuForCoalition(briefingRoom.playerCoalition,  briefingRoom.mission.objectives[i].f10MenuText, nil)
   for j=1,#briefingRoom.mission.objectives[i].f10Commands do
     briefingRoom.mission.objectives[i].f10Commands[j].commandPath = missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, briefingRoom.mission.objectives[i].f10Commands[j].text, briefingRoom.f10Menu.objectives[i] ,briefingRoom.mission.objectives[i].f10Commands[j].func, briefingRoom.mission.objectives[i].f10Commands[j].args)
+  end
+  if briefingRoom.printDebugMessages then
+    missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "(DEBUG) Destroy target unit", briefingRoom.f10Menu.objectives[i] ,briefingRoom.f10MenuCommands.debug.destroySpecificTargetUnit, i)
   end
 end
 
