@@ -54,6 +54,7 @@ namespace BriefingRoom4DCS.Generator
         };
         private const double AIRCRAFT_UNIT_SPACING = 50.0;
         private const double SHIP_UNIT_SPACING = 100.0;
+        private const double STATIC_UNIT_SPACING = 30.0;
         private const double VEHICLE_UNIT_SPACING = 10.0;
         private readonly static List<string> IGNORE_PROPS = new() { "Skill", "Pylons" };
 
@@ -719,6 +720,8 @@ namespace BriefingRoom4DCS.Generator
                             break;
                         case UnitCategory.Cargo:
                         case UnitCategory.Static:
+                            if (posIndex > 0)
+                                unitCoordinates = groupCoordinates.CreateNearRandom(STATIC_UNIT_SPACING, STATIC_UNIT_SPACING * 10);
                             break;
                         default:
                             var spType = mission.UsedSpawnPoints.Find(x => x.Coordinates.Equals(groupCoordinates)).PointType;
