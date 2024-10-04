@@ -303,6 +303,7 @@
                                                 </button>
                                                 </h2>
                                                 <div id="collapseProgression@(i)" class="accordion-collapse collapse" aria-labelledby="headingObjective" data-bs-parent="#accordionExample">
+                                                <button type="button" class="btn btn-secondary float-right" @onclick="() => objectiveUtil.CloneProgression(objective, subTask)"  title="Copy Base Task"><span class="oi oi-expand-down"></span></button>
                                                     <div class="accordion-body">
                                                         <h6>@briefingRoom.Translate("PrerequisiteObjectives")</h6>
                                                         <div class="radio-wrapper">

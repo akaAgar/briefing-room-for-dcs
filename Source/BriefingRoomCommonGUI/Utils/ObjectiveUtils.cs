@@ -92,6 +92,14 @@ namespace BriefingRoom4DCS.GUI.Utils
                 Tab = Template.Objectives.First();
         }
 
+        internal void CloneProgression(MissionTemplateObjective obj, MissionTemplateSubTask subTask)
+        {
+            subTask.ProgressionDependentTasks = obj.ProgressionDependentTasks;
+            subTask.ProgressionDependentIsAny = obj.ProgressionDependentIsAny;
+            subTask.ProgressionOptions = obj.ProgressionOptions;
+            subTask.ProgressionOverrideCondition = obj.ProgressionOverrideCondition;
+        }
+
         internal void AddSubTask(MissionTemplateObjective obj)
         {
             obj.SubTasks.Add(new MissionTemplateSubTask{
