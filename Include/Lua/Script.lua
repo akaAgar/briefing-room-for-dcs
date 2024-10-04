@@ -962,7 +962,7 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
   briefingRoom.mission.objectives[index].failed = failed
   briefingRoom.aircraftActivator.pushFromReserveQueue() -- activate next batch of aircraft (so more CAP will pop up)
   for k,objective in pairs(briefingRoom.mission.objectives) do
-    if objective ~= nil and objective.progressionHidden and briefingRoom.mission.coreFunctions.assesCondition(objective.progressionCondition)  then
+    if objective ~= nil and objective.progressionHidden and briefingRoom.mission.coreFunctions.assesCondition(objective.progressionCondition) then
       local acGroup = Group.getByName(objective.groupName) -- get the group
       if acGroup ~= nil then -- activate the group, if it exists
         acGroup:activate()
@@ -977,7 +977,6 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
       else
         briefingRoom.debugPrint("Failed to activate objective group "..objective.name)
       end
-    end
     if objective ~= nil and objective.progressionHiddenBrief then
       objective.progressionHiddenBrief = false
       briefingRoom.f10MenuCommands.activateObjective(k)
@@ -986,6 +985,7 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
         trigger.action.textToAll(briefingRoom.playerCoalition, k * 100 , vec3pos,{0, 0, 0, .53} , {1, 1, 1, .53} , 15, true , objective.name)
       end
       revealObjective = revealObjective + 1
+      end
     end
   end
   
