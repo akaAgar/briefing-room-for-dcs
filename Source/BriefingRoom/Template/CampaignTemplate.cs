@@ -44,6 +44,7 @@ namespace BriefingRoom4DCS.Template
         public Amount MissionsObjectiveVariationDistance { get; set; }
         public AmountN MissionsAirbaseVariationDistance { get; set; }
         public Amount MissionTargetCount { get; set; }
+        public AmountNR MissionsProgression { get; set; }
         public bool StaticSituation { get; set; }
 
         public CampaignTemplate()
@@ -74,6 +75,7 @@ namespace BriefingRoom4DCS.Template
             MissionsAirbaseVariationDistance = AmountN.Average;
             MissionTargetCount = Amount.Average;
             StaticSituation = false;
+            MissionsProgression = AmountNR.None;
 
             AssignAliases();
 
@@ -118,6 +120,7 @@ namespace BriefingRoom4DCS.Template
             MissionsAirbaseVariationDistance = ini.GetValue("Missions", "AirbaseVariationDistance", MissionsAirbaseVariationDistance);
             MissionTargetCount = ini.GetValue("Missions", "TargetCount", MissionTargetCount);
             StaticSituation = ini.GetValue("CampaignOptions", "StaticSituation", false);
+            MissionsProgression = ini.GetValue("Missions", "Progression", MissionsProgression);
 
             PlayerFlightGroups.Clear();
             foreach (string key in ini.GetTopLevelKeysInSection("PlayerFlightGroups"))
@@ -154,7 +157,8 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue("Missions", "ObjectiveVariationDistance", MissionsObjectiveVariationDistance);
             ini.SetValue("Missions", "AirbaseVariationDistance", MissionsAirbaseVariationDistance);
             ini.SetValue("Missions", "TargetCount", MissionTargetCount);
-            ini.SetValue("CampaignOptions", "StaticSituation", StaticSituation);  
+            ini.SetValue("CampaignOptions", "StaticSituation", StaticSituation);
+            ini.SetValue("Missions", "Progression", MissionsProgression);
 
             AssignAliases();
             return ini;

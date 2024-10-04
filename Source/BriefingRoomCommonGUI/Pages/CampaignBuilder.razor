@@ -122,6 +122,7 @@
                                 <InputNumber class="form-control" @bind-Value="Template.MissionsCount"></InputNumber>
                             </div>
                             <InputEnum ClassString="flex-block" Label=@briefingRoom.Translate("MissionDifficultyVariation") @bind-Value="Template.MissionsDifficultyVariation" EnumType="CampaignDifficultyVariation"/>
+                            <InputEnum ClassString="flex-block" Label=@briefingRoom.Translate("Progression") @bind-Value="Template.MissionsProgression" EnumType="AmountNR"/>
                         </div>
                         <div class="form-group">
                             <label>@briefingRoom.Translate("MissionFeatures")</label>

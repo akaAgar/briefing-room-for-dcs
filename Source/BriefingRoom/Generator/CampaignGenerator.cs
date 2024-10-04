@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -54,6 +54,7 @@ namespace BriefingRoom4DCS.Generator
                 if (i > 0) date = IncrementDate(date);
 
                 var template = CreateMissionTemplate(
+                    langKey,
                     campaignTemplate,
                     i,
                     (int)campaignTemplate.MissionsObjectiveCount,
@@ -131,6 +132,7 @@ namespace BriefingRoom4DCS.Generator
         }
 
         private static MissionTemplate CreateMissionTemplate(
+            string langKey,
             CampaignTemplate campaignTemplate,
             int missionIndex, int missionCount,
             string previousSituationId, Coordinates previousObjectiveCenterCoords, string previousPlayerAirbaseId)
@@ -226,11 +228,78 @@ namespace BriefingRoom4DCS.Generator
                 template.Objectives.Add(obj);
             } while (i < objectiveCount);
 
+            if (campaignTemplate.MissionsProgression != AmountNR.None) {
+                var progression = GetMissionProgressionChance(campaignTemplate.MissionsProgression);
+                if(progression > 0)
+                    ApplyProgression(langKey, progression, ref template);
+            }
 
             if (!String.IsNullOrEmpty(previousPlayerAirbaseId))
                 template.Objectives[0].CoordinateHint_ = previousObjectiveCenterCoords.CreateNearRandom(5 * Toolbox.NM_TO_METERS, GetObjectiveVariationDistance(campaignTemplate.MissionsObjectiveVariationDistance) * Toolbox.NM_TO_METERS);
 
             return template;
+        }
+
+        private static void ApplyProgression(string langKey, int progressionChance, ref MissionTemplate template) {
+            var trys = 1;
+            while (trys < 10)
+            {
+                var taskIndex = 0;
+                List<int> indexesSoFar = new();
+                foreach (var objective in template.Objectives) {
+                    if(taskIndex > 0 && Toolbox.RandomInt(100) < progressionChance)
+                        ApplyProgressionToTask(objective, indexesSoFar);
+                    indexesSoFar.Add(taskIndex);
+                    taskIndex++;
+                    foreach (var subTask in objective.SubTasks) {
+                        if (Toolbox.RandomInt(100) < progressionChance)
+                            ApplyProgressionToTask(subTask, indexesSoFar);
+                        indexesSoFar.Add(taskIndex);
+                        taskIndex++;
+                    }
+                }
+                try
+                {
+                   Toolbox.CheckObjectiveProgressionLogic(new MissionTemplateRecord(template), langKey);
+                   break;
+                }
+                catch (BriefingRoomException)
+                {
+                    trys++;
+                }
+            }
+        }
+
+        private static void ApplyProgressionToTask(MissionTemplateSubTask task, List<int> indexesSoFar)
+        {
+            task.ProgressionDependentIsAny = Toolbox.RandomInt(100) < 50;
+            for (var i = 0; i < Toolbox.RandomMinMax(0, 3); i++)
+                task.ProgressionDependentTasks.Add(Toolbox.RandomFrom(indexesSoFar));
+            task.ProgressionDependentTasks = task.ProgressionDependentTasks.Distinct().ToList();
+            if(!task.ProgressionActivation) return;
+
+            foreach (var val in Enum.GetValues<ObjectiveProgressionOption>())
+            {
+                if(Toolbox.RandomInt(100) < 50)
+                    task.ProgressionOptions.Add(val);
+            }
+
+            if (Toolbox.RandomInt(100) < 50)
+                task.Options.Add(ObjectiveOption.NoAircraftWaypoint);
+        }
+
+        private static int GetMissionProgressionChance(AmountNR missionsProgression)
+        {
+             return missionsProgression switch
+            {
+                AmountNR.VeryLow => 10,
+                AmountNR.Low => 25,
+                AmountNR.High => 75,
+                AmountNR.VeryHigh => 100,
+                AmountNR.None => 0,
+                AmountNR.Random => Toolbox.RandomInt(100),
+                _ => 50,// case Amount.Average
+            };
         }
 
         private static double GetObjectiveVariationDistance(Amount objectiveVariationDistance)
