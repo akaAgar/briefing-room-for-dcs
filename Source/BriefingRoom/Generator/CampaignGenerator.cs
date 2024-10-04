@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -216,8 +216,18 @@ namespace BriefingRoom4DCS.Generator
 
 
             int objectiveCount = GetObjectiveCountForMission(campaignTemplate.MissionsObjectiveCount);
-            for (int i = 0; i < objectiveCount; i++)
-                template.Objectives.Add(new MissionTemplateObjective(Toolbox.RandomFrom(campaignTemplate.MissionsObjectives), campaignTemplate.MissionTargetCount));
+            var i = 0;
+            do {
+                var obj = new MissionTemplateObjective(Toolbox.RandomFrom(campaignTemplate.MissionsObjectives), campaignTemplate.MissionTargetCount);
+                template.Objectives.Add(obj);
+                i++;
+                while (i < Toolbox.RandomInt(i, Math.Min(i + 5, objectiveCount))) {
+                    obj.SubTasks.Add(new MissionTemplateSubTask(Toolbox.RandomFrom(campaignTemplate.MissionsObjectives), campaignTemplate.MissionTargetCount));
+                    i++;
+                }
+                template.Objectives.Add(obj);
+            } while (i < objectiveCount);
+
 
             if (!String.IsNullOrEmpty(previousPlayerAirbaseId))
                 template.Objectives[0].CoordinateHint_ = previousObjectiveCenterCoords.CreateNearRandom(5 * Toolbox.NM_TO_METERS, GetObjectiveVariationDistance(campaignTemplate.MissionsObjectiveVariationDistance) * Toolbox.NM_TO_METERS);
