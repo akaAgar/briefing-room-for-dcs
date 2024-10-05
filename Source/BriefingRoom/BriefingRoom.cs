@@ -83,6 +83,11 @@ namespace BriefingRoom4DCS
             OnMessageLogged = logHandler;
         }
 
+        public List<string> GetUnitIdsByFamily(UnitFamily family)
+        {
+            return Database.Instance.GetAllEntries<DBEntryJSONUnit>().Where(x => x.Families.Contains(family)).Select(x => x.ID).ToList();
+        }
+
         public DatabaseEntryInfo[] GetDatabaseEntriesInfo(DatabaseEntryType entryType, string parameter = "") {
             return GetDatabaseEntriesInfo(LanguageKey, entryType, parameter);
         }

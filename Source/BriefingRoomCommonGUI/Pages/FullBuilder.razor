@@ -704,6 +704,11 @@
                         <h3>@briefingRoom.Translate("unitBanlist")</h3>
                         <button id="ban-all" class="btn btn-primary" type="button" @onclick='() => BanEverything()'>@briefingRoom.Translate("BanAll")</button>
                         <button id="un-ban-all" class="btn btn-primary" type="button" @onclick='() => UnBanEverything()'>@briefingRoom.Translate("UnBanAll")</button>
+                        <div class="generator-group flex-justify-spaced flex-margin-fix">
+                            <InputEnum ClassString="flex-block" @bind-Value="selectedFamily" EnumType="UnitFamily"/>
+                            <button id="ban-all" class="btn btn-primary row-button" type="button" @onclick='() => BanFamily(selectedFamily)'>@briefingRoom.Translate("BanGroup")</button>
+                            <button id="un-ban-all" class="btn btn-primary row-button" type="button" @onclick='() => UnBanFamily(selectedFamily)'>@briefingRoom.Translate("UnBanGroup")</button>
+                        </div>
                          <CheckBoxList
                                 Data="briefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Unit, string.Join(',', Template.Mods)).ToList()"
                                 TextField="@(item =>item.Name.Get(briefingRoom.LanguageKey))"
@@ -989,5 +994,15 @@
     private void UnBanEverything()
     {
         Template.OptionsUnitBanList = new();
+    }
+
+    private UnitFamily selectedFamily;
+    private void BanFamily(UnitFamily family)
+    {
+        Template.OptionsUnitBanList.AddRange(briefingRoom.GetUnitIdsByFamily(family));
+    }
+    private void UnBanFamily(UnitFamily family)
+    {
+        Template.OptionsUnitBanList = Template.OptionsUnitBanList.Except(briefingRoom.GetUnitIdsByFamily(family)).ToList();
     }
 }
