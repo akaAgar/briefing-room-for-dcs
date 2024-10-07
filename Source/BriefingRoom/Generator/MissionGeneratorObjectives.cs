@@ -308,7 +308,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Assign target suffix
             var i = 0;
-            var isStatic = objectiveTargetUnitFamily.GetUnitCategory() == UnitCategory.Static;
+            var isStatic = objectiveTargetUnitFamily.GetUnitCategory() == UnitCategory.Static || objectiveTargetUnitFamily.GetUnitCategory() == UnitCategory.Cargo;
             targetGroupInfo.Value.DCSGroups.ForEach(x =>
             {
                 x.Name += $"{(i == 0 ? "" : i)}-TGT-{objectiveName}";
