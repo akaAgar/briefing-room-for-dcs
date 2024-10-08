@@ -661,3 +661,7 @@ a.kofi-button:active {
     z-index: 999999;
     margin: auto;
 }
+
+.tabbed {
+    margin-left: 15px;
+}

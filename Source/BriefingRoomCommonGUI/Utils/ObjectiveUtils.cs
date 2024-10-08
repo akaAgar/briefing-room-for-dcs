@@ -112,11 +112,6 @@ namespace BriefingRoom4DCS.GUI.Utils
             obj.SubTasks.Remove(subTsk);
         }
 
-        internal void ClearSubTasks(MissionTemplateObjective obj)
-        {
-            obj.SubTasks = new List<MissionTemplateSubTask>();
-        }
-
         internal void ClearObjectiveHint(MissionTemplateObjective obj)
         {
             obj.CoordinateHint = new double[] { 0, 0 };

@@ -233,10 +233,14 @@
                         <InputDataBase ClassString="flex-block" Label=@briefingRoom.Translate("Objective") @bind-Value="objective.Preset" DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
                         <InputEnum ClassString="flex-block" Label=@briefingRoom.Translate("TargetCount") @bind-Value="objective.TargetCount" EnumType="Amount" />
                         <div class="form-group flex-box">
+                            <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.AddSubTask(objective)">+ @briefingRoom.Translate("Nearby")</button>
                             <button type="button" class="btn btn-secondary row-button"
                             @onclick="() => objectiveUtil.CloneObjective(objective, ref Template)"  title="Clone Objective"><span class="oi oi-layers"></span></button>
-                            <button type="button" class="btn btn-secondary row-button"
-                            @onclick="() => objectiveUtil.RemoveObjective(objective, ref Template)"><span class="oi oi-x"></span></button>
+                            @if (Template.Objectives.Count > 1)
+                            {
+                                <button type="button" class="btn btn-secondary row-button"
+                                @onclick="() => objectiveUtil.RemoveObjective(objective, ref Template)"><span class="oi oi-x"></span></button>
+                            }
                         </div>
                     </div>
                     @if(!objective.HasPreset){
@@ -257,23 +261,37 @@
                             <a @onclick="() => objectiveUtil.ClearObjectiveHint(objective)" >@briefingRoom.Translate("RemoveHint")</a>
                         </p>
                     }
+
+
                     @if(objective.SubTasks.Count > 0)
                     {
-                        <p class="custom-warning">&nbsp;@briefingRoom.Translate("QuickBuilderCustomSubObjectives"):<br/>
-                            @foreach (var subTask in objective.SubTasks)
-                            {
-                                <span>&nbsp;&nbsp;@(objective.SubTasks.IndexOf(subTask) + 1) -
-                                    &nbsp;@briefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTask, subTask.Task).Value.Name.Get(briefingRoom.LanguageKey)
-                                    &nbsp;@briefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTarget, subTask.Target).Value.Name.Get(briefingRoom.LanguageKey)
-                                    &nbsp;@briefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTargetBehavior, subTask.TargetBehavior).Value.Name.Get(briefingRoom.LanguageKey)
-                                    &nbsp;@BriefingRoomGUITools.GetEnumName(briefingRoom.LanguageKey, subTask.TargetCount)
-                                    &nbsp;@briefingRoom.Translate("Options"):&nbsp;@string.Join(", ", @subTask.Options.Select(x => BriefingRoomGUITools.GetEnumName(briefingRoom.LanguageKey, x)))</span><br/>
-                            }
-                        &nbsp;<a @onclick="() => objectiveUtil.ClearSubTasks(objective)" >@briefingRoom.Translate("RemoveSubTasks")</a>
-                        </p>
+                        <h5>@briefingRoom.Translate("Nearby")</h5>
+                    }
+                    @foreach (var subTask in objective.SubTasks)
+                    {
+                        <div class="generator-group flex-justify-spaced flex-margin-fix tabbed">
+                            <InputDataBase ClassString="flex-block" Label=@briefingRoom.Translate("Objective") @bind-Value="subTask.Preset" DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
+                            <InputEnum ClassString="flex-block" Label=@briefingRoom.Translate("TargetCount") @bind-Value="subTask.TargetCount" EnumType="Amount" />
+                            <div class="form-group flex-box">
+                                <button type="button" class="btn btn-secondary row-button"
+                                @onclick="() => objectiveUtil.CloneObjectiveSubTask(subTask, objective)"  title="Clone Objective"><span class="oi oi-layers"></span></button>
+                                <button type="button" class="btn btn-secondary row-button"
+                                @onclick="() => objectiveUtil.RemoveSubTask(objective, subTask)"><span class="oi oi-x"></span></button>
+                            </div>
+                        </div>
+                        @if(!subTask.HasPreset){
+                            <p class="custom-warning tabbed"><span class="oi oi-info"></span>&nbsp;@briefingRoom.Translate("QuickBuilderCustomObjective"):
+                                &nbsp;@briefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTask, @subTask.Task).Value.Name.Get(briefingRoom.LanguageKey)
+                                &nbsp;@briefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTarget, @subTask.Target).Value.Name.Get(briefingRoom.LanguageKey)
+                                &nbsp;@briefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTargetBehavior, @subTask.TargetBehavior).Value.Name.Get(briefingRoom.LanguageKey)
+                                &nbsp;@BriefingRoomGUITools.GetEnumName(briefingRoom.LanguageKey, subTask.TargetCount)
+                                &nbsp;@briefingRoom.Translate("Options"):
+                                    &nbsp;@string.Join(", ", @subTask.Options.Select(x => BriefingRoomGUITools.GetEnumName(briefingRoom.LanguageKey, x)))<br/>
+                            </p>
+                        }
                     }
                 }
-                <button type="button" class="btn btn-secondary" @onclick="() => objectiveUtil.AddObjective(ref Template)">+</button>
+                <button type="button" class="btn btn-secondary form-control" @onclick="() => objectiveUtil.AddObjective(ref Template)">+</button> 
                 <hr />
             </div>
             <div id="mission-features" class="generator-block row">
