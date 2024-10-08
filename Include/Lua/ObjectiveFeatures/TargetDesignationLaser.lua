@@ -40,8 +40,8 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
   targetPos.y = targetPos.y + 2.0
   targetPos.z = targetPos.z + targetSpeed.z
   if objFeature.targetDesignationLaser.laserSpot == nil then
-    objFeature.targetDesignationLaser.laserIRSpot = Spot.createInfraRed(objFeature.targetDesignationLaser.laserTarget, { x = 0, y = 2.0, z = 0 }, targetPos)
-    objFeature.targetDesignationLaser.laserSpot = Spot.createLaser(objFeature.targetDesignationLaser.laserTarget, { x = 0, y = 2.0, z = 0 }, targetPos, objFeature.targetDesignationLaser.laserCode)
+    objFeature.targetDesignationLaser.laserIRSpot = Spot.createInfraRed(objFeature.targetDesignationLaser.laserTarget, { x = math.random(-1000,1000), y = 2000, z = math.random(-1000,1000) }, targetPos)
+    objFeature.targetDesignationLaser.laserSpot = Spot.createLaser(objFeature.targetDesignationLaser.laserTarget, { x = math.random(-1000,1000), y = 2000, z = math.random(-1000,1000) }, targetPos, objFeature.targetDesignationLaser.laserCode)
     briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: Created Laser "..objFeature.targetDesignationLaser.laserSpot:getCode()..":"..tostring(targetPos.x)..","..tostring(targetPos.y)..","..tostring(targetPos.z), 1)
   else -- spot already exists, update its position
     objFeature.targetDesignationLaser.laserIRSpot:setPoint(targetPos)
