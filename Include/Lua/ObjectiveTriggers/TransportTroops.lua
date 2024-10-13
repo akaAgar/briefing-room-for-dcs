@@ -13,7 +13,7 @@ briefingRoom.mission.objectives[$OBJECTIVEINDEX$].forcePickup = function()
         if targetUnit ~= nil then
           local targetPosition = dcsExtensions.toVec2(targetUnit:getPoint())
           briefingRoom.debugPrint("Player distance"..dcsExtensions.getDistance(position, targetPosition))
-          if dcsExtensions.getDistance(position, targetPosition) < 500 then
+          if dcsExtensions.getDistance(position, targetPosition) < $DROPOFFDISTANCEMETERS$ then
             table.insert(collect, id)
           end
         end
@@ -57,7 +57,7 @@ briefingRoom.mission.objectiveTimers[$OBJECTIVEINDEX$] = function()
       local vec2p = briefingRoom.mission.objectives[$OBJECTIVEINDEX$].waypoint
       local vec2u = dcsExtensions.toVec2(unit:getPoint())
       local distance = dcsExtensions.getDistance(vec2p, vec2u);
-      if distance < 500 then
+      if distance < $DROPOFFDISTANCEMETERS$ then
         table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, u)
         if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames < 1 then -- all target units destroyed, objective complete
           briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_TROOPSDELIVERED$", "RadioPilotTroopsDelivered")
@@ -83,7 +83,7 @@ table.insert(briefingRoom.mission.objectiveTriggers, function(event)
  
   -- Drop off
   local distanceToObjective = dcsExtensions.getDistance(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].waypoint, position);
-  if distanceToObjective < 500 then
+  if distanceToObjective < $DROPOFFDISTANCEMETERS$ then
     local removed = briefingRoom.transportManager.removeTroopCargo(event.initiator:getName(), briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames)
     for index, value in ipairs(removed) do
       table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, value)
@@ -102,7 +102,7 @@ table.insert(briefingRoom.mission.objectiveTriggers, function(event)
     local targetUnit = Unit.getByName(id)
     if targetUnit ~= nil then
       local targetPosition = dcsExtensions.toVec2(targetUnit:getPoint())
-      if dcsExtensions.getDistance(position, targetPosition) < 500 then
+      if dcsExtensions.getDistance(position, targetPosition) < $DROPOFFDISTANCEMETERS$ then
         table.insert(collect, id)
       end
     end

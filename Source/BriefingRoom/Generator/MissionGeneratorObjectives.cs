@@ -296,7 +296,7 @@ namespace BriefingRoom4DCS.Generator
                 targetGroupInfo.Value.DCSGroup.Waypoints.First().Tasks.Add(new DCSWaypointTask("EmbarkToTransport", new Dictionary<string, object>{
                     {"x", pos.X},
                     { "y", pos.Y},
-                    {"zoneRadius", 500}
+                    {"zoneRadius", Database.Instance.Common.DropOffDistanceMeters}
                     }, _auto: false));
 
             }
@@ -328,6 +328,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 string remark = Toolbox.RandomFrom(remarksString.Split(";"));
                 GeneratorTools.ReplaceKey(ref remark, "ObjectiveName", objectiveName);
+                GeneratorTools.ReplaceKey(ref remark, "DropOffDistanceMeters", Database.Instance.Common.DropOffDistanceMeters.ToString());
                 GeneratorTools.ReplaceKey(ref remark, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily].Get(mission.LangKey).Split(",")[pluralIndex]);
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.Remark, remark);
             }
@@ -570,7 +571,7 @@ namespace BriefingRoom4DCS.Generator
                     DrawingMaker.AddDrawing(ref mission, $"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
             }
             else if (taskDB.UICategory.ContainsValue("Transport"))
-                DrawingMaker.AddDrawing(ref mission, $"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(500));
+                DrawingMaker.AddDrawing(ref mission, $"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(Database.Instance.Common.DropOffDistanceMeters));
             else if (targetBehaviorLocation == DBEntryObjectiveTargetBehaviorLocation.Patrolling)
                 DrawingMaker.AddDrawing(ref mission, $"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(ObjectiveDestinationCoordinates.GetDistanceFrom(objectiveCoordinates)));
             return new Waypoint(objectiveName, waypointCoordinates, onGround, groupId, scriptIgnore, objectiveTemplate.Options.Contains(ObjectiveOption.NoAircraftWaypoint), hiddenMapMarker);

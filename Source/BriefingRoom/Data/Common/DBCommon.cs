@@ -37,6 +37,7 @@ namespace BriefingRoom4DCS.Data
         public int MaxBorderLimit { get; private set; }
         public int MinCampaignMissions { get; private set; }
         public int MaxCampaignMissions { get; private set; }
+        public int DropOffDistanceMeters { get; private set; }
         internal DBCommonAirDefense AirDefense { get; private set; }
         internal DBCommonCAP CAP { get; private set; }
         internal DBCommonCarrierGroup CarrierGroup { get; private set; }
@@ -63,6 +64,7 @@ namespace BriefingRoom4DCS.Data
             MaxBorderLimit = commonIni.GetValue<int>("Limits", "MaxBorderLimit");
             MinCampaignMissions = commonIni.GetValue<int>("Limits", "MinCampaignMissions");
             MaxCampaignMissions = commonIni.GetValue<int>("Limits", "MaxCampaignMissions");
+            DropOffDistanceMeters = commonIni.GetValue<int>("Limits", "DropOffDistanceMeters");
 
            
 
