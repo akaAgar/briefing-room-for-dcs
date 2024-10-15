@@ -129,7 +129,7 @@ namespace BriefingRoom4DCS.Generator
                     groupInfo.Value.UnitDB.IsAircraft &&
                     !flags.HasFlag(FeatureUnitGroupFlags.StaticAircraft))
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
-                            $"{groupInfo.Value.Name.Split("-")[0]}\t" +
+                            $"{groupInfo.Value.Name.Split("-")[0]}{(featureDB.GetDBEntryInfo().Category.Get("en") == "Direct Support" ? "(DS)" : "")}\t" +
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get(mission.LangKey)}\t" +
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}{TACANStr}\t" +
                             $"{featureDB.UnitGroupTask}" +
