@@ -89,7 +89,7 @@ namespace BriefingRoom4DCS.Mission
             }
 
             for (int i = 0; i < Missions.Count; i++)
-                FileEntries.Add($"{Missions[i].Briefing.Name}.miz", await Missions[i].SaveToMizBytes());
+                FileEntries.Add($"{i+1}_{Missions[i].Briefing.Name}.miz", await Missions[i].SaveToMizBytes());
 
             return Toolbox.ZipData(Missions[0].LangKey, FileEntries);
         }

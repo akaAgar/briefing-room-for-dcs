@@ -121,7 +121,7 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref nextStageLua, "Index", i);
                 GeneratorTools.ReplaceKey(ref nextStageLua, "Name", $"Stage {i}");
                 GeneratorTools.ReplaceKey(ref nextStageLua, "Description", $"");
-                GeneratorTools.ReplaceKey(ref nextStageLua, "File", $"{mission.Briefing.Name}.miz");
+                GeneratorTools.ReplaceKey(ref nextStageLua, "File", $"{i}_{mission.Briefing.Name}.miz");
 
                 stagesLua += nextStageLua + "\r\n";
                 i++;
